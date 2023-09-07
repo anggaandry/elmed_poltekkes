@@ -5,7 +5,7 @@
 @section('breadcrumb')
     <div class="row page-titles">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item active"><a href="javascript:void(0)">Konfigurasi</a></li>
+            <li class="breadcrumb-item active"><a href="javascript:void(0)">{{ tr('konfigurasi') }}</a></li>
 
         </ol>
     </div>
@@ -22,51 +22,44 @@
                     <div class="card-body">
                         <div class="row">
                             <div class="mb-3 col-md-12">
-                                <label class="form-label">Logo kampus</label>
-                                <input type="file" class="dropify" name="logo" height="200"
-                                    data-default-file="{{ $config_data->logo ? asset(LOGO_PATH . $config_data->logo) : '' }}" />
+                                <label class="form-label">{{ tr('logo kampus') }}</label>
+                                <input type="file" class="dropify" name="logo" height="200" data-default-file="{{ $config_data->logo ? asset(LOGO_PATH . $config_data->logo) : '' }}" />
                             </div>
                             <div class="mb-3 col-md-3">
-                                <label class="form-label">Kode kampus</label>
-                                <input type="text" class="form-control" name="code" value="{{ $config_data->code }}"
-                                    disabled="true">
+                                <label class="form-label">{{ tr('kode kampus') }}</label>
+                                <input type="text" class="form-control" name="code" value="{{ $config_data->code }}" disabled="true">
                             </div>
                             <div class="mb-3 col-md-9">
-                                <label class="form-label">Nama kampus</label>
-                                <input type="text" class="form-control" name="name" value="{{ $config_data->name }}"
-                                    required>
+                                <label class="form-label">{{ tr('nama kampus') }}</label>
+                                <input type="text" class="form-control" name="name" value="{{ $config_data->name }}" required>
                             </div>
                             <div class="mb-3 col-md-4">
-                                <label class="form-label">Tipe kampus</label>
+                                <label class="form-label">{{ tr('tipe kampus') }}</label>
                                 <select class="form-select form-select-lg" name="type">
-                                    <option {{ $config_data->type == 'Universitas' ? 'selected' : '' }}>Universitas</option>
-                                    <option {{ $config_data->type == 'Politeknik' ? 'selected' : '' }}>Politeknik</option>
+                                    <option {{ $config_data->type == 'Universitas' ? 'selected' : '' }}>{{ tr('universitas') }}</option>
+                                    <option {{ $config_data->type == 'Politeknik' ? 'selected' : '' }}>{{ tr('politeknik') }}</option>
                                 </select>
                             </div>
                             <div class="mb-3 col-md-4">
-                                <label class="form-label">Email</label>
-                                <input type="text" class="form-control" name="email" value="{{ $config_data->email }}"
-                                    required>
+                                <label class="form-label">{{ tr('email') }}</label>
+                                <input type="text" class="form-control" name="email" value="{{ $config_data->email }}" required>
                             </div>
                             <div class="mb-3 col-md-4">
-                                <label class="form-label">No telp</label>
-                                <input type="text" class="form-control" name="phone" value="{{ $config_data->phone }}"
-                                    required>
+                                <label class="form-label">{{ tr('no telp') }}</label>
+                                <input type="text" class="form-control" name="phone" value="{{ $config_data->phone }}" required>
                             </div>
 
                             <div class="mb-3 col-md-12">
-                                <label class="form-label">Alamat lengkap</label>
+                                <label class="form-label">{{ tr('alamat lengkap') }}</label>
                                 <textarea class="form-control" name="address">{{ $config_data->address }}</textarea>
                             </div>
                             <div class="mb-3 col-md-6">
-                                <label class="form-label">Longitude kampus</label>
-                                <input type="text" class="form-control" name="lon" value="{{ $config_data->lon }}"
-                                    required>
+                                <label class="form-label">{{ tr('longitude kampus') }}</label>
+                                <input type="text" class="form-control" name="lon" value="{{ $config_data->lon }}" required>
                             </div>
                             <div class="mb-3 col-md-6">
-                                <label class="form-label">Latitude kampus</label>
-                                <input type="text" class="form-control" name="lat" value="{{ $config_data->lat }}"
-                                    required>
+                                <label class="form-label">{{ tr('latitude kampus') }}</label>
+                                <input type="text" class="form-control" name="lat" value="{{ $config_data->lat }}" required>
                             </div>
 
                         </div>
@@ -74,9 +67,8 @@
                     <div class="card-footer">
                         <div style="width:100%;">
 
-                            <button class="btn  btn-info float-end mb-3" type="submit"><span
-                                    class="btn-icon-start text-info"><i class="fa fa-save color-info"></i>
-                                </span>Simpan</button>
+                            <button class="btn  btn-info float-end mb-3" type="submit"><span class="btn-icon-start text-info"><i class="fa fa-save color-info"></i>
+                                </span>{{ tr('simpan') }}</button>
                         </div>
                     </div>
                 </form>

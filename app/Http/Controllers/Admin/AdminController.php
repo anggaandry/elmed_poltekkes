@@ -53,7 +53,7 @@ class AdminController extends Controller
                     return $row->online?date_id($row->online,4):"-";
                 })
                 ->addColumn('status_view', function($row){
-                    return $row->status?'<span class="badge bg-success">active</span>':'<span class="badge bg-danger">unactive</span>';
+                    return $row->status?'<span class="badge bg-success">'.tr('active').'</span>':'<span class="badge bg-danger">'.tr('unactive').'</span>';
                 })
                 ->addColumn('role_view', function($row){
                     return '<span class="badge bg-primary">'.$row->role->name.'</span>';
@@ -74,23 +74,23 @@ class AdminController extends Controller
                     $delete="";
                     
                     if(can($this->key_,'edit')){
-                        $active='<a class="dropdown-item text-success" href="javascript:void()" onclick="show_active('.$row->id.',\''.$row->name.'\')">Aktifkan akun</a>';
+                        $active='<a class="dropdown-item text-success" href="javascript:void()" onclick="show_active('.$row->id.',\''.$row->name.'\')">'.tr('aktifkan akun').'</a>';
                         if($row->status==1){
                             $active='<a class="dropdown-item text-danger" href="javascript:void()" onclick="show_disactive('.$row->id.',\''.$row->name.'\')">Non-aktifkan akun</a>';
                         }
-                        $edit='<a class="dropdown-item" href="javascript:void()" onclick="show_edit('.$row->id.')">Edit</a>';
-                        $avatar='<a class="dropdown-item" href="javascript:void()" onclick="show_avatar('.$row->id.')">Ganti avatar</a>';
-                        $respass='<a class="dropdown-item text-danger" href="javascript:void()" onclick="show_respass('.$row->id.',\''.$row->name.'\')">Reset password</a>';
+                        $edit='<a class="dropdown-item" href="javascript:void()" onclick="show_edit('.$row->id.')">'.tr('edit').'</a>';
+                        $avatar='<a class="dropdown-item" href="javascript:void()" onclick="show_avatar('.$row->id.')">'.tr('ganti avatar').'</a>';
+                        $respass='<a class="dropdown-item text-danger" href="javascript:void()" onclick="show_respass('.$row->id.',\''.$row->name.'\')">'.tr('reset password').'</a>';
                     }
 
                     if(can($this->key_,'delete')){
-                        $delete='<a class="dropdown-item text-danger" href="javascript:void()" onclick="show_delete('.$row->id.',\''.$row->name.'\')">Delete</a>';
+                        $delete='<a class="dropdown-item text-danger" href="javascript:void()" onclick="show_delete('.$row->id.',\''.$row->name.'\')">'.tr('delete').'</a>';
                     }
                     
                     
 
                     $action='<div class="btn-group" role="group">
-                                <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown">Aksi</button>
+                                <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown">'.tr('aksi').'</button>
                                 <div class="dropdown-menu">
                                     '.$edit.'
                                     '.$avatar.'
@@ -138,8 +138,17 @@ class AdminController extends Controller
         $birthdate= $request->input("birthdate");
         $password= Hash::make(date("dmY",strtotime($birthdate)));
 
+        $lang="id";
+        $check_role=Role::where("id",$role_id)->first();
+        if($check_role){
+            if($check_role->prodi_id){
+                $lang=$check_role->prodi->lang;
+            }
+        }
+
         $data=[
             "name"=>$name,
+            "lang"=>$lang,
             "role_id"=>$role_id,
             "nip"=>$nip,
             "birthdate"=>$birthdate,
@@ -162,9 +171,9 @@ class AdminController extends Controller
 
         if ($status_data) {
             addLog(0,$this->menu_id,'Menambah data '.$name);
-            return redirect()->back()->with('success', 'berhasil menambah akun');
+            return redirect()->back()->with('success', tr('berhasil menambah').' '.tr('akun'));
         } else {
-            return redirect()->back()->with('failed', 'gagal menambah akun');
+            return redirect()->back()->with('failed', tr('gagal menambah').' '.tr('akun'));
         }
     }
 
@@ -172,6 +181,7 @@ class AdminController extends Controller
     {
         $id = $request->input("id");
         $name = $request->input("name");
+       
         $role_id = $request->input("role_id");
         $nip = $request->input("nip");
         $email= $request->input("email");
@@ -190,9 +200,9 @@ class AdminController extends Controller
 
         if ($status_data) {
             addLog(0,$this->menu_id,'Mengedit data '.$name);
-            return redirect()->back()->with('success', 'sukses mengedit data akun');
+            return redirect()->back()->with('success', tr('sukses mengedit').' '.tr('data akun'));
         } else {
-            return redirect()->back()->with('failed', 'gagal mengedit data akun');
+            return redirect()->back()->with('failed', tr('gagal mengedit').' '.tr('data akun'));
         }
     }
 
@@ -206,12 +216,12 @@ class AdminController extends Controller
             $status_data = Admin::where(['id'=>$id])->update(['password'=>$password]);
             if ($status_data) {
                 addLog(0,$this->menu_id,'Mereset password '.$account_data->name);
-                return redirect()->back()->with('success', 'password berhasil di reset');
+                return redirect()->back()->with('success', tr('password berhasil di reset'));
             } else {
-                return redirect()->back()->with('failed', 'password gagal di reset');
+                return redirect()->back()->with('failed', tr('password gagal di reset'));
             }
         }else{
-            return redirect()->back()->with('failed', 'ID akun tidak ditemukan');
+            return redirect()->back()->with('failed', tr('id akun tidak ditemukan'));
         }
     }
 
@@ -224,13 +234,13 @@ class AdminController extends Controller
         if ($account_data) {
             $status_data = Admin::where(['id'=>$id])->update(['status'=>$status]);
             if ($status_data) {
-                addLog(0,$this->menu_id,($status==1?'Mengaktifkan akun ':'Menon-aktifkan akun').$account_data->name);
-                return redirect()->back()->with('success', 'Akun berhasil di '.($status==1?' aktifkan':' non-aktifkan'));
+                addLog(0,$this->menu_id,($status==1?'Mengaktifkan akun ':'Menon-aktifkan akun ').$account_data->name);
+                return redirect()->back()->with('success', 'Akun berhasil di '.($status==1?(' '.tr('aktifkan')):(' '.tr('non-aktifkan'))));
             } else {
-                return redirect()->back()->with('failed', 'Akun gagal di '.($status==1?' aktifkan':' non-aktifkan'));
+                return redirect()->back()->with('failed', 'Akun gagal di '.($status==1?(' '.tr('aktifkan')):(' '.tr('non-aktifkan'))));
             }
         }else{
-            return redirect()->back()->with('failed', 'ID akun tidak ditemukan');
+            return redirect()->back()->with('failed', tr('id akun tidak ditemukan'));
         }
     }
 
@@ -242,7 +252,7 @@ class AdminController extends Controller
             $avatar = time() . '-avatar.' . $request->avatar->extension();
             $request->avatar->move(public_path(AVATAR_PATH), $avatar);
         }else{
-            return redirect()->back()->with('failed', 'Avatar tidak ditemukan');
+            return redirect()->back()->with('failed', tr('avatar tidak ditemukan'));
         }
 
         $account_data = Admin::where(["id" => $id])->first();
@@ -257,12 +267,12 @@ class AdminController extends Controller
                 }
                 
                 addLog(0,$this->menu_id,'Mengganti avatar '.$account_data->name);
-                return redirect()->back()->with('success', 'Avatar berhasil diganti');
+                return redirect()->back()->with('success', tr('avatar berhasil diganti'));
             } else {
-                return redirect()->back()->with('failed', 'Avatar gagal di ganti');
+                return redirect()->back()->with('failed', tr('avatar gagal di ganti'));
             }
         }else{
-            return redirect()->back()->with('failed', 'ID akun tidak ditemukan');
+            return redirect()->back()->with('failed', tr('id akun tidak ditemukan'));
         }
     }
 
@@ -278,9 +288,9 @@ class AdminController extends Controller
             }
 
             addLog(0,$this->menu_id,'Menghapus data '.$old_data->name);
-            return redirect()->back()->with('success', 'Akun berhasil di hapus');
+            return redirect()->back()->with('success', tr('akun').' '.tr('berhasil di hapus'));
         } else {
-            return redirect()->back()->with('failed', 'Akun gagal di hapus');
+            return redirect()->back()->with('failed', tr('akun').' '.tr('gagal di hapus'));
         }
     }
 

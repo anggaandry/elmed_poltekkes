@@ -5,8 +5,8 @@
 @section('breadcrumb')
     <div class="row page-titles">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item active"><a href="javascript:void(0)">LMS</a></li>
-            <li class="breadcrumb-item"><a href="javascript:void(0)">Absensi mahasiswa</a></li>
+            <li class="breadcrumb-item active"><a href="javascript:void(0)">{{ tr('lms') }}</a></li>
+            <li class="breadcrumb-item"><a href="javascript:void(0)">{{ tr('absensi mahasiswa') }}</a></li>
         </ol>
     </div>
 @endsection
@@ -18,8 +18,7 @@
                 <div class="card-header">
                     <div class="row w-100">
                         <div class="mb-3 col-md-3">
-                            <input type="date" class="form-control" value="{{ date('Y-m-d') }}" id="date_"
-                                oninput="load_table()">
+                            <input type="date" class="form-control" value="{{ date('Y-m-d') }}" id="date_" oninput="load_table()">
                         </div>
                     </div>
                 </div>
@@ -32,10 +31,10 @@
 
                         <div class="mt-5">
                             <div class="spinner-border" role="status">
-                                <span class="visually-hidden">Loading...</span>
+                                <span class="visually-hidden">{{ tr('loading...') }}</span>
                             </div>
                             <br>
-                            <small>Loading absensi..</small>
+                            <small>{{ tr('loading absensi..') }}</small>
                         </div>
                     </div>
 
@@ -52,14 +51,14 @@
                                 <thead class=" bg-primary-light text-white">
                                     <tr>
                                         <th>#</th>
-                                        <th>Waktu</th>
-                                        <th>Kelas</th>
-                                        <th>Mata kuliah</th>
-                                        <th>Ruangan</th>
-                                        <th>Pertemuan ke</th>
-                                        <th>Status</th>
-                                        <th>Catatan</th>
-                                        <th>detail</th>
+                                        <th>{{ tr('waktu') }}</th>
+                                        <th>{{ tr('kelas') }}</th>
+                                        <th>{{ tr('mata kuliah') }}</th>
+                                        <th>{{ tr('ruangan') }}</th>
+                                        <th>{{ tr('pertemuan ke') }}</th>
+                                        <th>{{ tr('status') }}</th>
+                                        <th>{{ tr('catatan') }}</th>
+                                        <th>{{ tr('detail') }}</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -133,12 +132,12 @@
                                         <td class="align-middle">${el.session}</td>
                                         ${absence}
                                         <td class="align-middle">
-                                            <button class="btn btn-primary btn-xs" data-bs-toggle="modal" data-bs-target="#detail${i}"><i class="fa fa-eye"></i> </button>
+                                            <button class="btn btn-primary btn-xs" data-bs-toggle="modal" data-bs-target="#detail${i}"><i class="fa fa-eye"></i></button>
                                             <div class="modal fade" id="detail${i}">
                                                 <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
                                                     <div class="modal-content">
                                                         <div class="modal-header">
-                                                            <h5 class="modal-title">Detail pertemuan</h5>
+                                                            <h5 class="modal-title">{{ tr('detail pertemuan') }}</h5>
                                                             <button type="button" class="btn-close" data-bs-dismiss="modal">
                                                             </button>
                                                         </div>
@@ -150,17 +149,17 @@
                                                                     <tbody>
                                                                      
                                                                         <tr>
-                                                                            <th>Pertemuan ke</th>
+                                                                            <th>{{ tr('pertemuan ke') }}</th>
                                                                             <td>${el.session}</td>
                                                                         </tr>
 
                                                                         <tr>
-                                                                            <th>Aktivitas pembelajaran</th>
+                                                                            <th>{{ tr('aktivitas pembelajaran') }}</th>
                                                                             <td>${el.activity}</td>
                                                                         
                                                                         </tr>
                                                                         <tr>
-                                                                            <th>Dosen</th>
+                                                                            <th>{{ tr('dosen') }}</th>
                                                                             <td>${el.dosen}</td>
                                                                         </tr>
 
@@ -171,7 +170,7 @@
                                                         </div>
                                                         <div class="modal-footer">
                                                             <button type="button" class="btn btn-danger light"
-                                                                data-bs-dismiss="modal">Tutup</button>
+                                                                data-bs-dismiss="modal">{{ tr('tutup') }}</button>
                                                             <a href="" class="btn btn-primary" id="btn_quiz">
 
                                                             </a>

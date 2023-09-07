@@ -5,9 +5,9 @@
 @section('breadcrumb')
     <div class="row page-titles">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item active"><a href="javascript:void(0)">LMS</a></li>
-            <li class="breadcrumb-item"><a href="{{ url('mahasiswa/ujian') }}">Ujian</a></li>
-            <li class="breadcrumb-item"><a href="javascript:void(0)">Hasil Ujian</a></li>
+            <li class="breadcrumb-item active"><a href="javascript:void(0)">{{ tr('lms') }}</a></li>
+            <li class="breadcrumb-item"><a href="{{ url('mahasiswa/ujian') }}">{{ tr('ujian') }}</a></li>
+            <li class="breadcrumb-item"><a href="javascript:void(0)">{{ tr('hasil ujian') }}</a></li>
         </ol>
     </div>
 @endsection
@@ -28,7 +28,7 @@
                                     <p>
                                     <div class="card">
                                         <div class="card-body">
-                                            <h6>Catatan kelas</h6>
+                                            <h6>{{ tr('catatan kelas') }}</h6>
                                             <p class="card-text">{{ $qc->note }}</p>
                                         </div>
                                     </div>
@@ -38,11 +38,10 @@
                                     <li class="text-info">
                                         <i class="fa fa-check-circle"></i> {{ $qc->class->name }}
                                     </li>
-                                    <li> <span
-                                            class="font-weight-bolder ms-3">{{ title_lecturer($qc->exam->lecturer) }}</span>
+                                    <li><span class="font-weight-bolder ms-3">{{ title_lecturer($qc->exam->lecturer) }}</span>
                                     </li>
                                     <li>{{ $qc->exam->sks->subject->name }}</li>
-                                    <li>{{ count($qc->exam->exam_question) }} soal</li>
+                                    <li>{{ count($qc->exam->exam_question) }} {{ tr('soal') }}</li>
                                 </ul>
                                 <ul class="d-flex align-items-center raiting flex-wrap">
                                     <li>
@@ -75,8 +74,8 @@
         <div class="col-xl-12">
             <div class="card  course-dedails-bx">
                 <div class="card-header border-0 pb-0">
-                    <h2>Soal</h2>
-                    <span class="float-end badge badge-danger">skor akhir <h2 class="text-dark">
+                    <h2>{{ tr('soal') }}</h2>
+                    <span class="float-end badge badge-danger">{{ tr('skor akhir') }}<h2 class="text-dark">
                             {{ $final_score }}/{{ $total_value }}</h2>
                     </span>
                 </div>
@@ -89,8 +88,8 @@
                                         <thead>
                                             <tr>
                                                 <th>#</th>
-                                                <th>soal</th>
-                                                <th>skor</th>
+                                                <th>{{ tr('soal') }}</th>
+                                                <th>{{ tr('skor') }}</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -100,14 +99,12 @@
                                                         <div class="mt-2">{{ $item->sort }}.</div>
                                                     </th>
                                                     <td class="align-top">
-                                                        <small class="text-info"><b>Bobot soal {{ $item->value }}</b>
+                                                        <small class="text-info"><b>{{ tr('bobot soal') }} {{ $item->value }}</b>
                                                         </small>
                                                         @php echo $item->question->question @endphp
                                                         @if ($item->question->file)
 
-                                                            <b>File :</b> <a class="text-info"
-                                                                href="{{ asset(DOC_PATH . $item->question->file) }}"
-                                                                download>
+                                                            <b>{{ tr('file') }} :</b><a class="text-info" href="{{ asset(DOC_PATH . $item->question->file) }}" download>
                                                                 {{ $item->question->file }} </a><br>
                                                             <br>
                                                         @endif
@@ -123,11 +120,7 @@
                                                                     <tr>
                                                                         <th width="5%" class="p-0 m-0">
                                                                             <div class="form-check-primary">
-                                                                                <input class="form-check-input"
-                                                                                    type="radio"
-                                                                                    value="{{ $sub->choice }}"
-                                                                                    @if ($item->answer) @if ($item->answer->answer == $sub->choice) checked @endif
-                                                                                    @endif
+                                                                                <input class="form-check-input" type="radio" value="{{ $sub->choice }}" @if ($item->answer) @if ($item->answer->answer == $sub->choice) checked @endif @endif
                                                                                 disabled>
 
                                                                             </div>
@@ -144,17 +137,12 @@
                                                         @endif
 
                                                         @if ($item->question->type == 2)
-                                                            <a href="@if ($item->answer) {{ $item->answer->file ? asset(LMS_PATH . $item->answer->file) : '' }} @endif"
-                                                                class="btn btn-primary btn-xs" download> <i
-                                                                    class="fa fa-download"></i>
+                                                            <a href="@if ($item->answer) {{ $item->answer->file ? asset(LMS_PATH . $item->answer->file) : '' }} @endif" class="btn btn-primary btn-xs" download><i class="fa fa-download"></i>
                                                                 @if ($item->answer)
                                                                     {{ $item->answer->file ? $item->answer->file : '' }}
                                                                 @endif
                                                             </a>
-                                                            <input type="file" class="dropify"
-                                                                name="answer_{{ $item->id }}"
-                                                                onchange="file(this,{{ $item->id }})"
-                                                                data-show-remove="false" name="file" height="200" />
+                                                            <input type="file" class="dropify" name="answer_{{ $item->id }}" onchange="file(this,{{ $item->id }})" data-show-remove="false" name="file" height="200" />
                                                         @endif
 
 
@@ -173,8 +161,7 @@
                                                     <td width="5%" class="align-top">
 
                                                         @if ($item->answer)
-                                                            <span
-                                                                class="badge mt-2 {{ $item->answer->score == 0 ? 'badge-danger' : ($item->answer->score == 100 ? 'badge-success' : 'badge-info') }}">
+                                                            <span class="badge mt-2 {{ $item->answer->score == 0 ? 'badge-danger' : ($item->answer->score == 100 ? 'badge-success' : 'badge-info') }}">
                                                                 {{ $item->answer->score }}%</span>
                                                         @else
                                                             <span class="badge mt-2 badge-danger">0%</span>

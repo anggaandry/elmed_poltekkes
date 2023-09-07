@@ -7,7 +7,7 @@
                 <div class="col-md-5">
                     <div class="form-input-content text-center error-page">
                         <h1 class="error-text fw-bold">503</h1>
-                        <h4><i class="fa fa-times-circle text-danger"></i> Service Unavailable</h4>
+                        <h4><i class="fa fa-times-circle text-danger"></i> service unavailable</h4>
                         <p>Sorry, we are under maintenance!</p>
 
                     </div>

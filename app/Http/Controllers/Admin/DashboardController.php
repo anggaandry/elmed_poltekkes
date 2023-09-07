@@ -16,6 +16,7 @@ use App\Models\StudyProgramFull;
 
 use App\Models\University;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 
 class DashboardController extends Controller
@@ -64,6 +65,7 @@ class DashboardController extends Controller
         if(can_prodi()){$prodi_id=can_prodi();}
         $prodi_data=StudyProgramFull::orderBy('program_id','ASC')->get();
 
+
         $data=[
             "prodi_id"=>$prodi_id,
             "prodi_data"=>$prodi_data,
@@ -103,7 +105,7 @@ class DashboardController extends Controller
                 })->count(); 
             }
              
-            array_push($y_series,($item->odd==1?"Ganjil":"Genap")." ".$item->year."/".($item->year+1));
+            array_push($y_series,($item->odd==1?tr("ganjil"):tr("genap"))." ".$item->year."/".($item->year+1));
             array_push($lms_series,$lms);
             array_push($quiz_series,$quiz);
         }   

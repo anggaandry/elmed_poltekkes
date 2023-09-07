@@ -126,9 +126,9 @@ class ExamController extends Controller
 
         if ($status_data) {
             addLog(1,$this->menu_id,'Menambah Kuis '.$name);
-            return redirect('dosen/ujian/detail?id='.$status_data->id)->with('success', 'berhasil menambah ujian');
+            return redirect('dosen/ujian/detail?id='.$status_data->id)->with('success', tr('berhasil menambah').' '.tr('ujian'));
         } else {
-            return redirect()->back()->with('failed', 'gagal menambah ujian');
+            return redirect()->back()->with('failed', tr('gagal menambah').' '.tr('ujian'));
         }
     }
 
@@ -152,9 +152,9 @@ class ExamController extends Controller
         if ($status_data) {
             addLog(1,$this->menu_id,'Mengedit Kuis '.$name);
     
-            return redirect()->back()->with('success', 'berhasil mengedit ujian');
+            return redirect()->back()->with('success', tr('berhasil mengedit').' '.tr('ujian'));
         } else {
-            return redirect()->back()->with('failed', 'gagal mengedit ujian');
+            return redirect()->back()->with('failed', tr('gagal mengedit').' '.tr('ujian'));
         }
     }
 
@@ -165,9 +165,9 @@ class ExamController extends Controller
 
         if ($status_data) {
             addLog(1,$this->menu_id,'Menghapus ujian '.$old_data->name);
-            return redirect('dosen/ujian')->with('success', 'Kuis berhasil di hapus');
+            return redirect('dosen/ujian')->with('success', tr('kuis').' '.tr('berhasil di hapus'));
         } else {
-            return redirect()->back()->with('failed', 'Kuis gagal di hapus');
+            return redirect()->back()->with('failed', tr('kuis').' '.tr('gagal di hapus'));
         }
     }
 
@@ -271,9 +271,9 @@ class ExamController extends Controller
             $exam=Exam::where("id",$exam_id)->first();
             $class=Classes::where("id",$class_id)->first();
             addLog(1,$this->menu_id,'Menambah kelas '.$class->name.' ke Kuis '.$exam->name);
-            return redirect()->back()->with('success', 'berhasil menambah kelas untuk ujian');
+            return redirect()->back()->with('success', tr('berhasil menambah').' '.tr('kelas untuk ujian'));
         } else {
-            return redirect()->back()->with('failed', 'gagal menambah kelas untuk ujian');
+            return redirect()->back()->with('failed', tr('gagal menambah').' '.tr('kelas untuk ujian'));
         }
     }
 
@@ -294,9 +294,9 @@ class ExamController extends Controller
         
         if ($status_data) {
             addLog(1,$this->menu_id,'Mengedit kelas '.$old_data->class->name.' ke Kuis '.$old_data->exam->name);
-            return redirect()->back()->with('success', 'berhasil mengedit kelas untuk ujian');
+            return redirect()->back()->with('success', tr('berhasil mengedit').' '.tr('kelas untuk ujian'));
         } else {
-            return redirect()->back()->with('failed', 'gagal mengedit kelas untuk ujian');
+            return redirect()->back()->with('failed', tr('gagal mengedit').' '.tr('kelas untuk ujian'));
         }
     }
 
@@ -307,9 +307,9 @@ class ExamController extends Controller
 
         if ($status_data) {
             addLog(1,$this->menu_id,'Menghapus kelas '.$old_data->class->name.' ujian '.$old_data->exam->name);
-            return redirect()->back()->with('success', 'Kelas untuk ujian berhasil di hapus');
+            return redirect()->back()->with('success', tr('kelas untuk ujian').' '.tr('berhasil di hapus'));
         } else {
-            return redirect()->back()->with('failed', 'Kelas untuk ujian gagal di hapus');
+            return redirect()->back()->with('failed', tr('kelas untuk ujian').' '.tr('gagal di hapus'));
         }
     }
 
@@ -343,13 +343,13 @@ class ExamController extends Controller
 
                     switch ($row->type) {
                         case 0:
-                            $fq.='<br> <span class="badge badge-info">Essay</span>';
+                            $fq.='<br><span class="badge badge-info">'.tr('essay').'</span>';
                             break;
                         case 1:
-                            $fq.='<br> <span class="badge badge-success">Pilihan berganda</span>';
+                            $fq.='<br><span class="badge badge-success">'.tr('pilihan berganda').'</span>';
                             break;
                         case 2:
-                            $fq.='<br> <span class="badge badge-danger">Upload file</span>';
+                            $fq.='<br><span class="badge badge-danger">'.tr('upload file').'</span>';
                             break;
                         
                         default:
@@ -365,14 +365,14 @@ class ExamController extends Controller
                     <input type="hidden" name="question_id" value="'.$row->id.'" />
                    
                     <div class="form-group mb-3">
-                        <input type="number" name="sort" class="form-control" style="text-align: center" placeholder="Nomor soal" required>  
+                        <input type="number" name="sort" class="form-control" style="text-align: center" placeholder="'.tr("nomor soal").'" required>  
                         
                     </div>
                     <div class="form-group mb-3">
-                        <input type="number" name="value" class="form-control" style="text-align: center" placeholder="Bobot soal" required>
+                        <input type="number" name="value" class="form-control" style="text-align: center" placeholder="'.tr("bobot soal").'" required>
                     </div>
                     
-                    <button type="submit" class="btn btn-info btn-xs">ambil soal</button>
+                    <button type="submit" class="btn btn-info btn-xs">'.tr('ambil soal').'</button>
                     
                   </form>';
                     
@@ -400,9 +400,9 @@ class ExamController extends Controller
         if ($status_data) {
             $exam=Exam::where("id",$exam_id)->first();
             addLog(1,$this->menu_id,'Menambah soal no '.$sort.' ke Kuis '.$exam->name);
-            return redirect()->back()->with('success', 'berhasil menambah soal untuk ujian');
+            return redirect()->back()->with('success', tr('berhasil menambah').' '.tr('soal untuk ujian'));
         } else {
-            return redirect()->back()->with('failed', 'gagal menambah soal untuk ujian');
+            return redirect()->back()->with('failed', tr('gagal menambah').' '.tr('soal untuk ujian'));
         }
     }
 
@@ -413,9 +413,9 @@ class ExamController extends Controller
 
         if ($status_data) {
             addLog(1,$this->menu_id,'Menghapus soal untuk ujian '.$old_data->exam->name);
-            return redirect()->back()->with('success', 'Soal untuk ujian berhasil di hapus');
+            return redirect()->back()->with('success', tr('soal untuk ujian').' '.tr('berhasil di hapus'));
         } else {
-            return redirect()->back()->with('failed', 'Soal untuk ujian gagal di hapus');
+            return redirect()->back()->with('failed', tr('soal untuk ujian').' '.tr('gagal di hapus'));
         }
     }
 
@@ -521,9 +521,9 @@ class ExamController extends Controller
             $sks=SKS::where('id',$sks_id)->first();
             $exam=Exam::where('id',$exam_id)->first();
             addLog(1,$this->menu_id,'Menambah soal matkul '.$sks->subject->name.' untuk ujian '.$exam->name);
-            return redirect('dosen/ujian/detail?id='.$exam_id.'&kelas='.$kelas)->with('success', 'berhasil menambah soal ujian');
+            return redirect('dosen/ujian/detail?id='.$exam_id.'&kelas='.$kelas)->with('success', tr('berhasil menambah').' '.tr('soal ujian'));
         } else {
-            return redirect()->back()->with('failed', 'gagal menambah soal ujian');
+            return redirect()->back()->with('failed', tr('gagal menambah').' '.tr('soal ujian'));
         }
 
     }
@@ -598,9 +598,9 @@ class ExamController extends Controller
 
             $sks=SKS::where('id',$sks_id)->first();
             addLog(1,$this->menu_id,'Menambah soal matkul '.$sks->subject->name.' untuk ujian '.$qq_data->exam->name);
-            return redirect('dosen/ujian/detail?id='.$qq_data->exam_id.'&kelas='.$kelas)->with('success', 'berhasil mengedit soal ujian');
+            return redirect('dosen/ujian/detail?id='.$qq_data->exam_id.'&kelas='.$kelas)->with('success', tr('berhasil mengedit').' '.tr('soal ujian'));
         } else {
-            return redirect()->back()->with('failed', 'gagal mengedit soal ujian');
+            return redirect()->back()->with('failed', tr('gagal mengedit').' '.tr('soal ujian'));
         }
 
     }
@@ -691,7 +691,7 @@ class ExamController extends Controller
        
         $absence="-";
         if($absence_data){
-            $absence="mulai mengerjakan ".date_id($absence_data->created_at,5);
+            $absence=tr("mulai mengerjakan")." ".date_id($absence_data->created_at,5);
         }
         
         $data=[
@@ -717,12 +717,12 @@ class ExamController extends Controller
         $status_data=ExamAnswer::where(['id'=>$id])->update(['score'=>$score]);
         
         if(!$status_data){
-            $message="Gagal memberi nilai ujian";
+            $message=tr("gagal memberi nilai ujian");
             $code=0;
         }else{
             $exam_answer=ExamAnswer::where(['id'=>$id])->first();
             addLog(1,$this->menu_id,"memberi nilai ".$exam_answer->colleger->name." pada ujian ".$exam_answer->exam_class->exam->name);
-            $message="Sukses mengisi nilai ujian ";
+            $message=tr("sukses mengisi nilai ujian")." ";
             $code=1;
         }
 
@@ -743,12 +743,12 @@ class ExamController extends Controller
         $status_data=ExamClass::where(['id'=>$id])->update(['publish'=>$value]);
         
         if(!$status_data){
-            $message="Gagal mempublish nilai";
+            $message=tr("gagal mempublish nilai");
             $code=0;
         }else{
             $exam_class=ExamClass::where(['id'=>$id])->first();
             addLog(1,$this->menu_id,($value==1?"mempublish nilai ":" menarik publish nilai ").$exam_class->class->name." pada ujian ".$exam_class->exam->name);
-            $message=($value==1?"Sukses mempublish nilai kelas ":" Sukses menarik publish nilai kelas");
+            $message=($value==1?(tr("sukses mempublish nilai kelas")." "):(" ".tr("sukses menarik publish nilai kelas")));
             $code=1;
         }
 

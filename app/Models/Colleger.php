@@ -24,7 +24,7 @@ class Colleger extends Authenticatable
 
     protected $fillable = [
         'password', 'name', 'nim', 'avatar', 'status', 'online', 'university_id', 'remember_token', 'prodi_id',
-        'religion_id', 'gender', 'birthdate', 'year'
+        'religion_id', 'gender', 'birthdate', 'year','lang'
     ];
 
     protected $hidden = [

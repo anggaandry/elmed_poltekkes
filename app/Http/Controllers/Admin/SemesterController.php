@@ -45,12 +45,12 @@ class SemesterController extends Controller
     
             if ($status_data) {
                 addLog(0,$this->menu_id,'Menambah data semester '.($odd==1?"ganjil":"genap")." ".$year);
-                return redirect()->back()->with('success', 'berhasil menambah data semester');
+                return redirect()->back()->with('success', tr('berhasil menambah').' '.tr('data semester'));
             } else {
-                return redirect()->back()->with('failed', 'gagal menambah data semester');
+                return redirect()->back()->with('failed', tr('gagal menambah').' '.tr('data semester'));
             }
         }else{
-            return redirect()->back()->with('failed', 'semester '.($odd==1?"ganjil":"genap")." sudah ada di tahun ".$year);
+            return redirect()->back()->with('failed', 'semester '.($odd==1?tr("ganjil"):tr("genap"))." ".tr("sudah ada di tahun")." ".$year);
         }
         
     }
@@ -69,9 +69,9 @@ class SemesterController extends Controller
 
         if ($status_data) {
             addLog(0,$this->menu_id,'Mengedit data semester '.($semester->odd==1?"ganjil":"genap")." ".$semester->year);
-            return redirect()->back()->with('success', 'sukses mengedit data semester');
+            return redirect()->back()->with('success', tr('sukses mengedit').' '.tr('data semester'));
         } else {
-            return redirect()->back()->with('failed', 'gagal mengedit data semester');
+            return redirect()->back()->with('failed', tr('gagal mengedit').' '.tr('data semester'));
         }
     }
 
@@ -82,9 +82,9 @@ class SemesterController extends Controller
 
         if ($status_data) {
             addLog(0,$this->menu_id,'Menghapus data semester '.($old_data->odd==1?"ganjil":"genap")." ".$old_data->year);
-            return redirect()->back()->with('success', 'Data semester berhasil di hapus');
+            return redirect()->back()->with('success', tr('data semester').' '.tr('berhasil di hapus'));
         } else {
-            return redirect()->back()->with('failed', 'Data semester gagal di hapus');
+            return redirect()->back()->with('failed', tr('data semester').' '.tr('gagal di hapus'));
         }
     }
 

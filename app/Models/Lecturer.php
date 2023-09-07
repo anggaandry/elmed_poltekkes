@@ -24,7 +24,7 @@ class Lecturer extends Authenticatable
     
     protected $fillable = [
         'password', 'name','gender','religion_id','front_title','back_title','birthdate',
-        'identity','identity_number', 'avatar','status','online','university_id','remember_token'
+        'identity','identity_number', 'avatar','status','online','university_id','remember_token','lang'
     ];
 
     protected $hidden = [

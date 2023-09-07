@@ -23,6 +23,8 @@ class ElearningController extends Controller
 {
     private $menu_id;
     private $now_hour;
+    private $key_;
+    private $now_date;
 
     public function __construct()
     {
@@ -55,9 +57,9 @@ class ElearningController extends Controller
             $data=$data->paginate($limit);
 
             $data->through(function ($item) {
-                $status="<span class='badge badge-sm badge-success'>aktif</span>";
+                $status="<span class='badge badge-sm badge-success'>".tr('aktif')."</span>";
                 if(strtotime($item->end)<strtotime($this->now_hour)){
-                    $status="<span class='badge badge-sm badge-dark'>selesai</span>";
+                    $status="<span class='badge badge-sm badge-dark'>".tr('selesai')."</span>";
                 }
                 $result=[
                     "id"=>$item->id,
@@ -99,8 +101,6 @@ class ElearningController extends Controller
             $view=date_id($this->now_hour,4);
             ElearningView::create(['colleger_id'=>$colleger_id,'elearning_id'=>$ec_data->elearning_id,'elearning_class_id'=>$id]);
             
-        }else{
-            $view=date_id($check_view->created_at,5);
         }
         
         $quiz_data=ElearningQuiz::where(["elearning_id"=>$ec_data->id])->get();

@@ -41,9 +41,9 @@ class StudyProgramController extends Controller
 
         if ($status_data) {
             addLog(0,$this->menu_id,'Menambah data '.$name);
-            return redirect()->back()->with('success', 'berhasil menambah program studi');
+            return redirect()->back()->with('success', tr('berhasil menambah').' '.tr('program studi'));
         } else {
-            return redirect()->back()->with('failed', 'gagal menambah program studi');
+            return redirect()->back()->with('failed', tr('gagal menambah').' '.tr('program studi'));
         }
     }
 
@@ -62,9 +62,9 @@ class StudyProgramController extends Controller
 
         if ($status_data) {
             addLog(0,$this->menu_id,'Mengedit data '.$name);
-            return redirect()->back()->with('success', 'sukses mengedit program studi');
+            return redirect()->back()->with('success', tr('sukses mengedit').' '.tr('program studi'));
         } else {
-            return redirect()->back()->with('failed', 'gagal mengedit program studi');
+            return redirect()->back()->with('failed', tr('gagal mengedit').' '.tr('program studi'));
         }
     }
 
@@ -75,9 +75,9 @@ class StudyProgramController extends Controller
 
         if ($status_data) {
             addLog(0,$this->menu_id,'Menghapus data '.$old_data->name);
-            return redirect()->back()->with('success', 'Program studi berhasil di hapus');
+            return redirect()->back()->with('success', tr('program studi').' '.tr('berhasil di hapus'));
         } else {
-            return redirect()->back()->with('failed', 'Program studi gagal di hapus');
+            return redirect()->back()->with('failed', tr('program studi').' '.tr('gagal di hapus'));
         }
     }
 

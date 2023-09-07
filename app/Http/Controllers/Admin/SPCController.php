@@ -38,9 +38,9 @@ class SPCController extends Controller
 
         if ($status_data) {
             addLog(0,$this->menu_id,'Menambah data '.$name);
-            return redirect()->back()->with('success', 'berhasil menambah kategori prodi');
+            return redirect()->back()->with('success', tr('berhasil menambah').' '.tr('kategori prodi'));
         } else {
-            return redirect()->back()->with('failed', 'gagal menambah kategori prodi');
+            return redirect()->back()->with('failed', tr('gagal menambah').' '.tr('kategori prodi'));
         }
     }
 
@@ -59,9 +59,9 @@ class SPCController extends Controller
 
         if ($status_data) {
             addLog(0,$this->menu_id,'Mengedit data '.$name);
-            return redirect()->back()->with('success', 'sukses mengedit kategori prodi');
+            return redirect()->back()->with('success', tr('sukses mengedit').' '.tr('kategori prodi'));
         } else {
-            return redirect()->back()->with('failed', 'gagal mengedit kategori prodi');
+            return redirect()->back()->with('failed', tr('gagal mengedit').' '.tr('kategori prodi'));
         }
     }
 
@@ -72,9 +72,9 @@ class SPCController extends Controller
 
         if ($status_data) {
             addLog(0,$this->menu_id,'Menghapus data '.$old_data->name);
-            return redirect()->back()->with('success', 'Kategori prodi berhasil di hapus');
+            return redirect()->back()->with('success', tr('kategori prodi').' '.tr('berhasil di hapus'));
         } else {
-            return redirect()->back()->with('failed', 'Kategori prodi gagal di hapus');
+            return redirect()->back()->with('failed', tr('kategori prodi').' '.tr('gagal di hapus'));
         }
     }
 

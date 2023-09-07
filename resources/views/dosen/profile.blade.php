@@ -15,8 +15,7 @@
                     </div>
                     <div class="profile-info">
                         <div class="profile-photo">
-                            <div class="cropcircle-lg"
-                                style="background-image: url({{ $lecturer_data->avatar ? asset(AVATAR_PATH . $lecturer_data->avatar) : 'https://ui-avatars.com/api/?background=89CFF0&&name=' . str_replace(' ', '+', $lecturer_data->name) }});">
+                            <div class="cropcircle-lg" style="background-image: url({{ $lecturer_data->avatar ? asset(AVATAR_PATH . $lecturer_data->avatar) : 'https://ui-avatars.com/api/?background=89CFF0&&name=' . str_replace(' ', '+', $lecturer_data->name) }});">
                             </div>
 
                         </div>
@@ -30,12 +29,11 @@
                             </div>
                             <div class="profile-email pt-2">
 
-                                <p>@php echo $lecturer_data->status ? '<span class="badge bg-success">active</span>' : '<span class="badge bg-danger">unactive</span>' @endphp
+                                <p>@php echo $lecturer_data->status ? '<span class="badge bg-success">'.tr('active').'</span>' : '<span class="badge bg-danger">'.tr('unactive').'</span>' @endphp
                                 </p>
                             </div>
                             <div class="dropdown ms-auto">
-                                <a ata-bs-toggle="modal" href="#password_header" class="btn btn-danger btn-xs"><i
-                                        class="fa fa-lock"></i> ganti password</a>
+                                <a data-bs-toggle="modal" href="#password_header" class="btn btn-danger btn-xs"><i class="fa fa-lock"></i> {{ tr('ganti password') }}</a>
                             </div>
                         </div>
                     </div>
@@ -54,12 +52,10 @@
                     <div class="profile-tab">
                         <div class="custom-tab-1">
                             <ul class="nav nav-tabs">
-                                <li class="nav-item"><a href="#bio" data-bs-toggle="tab"
-                                        class="nav-link {{ $tab == 0 ? 'active' : '' }} show">Bio</a>
+                                <li class="nav-item"><a href="#bio" data-bs-toggle="tab" class="nav-link {{ $tab == 0 ? 'active' : '' }} show">{{ tr('bio') }}</a>
                                 </li>
 
-                                <li class="nav-item"><a href="#kelas" data-bs-toggle="tab"
-                                        class="nav-link {{ $tab == 1 ? 'active' : '' }}">Kelas yang diampu</a>
+                                <li class="nav-item"><a href="#kelas" data-bs-toggle="tab" class="nav-link {{ $tab == 1 ? 'active' : '' }}">{{ tr('kelas yang diampu') }}</a>
                                 </li>
 
                             </ul>
@@ -69,7 +65,7 @@
                                         <div class="table-responsive">
                                             <table class="table table-striped">
                                                 <tr>
-                                                    <th>Nama dosen</th>
+                                                    <th>{{ tr('nama dosen') }}</th>
                                                     <td>{{ $lecturer_data->front_title }} {{ $lecturer_data->name }}
                                                         {{ $lecturer_data->back_title }}</td>
                                                 </tr>
@@ -78,34 +74,34 @@
                                                     <td>{{ $lecturer_data->identity_number }} </td>
                                                 </tr>
                                                 <tr>
-                                                    <th>Jenis kelamin</th>
+                                                    <th>{{ tr('jenis kelamin') }}</th>
                                                     <td>{{ $lecturer_data->gender }} </td>
                                                 </tr>
                                                 <tr>
-                                                    <th>Agama</th>
+                                                    <th>{{ tr('agama') }}</th>
                                                     <td>{{ $lecturer_data->religion->name }} </td>
                                                 </tr>
                                                 <tr>
-                                                    <th>Tanggal lahir</th>
+                                                    <th>{{ tr('tanggal lahir') }}</th>
                                                     <td>{{ date_id($lecturer_data->birthdate, 0) }}
 
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <th>Usia</th>
-                                                    <td>{{ convert_age($lecturer_data->birthdate) }} tahun</td>
+                                                    <th>{{ tr('usia') }}</th>
+                                                    <td>{{ convert_age($lecturer_data->birthdate) }} {{ tr('tahun') }}</td>
                                                 </tr>
                                                 <tr>
-                                                    <th>Terakhir online</th>
+                                                    <th>{{ tr('terakhir online') }}</th>
                                                     <td>{{ $lecturer_data->online ? ago_model($lecturer_data->online) : '-' }}
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <th>Akun dibuat</th>
+                                                    <th>{{ tr('akun dibuat') }}</th>
                                                     <td>{{ date_id($lecturer_data->created_at, 1) }} </td>
                                                 </tr>
                                                 <tr>
-                                                    <th>Aktifitas terakhir</th>
+                                                    <th>{{ tr('aktifitas terakhir') }}</th>
                                                     <td>{{ $last_activity ? '[' . $last_activity->menu->name . '] ' . $last_activity->log : '-' }}
                                                     </td>
                                                 </tr>
@@ -119,21 +115,18 @@
                                     <div class="pt-3">
                                         <div class="row">
                                             <div class="mb-3 col-md-4">
-                                                <label class="form-label">Semester</label>
+                                                <label class="form-label">{{ tr('semester') }}</label>
                                                 <select class="form-select" id="odd_" onchange="load_table()">
-                                                    <option value="1">Ganjil </option>
-                                                    <option value="2">Genap</option>
+                                                    <option value="1">{{ tr('ganjil') }}</option>
+                                                    <option value="2">{{ tr('genap') }}</option>
                                                 </select>
                                             </div>
 
                                             <div class="mb-3 col-md-4">
-                                                <label class="form-label">Tahun akademik</label>
+                                                <label class="form-label">{{ tr('tahun akademik') }}</label>
                                                 <div class="input-group">
-                                                    <input type="number" class="form-control form-control-sm"
-                                                        id="year_" oninput="load_table()"
-                                                        value="{{ semester_now()->year }}" required>
-                                                    <span class="input-group-text border-0"
-                                                        id="next_year">{{ semester_now()->year + 1 }}</span>
+                                                    <input type="number" class="form-control form-control-sm" id="year_" oninput="load_table()" value="{{ semester_now()->year }}" required>
+                                                    <span class="input-group-text border-0" id="next_year">{{ semester_now()->year + 1 }}</span>
                                                 </div>
                                             </div>
 
@@ -145,7 +138,7 @@
                                                     <tr>
                                                         <th class="text-white">#</th>
 
-                                                        <th class="text-white text-left">Kelas</th>
+                                                        <th class="text-white text-left">{{ tr('kelas') }}</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -168,7 +161,7 @@
         <div class="col-xl-5">
             <div class="card">
                 <div class="card-body">
-                    <h6>Prodi dosen</h6>
+                    <h6>{{ tr('prodi dosen') }}</h6>
                     <div class="table-responsive mt-3">
                         <table class="table text-start table-bordered">
 
@@ -179,7 +172,7 @@
                                         <td>{{ $pd++ }}</td>
                                         <td>{{ $item->prodi->program->name . ' - ' . $item->prodi->study_program->name . ' ' . $item->prodi->category->name }}
                                         </td>
-                                        <td class="text-center">@php echo $item->status==1?'<span class="badge bg-success">aktif</span>':'<span class="badge bg-danger">tidak aktif</span>' @endphp</td>
+                                        <td class="text-center">@php echo $item->status==1?'<span class="badge bg-success">'.tr('aktif').'</span>':'<span class="badge bg-danger">'.tr('tidak aktif').'</span>' @endphp</td>
 
                                     </tr>
                                 @endforeach
@@ -187,7 +180,7 @@
                         </table>
                     </div>
                     <br>
-                    <h6>Matkul dosen</h6>
+                    <h6>{{ tr('matkul dosen') }}</h6>
                     <div class="table-responsive">
                         <table class="table text-start table-bordered">
 
@@ -196,10 +189,10 @@
                                 @foreach ($subject_data as $item)
                                     <tr>
                                         <td>{{ $s++ }}</td>
-                                        <td>{{ $item->subject->name }} - {{ $item->value }}SKS <br> <small>semester
+                                        <td>{{ $item->subject->name }} - {{ $item->value }}SKS <br><small>semester
                                                 {{ $item->semester }}</small></td>
 
-                                        <td class="text-center">PRODI
+                                        <td class="text-center">{{ tr('prodi') }}
                                             @php echo $item->prodi->program->name . ' <br> ' . $item->prodi->study_program->name . ' ' . $item->prodi->category->name @endphp
                                         </td>
                                     </tr>
@@ -274,7 +267,7 @@
                         next: '<i class="fa fa-angle-double-right" aria-hidden="true"></i>',
                         previous: '<i class="fa fa-angle-double-left" aria-hidden="true"></i>'
                     },
-                    processing: '<div class="d-flex justify-content-center"><div class="spinner-border" role="status"><span class="visually-hidden">Loading...</span></div></div>',
+                    processing: '<div class="d-flex justify-content-center"><div class="spinner-border" role="status"><span class="visually-hidden">{{ tr('loading...') }}</span></div></div>',
                     info: "<br> &nbsp; &nbsp; <b>page _PAGE_ of _PAGES_</b>  | Records _START_ to _END_ of _MAX_ entries",
                 },
 

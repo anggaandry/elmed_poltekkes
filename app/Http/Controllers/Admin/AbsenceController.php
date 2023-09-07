@@ -6,12 +6,10 @@ use App\Http\Controllers\Controller;
 use App\Models\Absence;
 use App\Models\AbsenceStart;
 use App\Models\AbsenceSubmit;
-use App\Models\Admin;
 use App\Models\Calendar;
 use App\Models\Classes;
 use App\Models\CollegerClass;
-use App\Models\Major;
-use App\Models\Role;
+
 use App\Models\Schedule;
 use App\Models\ScheduleLecturer;
 use App\Models\Semester;
@@ -65,13 +63,13 @@ class AbsenceController extends Controller
                     if($absence){
                         switch ($absence->status) {
                             case 0:
-                                $status='<span class="badge bg-danger">Alfa</span>';
+                                $status='<span class="badge bg-danger">'.tr('alfa').'</span>';
                                 break;
                             case 1:
-                                $status='<span class="badge bg-success">Hadir</span>';
+                                $status='<span class="badge bg-success">'.tr('hadir').'</span>';
                                 break;
                             case 2:
-                                $status='<span class="badge bg-warning">Izin</span>';
+                                $status='<span class="badge bg-warning">'.tr('izin').'</span>';
                                 break;
                             default:
                                 # code...
@@ -153,11 +151,10 @@ class AbsenceController extends Controller
             
             if($check_start){
                 $check_start->dosen=title_lecturer($check_start->lecturer);
-                
                 $check_start->schedule_info=date_id($schedule->date." ".$schedule->start,1)." - ".date('H:i',strtotime($schedule->end));
                 if($check_start->moved==1){
                     $check_start->schedule_info=date_id($check_start->date." ".$check_start->start,1)." - ".date("H:i",strtotime($check_start->end)).
-                    "<br><small class='text-danger'>Pindahan dari ".date_id($schedule->date." ".$schedule->start,1)." - ".date("H:i",strtotime($schedule->end))."</small>";
+                    "<br><small class='text-danger'>".tr('pindahan dari')." ".date_id($schedule->date." ".$schedule->start,1)." - ".date("H:i",strtotime($schedule->end))."</small>";
                 }
                
 
@@ -167,7 +164,7 @@ class AbsenceController extends Controller
                 foreach ($lecturer as $item) {
                     $no++;
                     $submit_data=AbsenceSubmit::where(['start_id'=>$check_start->id,"schedule_id"=>$schedule_id,"lecturer_id"=>$item->lecturer_id])->first();
-                    $status="belum submit";
+                    $status=tr("belum submit");
                     $status_note="";
                     $status_color="dark";
     
@@ -175,15 +172,15 @@ class AbsenceController extends Controller
                         if($submit_data){$status_note=$submit_data->note;}
                         switch ($submit_data->status) {
                             case 0:
-                                $status="Alfa";
+                                $status=tr("alfa");
                                 $status_color="danger";
                                 break;
                             case 1:
-                                $status="Hadir";
+                                $status=tr("hadir");
                                 $status_color="success";
                                 break;
                             case 2:
-                                $status="Izin";
+                                $status=tr("izin");
                                 $status_color="info";
                                 break;
                             
@@ -241,7 +238,7 @@ class AbsenceController extends Controller
         $schedule_  = $request->input("_schedule");
       
 
-        $message="failed, jadwal yang berpindah tidak ditemukan";
+        $message=tr("failed, jadwal yang berpindah tidak ditemukan");
         $result=[];
         if(str_contains($schedule_,".")){
             $arr_schedule=explode(".",$schedule_);
@@ -271,7 +268,7 @@ class AbsenceController extends Controller
                 $check_start->schedule_info=date_id($schedule->date." ".$schedule->start,1)." - ".date('H:i',strtotime($schedule->end));
                 if($check_start->moved==1){
                     $check_start->schedule_info=date_id($check_start->date." ".$check_start->start,1)." - ".date("H:i",strtotime($check_start->end)).
-                    "<br><small class='text-danger'>Pindahan dari ".date_id($schedule->date." ".$schedule->start,1)." - ".date("H:i",strtotime($schedule->end))."</small>";
+                    "<br><small class='text-danger'>".tr('pindahan dari')." ".date_id($schedule->date." ".$schedule->start,1)." - ".date("H:i",strtotime($schedule->end))."</small>";
                 }
               
 
@@ -281,7 +278,7 @@ class AbsenceController extends Controller
                 foreach ($lecturer as $item) {
                     $no++;
                     $submit_data=AbsenceSubmit::where(['start_id'=>$check_start->id,"schedule_id"=>$schedule_id,"lecturer_id"=>$item->lecturer_id])->first();
-                    $status="belum submit";
+                    $status=tr("belum submit");
                     $status_note="";
                     $status_color="dark";
     
@@ -289,15 +286,15 @@ class AbsenceController extends Controller
                         if($submit_data){$status_note=$submit_data->note;}
                         switch ($submit_data->status) {
                             case 0:
-                                $status="Alfa";
+                                $status=tr("alfa");
                                 $status_color="danger";
                                 break;
                             case 1:
-                                $status="Hadir";
+                                $status=tr("hadir");
                                 $status_color="success";
                                 break;
                             case 2:
-                                $status="Izin";
+                                $status=tr("izin");
                                 $status_color="info";
                                 break;
                             
@@ -389,7 +386,7 @@ class AbsenceController extends Controller
             foreach($schedule_move as $obj){
                 $item=$obj->schedule;
                 $name=date('H:i',strtotime($obj->start))."-".date('H:i',strtotime($obj->end)).": ".$item->sks->subject->name." (".$item->class->name.")".
-                        " pindahan dari hari ".date_id($obj->moved_from,3)." ".date('H:i',strtotime($item->start))."-".date('H:i',strtotime($item->end));
+                       " ".tr("pindahan dari hari")." ".date_id($obj->moved_from,3)." ".date('H:i',strtotime($item->start))."-".date('H:i',strtotime($item->end));
                 $sel="";
                 if(strtotime($date." ".$obj->start)<=strtotime(date('Y-m-d H:i')) && strtotime($date." ".$obj->end)>=strtotime(date('Y-m-d H:i'))){
                     $sel="selected";
@@ -410,9 +407,9 @@ class AbsenceController extends Controller
         }
 
         if($holiday=="" && count($data)==0){
-            $holiday="Libur jadwal kosong";
+            $holiday=tr("libur jadwal kosong");
             if(date('w',strtotime($date))==0){
-                $holiday="Libur hari minggu";
+                $holiday=tr("libur hari minggu");
             }
         }
         

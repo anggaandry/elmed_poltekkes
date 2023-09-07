@@ -96,7 +96,7 @@ class QuizController extends Controller
         $qq=QuizQuestion::where('quiz_id',$class_first->quiz->id)->get();
         $cc_data=[];
         if($class_first){
-            $colleger_class=CollegerClass::with('colleger')->where('class_id',$class_first->class_id)->get()->sortBy('colleger.name');
+            $colleger_class=CollegerClass::where('class_id',$class_first->class_id)->get()->sortBy('colleger.name');
             foreach ($colleger_class as $item) {
                 $item->absence=QuizAbsence::where(['quiz_class_id'=>$quiz_class_id,
                                         'colleger_id'=>$item->colleger_id])->first();
@@ -176,7 +176,7 @@ class QuizController extends Controller
        
         $absence="-";
         if($absence_data){
-            $absence="mulai menegerjakan ".date_id($absence_data->created_at,5);
+            $absence=tr("mulai menegerjakan")." ".date_id($absence_data->created_at,5);
         }
         
         $data=[

@@ -5,8 +5,8 @@
 @section('breadcrumb')
     <div class="row page-titles">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item active"><a href="javascript:void(0)">LMS</a></li>
-            <li class="breadcrumb-item"><a href="javascript:void(0)">Jadwal mengajar</a></li>
+            <li class="breadcrumb-item active"><a href="javascript:void(0)">{{ tr('lms') }}</a></li>
+            <li class="breadcrumb-item"><a href="javascript:void(0)">{{ tr('jadwal mengajar') }}</a></li>
         </ol>
     </div>
 @endsection
@@ -18,18 +18,17 @@
                 <div class="card-header">
                     <div class="row w-100">
                         <div class="mb-3 col-md-4">
-                            <label class="form-label">Semester</label>
+                            <label class="form-label">{{ tr('semester') }}</label>
                             <select class="form-select form-select-lg" id="odd" onchange="load_table()">
-                                <option value="1" @if (semester_now()->odd == 1) selected @endif>Ganjil </option>
-                                <option value="2" @if (semester_now()->odd == 2) selected @endif>Genap</option>
+                                <option value="1" @if (semester_now()->odd == 1) selected @endif>{{ tr('ganjil') }}</option>
+                                <option value="2" @if (semester_now()->odd == 2) selected @endif>{{ tr('genap') }}</option>
                             </select>
                         </div>
 
                         <div class="mb-3 col-md-4">
-                            <label class="form-label">Tahun akademik</label>
+                            <label class="form-label">{{ tr('tahun akademik') }}</label>
                             <div class="input-group">
-                                <input type="number" class="form-control" id="year" oninput="load_table()"
-                                    value="{{ semester_now()->year }}" required>
+                                <input type="number" class="form-control" id="year" oninput="load_table()" value="{{ semester_now()->year }}" required>
                                 <span class="input-group-text border-0" id="next_year">{{ semester_now()->year + 1 }}</span>
                             </div>
                         </div>
@@ -42,13 +41,13 @@
                         <table id="data-table-1" class="display text-center table-striped">
                             <thead class=" bg-primary-light">
                                 <tr>
-                                    <th class="text-white">Hari</th>
-                                    <th class="text-white">Waktu</th>
-                                    <th class="text-white">SKS</th>
-                                    <th class="text-white">Mata kuliah</th>
-                                    <th class="text-white">Kelas</th>
-                                    <th class="text-white">Ruangan</th>
-                                    <th class="text-white">Dosen</th>
+                                    <th class="text-white">{{ tr('hari') }}</th>
+                                    <th class="text-white">{{ tr('waktu') }}</th>
+                                    <th class="text-white">{{ tr('sks') }}</th>
+                                    <th class="text-white">{{ tr('mata kuliah') }}</th>
+                                    <th class="text-white">{{ tr('kelas') }}</th>
+                                    <th class="text-white">{{ tr('ruangan') }}</th>
+                                    <th class="text-white">{{ tr('dosen') }}</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -130,7 +129,7 @@
                         next: '<i class="fa fa-angle-double-right" aria-hidden="true"></i>',
                         previous: '<i class="fa fa-angle-double-left" aria-hidden="true"></i>'
                     },
-                    processing: '<div class="d-flex justify-content-center"><div class="spinner-border" role="status"><span class="visually-hidden">Loading...</span></div></div>',
+                    processing: '<div class="d-flex justify-content-center"><div class="spinner-border" role="status"><span class="visually-hidden">{{ tr('loading...') }}</span></div></div>',
                     info: "<br> Records _START_ to _END_ of _MAX_ entries",
                 },
 

@@ -5,8 +5,8 @@
 @section('breadcrumb')
     <div class="row page-titles">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item active"><a href="javascript:void(0)">Master data</a></li>
-            <li class="breadcrumb-item"><a href="javascript:void(0)">Ruangan</a></li>
+            <li class="breadcrumb-item active"><a href="javascript:void(0)">{{ tr('master data') }}</a></li>
+            <li class="breadcrumb-item"><a href="javascript:void(0)">{{ tr('ruangan') }}</a></li>
         </ol>
     </div>
 @endsection
@@ -19,14 +19,13 @@
                 @if (can($key_, 'add'))
                     <div class="card-header">
                         <div style="width:100%;">
-                            <a class="btn  btn-primary float-end" data-bs-toggle="modal" href="#add"><span
-                                    class="btn-icon-start text-primary"><i class="fa fa-plus color-primary"></i>
-                                </span>Tambah ruangan</a>
+                            <a class="btn  btn-primary float-end" data-bs-toggle="modal" href="#add"><span class="btn-icon-start text-primary"><i class="fa fa-plus color-primary"></i>
+                                </span>{{ tr('tambah ruangan') }}</a>
                             <div class="modal fade" id="add">
                                 <div class="modal-dialog" role="document">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h5 class="modal-title">Tambah ruangan</h5>
+                                            <h5 class="modal-title">{{ tr('tambah ruangan') }}</h5>
                                             <button type="button" class="btn-close" data-bs-dismiss="modal">
                                             </button>
                                         </div>
@@ -35,20 +34,19 @@
                                             <div class="modal-body">
                                                 <div class="row">
                                                     <div class="mb-3 col-md-12">
-                                                        <label class="form-label">Nama ruangan</label>
+                                                        <label class="form-label">{{ tr('nama ruangan') }}</label>
                                                         <input type="text" class="form-control" name="name" required>
                                                     </div>
                                                     <div class="mb-3 col-md-12">
-                                                        <label class="form-label">Keterangan</label>
+                                                        <label class="form-label">{{ tr('keterangan') }}</label>
                                                         <textarea name="description" rows="3" class="form-control"></textarea>
 
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="modal-footer">
-                                                <button type="button" class="btn btn-danger light"
-                                                    data-bs-dismiss="modal">Tutup</button>
-                                                <button type="submit" class="btn btn-primary">Simpan</button>
+                                                <button type="button" class="btn btn-danger light" data-bs-dismiss="modal">{{ tr('tutup') }}</button>
+                                                <button type="submit" class="btn btn-primary">{{ tr('simpan') }}</button>
                                             </div>
                                         </form>
                                     </div>
@@ -63,10 +61,10 @@
                             <thead class="">
                                 <tr>
                                     <th>#</th>
-                                    <th>Nama ruangan</th>
-                                    <th>Keterangan</th>
+                                    <th>{{ tr('nama ruangan') }}</th>
+                                    <th>{{ tr('keterangan') }}</th>
                                     @if (can($key_, 'edit') || can($key_, 'delete'))
-                                        <th>Aksi</th>
+                                        <th>{{ tr('aksi') }}</th>
                                     @endif
                                 </tr>
                             </thead>
@@ -80,47 +78,38 @@
                                         @if (can($key_, 'edit') || can($key_, 'delete'))
                                             <td>
                                                 @if (can($key_, 'edit'))
-                                                    <a class="btn btn-outline-info btn-xs" data-bs-toggle="modal"
-                                                        href="#edit{{ $item->id }}"><i
-                                                            class="fa fa-edit color-info"></i>
+                                                    <a class="btn btn-outline-info btn-xs" data-bs-toggle="modal" href="#edit{{ $item->id }}"><i class="fa fa-edit color-info"></i>
                                                     </a>
                                                     <div class="modal fade" id="edit{{ $item->id }}">
                                                         <div class="modal-dialog" role="document">
                                                             <div class="modal-content">
                                                                 <div class="modal-header">
-                                                                    <h5 class="modal-title">Edit ruangan</h5>
-                                                                    <button type="button" class="btn-close"
-                                                                        data-bs-dismiss="modal">
+                                                                    <h5 class="modal-title">{{ tr('edit ruangan') }}</h5>
+                                                                    <button type="button" class="btn-close" data-bs-dismiss="modal">
                                                                     </button>
                                                                 </div>
-                                                                <form action="{{ url('/4dm1n/ruangan/edit') }}"
-                                                                    method="post">
+                                                                <form action="{{ url('/4dm1n/ruangan/edit') }}" method="post">
                                                                     {{ csrf_field() }}
-                                                                    <input type="hidden" name="id"
-                                                                        value="{{ $item->id }}">
+                                                                    <input type="hidden" name="id" value="{{ $item->id }}">
                                                                     <div class="modal-body text-start">
                                                                         <div class="row">
 
                                                                             <div class="mb-3 col-md-12">
-                                                                                <label class="form-label">Nama
-                                                                                    ruangan</label>
-                                                                                <input type="text" class="form-control"
-                                                                                    name="name"
-                                                                                    value="{{ $item->name }}" required>
+                                                                                <label class="form-label">{{ tr('nama ruangan') }}</label>
+
+                                                                                <input type="text" class="form-control" name="name" value="{{ $item->name }}" required>
                                                                             </div>
 
                                                                             <div class="mb-3 col-md-12">
-                                                                                <label class="form-label">Keterangan</label>
+                                                                                <label class="form-label">{{ tr('keterangan') }}</label>
                                                                                 <textarea name="description" rows="3" class="form-control">{{ $item->description }}</textarea>
 
                                                                             </div>
                                                                         </div>
                                                                     </div>
                                                                     <div class="modal-footer">
-                                                                        <button type="button" class="btn btn-danger light"
-                                                                            data-bs-dismiss="modal">Tutup</button>
-                                                                        <button type="submit"
-                                                                            class="btn btn-primary">Simpan</button>
+                                                                        <button type="button" class="btn btn-danger light" data-bs-dismiss="modal">{{ tr('tutup') }}</button>
+                                                                        <button type="submit" class="btn btn-primary">{{ tr('simpan') }}</button>
                                                                     </div>
                                                                 </form>
                                                             </div>
@@ -129,30 +118,25 @@
                                                 @endif
 
                                                 @if (can($key_, 'delete'))
-                                                    <a class="btn btn-outline-danger btn-xs" data-bs-toggle="modal"
-                                                        href="#delete{{ $item->id }}"><i
-                                                            class="fa fa-trash color-danger"></i>
+                                                    <a class="btn btn-outline-danger btn-xs" data-bs-toggle="modal" href="#delete{{ $item->id }}"><i class="fa fa-trash color-danger"></i>
                                                     </a>
                                                     <div class="modal fade" id="delete{{ $item->id }}">
                                                         <div class="modal-dialog modal-dialog-centered" role="document">
                                                             <div class="modal-content">
                                                                 <div class="modal-header">
-                                                                    <h5 class="modal-title text-danger">Peringatan !!</h5>
-                                                                    <button type="button" class="btn-close"
-                                                                        data-bs-dismiss="modal">
+                                                                    <h5 class="modal-title text-danger">{{ tr('peringatan') }} !!</h5>
+                                                                    <button type="button" class="btn-close" data-bs-dismiss="modal">
                                                                     </button>
                                                                 </div>
 
                                                                 <div class="modal-body">
-                                                                    <p>Apakah anda ingin menghapus ruangan
-                                                                        <b>{{ $item->name }}</b>
+                                                                    <p>{{ tr('apakah anda ingin menghapus ruangan') }}<b>{{ $item->name }}</b>
+
                                                                     </p>
                                                                 </div>
                                                                 <div class="modal-footer">
-                                                                    <button type="button" class="btn btn-danger light"
-                                                                        data-bs-dismiss="modal">Tutup</button>
-                                                                    <a href="{{ url('4dm1n/ruangan/delete/' . $item->id) }}"
-                                                                        class="btn btn-primary">Hapus</a>
+                                                                    <button type="button" class="btn btn-danger light" data-bs-dismiss="modal">{{ tr('tutup') }}</button>
+                                                                    <a href="{{ url('4dm1n/ruangan/delete/' . $item->id) }}" class="btn btn-primary">{{ tr('hapus') }}</a>
                                                                 </div>
 
                                                             </div>

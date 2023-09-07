@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Admin;
 use App\Models\University;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
@@ -43,12 +44,15 @@ class AuthController extends Controller
             'university_id'=>UNIVERSITY_ID,
             'status' => 1
         ])) {
+            $dt=Admin::where(['nip'=>$nip,'university_id'=>UNIVERSITY_ID])->first();
+            App::setLocale($dt->lang);
+            session()->put('locale',$dt->lang);
             addLog(0,$this->menu_id,'Login');
             Admin::where(['nip'=>$nip,'university_id'=>UNIVERSITY_ID])->update(['online'=>date('Y-m-d H:i:s')]);
             return redirect()->intended('/4dm1n/dashboard');
             
         } else {
-            return redirect()->back()->with('error_login', 'Username atau password salah')->withInput($request->except('password'));
+            return redirect()->back()->with('error_login', tr('username atau password salah'))->withInput($request->except('password'));
         }
        
     }
@@ -61,19 +65,34 @@ class AuthController extends Controller
         $phone= $request->input("phone");
         $birthdate= $request->input("birthdate");
        
-
         $status_data = Admin::where(['id'=>$id])->update([
             "name"=>$name,
             "email"=>$email,
             "phone"=>$phone,
-            "birthdate"=>$birthdate
+            "birthdate"=>$birthdate,
         ]);
 
         if ($status_data) {
+          
             addLog(0,$this->menu_id,'Mengupdate profil sendiri');
-            return redirect()->back()->with('success', 'sukses mengupdate profil');
+            return redirect()->back()->with('success', tr('sukses mengupdate profil'));
         } else {
-            return redirect()->back()->with('failed', 'gagal mengupdate profil');
+            return redirect()->back()->with('failed', tr('gagal mengupdate profil'));
+        }
+    }
+
+    public function lang_change(Request $request)
+    {
+        $id = $request->input("id");
+        $lang=$request->input("lang");
+         
+        $status_data =Admin::where(['id'=>$id])->update(['lang'=>$lang]);
+        if ($status_data) {
+            App::setLocale($lang);
+            session()->put('locale',$lang);
+            return redirect()->back()->with('success', tr('bahasa berhasil di ganti'));
+        } else {
+            return redirect()->back()->with('failed', tr('bahasa gagal di ganti'));
         }
     }
 
@@ -85,7 +104,7 @@ class AuthController extends Controller
             $avatar = time() . '-avatar.' . $request->avatar->extension();
             $request->avatar->move(public_path(AVATAR_PATH), $avatar);
         }else{
-            return redirect()->back()->with('failed', 'Avatar tidak ditemukan');
+            return redirect()->back()->with('failed', tr('avatar tidak ditemukan'));
         }
 
         $account_data = Admin::where(["id" => $id])->first();
@@ -100,12 +119,12 @@ class AuthController extends Controller
                 }
                 
                 addLog(0,$this->menu_id,'Mengupdate avatar sendiri');
-                return redirect()->back()->with('success', 'Avatar berhasil diganti');
+                return redirect()->back()->with('success', tr('avatar berhasil diganti'));
             } else {
-                return redirect()->back()->with('failed', 'Avatar gagal di ganti');
+                return redirect()->back()->with('failed', tr('avatar gagal di ganti'));
             }
         }else{
-            return redirect()->back()->with('failed', 'ID akun tidak ditemukan');
+            return redirect()->back()->with('failed', tr('id akun tidak ditemukan'));
         }
     }
 
@@ -120,12 +139,12 @@ class AuthController extends Controller
             $password=Hash::make($new_pass);
             $status_data = Admin::where(['id'=>$id])->update(['password'=>$password]);
             if ($status_data) {
-                return redirect()->back()->with('success', 'password berhasil di ganti');
+                return redirect()->back()->with('success', tr('password berhasil di ganti'));
             } else {
-                return redirect()->back()->with('failed', 'password gagal di ganti');
+                return redirect()->back()->with('failed', tr('password gagal di ganti'));
             }
         }else{
-            return redirect()->back()->with('failed', 'password gagal di ganti, password lama salah');
+            return redirect()->back()->with('failed', tr('password gagal di ganti, password lama salah'));
         }
     }
 

@@ -28,6 +28,7 @@ if (!defined('EXAM_G')) define('EXAM_G', 'gen-image?o=4&q=');
 if (!defined('QUIZ_G')) define('QUIZ_G', 'gen-image?o=3&q=');
 if (!defined('FILE_PATH')) define('FILE_PATH', 'file/');
 if (!defined('UNIVERSITY_ID')) define('UNIVERSITY_ID', '1');
+if (!defined('LANG')) define('LANG', ['id','en']);
 if (!defined('DAY')) define('DAY', ["Minggu", "Senin", "Selasa", "Rabu", "Kamis", "Jum'at", "Sabtu"]);
 if (!defined('DAY_COLOR')) define('DAY_COLOR', ["bg-light-info", "bg-light-dark", "bg-light-danger", "bg-light-success", "bg-light-primary", "bg-light-warning", "bg-light-secondary"]);
 if (!defined('MONTH')) define('MONTH', ["Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember"]);
@@ -54,10 +55,11 @@ Route::prefix('mahasiswa')->controller(mahasiswa\AuthController::class)->group(f
 });
 
 
-Route::group(['middleware' => ['auth:admin']], function () {
+Route::group(['middleware' => ['auth:admin','language_manager']], function () {
     Route::prefix('4dm1n')->group(function () {
         Route::prefix('/auth')->controller(admin\AuthController::class)->group(function () {
             Route::post('/password', 'password_change');
+            Route::get('/lang', 'lang_change');
             Route::post('/avatar', 'avatar_change');
             Route::post('/profile', 'profile_change');
             Route::post('/online', 'online');
@@ -96,7 +98,7 @@ Route::group(['middleware' => ['auth:admin']], function () {
             Route::get('/delete/{id}', 'delete')->middleware('access:Prodi,delete');
         });
 
-        Route::prefix('/prodi_lengkap')->controller(admin\SPFController::class)->group(function () {
+        Route::prefix('/full_prodi')->controller(admin\SPFController::class)->group(function () {
             Route::get('/', 'index')->middleware('access:Prodi Lengkap,view');
             Route::post('/add', 'add')->middleware('access:Prodi Lengkap,add');
             Route::post('/edit', 'edit')->middleware('access:Prodi Lengkap,edit');
@@ -282,7 +284,7 @@ Route::group(['middleware' => ['auth:admin']], function () {
     });
 });
 
-Route::group(['middleware' => ['auth:dosen']], function () {
+Route::group(['middleware' => ['auth:dosen','language_manager']], function () {
     Route::prefix('dosen')->group(function () {
         Route::controller(dosen\DashboardController::class)->group(function () {
             Route::get('/dashboard', 'index');
@@ -401,12 +403,13 @@ Route::group(['middleware' => ['auth:dosen']], function () {
 
         Route::prefix('/auth')->controller(dosen\AuthController::class)->group(function () {
             Route::post('/password', 'password_change');
+            Route::get('/lang', 'lang_change');
             Route::post('/online', 'online');
         });
     });
 });
 
-Route::group(['middleware' => ['auth:mahasiswa', 'class_check']], function () {
+Route::group(['middleware' => ['auth:mahasiswa', 'class_check','language_manager']], function () {
     Route::prefix('mahasiswa')->group(function () {
         Route::controller(mahasiswa\DashboardController::class)->group(function () {
             Route::get('/dashboard', 'index');
@@ -466,6 +469,7 @@ Route::group(['middleware' => ['auth:mahasiswa', 'class_check']], function () {
 
         Route::prefix('/auth')->controller(mahasiswa\AuthController::class)->group(function () {
             Route::post('/password', 'password_change');
+            Route::get('/lang', 'lang_change');
             Route::post('/online', 'online');
         });
     });

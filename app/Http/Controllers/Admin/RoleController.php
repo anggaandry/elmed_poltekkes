@@ -105,9 +105,9 @@ class RoleController extends Controller
             }
             
             addLog(0,$this->menu_id,'Menambah data '.$name);
-            return redirect('4dm1n/role')->with('success', 'berhasil menambah role');
+            return redirect('4dm1n/role')->with('success', tr('berhasil menambah').' '.tr('role'));
         } else {
-            return redirect()->back()->with('failed', 'gagal menambah role');
+            return redirect()->back()->with('failed', tr('gagal menambah').' '.tr('role'));
         }
     }
 
@@ -191,9 +191,9 @@ class RoleController extends Controller
             }
             
             addLog(0,$this->menu_id,'Mengedit data '.$name);
-            return redirect('4dm1n/role')->with('success', 'sukses mengedit role');
+            return redirect('4dm1n/role')->with('success', tr('sukses mengedit').' '.tr('role'));
         } else {
-            return redirect()->back()->with('failed', 'gagal mengedit role');
+            return redirect()->back()->with('failed', tr('gagal mengedit').' '.tr('role'));
         }
     }
 
@@ -206,9 +206,9 @@ class RoleController extends Controller
 
         if ($status_data) {
             addLog(0,$this->menu_id,'Menghapus data '.$old_data->name);
-            return redirect()->back()->with('success', 'Role berhasil di hapus');
+            return redirect()->back()->with('success', tr('role').' '.tr('berhasil di hapus'));
         } else {
-            return redirect()->back()->with('failed', 'Role gagal di hapus');
+            return redirect()->back()->with('failed', tr('role').' '.tr('gagal di hapus'));
         }
     }
 

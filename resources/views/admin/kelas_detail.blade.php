@@ -5,9 +5,8 @@
 @section('breadcrumb')
     <div class="row page-titles">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item active"><a href="javascript:void(0)">Akademik</a></li>
-            <li class="breadcrumb-item"><a
-                    href="{{ url('4dm1n/kelas?prodi=' . $class_data->prodi_id . '&tahun=' . $class_data->year . '&odd=' . $class_data->odd) }}">Kelas</a>
+            <li class="breadcrumb-item active"><a href="javascript:void(0)">{{ tr('akademik') }}</a></li>
+            <li class="breadcrumb-item"><a href="{{ url('4dm1n/kelas?prodi=' . $class_data->prodi_id . '&tahun=' . $class_data->year . '&odd=' . $class_data->odd) }}">{{ tr('kelas') }}</a>
             </li>
             <li class="breadcrumb-item"><a href="{{ url('4dm1n/kelas') }}">{{ $class_data->name }}</a></li>
         </ol>
@@ -26,16 +25,16 @@
                                 <div class="table-responsive">
                                     <table class="table table-bordered display table-sm">
                                         <tr>
-                                            <th>Nama kelas</th>
+                                            <th>{{ tr('nama kelas') }}</th>
                                             <td>{{ $class_data->name }}</td>
                                         </tr>
                                         <tr>
-                                            <th>Tahun akademik</th>
+                                            <th>{{ tr('tahun akademik') }}</th>
                                             <td>Semester {{ $class_data->semester }} TA {{ $class_data->year }} /
                                                 {{ $class_data->year + 1 }} </td>
                                         </tr>
                                         <tr>
-                                            <th>Prodi</th>
+                                            <th>{{ tr('prodi') }}</th>
                                             <td>{{ $class_data->prodi->program->name . ' - ' . $class_data->prodi->study_program->name . ' ' . $class_data->prodi->category->name }}
                                             </td>
                                         </tr>
@@ -45,49 +44,43 @@
                             <div class="col-4">
 
                                 @if ($class_data->semester != 1 && count($cc_data) == 0)
-                                    <a class="btn  btn-info mb-2 float-end" data-bs-toggle="modal" href="#previous"><span
-                                            class="btn-icon-start text-info"><i class="fa fa-users color-info"></i>
-                                        </span>Pindahkan dari kelas lain</a>
+                                    <a class="btn  btn-info mb-2 float-end" data-bs-toggle="modal" href="#previous"><span class="btn-icon-start text-info"><i class="fa fa-users color-info"></i>
+                                        </span>{{ tr('pindahkan dari kelas lain') }}</a>
                                     <br>
                                 @endif
-                                <a class="btn  btn-primary float-end" data-bs-toggle="modal" href="#add"><span
-                                        class="btn-icon-start text-primary"><i class="fa fa-plus color-primary"></i>
-                                    </span>Tambah mahasiswa</a>
+                                <a class="btn  btn-primary float-end" data-bs-toggle="modal" href="#add"><span class="btn-icon-start text-primary"><i class="fa fa-plus color-primary"></i>
+                                    </span>{{ tr('tambah mahasiswa') }}</a>
 
 
                                 <div class="modal fade" id="add">
                                     <div class="modal-dialog modal-lg" role="document">
                                         <div class="modal-content ">
                                             <div class="modal-header">
-                                                <h5 class="modal-title">Tambah mahasiswa</h5>
+                                                <h5 class="modal-title">{{ tr('tambah mahasiswa') }}</h5>
                                                 <button type="button" class="btn-close" data-bs-dismiss="modal">
                                                 </button>
                                             </div>
                                             <div class="modal-body">
                                                 <div class="row">
                                                     <div class="col-3">
-                                                        <label class="form-label text-left">Tahun akademik</label>
+                                                        <label class="form-label text-left">{{ tr('tahun akademik') }}</label>
                                                         <div class="input-group">
-                                                            <input type="number" class="form-control"
-                                                                value="{{ $class_data->year }}" id="year_"
-                                                                oninput="load_table()" required>
-                                                            <span class="input-group-text border-0"
-                                                                id="next_year">{{ $class_data->year + 1 }}</span>
+                                                            <input type="number" class="form-control" value="{{ $class_data->year }}" id="year_" oninput="load_table()" required>
+                                                            <span class="input-group-text border-0" id="next_year">{{ $class_data->year + 1 }}</span>
                                                         </div>
                                                     </div>
                                                 </div>
 
                                                 <div class="table-responsive mt-3">
-                                                    <table id="data-table-1"
-                                                        class="display text-center table-striped table-sm">
+                                                    <table id="data-table-1" class="display text-center table-striped table-sm">
                                                         <thead class="">
                                                             <tr>
                                                                 <th>#</th>
-                                                                <th>Foto</th>
-                                                                <th>Nama</th>
-                                                                <th>NIM</th>
-                                                                <th>TA</th>
-                                                                <th>Aksi</th>
+                                                                <th>{{ tr('foto') }}</th>
+                                                                <th>{{ tr('nama') }}</th>
+                                                                <th>{{ tr('nim') }}</th>
+                                                                <th>{{ tr('ta') }}</th>
+                                                                <th>{{ tr('aksi') }}</th>
                                                             </tr>
                                                         </thead>
                                                         <tbody>
@@ -98,8 +91,7 @@
                                                 </div>
                                             </div>
                                             <div class="modal-footer">
-                                                <button type="button" class="btn btn-danger light"
-                                                    data-bs-dismiss="modal">Tutup</button>
+                                                <button type="button" class="btn btn-danger light" data-bs-dismiss="modal">{{ tr('tutup') }}</button>
 
                                             </div>
                                         </div>
@@ -110,7 +102,7 @@
                                     <div class="modal-dialog" role="document">
                                         <div class="modal-content modal-lg">
                                             <div class="modal-header">
-                                                <h5 class="modal-title">Ambil dari kelas lain</h5>
+                                                <h5 class="modal-title">{{ tr('ambil dari kelas lain') }}</h5>
                                                 <button type="button" class="btn-close" data-bs-dismiss="modal">
                                                 </button>
                                             </div>
@@ -119,11 +111,10 @@
                                                 <input type="hidden" name="class_id" value="{{ $class_data->id }}">
                                                 <div class="modal-body">
                                                     <div class="mb-3 col-md-12">
-                                                        <label class="form-label">Kelas yang ingin mahasiswanya disalin ke
+                                                        <label class="form-label">{{ tr('kelas yang ingin mahasiswanya disalin ke') }}
                                                             {{ $class_data->name }}</label>
-                                                        <select class="form-select form-select-lg" name="previous_id"
-                                                            required>
-                                                            <option value="">-- Pilih kelas-- </option>
+                                                        <select class="form-select form-select-lg" name="previous_id" required>
+                                                            <option value="">-- {{ tr('pilih kelas') }} --</option>
                                                             @foreach ($ref_class as $item)
                                                                 <option value="{{ $item->id }}">
                                                                     {{ $item->name }} TA
@@ -134,9 +125,8 @@
                                                     </div>
                                                 </div>
                                                 <div class="modal-footer">
-                                                    <button type="button" class="btn btn-danger light"
-                                                        data-bs-dismiss="modal">Tutup</button>
-                                                    <button type="submit" class="btn btn-primary">Proses</button>
+                                                    <button type="button" class="btn btn-danger light" data-bs-dismiss="modal">{{ tr('tutup') }}</button>
+                                                    <button type="submit" class="btn btn-primary">{{ tr('proses') }}</button>
                                                 </div>
                                             </form>
                                         </div>
@@ -155,12 +145,12 @@
                             <thead class="">
                                 <tr>
                                     <th>#</th>
-                                    <th>Foto</th>
-                                    <th>Nama mahasiswa</th>
-                                    <th>NIM</th>
-                                    <th>Tahun</th>
+                                    <th>{{ tr('foto') }}</th>
+                                    <th>{{ tr('nama mahasiswa') }}</th>
+                                    <th>{{ tr('nim') }}</th>
+                                    <th>{{ tr('tahun') }}</th>
                                     @if (can($key_, 'delete'))
-                                        <th>Aksi</th>
+                                        <th>{{ tr('aksi') }}</th>
                                     @endif
                                 </tr>
                             </thead>
@@ -170,8 +160,7 @@
                                     <tr>
                                         <td>{{ $i++ }}</td>
                                         <td>
-                                            <div class="cropcircle"
-                                                style="background-image: url({{ $item->colleger->avatar ? asset(AVATAR_PATH . $item->colleger->avatar) : 'https://ui-avatars.com/api/?background=89CFF0&&name=' . str_replace(' ', '+', $item->colleger->name) }});">
+                                            <div class="cropcircle" style="background-image: url({{ $item->colleger->avatar ? asset(AVATAR_PATH . $item->colleger->avatar) : 'https://ui-avatars.com/api/?background=89CFF0&&name=' . str_replace(' ', '+', $item->colleger->name) }});">
                                             </div>
                                         </td>
                                         <td>{{ $item->colleger->name }}</td>
@@ -180,30 +169,24 @@
                                         @if (can($key_, 'delete'))
                                             <td>
                                                 @if (can($key_, 'delete'))
-                                                    <a class="btn btn-outline-danger btn-xs" data-bs-toggle="modal"
-                                                        href="#delete{{ $item->id }}"><i
-                                                            class="fa fa-trash color-danger"></i>
+                                                    <a class="btn btn-outline-danger btn-xs" data-bs-toggle="modal" href="#delete{{ $item->id }}"><i class="fa fa-trash color-danger"></i>
                                                     </a>
                                                     <div class="modal fade" id="delete{{ $item->id }}">
                                                         <div class="modal-dialog modal-dialog-centered" role="document">
                                                             <div class="modal-content">
                                                                 <div class="modal-header">
-                                                                    <h5 class="modal-title text-danger">Peringatan !!</h5>
-                                                                    <button type="button" class="btn-close"
-                                                                        data-bs-dismiss="modal">
+                                                                    <h5 class="modal-title text-danger">{{ tr('peringatan') }} !!</h5>
+                                                                    <button type="button" class="btn-close" data-bs-dismiss="modal">
                                                                     </button>
                                                                 </div>
 
                                                                 <div class="modal-body">
-                                                                    <p>Apakah anda ingin menghapus mahasiswa
-                                                                        <b>{{ $item->colleger->name }}</b> dari kelas ini?
+                                                                    <p>{{ tr('apakah anda ingin menghapus mahasiswa dari kelas ini?') }}<b>{{ $item->colleger->name }}</b>
                                                                     </p>
                                                                 </div>
                                                                 <div class="modal-footer">
-                                                                    <button type="button" class="btn btn-danger light"
-                                                                        data-bs-dismiss="modal">Tutup</button>
-                                                                    <a href="{{ url('4dm1n/kelas/colleger/delete/' . $item->id) }}"
-                                                                        class="btn btn-primary">Hapus</a>
+                                                                    <button type="button" class="btn btn-danger light" data-bs-dismiss="modal">{{ tr('tutup') }}</button>
+                                                                    <a href="{{ url('4dm1n/kelas/colleger/delete/' . $item->id) }}" class="btn btn-primary">{{ tr('hapus') }}</a>
                                                                 </div>
 
                                                             </div>
@@ -308,7 +291,7 @@
                         next: '<i class="fa fa-angle-double-right" aria-hidden="true"></i>',
                         previous: '<i class="fa fa-angle-double-left" aria-hidden="true"></i>'
                     },
-                    processing: '<div class="d-flex justify-content-center"><div class="spinner-border" role="status"><span class="visually-hidden">Loading...</span></div></div>',
+                    processing: '<div class="d-flex justify-content-center"><div class="spinner-border" role="status"><span class="visually-hidden">{{ tr('loading...') }}</span></div></div>',
                     info: "<br> &nbsp; &nbsp; <b>page _PAGE_ of _PAGES_</b>  | Records _START_ to _END_ of _MAX_ entries",
                 },
 

@@ -19,6 +19,8 @@ class ExamController extends Controller
 {
     private $menu_id;
     private $now_hour;
+    private $key_;
+    private $now_date;
 
     public function __construct()
     {
@@ -50,11 +52,11 @@ class ExamController extends Controller
             $data=$data->paginate($limit)->onEachSide(1);
 
             $data->through(function ($item) {
-                $status="<span class='badge badge-sm badge-success'>aktif</span>";
+                $status="<span class='badge badge-sm badge-success'>".tr('aktif')."</span>";
                 if(strtotime($item->end)<strtotime($this->now_hour)){
-                    $status="<span class='badge badge-sm badge-dark'>selesai</span>";
+                    $status="<span class='badge badge-sm badge-dark'>".tr('selesai')."</span>";
                     if($item->publish==0){
-                        $status="<span class='badge badge-sm badge-danger'>dikoreksi</span>";
+                        $status="<span class='badge badge-sm badge-danger'>".tr('dikoreksi')."</span>";
                     }
                 }
               
@@ -111,7 +113,7 @@ class ExamController extends Controller
             $data->score="-";
             
             if($data->passed){
-                $data->score="<i class='text-danger'>sedang dikoreksi</i>";
+                $data->score="<i class='text-danger'>".tr('sedang dikoreksi')."</i>";
             }
 
             if($data->publish==1){
@@ -168,7 +170,7 @@ class ExamController extends Controller
             ];
             return view('mahasiswa/exam_do', $data);
         }else{
-            return redirect('mahasiswa/ujian')->with('failed','Ujian berakhir');
+            return redirect('mahasiswa/ujian')->with('failed',tr('ujian berakhir'));
         }
         
        
@@ -203,7 +205,7 @@ class ExamController extends Controller
             ];
             return view('mahasiswa/exam_result', $data);
         }else{
-            return redirect('mahasiswa/ujian')->with('failed','Nilai ujian belum dipublish');
+            return redirect('mahasiswa/ujian')->with('failed',tr('nilai ujian belum dipublish'));
         }
     }
 
@@ -244,10 +246,10 @@ class ExamController extends Controller
         }
 
         if(!$status_data){
-            $message="Jawaban gagal disimpan";
+            $message=tr('jawaban gagal disimpan');
             $code=0;
         }else{
-            $message="Jawaban berhasil disimpan";
+            $message=tr('jawaban berhasil disimpan');
             $code=1;
         }
         
@@ -288,14 +290,14 @@ class ExamController extends Controller
             }
 
             if(!$status_data){
-                $message="File gagal disimpan";
+                $message=tr('file gagal disimpan');
                 $code=0;
             }else{
-                $message="File berhasil disimpan";
+                $message=tr('file berhasil disimpan');
                 $code=1;
             }
         }else{
-            $message="File gagal disimpan,tidak ada file terdeteksi";
+            $message=tr("file gagal disimpan,tidak ada file terdeteksi");
             $code=0;
         }
 
@@ -317,10 +319,10 @@ class ExamController extends Controller
         'colleger_id'=>$colleger_id,"exam_question_id"=>$exam_question_id])->delete();
 
         if(!$status_data){
-            $message="Gagal menghapus jawaban";
+            $message=tr('gagal menghapus jawaban');
             $code=0;
         }else{
-            $message="Sukses menghapus jawaban ";
+            $message=tr('sukses menghapus jawaban')." ";
             $code=1;
         }
         

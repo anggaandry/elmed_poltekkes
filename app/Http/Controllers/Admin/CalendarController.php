@@ -55,9 +55,9 @@ class CalendarController extends Controller
         if ($status_data) {
             addLog(0,$this->menu_id,'Menambah data kalender '.$name);
             AbsenceStart::where(['date'=>$date,'active'=>0])->delete();
-            return redirect()->back()->with('success', 'berhasil menambah kalender akademik');
+            return redirect()->back()->with('success', tr('berhasil menambah').' '.tr('kalender akademik'));
         } else {
-            return redirect()->back()->with('failed', 'gagal menambah kalender akademik');
+            return redirect()->back()->with('failed', tr('gagal menambah').' '.tr('kalender akademik'));
         }
     }
 
@@ -79,9 +79,9 @@ class CalendarController extends Controller
         if ($status_data) {
             addLog(0,$this->menu_id,'Mengedit data kalender '.$name);
             AbsenceStart::where(['date'=>$date,'active'=>0])->delete();
-            return redirect()->back()->with('success', 'sukses mengedit kalender akademik');
+            return redirect()->back()->with('success', tr('sukses mengedit').' '.tr('kalender akademik'));
         } else {
-            return redirect()->back()->with('failed', 'gagal mengedit kalender akademik');
+            return redirect()->back()->with('failed', tr('gagal mengedit').' '.tr('kalender akademik'));
         }
     }
 
@@ -92,9 +92,9 @@ class CalendarController extends Controller
 
         if ($status_data) {
             addLog(0,$this->menu_id,'Menghapus data kalender '.$old_data->name);
-            return redirect()->back()->with('success', 'Kalender akademik berhasil di hapus');
+            return redirect()->back()->with('success', tr('kalender akademik').' '.tr('berhasil di hapus'));
         } else {
-            return redirect()->back()->with('failed', 'Kalender akademik gagal di hapus');
+            return redirect()->back()->with('failed', tr('kalender akademik').' '.tr('gagal di hapus'));
         }
     }
 

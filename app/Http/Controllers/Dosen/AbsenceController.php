@@ -64,7 +64,7 @@ class AbsenceController extends Controller
                 $check_start->schedule_info = date_id($schedule->date . " " . $schedule->start, 1) . " - " . date('H:i', strtotime($schedule->end));
                 if ($check_start->moved == 1) {
                     $check_start->schedule_info = date_id($check_start->date . " " . $check_start->start, 1) . " - " . date("H:i", strtotime($check_start->end)) .
-                        "<br><small class='text-danger'>Pindahan dari " . date_id($schedule->date . " " . $schedule->start, 1) . " - " . date("H:i", strtotime($schedule->end)) . "</small>";
+                        "<br><small class='text-danger'>".tr('pindahan dari')." ".date_id($schedule->date . " " . $schedule->start, 1) . " - " . date("H:i", strtotime($schedule->end)) . "</small>";
                 }
                 $check_submit = AbsenceSubmit::where(['start_id' => $check_start->id, "schedule_id" => $schedule_id, "lecturer_id" => $lecturer_id])->first();
                 if ($check_submit) {
@@ -77,7 +77,7 @@ class AbsenceController extends Controller
                 foreach ($lecturer as $item) {
                     $no++;
                     $submit_data = AbsenceSubmit::where(['start_id' => $check_start->id, "schedule_id" => $schedule_id, "lecturer_id" => $item->lecturer_id])->first();
-                    $status = "belum submit";
+                    $status = tr("belum submit");
                     $status_note = "";
                     $status_color = "dark";
 
@@ -87,15 +87,15 @@ class AbsenceController extends Controller
                         }
                         switch ($submit_data->status) {
                             case 0:
-                                $status = "Alfa";
+                                $status = tr("alfa");
                                 $status_color = "danger";
                                 break;
                             case 1:
-                                $status = "Hadir";
+                                $status = tr("hadir");
                                 $status_color = "success";
                                 break;
                             case 2:
-                                $status = "Izin";
+                                $status = tr("izin");
                                 $status_color = "info";
                                 break;
 
@@ -181,7 +181,7 @@ class AbsenceController extends Controller
                 $check_start->schedule_info = date_id($schedule->date . " " . $schedule->start, 1) . " - " . date('H:i', strtotime($schedule->end));
                 if ($check_start->moved == 1) {
                     $check_start->schedule_info = date_id($check_start->date . " " . $check_start->start, 1) . " - " . date("H:i", strtotime($check_start->end)) .
-                        "<br><small class='text-danger'>Pindahan dari " . date_id($schedule->date . " " . $schedule->start, 1) . " - " . date("H:i", strtotime($schedule->end)) . "</small>";
+                        "<br><small class='text-danger'>".tr('pindahan dari')." ".date_id($schedule->date . " " . $schedule->start, 1) . " - " . date("H:i", strtotime($schedule->end)) . "</small>";
                 }
                 $check_submit = AbsenceSubmit::where(['start_id' => $check_start->id, "schedule_id" => $schedule_id, "lecturer_id" => $lecturer_id])->first();
                 if ($check_submit) {
@@ -194,7 +194,7 @@ class AbsenceController extends Controller
                 foreach ($lecturer as $item) {
                     $no++;
                     $submit_data = AbsenceSubmit::where(['start_id' => $check_start->id, "schedule_id" => $schedule_id, "lecturer_id" => $item->lecturer_id])->first();
-                    $status = "belum submit";
+                    $status = tr("belum submit");
                     $status_note = "";
                     $status_color = "dark";
 
@@ -204,15 +204,15 @@ class AbsenceController extends Controller
                         }
                         switch ($submit_data->status) {
                             case 0:
-                                $status = "Alfa";
+                                $status = tr("alfa");
                                 $status_color = "danger";
                                 break;
                             case 1:
-                                $status = "Hadir";
+                                $status = tr("hadir");
                                 $status_color = "success";
                                 break;
                             case 2:
-                                $status = "Izin";
+                                $status = tr("izin");
                                 $status_color = "info";
                                 break;
 
@@ -428,7 +428,7 @@ class AbsenceController extends Controller
                 if ($schedule_lec) {
                     $item = $obj->schedule;
                     $name = date('H:i', strtotime($obj->start)) . "-" . date('H:i', strtotime($obj->end)) . ": " . $item->sks->subject->name . " (" . $item->class->name . ")" .
-                        " pindahan dari hari " . date_id($obj->moved_from, 3) . " " . date('H:i', strtotime($item->start)) . "-" . date('H:i', strtotime($item->end));
+                    " ".tr("pindahan dari hari")." ". date_id($obj->moved_from, 3) . " " . date('H:i', strtotime($item->start)) . "-" . date('H:i', strtotime($item->end));
                     $sel = "";
                     if (strtotime($date . " " . $obj->start) <= strtotime(date('Y-m-d H:i')) && strtotime($date . " " . $obj->end) >= strtotime(date('Y-m-d H:i'))) {
                         $sel = "selected";
@@ -448,9 +448,9 @@ class AbsenceController extends Controller
         }
 
         if ($holiday == "" && count($data) == 0) {
-            $holiday = "Libur jadwal kosong";
+            $holiday = tr("libur jadwal kosong");
             if (date('w', strtotime($date)) == 0) {
-                $holiday = "Libur hari minggu";
+                $holiday = tr("libur hari minggu");
             }
         }
 
@@ -488,12 +488,12 @@ class AbsenceController extends Controller
         }
 
         if (!$status_data) {
-            $message = "Gagal mengisi absensi " . $status_array[$status];
+            $message = tr("gagal mengisi absensi")." ". $status_array[$status];
             $code = 0;
         } else {
             $colleger_data = Colleger::where("id", $colleger)->first();
-            addLog(1, $this->menu_id, "membuat absensi " . $status_array[$status] . " mahasiswa " . $colleger_data->name . " tanggal " . date_id($date, 1));
-            $message = "Sukses mengisi absensi " . $status_array[$status];
+            addLog(1, $this->menu_id, tr("membuat absensi")," ". $status_array[$status] . " ".tr("mahasiswa")." " . $colleger_data->name . " ".tr("tanggal")." " . date_id($date, 1));
+            $message = tr("sukses mengisi absensi")." ". $status_array[$status];
             $code = 1;
         }
 
@@ -529,12 +529,12 @@ class AbsenceController extends Controller
         }
 
         if (!$status_data) {
-            $message = "Gagal mengisi catatan absensi";
+            $message = tr("gagal mengisi catatan absensi");
             $code = 0;
         } else {
             $colleger_data = Colleger::where("id", $colleger)->first();
-            addLog(1, $this->menu_id, "membuat catatan absensi mahasiswa " . $colleger_data->name . " tanggal " . date_id($date, 1));
-            $message = "Sukses mengisi catatan absensi ";
+            addLog(1, $this->menu_id, tr("membuat catatan absensi mahasiswa")." ". $colleger_data->name . " ".tr("tanggal")." " . date_id($date, 1));
+            $message = tr("sukses mengisi catatan absensi")." ";
             $code = 1;
         }
 
@@ -556,12 +556,12 @@ class AbsenceController extends Controller
         $status_data = Absence::where(['start_id' => $start, 'date' => $date, 'colleger_id' => $colleger, 'schedule_id' => $schedule])->delete();
 
         if (!$status_data) {
-            $message = "Gagal menghapus absensi mahasiswa";
+            $message = tr("gagal menghapus absensi mahasiswa");
             $code = 0;
         } else {
             $colleger_data = Colleger::where("id", $colleger)->first();
-            addLog(1, $this->menu_id, "menghapus absensi mahasiswa " . $colleger_data->name . " tanggal " . date_id($date, 1));
-            $message = "Sukses menghapus absensi mahasiswa ";
+            addLog(1, $this->menu_id, tr("menghapus absensi mahasiswa")." ". $colleger_data->name . " ".tr("tanggal")." " . date_id($date, 1));
+            $message = tr("sukses menghapus absensi mahasiswa")." ";
             $code = 1;
         }
 
@@ -600,17 +600,17 @@ class AbsenceController extends Controller
                     "active" => 1
                 ]);
 
-                $message = "memulai absensi gagal ";
+                $message = tr("memulai absensi gagal")." ";
                 $code = 0;
 
                 if ($status_data) {
                     addLog(1, $this->menu_id, 'memulai absensi ' . date_id($date . " " . $start, 1));
-                    $message = "memulai absensi sukses";
+                    $message = tr('memulai absensi sukses');
                     $code = 1;
                 }
             } else {
                 $code = 1;
-                $message = "absensi sudah dimulai";
+                $message = tr('absensi sudah dimulai');
             }
         } else {
             $check = AbsenceStart::where("id", $id)->where("active", 1)->first();
@@ -622,12 +622,12 @@ class AbsenceController extends Controller
 
                 if ($status_data) {
                     addLog(1, $this->menu_id, 'memulai absensi pindahan ' . date_id($date . " " . $start, 1));
-                    $message = "memulai absensi pindahan sukses";
+                    $message = tr('memulai absensi pindahan sukses');
                     $code = 1;
                 }
             } else {
                 $code = 1;
-                $message = "absensi sudah dimulai";
+                $message = tr('absensi sudah dimulai');
             }
         }
 
@@ -655,10 +655,10 @@ class AbsenceController extends Controller
         $weekoff = date('w', strtotime($date));
         if ($calendar) {
             $code = 0;
-            $message = "Tidak bisa di pindahakan ke hari libur (" . $calendar->name . ")";
+            $message = tr("tidak bisa di pindahakan ke hari libur")." (" . $calendar->name . ")";
         } else if ($weekoff == 0) {
             $code = 0;
-            $message = "Tidak bisa di pindahakan ke hari minggu";
+            $message = tr('tidak bisa di pindahakan ke hari minggu');
         } else {
             $check = AbsenceStart::where(['schedule_id' => $schedule_id, "moved_from" => $moved_from])->first();
 
@@ -676,12 +676,12 @@ class AbsenceController extends Controller
                     "active" => 0
                 ]);
 
-                $message = "memindahkan jadwal gagal ";
+                $message = tr('memindahkan jadwal gagal ');
                 $code = 0;
 
                 if ($status_data) {
                     addLog(1, $this->menu_id, 'memindahkan jadwal ' . date_id($date . " " . $start, 1));
-                    $message = "memindahkan absensi sukses";
+                    $message = tr('memindahkan absensi sukses');
                     $code = 1;
                 }
             } else {
@@ -700,7 +700,7 @@ class AbsenceController extends Controller
 
                 if ($status_data) {
                     addLog(1, $this->menu_id, 'mengedit pindahan jadwal ' . date_id($date . " " . $start, 1));
-                    $message = "mengedit pindahan jadwal sukses";
+                    $message = tr('mengedit pindahan jadwal sukses');
                     $code = 1;
                 }
             }
@@ -724,12 +724,12 @@ class AbsenceController extends Controller
         $status_data = AbsenceStart::where("id", $id)->delete();
 
         if (!$status_data) {
-            $message = "Gagal mereset pemindahan jadwal ";
+            $message = tr('gagal mereset pemindahan jadwal ');
             $code = 0;
         } else {
 
             addLog(1, $this->menu_id, "mereset pemindahan jadwal tanggal " . date_id($old_data->moved_from . " " . $old_data->schedule->start, 1));
-            $message = "Sukses mereset pemindahan jadwal";
+            $message = tr('sukses mereset pemindahan jadwal');
             $code = 1;
         }
 
@@ -753,17 +753,17 @@ class AbsenceController extends Controller
                 "activity" => $activity,
             ]);
 
-            $message = "mengganti aktivitas pembelajaran gagal ";
+            $message = tr('mengganti aktivitas pembelajaran gagal ');
             $code = 0;
 
             if ($status_data) {
                 addLog(1, $this->menu_id, 'mengganti aktivitas pembelajaran ' . date_id($check->date . " " . $check->start, 1));
-                $message = "mengganti aktivitas pembelajaran sukses";
+                $message = tr('mengganti aktivitas pembelajaran sukses');
                 $code = 1;
             }
         } else {
             $code = 1;
-            $message = "Jadwal tidak ditemukan";
+            $message = tr('jadwal tidak ditemukan');
         }
 
 
@@ -795,7 +795,7 @@ class AbsenceController extends Controller
                 "note" => $note,
             ]);
 
-            $message = "submit absensi gagal ";
+            $message = tr('submit absensi gagal ');
             $code = 0;
 
             if ($status_data) {
@@ -815,12 +815,12 @@ class AbsenceController extends Controller
                 }
 
                 addLog(1, $this->menu_id, 'submit absensi ' . date_id($start->date . " " . $start->start, 1));
-                $message = "submit absensi sukses";
+                $message = tr('submit absensi sukses');
                 $code = 1;
             }
         } else {
             $code = 1;
-            $message = "Jadwal sudah disubmit";
+            $message = tr('jadwal sudah disubmit');
         }
 
 

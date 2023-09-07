@@ -5,9 +5,9 @@
 @section('breadcrumb')
     <div class="row page-titles">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item active"><a href="javascript:void(0)">LMS</a></li>
-            <li class="breadcrumb-item"><a href="{{ url('mahasiswa/kuis') }}">Kuis</a></li>
-            <li class="breadcrumb-item"><a href="javascript:void(0)">Kerjakan Kuis</a></li>
+            <li class="breadcrumb-item active"><a href="javascript:void(0)">{{ tr('lms') }}</a></li>
+            <li class="breadcrumb-item"><a href="{{ url('mahasiswa/kuis') }}">{{ tr('kuis') }}</a></li>
+            <li class="breadcrumb-item"><a href="javascript:void(0)">{{ tr('kerjakan kuis') }}</a></li>
         </ol>
     </div>
 @endsection
@@ -28,7 +28,7 @@
                                     <p>
                                     <div class="card">
                                         <div class="card-body">
-                                            <h6>Catatan kelas</h6>
+                                            <h6>{{ tr('catatan kelas') }}</h6>
                                             <p class="card-text">{{ $qc->note }}</p>
                                         </div>
                                     </div>
@@ -38,11 +38,10 @@
                                     <li class="text-info">
                                         <i class="fa fa-check-circle"></i> {{ $qc->class->name }}
                                     </li>
-                                    <li> <span
-                                            class="font-weight-bolder ms-3">{{ title_lecturer($qc->quiz->lecturer) }}</span>
+                                    <li><span class="font-weight-bolder ms-3">{{ title_lecturer($qc->quiz->lecturer) }}</span>
                                     </li>
                                     <li>{{ $qc->quiz->sks->subject->name }}</li>
-                                    <li>{{ count($qc->quiz->quiz_question) }} soal</li>
+                                    <li>{{ count($qc->quiz->quiz_question) }} {{ tr('soal') }}</li>
                                 </ul>
                                 <ul class="d-flex align-items-center raiting flex-wrap">
                                     <li>
@@ -75,7 +74,7 @@
         <div class="col-xl-12">
             <div class="card  course-dedails-bx">
                 <div class="card-header border-0 pb-0">
-                    <h2>Soal</h2>
+                    <h2>{{ tr('soal') }}</h2>
                     <span id="cd" class="float-end badge badge-danger"></span>
                 </div>
                 <div class="card-body pt-3">
@@ -92,22 +91,19 @@
                                                     </th>
 
                                                     <td class="align-top">
-                                                        <small class="text-info"><b>Bobot soal {{ $item->value }}</b>
+                                                        <small class="text-info"><b>{{ tr('bobot soal') }} {{ $item->value }}</b>
                                                         </small>
                                                         @php echo $item->question->question @endphp
                                                         @if ($item->question->file)
 
-                                                            <b>File :</b> <a class="text-info"
-                                                                href="{{ asset(DOC_PATH . $item->question->file) }}"
-                                                                download>
+                                                            <b>{{ tr('file') }} :</b><a class="text-info" href="{{ asset(DOC_PATH . $item->question->file) }}" download>
                                                                 {{ $item->question->file }} </a><br>
                                                             <br>
                                                         @endif
 
 
                                                         @if ($item->question->type == 0)
-                                                            <textarea name="answer_{{ $item->id }}" oninput="essay(this,{{ $item->id }})" rows="3"
-                                                                class="form-control">{{ $item->answer ? $item->answer->answer : '' }}</textarea>
+                                                            <textarea name="answer_{{ $item->id }}" oninput="essay(this,{{ $item->id }})" rows="3" class="form-control">{{ $item->answer ? $item->answer->answer : '' }}</textarea>
                                                         @endif
                                                         @if ($item->question->type == 1)
                                                             @php $options=json_decode($item->question->choice,false); @endphp
@@ -116,12 +112,7 @@
                                                                     <tr>
                                                                         <th width="5%" class="p-0 m-0">
                                                                             <div class="form-check-primary">
-                                                                                <input class="form-check-input"
-                                                                                    type="radio"
-                                                                                    name="answer_{{ $item->id }}"
-                                                                                    value="{{ $sub->choice }}"
-                                                                                    @if ($item->answer) @if ($item->answer->answer == $sub->choice) checked @endif
-                                                                                    @endif
+                                                                                <input class="form-check-input" type="radio" name="answer_{{ $item->id }}" value="{{ $sub->choice }}" @if ($item->answer) @if ($item->answer->answer == $sub->choice) checked @endif @endif
                                                                                 onchange="answer(this,{{ $item->id }})">
 
                                                                             </div>
@@ -138,23 +129,14 @@
                                                         @endif
 
                                                         @if ($item->question->type == 2)
-                                                            <input type="file" class="dropify"
-                                                                name="answer_{{ $item->id }}"
-                                                                onchange="file(this,{{ $item->id }})"
-                                                                data-show-remove="false"
-                                                                @if ($item->answer) data-default-file="{{ $item->answer->file ? asset(LMS_PATH . $item->answer->file) : '' }}" @endif
-                                                                name="file" height="200" />
+                                                            <input type="file" class="dropify" name="answer_{{ $item->id }}" onchange="file(this,{{ $item->id }})" data-show-remove="false" @if ($item->answer) data-default-file="{{ $item->answer->file ? asset(LMS_PATH . $item->answer->file) : '' }}" @endif name="file" height="200" />
                                                         @endif
 
 
 
                                                     </td>
                                                     <td width="5%" class="align-top">
-                                                        <button class="btn btn-danger btn-xs mt-2"
-                                                            id="btn-{{ $item->id }}"
-                                                            @if (!$item->answer) disabled @endif
-                                                            onclick="delete_({{ $item->id }},{{ $item->question->type }})"><i
-                                                                class="fa fa-trash"></i></button>
+                                                        <button class="btn btn-danger btn-xs mt-2" id="btn-{{ $item->id }}" @if (!$item->answer) disabled @endif onclick="delete_({{ $item->id }},{{ $item->question->type }})"><i class="fa fa-trash"></i></button>
 
                                                     </td>
                                                 </tr>
@@ -321,7 +303,7 @@
             var seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
             // Display the result in the element with id="demo"
-            var cont = "Berakhir dalam ";
+            var cont = "{{ tr('berakhir dalam') }} ";
             if (days > 0) {
                 cont += (days + " Hari ");
             }
@@ -330,12 +312,12 @@
                 cont += (hours + " jam ");
             }
             document.getElementById("cd").innerHTML = cont +
-                minutes + " menit " + seconds + " detik ";
+                minutes + " {{ tr('menit') }} " + seconds + " {{ tr('detik') }} ";
 
             // If the count down is finished, write some text
             if (distance < 0) {
                 clearInterval(x);
-                document.getElementById("cd").innerHTML = "WAKTU HABIS";
+                document.getElementById("cd").innerHTML = "{{ tr('waktu habis') }}";
                 setTimeout(function() {
                     window.location.reload();
                 }, 1000);

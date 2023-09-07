@@ -5,8 +5,8 @@
 @section('breadcrumb')
     <div class="row page-titles">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item active"><a href="javascript:void(0)">Akademik</a></li>
-            <li class="breadcrumb-item"><a href="javascript:void(0)">Matkul prodi</a></li>
+            <li class="breadcrumb-item active"><a href="javascript:void(0)">{{ tr('akademik') }}</a></li>
+            <li class="breadcrumb-item"><a href="javascript:void(0)">{{ tr('matkul prodi') }}</a></li>
         </ol>
     </div>
 @endsection
@@ -19,10 +19,9 @@
                 <div class="card-header">
                     <div class="row" style="width:110%;">
                         <div class="col-6">
-                            <label class="form-label text-left">Prodi</label>
-                            <select class="form-select form-select-lg" id="prodi_" onchange="load_table()"
-                                @if (can_prodi()) disabled @endif>
-                                <option value="">Semua prodi </option>
+                            <label class="form-label text-left">{{ tr('prodi') }}</label>
+                            <select class="form-select form-select-lg" id="prodi_" onchange="load_table()" @if (can_prodi()) disabled @endif>
+                                <option value="">{{ tr('semua prodi') }}</option>
                                 @foreach ($prodi_data as $item)
                                     <option value="{{ $item->id }}" @if ($prodi_id == $item->id) selected @endif>
                                         {{ $item->program->name }}
@@ -33,14 +32,13 @@
 
                         <div class="col-6">
                             @if (can($key_, 'add'))
-                                <a class="btn  btn-primary float-end" data-bs-toggle="modal" href="#add"><span
-                                        class="btn-icon-start text-primary"><i class="fa fa-plus color-primary"></i>
-                                    </span>Tambah Matkul Prodi</a>
+                                <a class="btn  btn-primary float-end" data-bs-toggle="modal" href="#add"><span class="btn-icon-start text-primary"><i class="fa fa-plus color-primary"></i>
+                                    </span>{{ tr('tambah matkul prodi') }}</a>
                                 <div class="modal fade" id="add">
                                     <div class="modal-dialog modal-lg" role="document">
                                         <div class="modal-content">
                                             <div class="modal-header">
-                                                <h5 class="modal-title">Tambah Matkul Prodi</h5>
+                                                <h5 class="modal-title">{{ tr('tambah matkul prodi') }}</h5>
                                                 <button type="button" class="btn-close" data-bs-dismiss="modal">
                                                 </button>
                                             </div>
@@ -49,19 +47,15 @@
                                                 <div class="modal-body">
                                                     <div class="row">
                                                         <div class="mb-3 col-md-12">
-                                                            <label class="form-label">Prodi</label>
+                                                            <label class="form-label">{{ tr('prodi') }}</label>
                                                             @if (can_prodi())
-                                                                <input type="hidden" name="prodi_id"
-                                                                    value="{{ can_prodi() }}">
+                                                                <input type="hidden" name="prodi_id" value="{{ can_prodi() }}">
                                                             @endif
-                                                            <select class="form-select form-select-lg" name="prodi_id"
-                                                                @if (can_prodi()) disabled @else required @endif>
-                                                                <option value="">-- Pilih prodi-- </option>
+                                                            <select class="form-select form-select-lg" name="prodi_id" @if (can_prodi()) disabled @else required @endif>
+                                                                <option value="">-- {{ tr('pilih prodi') }} --</option>
                                                                 @foreach ($prodi_data as $item)
-                                                                    <option value="{{ $item->id }}"
-                                                                        @if (can_prodi()) @if (can_prodi() == $item->id) 
-                                                                                selected @endif
-                                                                        @endif>
+                                                                    <option value="{{ $item->id }}" @if (can_prodi()) @if (can_prodi() == $item->id) 
+                                                                                selected @endif @endif>
                                                                         {{ $item->program->name }}
                                                                         {{ $item->study_program->name }} -
                                                                         {{ $item->category->name }}</option>
@@ -70,10 +64,9 @@
                                                         </div>
 
                                                         <div class="mb-3 col-md-12">
-                                                            <label class="form-label">Mata kuliah</label>
-                                                            <select class="form-select form-select-lg sel2"
-                                                                name="subject_id" required>
-                                                                <option value="">-- Pilih Mata kuliah -- </option>
+                                                            <label class="form-label">{{ tr('mata kuliah') }}</label>
+                                                            <select class="form-select form-select-lg sel2" name="subject_id" required>
+                                                                <option value="">-- {{ tr('pilih mata kuliah') }} --</option>
                                                                 @foreach ($subject_data as $item)
                                                                     <option value="{{ $item->id }}">
                                                                         {{ $item->name }}</option>
@@ -82,42 +75,39 @@
                                                         </div>
 
                                                         <div class="mb-3 col-md-6">
-                                                            <label class="form-label">Kode MK</label>
-                                                            <input type="text" name="code" class="form-control"
-                                                                required>
+                                                            <label class="form-label">{{ tr('kode mk') }}</label>
+                                                            <input type="text" name="code" class="form-control" required>
                                                         </div>
 
                                                         <div class="mb-3 col-md-6">
-                                                            <label class="form-label">Semester</label>
+                                                            <label class="form-label">{{ tr('semester') }}</label>
                                                             <select class="form-select form-select-lg" name="semester">
                                                                 @for ($i = 1; $i < 9; $i++)
                                                                     <option value="{{ $i }}">
-                                                                        Semester {{ $i }}
+                                                                        {{ tr('semester') }} {{ $i }}
                                                                     </option>
                                                                 @endfor
                                                             </select>
                                                         </div>
 
                                                         <div class="mb-3 col-md-6">
-                                                            <label class="form-label">Bobot SKS</label>
-                                                            <input type="number" name="value" class="form-control"
-                                                                required>
+                                                            <label class="form-label">{{ tr('bobot sks') }}</label>
+                                                            <input type="number" name="value" class="form-control" required>
                                                         </div>
 
                                                         <div class="mb-3 col-md-6">
-                                                            <label class="form-label">Status</label>
+                                                            <label class="form-label">{{ tr('status') }}</label>
                                                             <select class="form-select form-select-lg" name="status">
-                                                                <option value="1"> Aktif</option>
-                                                                <option value="0"> Tidak Aktif</option>
+                                                                <option value="1">{{ tr('aktif') }}</option>
+                                                                <option value="0">{{ tr('tidak aktif') }}</option>
                                                             </select>
                                                         </div>
 
                                                     </div>
                                                 </div>
                                                 <div class="modal-footer">
-                                                    <button type="button" class="btn btn-danger light"
-                                                        data-bs-dismiss="modal">Tutup</button>
-                                                    <button type="submit" class="btn btn-primary">Simpan</button>
+                                                    <button type="button" class="btn btn-danger light" data-bs-dismiss="modal">{{ tr('tutup') }}</button>
+                                                    <button type="submit" class="btn btn-primary">{{ tr('simpan') }}</button>
                                                 </div>
                                             </form>
                                         </div>
@@ -135,14 +125,14 @@
                             <thead class="">
                                 <tr>
                                     <th>#</th>
-                                    <th>Prodi</th>
-                                    <th>Kode</th>
-                                    <th>Matkul</th>
-                                    <th>Semester</th>
-                                    <th>Bobot SKS</th>
-                                    <th>Status</th>
+                                    <th>{{ tr('prodi') }}</th>
+                                    <th>{{ tr('kode') }}</th>
+                                    <th>{{ tr('matkul') }}</th>
+                                    <th>{{ tr('semester') }}</th>
+                                    <th>{{ tr('bobot sks') }}</th>
+                                    <th>{{ tr('status') }}</th>
                                     @if (can($key_, 'edit') || can($key_, 'delete'))
-                                        <th>Aksi</th>
+                                        <th>{{ tr('aksi') }}</th>
                                     @endif
                                 </tr>
                             </thead>
@@ -157,7 +147,7 @@
                         <div class="modal-dialog" role="document">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 class="modal-title">Edit Matkul Prodi</h5>
+                                    <h5 class="modal-title">{{ tr('edit matkul prodi') }}</h5>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal">
                                     </button>
                                 </div>
@@ -167,14 +157,12 @@
                                     <div class="modal-body">
                                         <div class="row">
                                             <div class="mb-3 col-md-12">
-                                                <label class="form-label">Prodi</label>
+                                                <label class="form-label">{{ tr('prodi') }}</label>
                                                 @if (can_prodi())
                                                     <input type="hidden" name="prodi_id" value="{{ can_prodi() }}">
                                                 @endif
-                                                <select class="form-select form-select-lg" name="prodi_id"
-                                                    id="prodi_id_edit"
-                                                    @if (can_prodi()) disabled @else required @endif>
-                                                    <option value="">-- Pilih prodi-- </option>
+                                                <select class="form-select form-select-lg" name="prodi_id" id="prodi_id_edit" @if (can_prodi()) disabled @else required @endif>
+                                                    <option value="">-- {{ tr('pilih prodi') }} --</option>
                                                     @foreach ($prodi_data as $item)
                                                         <option value="{{ $item->id }}">
                                                             {{ $item->program->name }}
@@ -185,10 +173,9 @@
                                             </div>
 
                                             <div class="mb-3 col-md-12">
-                                                <label class="form-label">Mata kuliah</label>
-                                                <select class="form-select form-select-lg sel2" name="subject_id"
-                                                    id="subject_id_edit" required>
-                                                    <option value="">-- Pilih Mata kuliah -- </option>
+                                                <label class="form-label">{{ tr('mata kuliah') }}</label>
+                                                <select class="form-select form-select-lg sel2" name="subject_id" id="subject_id_edit" required>
+                                                    <option value="">-- {{ tr('pilih mata kuliah') }} --</option>
                                                     @foreach ($subject_data as $item)
                                                         <option value="{{ $item->id }}">
                                                             {{ $item->name }}</option>
@@ -197,44 +184,39 @@
                                             </div>
 
                                             <div class="mb-3 col-md-6">
-                                                <label class="form-label">Kode MK</label>
-                                                <input type="text" name="code" id="code_edit" class="form-control"
-                                                    required>
+                                                <label class="form-label">{{ tr('kode mk') }}</label>
+                                                <input type="text" name="code" id="code_edit" class="form-control" required>
                                             </div>
 
                                             <div class="mb-3 col-md-6">
-                                                <label class="form-label">Semester</label>
-                                                <select class="form-select form-select-lg" name="semester"
-                                                    id="semester_edit">
+                                                <label class="form-label">{{ tr('semester') }}</label>
+                                                <select class="form-select form-select-lg" name="semester" id="semester_edit">
                                                     @for ($i = 1; $i < 9; $i++)
                                                         <option value="{{ $i }}">
-                                                            Semester {{ $i }}
+                                                            {{ tr('semester') }} {{ $i }}
                                                         </option>
                                                     @endfor
                                                 </select>
                                             </div>
 
                                             <div class="mb-3 col-md-6">
-                                                <label class="form-label">Bobot SKS</label>
-                                                <input type="number" name="value" class="form-control"
-                                                    id="value_edit" required>
+                                                <label class="form-label">{{ tr('bobot sks') }}</label>
+                                                <input type="number" name="value" class="form-control" id="value_edit" required>
                                             </div>
 
                                             <div class="mb-3 col-md-6">
-                                                <label class="form-label">Status</label>
-                                                <select class="form-select form-select-lg" name="status"
-                                                    id="status_edit">
-                                                    <option value="1"> Aktif</option>
-                                                    <option value="0"> Tidak Aktif</option>
+                                                <label class="form-label">{{ tr('status') }}</label>
+                                                <select class="form-select form-select-lg" name="status" id="status_edit">
+                                                    <option value="1">{{ tr('aktif') }}</option>
+                                                    <option value="0">{{ tr('tidak aktif') }}</option>
                                                 </select>
                                             </div>
 
                                         </div>
                                     </div>
                                     <div class="modal-footer">
-                                        <button type="button" class="btn btn-danger light"
-                                            data-bs-dismiss="modal">Tutup</button>
-                                        <button type="submit" class="btn btn-primary">Simpan</button>
+                                        <button type="button" class="btn btn-danger light" data-bs-dismiss="modal">{{ tr('tutup') }}</button>
+                                        <button type="submit" class="btn btn-primary">{{ tr('simpan') }}</button>
                                     </div>
                                 </form>
                             </div>
@@ -245,20 +227,17 @@
                         <div class="modal-dialog modal-dialog-centered" role="document">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 class="modal-title text-danger">Peringatan !!</h5>
+                                    <h5 class="modal-title text-danger">{{ tr('peringatan') }} !!</h5>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal">
                                     </button>
                                 </div>
 
                                 <div class="modal-body">
-                                    <p>Apakah anda ingin menghapus Matkul Prodi
-                                        <b id="name_delete"></b>
-                                    </p>
+                                    <p>{{ tr('apakah anda ingin menghapus matkul prodi') }} <b id="name_delete"></b></p>
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-danger light"
-                                        data-bs-dismiss="modal">Tutup</button>
-                                    <a id="button_delete" class="btn btn-primary">Hapus</a>
+                                    <button type="button" class="btn btn-danger light" data-bs-dismiss="modal">{{ tr('tutup') }}</button>
+                                    <a id="button_delete" class="btn btn-primary">{{ tr('hapus') }}</a>
                                 </div>
 
                             </div>
@@ -339,7 +318,7 @@
                         next: '<i class="fa fa-angle-double-right" aria-hidden="true"></i>',
                         previous: '<i class="fa fa-angle-double-left" aria-hidden="true"></i>'
                     },
-                    processing: '<div class="d-flex justify-content-center"><div class="spinner-border" role="status"><span class="visually-hidden">Loading...</span></div></div>',
+                    processing: '<div class="d-flex justify-content-center"><div class="spinner-border" role="status"><span class="visually-hidden">{{ tr('loading...') }}</span></div></div>',
                     info: "<br> &nbsp; &nbsp; <b>page _PAGE_ of _PAGES_</b>  | Records _START_ to _END_ of _MAX_ entries",
                 },
 

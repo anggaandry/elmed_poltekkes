@@ -77,13 +77,13 @@ class CollegerController extends Controller
                     switch ($row->status) {
 
                         case 1:
-                            $status = '<span class="badge bg-success">active</span>';
+                            $status = '<span class="badge bg-success">'.tr('active').'</span>';
                             break;
                         case 2:
-                            $status = '<span class="badge bg-info">graduated</span>';
+                            $status = '<span class="badge bg-info">'.tr('graduated').'</span>';
                             break;
                         case 3:
-                            $status = '<span class="badge bg-danger">D.O</span>';
+                            $status = '<span class="badge bg-danger">'.tr('d.o').'</span>';
                             break;
                     }
 
@@ -168,8 +168,16 @@ class CollegerController extends Controller
         $year = $request->input("year");
         $password = Hash::make($nim);
 
+
+        $lang="id";
+        $check_prodi=StudyProgramFull::where("id",$prodi_id)->first();
+        if($check_prodi){
+            $lang=$check_prodi->lang;
+        }
+
         $data = [
             "name" => $name,
+            "lang"=>$lang,
             "nim" => $nim,
             "birthdate" => $birthdate,
             "gender" => $gender,
@@ -197,12 +205,12 @@ class CollegerController extends Controller
 
             if ($status_data) {
                 addLog(0, $this->menu_id, 'Menambah mahasiswa ' . $name);
-                return redirect('4dm1n/mahasiswa/detail?id=' . $status_data->id)->with('success', 'berhasil menambah mahasiswa');
+                return redirect('4dm1n/mahasiswa/detail?id=' . $status_data->id)->with('success', tr('berhasil menambah').' '.tr('mahasiswa'));
             } else {
-                return redirect()->back()->with('failed', 'gagal menambah mahasiswa');
+                return redirect()->back()->with('failed', tr('gagal menambah').' '.tr('mahasiswa'));
             }
         } else {
-            return redirect()->back()->with('failed', 'nomor identitas sudah ada');
+            return redirect()->back()->with('failed', tr('nomor identitas sudah ada'));
         }
     }
 
@@ -227,7 +235,7 @@ class CollegerController extends Controller
         $check_nim = Colleger::where('nim', $nim)->first();
         if ($old_coll->nim != $nim) {
             if ($check_nim) {
-                return redirect()->back()->with('failed', 'NIM sudah ada');
+                return redirect()->back()->with('failed', tr('nim sudah ada'));
             }
         }
 
@@ -263,12 +271,12 @@ class CollegerController extends Controller
 
             addLog(0, $this->menu_id, 'Mengedit mahasiswa ' . $name);
             if ($route == 1) {
-                return redirect('4dm1n/mahasiswa/detail?id=' . $id)->with('success', 'sukses mengedit mahasiswa');
+                return redirect('4dm1n/mahasiswa/detail?id=' . $id)->with('success', tr('sukses mengedit').' '.tr('mahasiswa'));
             } else {
-                return redirect('4dm1n/mahasiswa')->with('success', 'sukses mengedit mahasiswa');
+                return redirect('4dm1n/mahasiswa')->with('success', tr('sukses mengedit').' '.tr('mahasiswa'));
             }
         } else {
-            return redirect()->back()->with('failed', 'gagal mengedit mahasiswa');
+            return redirect()->back()->with('failed', tr('gagal mengedit').' '.tr('mahasiswa'));
         }
     }
 
@@ -286,12 +294,12 @@ class CollegerController extends Controller
             }
             addLog(0, $this->menu_id, 'Menghapus mahasiswa ' . $old_data->name);
             if ($route == 1) {
-                return redirect('4dm1n/mahasiswa')->with('success', 'Mahasiswa berhasil di hapus');
+                return redirect('4dm1n/mahasiswa')->with('success', tr('mahasiswa').' '.tr('berhasil di hapus'));
             } else {
-                return redirect()->back()->with('success', 'Mahasiswa berhasil di hapus');
+                return redirect()->back()->with('success', tr('mahasiswa').' '.tr('berhasil di hapus'));
             }
         } else {
-            return redirect()->back()->with('failed', 'Mahasiswa gagal di hapus');
+            return redirect()->back()->with('failed', tr('mahasiswa').' '.tr('gagal di hapus'));
         }
     }
 
@@ -335,7 +343,7 @@ class CollegerController extends Controller
 
                     $txt .= '<li>
                         ' . $i . '. ' . title_lecturer($obj->lecturer) . '
-                        <span class="badge badge-xs bg-' . $obj->sls->bg . '" >' . $obj->sls->name . '</span> </li>';
+                        <span class="badge badge-xs bg-' . $obj->sls->bg . '" >' . $obj->sls->name . '</span></li>';
                 }
 
                 $txt .= "</ul>";
@@ -372,7 +380,7 @@ class CollegerController extends Controller
                         $i++;
                         $lectxt .= '<li>
                             <span class="mt-5">1. ' . title_lecturer($obj->lecturer) . '</span>
-                            <span class="badge badge-xs bg-' . $obj->sls->bg . '" >' . $obj->sls->name . '</span> </li>';
+                            <span class="badge badge-xs bg-' . $obj->sls->bg . '" >' . $obj->sls->name . '</span></li>';
                     }
                     $lectxt .= "</ul>";
 
@@ -389,13 +397,13 @@ class CollegerController extends Controller
                             if ($absence_check->status) {
                                 switch ($absence_check->status) {
                                     case 0:
-                                        $status = '<span class="badge bg-danger">Absen</span>';
+                                        $status = '<span class="badge bg-danger">'.tr('absen').'</span>';
                                         break;
                                     case 1:
-                                        $status = '<span class="badge bg-success">Hadir</span>';
+                                        $status = '<span class="badge bg-success">'.tr('hadir').'</span>';
                                         break;
                                     case 2:
-                                        $status = '<span class="badge bg-warning">Izin</span>';
+                                        $status = '<span class="badge bg-warning">'.tr('izin').'</span>';
                                         break;
                                     default:
                                         # code...
@@ -414,18 +422,18 @@ class CollegerController extends Controller
                         $absence_check = Absence::where(['schedule_id' => $item->id, 'colleger_id' => $colleger_id, 'start_id' => $absence_move->id])->first();
                         $session = "" . $absence_move->session;
                         $activity = $absence_move->activity;
-                        $item->time .= "<br><span class='badge badge-danger badge-xs mt-1'>Dipindahkan ke " . date_id($absence_move->date . " " . $absence_move->start, 2) . ' - ' . date('H:i', strtotime($absence_move->end)) . "</span>";
+                        $item->time .= "<br><span class='badge badge-danger badge-xs mt-1'>".tr('dipindahkan ke')." ".date_id($absence_move->date . " " . $absence_move->start, 2) . ' - ' . date('H:i', strtotime($absence_move->end)) . "</span>";
                         if ($absence_check) {
                             if ($absence_check->status) {
                                 switch ($absence_check->status) {
                                     case 0:
-                                        $status = '<span class="badge bg-danger">Absen</span>';
+                                        $status = '<span class="badge bg-danger">'.tr('absen').'</span>';
                                         break;
                                     case 1:
-                                        $status = '<span class="badge bg-success">Hadir</span>';
+                                        $status = '<span class="badge bg-success">'.tr('hadir').'</span>';
                                         break;
                                     case 2:
-                                        $status = '<span class="badge bg-warning">Izin</span>';
+                                        $status = '<span class="badge bg-warning">'.tr('izin').'</span>';
                                         break;
                                     default:
                                         # code...
@@ -443,12 +451,12 @@ class CollegerController extends Controller
 
                     $item->nosession = null;
                     if (!$absence_move && !$absence_start && strtotime($item->end) <= strtotime(date('Y-m-d H:i:s'))) {
-                        $item->nosession = '<i class="text-danger">Berakhir tanpa sesi kelas</i>';
+                        $item->nosession = '<i class="text-danger">'.tr('berakhir tanpa sesi kelas').'</i>';
                     }
 
                     if ($absence_move) {
                         if ($absence_move->active == 0 && strtotime($item->end) <= strtotime(date('Y-m-d H:i:s'))) {
-                            $item->nosession = '<i class="text-danger">Berakhir tanpa sesi kelas</i>';
+                            $item->nosession = '<i class="text-danger">'.tr('berakhir tanpa sesi kelas').'</i>';
                         }
                     }
 
@@ -470,9 +478,9 @@ class CollegerController extends Controller
                 $holiday = $event->name;
                 $data = [];
             } else {
-                $holiday = "Libur jadwal kosong";
+                $holiday = tr('libur jadwal kosong');
                 if (date('w', strtotime($date)) == 0) {
-                    $holiday = "Libur hari minggu";
+                    $holiday = tr('libur hari minggu');
                 }
             }
 
@@ -529,13 +537,13 @@ class CollegerController extends Controller
                     switch ($row->status) {
 
                         case 1:
-                            $status = '<span class="badge bg-success">active</span>';
+                            $status = '<span class="badge bg-success">'.tr('active').'</span>';
                             break;
                         case 2:
-                            $status = '<span class="badge bg-info">graduated</span>';
+                            $status = '<span class="badge bg-info">'.tr('graduated').'</span>';
                             break;
                         case 3:
-                            $status = '<span class="badge bg-danger">D.O</span>';
+                            $status = '<span class="badge bg-danger">'.tr('d.o').'</span>';
                             break;
                     }
 
@@ -554,9 +562,9 @@ class CollegerController extends Controller
                     return $ava;
                 })
                 ->addColumn('action', function ($row) {
-                    $action = '<button class="btn btn-outline-primary btn-rounded btn-xs" onclick="show_status(' . $row->id . ',' . $row->status . ',\'' . $row->name . '\')"><i class="fa fa-edit"></i></button>';
+                    $action = '<button class="btn btn-outline-primary btn-rounded btn-xs" onclick="show_status(' . $row->id . ',' . $row->status . ',\'' . $row->name . '\')"><i class="fa fa-edit"></i></button></br>';
 
-                    $action .= ' <button class="btn btn-outline-info btn-rounded btn-xs" onclick="show_respass(' . $row->id . ',\'' . $row->name . '\')"><i class="fa fa-lock"></i></button>';
+                    $action .= ' <button class="btn btn-outline-info btn-rounded btn-xs mt-1" onclick="show_respass(' . $row->id . ',\'' . $row->name . '\')"><i class="fa fa-lock"></i></button>';
 
 
                     return $action;
@@ -582,15 +590,15 @@ class CollegerController extends Controller
             if ($status_data) {
                 addLog(0, $this->menu_account_id, 'Mereset password akun mahasiswa ' . $account_data->name);
                 if ($route == 1) {
-                    return redirect()->back()->with('success', 'password akun mahasiswa berhasil di reset');
+                    return redirect()->back()->with('success', tr('password akun mahasiswa berhasil di reset'));
                 } else {
-                    return redirect('4dm1n/akun/mahasiswa?prodi_id=' . $prodi_id . '&status_id=' . $status_id)->with('success', 'password akun mahasiswa berhasil di reset');
+                    return redirect('4dm1n/akun/mahasiswa?prodi_id=' . $prodi_id . '&status_id=' . $status_id)->with('success', tr('password akun mahasiswa berhasil di reset'));
                 }
             } else {
-                return redirect('4dm1n/akun/mahasiswa?prodi_id=' . $prodi_id . '&status_id=' . $status_id)->with('failed', 'password akun mahasiswa gagal di reset');
+                return redirect('4dm1n/akun/mahasiswa?prodi_id=' . $prodi_id . '&status_id=' . $status_id)->with('failed', tr('password akun mahasiswa gagal di reset'));
             }
         } else {
-            return redirect('4dm1n/akun/mahasiswa?prodi_id=' . $prodi_id . '&status_id=' . $status_id)->with('failed', 'ID akun tidak ditemukan');
+            return redirect('4dm1n/akun/mahasiswa?prodi_id=' . $prodi_id . '&status_id=' . $status_id)->with('failed', tr('id akun tidak ditemukan'));
         }
     }
 
@@ -620,12 +628,12 @@ class CollegerController extends Controller
                 }
 
                 addLog(0, $this->menu_account_id, $status_name . $account_data->name);
-                return redirect('4dm1n/akun/mahasiswa?prodi_id=' . $prodi_id . '&status_id=' . $status_id)->with('success', 'Status mahasiswa berhasil diubah');
+                return redirect('4dm1n/akun/mahasiswa?prodi_id=' . $prodi_id . '&status_id=' . $status_id)->with('success', tr('status mahasiswa berhasil diubah'));
             } else {
-                return redirect('4dm1n/akun/mahasiswa?prodi_id=' . $prodi_id . '&status_id=' . $status_id)->with('failed', 'Status mahasiswa gagal diubah');
+                return redirect('4dm1n/akun/mahasiswa?prodi_id=' . $prodi_id . '&status_id=' . $status_id)->with('failed', tr('status mahasiswa gagal diubah'));
             }
         } else {
-            return redirect('4dm1n/akun/mahasiswa?prodi_id=' . $prodi_id . '&status_id=' . $status_id)->with('failed', 'ID akun tidak ditemukan');
+            return redirect('4dm1n/akun/mahasiswa?prodi_id=' . $prodi_id . '&status_id=' . $status_id)->with('failed', tr('id akun tidak ditemukan'));
         }
     }
 
@@ -636,7 +644,7 @@ class CollegerController extends Controller
                 new ImportColleger($request),
                 $request->file('file')->store('files')
             );
-            return redirect()->back()->with('success', 'Berhasil Import Mahasiswa');
+            return redirect()->back()->with('success', tr('berhasil import mahasiswa'));
         } catch (\Exception $e) {
             return redirect()->back()->with('failed', 'Gagal Import Mahasiswa - ' . $e->getMessage());
         }

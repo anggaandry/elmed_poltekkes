@@ -65,9 +65,9 @@ class ConfigController extends Controller
         
         if ($status_data) {
             addLog(0,$this->menu_id,'Mengupdate data konfigurasi kampus');
-            return redirect()->back()->with('success', 'sukses mengedit data kampus');
+            return redirect()->back()->with('success', tr('sukses mengedit').' '.tr('data kampus'));
         } else {
-            return redirect()->back()->with('failed', 'gagal mengedit data kampus');
+            return redirect()->back()->with('failed', tr('gagal mengedit').' '.tr('data kampus'));
         }
     }
 

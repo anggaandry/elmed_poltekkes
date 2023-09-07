@@ -41,9 +41,11 @@ class SPFController extends Controller
         $program_id = $request->input("program_id");
         $category_id = $request->input("category_id");
         $prodi_data=StudyProgram::where('id',$study_program_id)->first();
+         $lang = $request->input("lang");
         
        
         $status_data = StudyProgramFull::create([
+            "lang"=>$lang,
             "study_program_id"=>$study_program_id,
             "program_id"=>$program_id,
             "category_id"=>$category_id
@@ -51,9 +53,9 @@ class SPFController extends Controller
 
         if ($status_data) {
             addLog(0,$this->menu_id,'Menambah data '.$prodi_data->name);
-            return redirect()->back()->with('success', 'berhasil menambah prodi lengkap');
+            return redirect()->back()->with('success', tr('berhasil menambah').' '.tr('prodi lengkap'));
         } else {
-            return redirect()->back()->with('failed', 'gagal menambah prodi lengkap');
+            return redirect()->back()->with('failed', tr('gagal menambah').' '.tr('prodi lengkap'));
         }
     }
 
@@ -64,8 +66,10 @@ class SPFController extends Controller
         $program_id = $request->input("program_id");
         $category_id = $request->input("category_id");
         $prodi_data=StudyProgram::where('id',$study_program_id)->first();
+        $lang = $request->input("lang");
 
         $update=[
+            "lang"=>$lang,
             "study_program_id"=>$study_program_id,
             "program_id"=>$program_id,
             "category_id"=>$category_id
@@ -75,9 +79,9 @@ class SPFController extends Controller
 
         if ($status_data) {
             addLog(0,$this->menu_id,'Mengedit data '.$prodi_data->name);
-            return redirect()->back()->with('success', 'sukses mengedit prodi lengkap');
+            return redirect()->back()->with('success', tr('sukses mengedit').' '.tr('prodi lengkap'));
         } else {
-            return redirect()->back()->with('failed', 'gagal mengedit prodi lengkap');
+            return redirect()->back()->with('failed', tr('gagal mengedit').' '.tr('prodi lengkap'));
         }
     }
 
@@ -88,9 +92,9 @@ class SPFController extends Controller
 
         if ($status_data) {
             addLog(0,$this->menu_id,'Menghapus data '.$old_data->study_program->name);
-            return redirect()->back()->with('success', 'prodi lengkap berhasil di hapus');
+            return redirect()->back()->with('success', tr('prodi lengkap').' '.tr('berhasil di hapus'));
         } else {
-            return redirect()->back()->with('failed', 'prodi lengkap gagal di hapus');
+            return redirect()->back()->with('failed', tr('prodi lengkap').' '.tr('gagal di hapus'));
         }
     }
 

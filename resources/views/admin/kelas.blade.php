@@ -5,8 +5,8 @@
 @section('breadcrumb')
     <div class="row page-titles">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item active"><a href="javascript:void(0)">Akademik</a></li>
-            <li class="breadcrumb-item"><a href="javascript:void(0)">Kelas</a></li>
+            <li class="breadcrumb-item active"><a href="javascript:void(0)">{{ tr('akademik') }}</a></li>
+            <li class="breadcrumb-item"><a href="javascript:void(0)">{{ tr('kelas') }}</a></li>
         </ol>
     </div>
 @endsection
@@ -19,10 +19,9 @@
                 <div class="card-header">
                     <div class="row" style="width:110%;">
                         <div class="col-4">
-                            <label class="form-label text-left">Prodi</label>
-                            <select class="form-select form-select-lg" id="prodi_" onchange="load_table()"
-                                @if (can_prodi()) disabled @endif>
-                                <option value="">Semua prodi </option>
+                            <label class="form-label text-left">{{ tr('prodi') }}</label>
+                            <select class="form-select form-select-lg" id="prodi_" onchange="load_table()" @if (can_prodi()) disabled @endif>
+                                <option value="">{{ tr('semua prodi') }}</option>
                                 @foreach ($prodi_data as $item)
                                     <option value="{{ $item->id }}" @if ($prodi_id == $item->id) selected @endif>
                                         {{ $item->program->name }}
@@ -31,31 +30,29 @@
                             </select>
                         </div>
                         <div class="col-2">
-                            <label class="form-label text-left">Semester</label>
+                            <label class="form-label text-left">{{ tr('semester') }}</label>
                             <select class="form-select form-select-lg" id="odd_" onchange="load_table()">
-                                <option value="1" @if ($odd == 1) selected @endif>Ganjil </option>
-                                <option value="2" @if ($odd == 2) selected @endif>Genap</option>
+                                <option value="1" @if ($odd == 1) selected @endif>{{ tr('ganjil') }}</option>
+                                <option value="2" @if ($odd == 2) selected @endif>{{ tr('genap') }}</option>
                             </select>
                         </div>
                         <div class="col-3">
-                            <label class="form-label text-left">Tahun akademik</label>
+                            <label class="form-label text-left">{{ tr('tahun akademik') }}</label>
                             <div class="input-group">
-                                <input type="number" class="form-control" value="{{ $year }}" id="year_"
-                                    oninput="load_table()" required>
+                                <input type="number" class="form-control" value="{{ $year }}" id="year_" oninput="load_table()" required>
                                 <span class="input-group-text border-0" id="next_year">{{ $year + 1 }}</span>
                             </div>
                         </div>
 
                         <div class="col-3">
                             @if (can($key_, 'add'))
-                                <a class="btn  btn-primary float-end" data-bs-toggle="modal" href="#add"><span
-                                        class="btn-icon-start text-primary"><i class="fa fa-plus color-primary"></i>
-                                    </span>Tambah kelas</a>
+                                <a class="btn  btn-primary float-end" data-bs-toggle="modal" href="#add"><span class="btn-icon-start text-primary"><i class="fa fa-plus color-primary"></i>
+                                    </span>{{ tr('tambah kelas') }}</a>
                                 <div class="modal fade" id="add">
                                     <div class="modal-dialog modal-lg" role="document">
                                         <div class="modal-content">
                                             <div class="modal-header">
-                                                <h5 class="modal-title">Tambah kelas</h5>
+                                                <h5 class="modal-title">{{ tr('tambah kelas') }}</h5>
                                                 <button type="button" class="btn-close" data-bs-dismiss="modal">
                                                 </button>
                                             </div>
@@ -64,21 +61,15 @@
                                                 <div class="modal-body">
                                                     <div class="row">
                                                         <div class="mb-3 col-md-12">
-                                                            <label class="form-label">Prodi</label>
+                                                            <label class="form-label">{{ tr('prodi') }}</label>
                                                             @if (can_prodi())
-                                                                <input type="hidden" name="prodi_id"
-                                                                    value="{{ can_prodi() }}">
+                                                                <input type="hidden" name="prodi_id" value="{{ can_prodi() }}">
                                                             @endif
-                                                            <select class="form-select form-select-lg" name="prodi_id"
-                                                                @if (can_prodi()) disabled @else required @endif>
-                                                                <option value="">-- Pilih prodi-- </option>
+                                                            <select class="form-select form-select-lg" name="prodi_id" @if (can_prodi()) disabled @else required @endif>
+                                                                <option value="">-- {{ tr('pilih prodi') }} --</option>
                                                                 @foreach ($prodi_data as $item)
-                                                                    <option value="{{ $item->id }}"
-                                                                        @if (can_prodi()) @if (can_prodi() == $item->id) 
-                                                                                selected @endif
-                                                                    @else
-                                                                        @if ($prodi_id == $item->id) selected @endif
-                                                                        @endif>
+                                                                <option value="{{ $item->id }}" @if (can_prodi()) @if (can_prodi() == $item->id) 
+                                                                                selected @endif @else @if ($prodi_id == $item->id) selected @endif @endif>
                                                                         {{ $item->program->name }}
                                                                         {{ $item->study_program->name }} -
                                                                         {{ $item->category->name }}</option>
@@ -87,49 +78,38 @@
                                                         </div>
 
                                                         <div class="mb-3 col-md-12">
-                                                            <label class="form-label">Nama kelas</label>
-                                                            <input type="text" name="name" class="form-control"
-                                                                required>
+                                                            <label class="form-label">{{ tr('nama kelas') }}</label>
+                                                            <input type="text" name="name" class="form-control" required>
                                                         </div>
 
 
                                                         <div class="mb-3 col-md-4">
-                                                            <label class="form-label">Tahun Akademik</label>
+                                                            <label class="form-label">{{ tr('tahun akademik') }}</label>
                                                             <div class="input-group">
-                                                                <input type="number" class="form-control" name="year"
-                                                                    value="{{ $year }}"
-                                                                    oninput="next_add(this.value)" required>
-                                                                <span class="input-group-text border-0"
-                                                                    id="next_year_add">{{ $year + 1 }}</span>
+                                                                <input type="number" class="form-control" name="year" value="{{ $year }}" oninput="next_add(this.value)" required>
+                                                                <span class="input-group-text border-0" id="next_year_add">{{ $year + 1 }}</span>
                                                             </div>
                                                         </div>
 
                                                         <div class="mb-3 col-md-4">
-                                                            <label class="form-label">Ganjil/Genap</label>
+                                                            <label class="form-label">{{ tr('ganjil') }}/{{ tr('genap') }}</label>
                                                             <select class="form-select form-select-lg" name="odd">
-                                                                <option value="1"
-                                                                    @if ($odd == 1) selected @endif>
-                                                                    Ganjil
-                                                                </option>
-                                                                <option value="2"
-                                                                    @if ($odd == 2) selected @endif>Genap
-                                                                </option>
+                                                                <option value="1" @if ($odd == 1) selected @endif>{{ tr('ganjil') }}</option>
+                                                                <option value="2" @if ($odd == 2) selected @endif>{{ tr('genap') }}</option>
                                                             </select>
                                                         </div>
 
                                                         <div class="mb-3 col-md-4">
-                                                            <label class="form-label">Semester</label>
-                                                            <input type="number" name="semester" class="form-control"
-                                                                required>
+                                                            <label class="form-label">{{ tr('semester') }}</label>
+                                                            <input type="number" name="semester" class="form-control" required>
                                                         </div>
 
 
                                                     </div>
                                                 </div>
                                                 <div class="modal-footer">
-                                                    <button type="button" class="btn btn-danger light"
-                                                        data-bs-dismiss="modal">Tutup</button>
-                                                    <button type="submit" class="btn btn-primary">Simpan</button>
+                                                    <button type="button" class="btn btn-danger light" data-bs-dismiss="modal">{{ tr('tutup') }}</button>
+                                                    <button type="submit" class="btn btn-primary">{{ tr('simpan') }}</button>
                                                 </div>
                                             </form>
                                         </div>
@@ -147,13 +127,13 @@
                             <thead class="">
                                 <tr>
                                     <th>#</th>
-                                    <th>Nama kelas</th>
-                                    <th>Prodi</th>
-                                    <th>Semester</th>
-                                    <th>Jumlah<br>mahasiswa</th>
-                                    <th>TA</th>
+                                    <th>{{ tr('nama kelas') }}</th>
+                                    <th>{{ tr('prodi') }}</th>
+                                    <th>{{ tr('semester') }}</th>
+                                    <th>{{ tr('jumlah') }}<br>{{ tr('mahasiswa') }}</th>
+                                    <th>{{ tr('ta') }}</th>
 
-                                    <th>Aksi</th>
+                                    <th>{{ tr('aksi') }}</th>
 
                                 </tr>
                             </thead>
@@ -168,7 +148,7 @@
                         <div class="modal-dialog" role="document">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 class="modal-title">Edit Kelas</h5>
+                                    <h5 class="modal-title">{{ tr('edit kelas') }}</h5>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal">
                                     </button>
                                 </div>
@@ -178,14 +158,12 @@
                                     <div class="modal-body">
                                         <div class="row">
                                             <div class="mb-3 col-md-12">
-                                                <label class="form-label">Prodi</label>
+                                                <label class="form-label">{{ tr('prodi') }}</label>
                                                 @if (can_prodi())
                                                     <input type="hidden" name="prodi_id" value="{{ can_prodi() }}">
                                                 @endif
-                                                <select class="form-select form-select-lg" name="prodi_id"
-                                                    id="prodi_id_edit"
-                                                    @if (can_prodi()) disabled @else required @endif>
-                                                    <option value="">-- Pilih prodi-- </option>
+                                                <select class="form-select form-select-lg" name="prodi_id" id="prodi_id_edit" @if (can_prodi()) disabled @else required @endif>
+                                                    <option value="">-- {{ tr('pilih prodi') }} --</option>
                                                     @foreach ($prodi_data as $item)
                                                         <option value="{{ $item->id }}">
                                                             {{ $item->program->name }}
@@ -196,41 +174,37 @@
                                             </div>
 
                                             <div class="mb-3 col-md-12">
-                                                <label class="form-label">Nama kelas</label>
-                                                <input type="text" name="name" id="name_edit" class="form-control"
-                                                    required>
+                                                <label class="form-label">{{ tr('nama kelas') }}</label>
+                                                <input type="text" name="name" id="name_edit" class="form-control" required>
                                             </div>
 
 
                                             <div class="mb-3 col-md-4">
-                                                <label class="form-label">Tahun Akademik</label>
+                                                <label class="form-label">{{ tr('tahun akademik') }}</label>
                                                 <div class="input-group">
-                                                    <input type="number" class="form-control" name="year"
-                                                        id="year_edit" oninput="next_edit(this.value)" required>
+                                                    <input type="number" class="form-control" name="year" id="year_edit" oninput="next_edit(this.value)" required>
                                                     <span class="input-group-text border-0" id="next_year_edit"></span>
                                                 </div>
                                             </div>
 
                                             <div class="mb-3 col-md-4">
-                                                <label class="form-label">Ganjil/Genap</label>
+                                                <label class="form-label">{{ tr('ganjil') }}/{{ tr('genap') }}</label>
                                                 <select class="form-select form-select-lg" name="odd" id="odd_edit">
-                                                    <option value="1">Ganjil </option>
-                                                    <option value="2">Genap</option>
+                                                    <option value="1">{{ tr('ganjil') }}</option>
+                                                    <option value="2">{{ tr('genap') }}</option>
                                                 </select>
                                             </div>
 
                                             <div class="mb-3 col-md-4">
-                                                <label class="form-label">Semester</label>
-                                                <input type="number" name="semester" id="semester_edit"
-                                                    class="form-control" required>
+                                                <label class="form-label">{{ tr('semester') }}</label>
+                                                <input type="number" name="semester" id="semester_edit" class="form-control" required>
                                             </div>
 
                                         </div>
                                     </div>
                                     <div class="modal-footer">
-                                        <button type="button" class="btn btn-danger light"
-                                            data-bs-dismiss="modal">Tutup</button>
-                                        <button type="submit" class="btn btn-primary">Simpan</button>
+                                        <button type="button" class="btn btn-danger light" data-bs-dismiss="modal">{{ tr('tutup') }}</button>
+                                        <button type="submit" class="btn btn-primary">{{ tr('simpan') }}</button>
                                     </div>
                                 </form>
                             </div>
@@ -241,20 +215,18 @@
                         <div class="modal-dialog modal-dialog-centered" role="document">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 class="modal-title text-danger">Peringatan !!</h5>
+                                    <h5 class="modal-title text-danger">{{ tr('peringatan') }} !!</h5>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal">
                                     </button>
                                 </div>
 
                                 <div class="modal-body">
-                                    <p>Apakah anda ingin menghapus kelas
-                                        <b id="name_delete"></b>
+                                    <p>{{ tr('apakah anda ingin menghapus kelas') }} <b id="name_delete"></b>
                                     </p>
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-danger light"
-                                        data-bs-dismiss="modal">Tutup</button>
-                                    <a id="button_delete" class="btn btn-primary">Hapus</a>
+                                    <button type="button" class="btn btn-danger light" data-bs-dismiss="modal">{{ tr('tutup') }}</button>
+                                    <a id="button_delete" class="btn btn-primary">{{ tr('hapus') }}</a>
                                 </div>
 
                             </div>
@@ -339,7 +311,7 @@
                         next: '<i class="fa fa-angle-double-right" aria-hidden="true"></i>',
                         previous: '<i class="fa fa-angle-double-left" aria-hidden="true"></i>'
                     },
-                    processing: '<div class="d-flex justify-content-center"><div class="spinner-border" role="status"><span class="visually-hidden">Loading...</span></div></div>',
+                    processing: '<div class="d-flex justify-content-center"><div class="spinner-border" role="status"><span class="visually-hidden">{{ tr('loading...') }}</span></div></div>',
                     info: "<br> &nbsp; &nbsp; <b>page _PAGE_ of _PAGES_</b>  | Records _START_ to _END_ of _MAX_ entries",
                 },
 

@@ -5,8 +5,8 @@
 @section('breadcrumb')
     <div class="row page-titles">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item active"><a href="javascript:void(0)">LMS</a></li>
-            <li class="breadcrumb-item"><a href="javascript:void(0)">Jadwal kuliah</a></li>
+            <li class="breadcrumb-item active"><a href="javascript:void(0)">{{ tr('lms') }}</a></li>
+            <li class="breadcrumb-item"><a href="javascript:void(0)">{{ tr('jadwal kuliah') }}</a></li>
         </ol>
     </div>
 @endsection
@@ -18,7 +18,7 @@
                 <div class="card-header">
                     <div class="row w-100">
                         <div class="mb-3 col-md-8">
-                            <label class="form-label">Pilih kelas</label>
+                            <label class="form-label">{{ tr('pilih kelas') }}</label>
                             <select class="form-select form-select-lg" id="class_" onchange="load_table()">
                                 @foreach ($colleger_data->colleger_class as $item)
                                     <option value="{{ $item->class_id }}" @if ($item->class_id == active_class()->id) selected @endif>
@@ -36,12 +36,12 @@
                         <table id="data-table-1" class="display text-center table-striped">
                             <thead class=" bg-primary-light">
                                 <tr>
-                                    <th class="text-white">Hari</th>
-                                    <th class="text-white">Waktu</th>
-                                    <th class="text-white">SKS</th>
-                                    <th class="text-white">Mata kuliah</th>
-                                    <th class="text-white">Ruangan</th>
-                                    <th class="text-white">Dosen</th>
+                                    <th class="text-white">{{ tr('hari') }}</th>
+                                    <th class="text-white">{{ tr('waktu') }}</th>
+                                    <th class="text-white">{{ tr('sks') }}</th>
+                                    <th class="text-white">{{ tr('mata kuliah') }}</th>
+                                    <th class="text-white">{{ tr('ruangan') }}</th>
+                                    <th class="text-white">{{ tr('dosen') }}</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -114,7 +114,7 @@
                         next: '<i class="fa fa-angle-double-right" aria-hidden="true"></i>',
                         previous: '<i class="fa fa-angle-double-left" aria-hidden="true"></i>'
                     },
-                    processing: '<div class="d-flex justify-content-center"><div class="spinner-border" role="status"><span class="visually-hidden">Loading...</span></div></div>',
+                    processing: '<div class="d-flex justify-content-center"><div class="spinner-border" role="status"><span class="visually-hidden">{{ tr('loading...') }}</span></div></div>',
                     info: "<br> Records _START_ to _END_ of _MAX_ entries",
                 },
 

@@ -165,9 +165,9 @@ class ElearningController extends Controller
 
         if ($status_data) {
             addLog(1,$this->menu_id,'Menambah E-learning '.$name);
-            return redirect('dosen/elearning/detail?id='.$status_data->id)->with('success', 'berhasil menambah elearning');
+            return redirect('dosen/elearning/detail?id='.$status_data->id)->with('success', tr('berhasil menambah').' '.tr('elearning'));
         } else {
-            return redirect()->back()->with('failed', 'gagal menambah elearning');
+            return redirect()->back()->with('failed', tr('gagal menambah').' '.tr('elearning'));
         }
     }
 
@@ -254,9 +254,9 @@ class ElearningController extends Controller
         if ($status_data) {
             addLog(1,$this->menu_id,'Mengedit E-learning '.$name);
     
-            return redirect('dosen/elearning/detail?id='.$id.'&kelas='.$kelas)->with('success', 'berhasil mengedit elearning');
+            return redirect('dosen/elearning/detail?id='.$id.'&kelas='.$kelas)->with('success', tr('berhasil mengedit').' '.tr('elearning'));
         } else {
-            return redirect()->back()->with('failed', 'gagal mengedit elearning');
+            return redirect()->back()->with('failed', tr('gagal mengedit').' '.tr('elearning'));
         }
     }
 
@@ -267,9 +267,9 @@ class ElearningController extends Controller
 
         if ($status_data) {
             addLog(1,$this->menu_id,'Menghapus elearning '.$old_data->name);
-            return redirect('dosen/elearning')->with('success', 'Elearning berhasil di hapus');
+            return redirect('dosen/elearning')->with('success', tr('elearning').' '.tr('berhasil di hapus'));
         } else {
-            return redirect()->back()->with('failed', 'Elearning gagal di hapus');
+            return redirect()->back()->with('failed', tr('elearning').' '.tr('gagal di hapus'));
         }
     }
 
@@ -391,9 +391,9 @@ class ElearningController extends Controller
             $elearning=Elearning::where("id",$elearning_id)->first();
             $class=Classes::where("id",$class_id)->first();
             addLog(1,$this->menu_id,'Menambah kelas '.$class->name.' ke E-learning '.$elearning->name);
-            return redirect()->back()->with('success', 'berhasil menambah kelas elearning');
+            return redirect()->back()->with('success', tr('berhasil menambah').' '.tr('kelas elearning'));
         } else {
-            return redirect()->back()->with('failed', 'gagal menambah kelas elearning');
+            return redirect()->back()->with('failed', tr('gagal menambah').' '.tr('kelas elearning'));
         }
     }
 
@@ -414,9 +414,9 @@ class ElearningController extends Controller
         
         if ($status_data) {
             addLog(1,$this->menu_id,'Mengedit kelas '.$old_data->class->name.' ke E-learning '.$old_data->elearning->name);
-            return redirect()->back()->with('success', 'berhasil mengedit kelas elearning');
+            return redirect()->back()->with('success', tr('berhasil mengedit').' '.tr('kelas elearning'));
         } else {
-            return redirect()->back()->with('failed', 'gagal mengedit kelas elearning');
+            return redirect()->back()->with('failed', tr('gagal mengedit').' '.tr('kelas elearning'));
         }
     }
 
@@ -427,9 +427,9 @@ class ElearningController extends Controller
 
         if ($status_data) {
             addLog(1,$this->menu_id,'Menghapus kelas '.$old_data->class->name.' elearning '.$old_data->elearning->name);
-            return redirect()->back()->with('success', 'Kelas elearning berhasil di hapus');
+            return redirect()->back()->with('success', tr('kelas elearning').' '.tr('berhasil di hapus'));
         } else {
-            return redirect()->back()->with('failed', 'Kelas elearning gagal di hapus');
+            return redirect()->back()->with('failed', tr('kelas elearning').' '.tr('gagal di hapus'));
         }
     }
 
@@ -448,9 +448,9 @@ class ElearningController extends Controller
             $elearning=Elearning::where("id",$elearning_id)->first();
             $quiz=Quiz::where("id",$quiz_id)->first();
             addLog(1,$this->menu_id,'Menambah kuis '.$quiz->name.' ke E-learning '.$elearning->name);
-            return redirect('dosen/elearning/detail?tab=4&id='.$elearning_id.'&kelas='.$kelas)->with('success', 'berhasil menambah kuis elearning');
+            return redirect('dosen/elearning/detail?tab=4&id='.$elearning_id.'&kelas='.$kelas)->with('success', tr('berhasil menambah').' '.tr('kuis elearning'));
         } else {
-            return redirect('dosen/elearning/detail?tab=4&id='.$elearning_id.'&kelas='.$kelas)->with('failed', 'gagal menambah kuis elearning');
+            return redirect('dosen/elearning/detail?tab=4&id='.$elearning_id.'&kelas='.$kelas)->with('failed', tr('gagal menambah').' '.tr('kuis elearning'));
         }
     }
 
@@ -463,9 +463,9 @@ class ElearningController extends Controller
 
         if ($status_data) {
             addLog(1,$this->menu_id,'Menghapus kuis '.$old_data->quiz->name.' elearning '.$old_data->quiz->name);
-            return redirect('dosen/elearning/detail?tab=4&id='.$old_data->elearning_id.'&kelas='.$kelas)->with('success', 'Kuis elearning berhasil di hapus');
+            return redirect('dosen/elearning/detail?tab=4&id='.$old_data->elearning_id.'&kelas='.$kelas)->with('success', tr('kuis elearning').' '.tr('berhasil di hapus'));
         } else {
-            return redirect('dosen/elearning/detail?tab=4&id='.$old_data->elearning_id.'&kelas='.$kelas)->with('failed', 'Kuis elearning gagal di hapus');
+            return redirect('dosen/elearning/detail?tab=4&id='.$old_data->elearning_id.'&kelas='.$kelas)->with('failed', tr('kuis elearning').' '.tr('gagal di hapus'));
         }
     }
 

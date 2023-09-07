@@ -8,6 +8,7 @@ use App\Models\Colleger;
 use App\Models\Lecturer;
 use App\Models\University;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
@@ -43,12 +44,16 @@ class AuthController extends Controller
             'university_id'=>UNIVERSITY_ID,
             'status' => 1
         ])) {
+            $dt=Colleger::where(['nim'=>$nim,'university_id'=>UNIVERSITY_ID])->first();
+            App::setLocale($dt->lang);
+            session()->put('locale',$dt->lang);
+
             addLog(2,$this->menu_id,'Login');
             Colleger::where(['nim'=>$nim,'university_id'=>UNIVERSITY_ID])->update(['online'=>date('Y-m-d H:i:s')]);
             return redirect()->intended('/mahasiswa/dashboard');
             
         } else {
-            return redirect()->back()->with('error_login', 'Username atau password salah')->withInput($request->except('password'));
+            return redirect()->back()->with('error_login', tr('username atau password salah'))->withInput($request->except('password'));
         }
        
     }
@@ -89,12 +94,27 @@ class AuthController extends Controller
             $password=Hash::make($new_pass);
             $status_data =Colleger::where(['id'=>$id])->update(['password'=>$password]);
             if ($status_data) {
-                return redirect()->back()->with('success', 'password berhasil di ganti');
+                return redirect()->back()->with('success', tr('password berhasil di ganti'));
             } else {
-                return redirect()->back()->with('failed', 'password gagal di ganti');
+                return redirect()->back()->with('failed', tr('password gagal di ganti'));
             }
         }else{
-            return redirect()->back()->with('failed', 'password gagal di ganti, password lama salah');
+            return redirect()->back()->with('failed', tr('password gagal di ganti, password lama salah'));
+        }
+    }
+
+    public function lang_change(Request $request)
+    {
+        $id = $request->input("id");
+        $lang=$request->input("lang");
+         
+        $status_data =Colleger::where(['id'=>$id])->update(['lang'=>$lang]);
+        if ($status_data) {
+            App::setLocale($lang);
+            session()->put('locale',$lang);
+            return redirect()->back()->with('success', tr('bahasa berhasil di ganti'));
+        } else {
+            return redirect()->back()->with('failed', tr('bahasa gagal di ganti'));
         }
     }
 

@@ -42,13 +42,13 @@ class QuestionController extends Controller
                     $type_name="";
                     switch ($row->type) {
                         case 0:
-                            $type_name="<spam class='text-info'>Essay</span>";
+                            $type_name="<spam class='text-info'>".tr('essay')."</span>";
                             break;
                         case 1:
-                            $type_name="<spam class='text-success'>Pilihan berganda</span>";
+                            $type_name="<spam class='text-success'>".tr('pilihan berganda')."</span>";
                             break;
                         case 2:
-                            $type_name="<spam class='text-danger'>Upload file</span>";
+                            $type_name="<spam class='text-danger'>".tr('upload file')."</span>";
                             break;
                     }
                     return $type_name;
@@ -74,8 +74,8 @@ class QuestionController extends Controller
                 })
                 ->addColumn('action', function($row){
                     $action='<button class="btn btn-outline-primary btn-rounded btn-xs" onclick="show_detail('.$row->id.')"><i class="fa fa-eye"></i></button>';
-                    $action.='<br> <a class="btn btn-outline-info mt-1 btn-rounded btn-xs" href="'.url('dosen/soal/form/edit?id='.$row->id).'"><i class="fa fa-edit"></i></a>';
-                    $action.='<br> <button class="btn btn-outline-danger mt-1 btn-rounded btn-xs" onclick="show_delete('.$row->id.')"><i class="fa fa-trash"></i></button>';
+                    $action.='<br><a class="btn btn-outline-info mt-1 btn-rounded btn-xs" href="'.url('dosen/soal/form/edit?id='.$row->id).'"><i class="fa fa-edit"></i></a>';
+                    $action.='<br><button class="btn btn-outline-danger mt-1 btn-rounded btn-xs" onclick="show_delete('.$row->id.')"><i class="fa fa-trash"></i></button>';
                     
                     
                     return $action;
@@ -116,13 +116,13 @@ class QuestionController extends Controller
 
             switch ($data->type) {
                 case 0:
-                    $data->type_name="ESSAY";
+                    $data->type_name=tr("essay");
                     break;
                 case 1:
-                    $data->type_name="PILIHAN BERGANDA";
+                    $data->type_name=tr("pilihan berganda");
                     break;
                 case 2:
-                    $data->type_name="UPLOAD FILE";
+                    $data->type_name=tr("upload file");
                     break;
                 
                 default:
@@ -258,9 +258,9 @@ class QuestionController extends Controller
         if ($status_data) {
             $sks=SKS::where('id',$sks_id)->first();
             addLog(1,$this->menu_id,'Menambah soal matkul '.$sks->subject->name);
-            return redirect('dosen/soal')->with('success', 'berhasil menambah soal');
+            return redirect('dosen/soal')->with('success', tr('berhasil menambah').' '.tr('soal'));
         } else {
-            return redirect()->back()->with('failed', 'gagal menambah soal');
+            return redirect()->back()->with('failed', tr('gagal menambah').' '.tr('soal'));
         }
 
     }
@@ -324,9 +324,9 @@ class QuestionController extends Controller
         if ($status_data) {
             $sks=SKS::where('id',$sks_id)->first();
             addLog(1,$this->menu_id,'Mengedit soal matkul '.$sks->subject->name);
-            return redirect('dosen/soal')->with('success', 'berhasil mengedit soal');
+            return redirect('dosen/soal')->with('success', tr('berhasil mengedit').' '.tr('soal'));
         } else {
-            return redirect()->back()->with('failed', 'gagal mengedit soal');
+            return redirect()->back()->with('failed', tr('gagal mengedit').' '.tr('soal'));
         }
 
     }
@@ -339,9 +339,9 @@ class QuestionController extends Controller
 
         if ($status_data) {
             addLog(1,$this->menu_id,'Menghapus doal matkul '.$old_data->sks->subject->name);
-            return redirect()->back()->with('success', 'Soal berhasil di hapus');
+            return redirect()->back()->with('success', tr('soal').' '.tr('berhasil di hapus'));
         } else {
-            return redirect()->back()->with('failed', 'Soal gagal di hapus');
+            return redirect()->back()->with('failed', tr('soal').' '.tr('gagal di hapus'));
         }
     }
 

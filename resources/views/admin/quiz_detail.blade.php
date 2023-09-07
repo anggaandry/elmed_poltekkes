@@ -5,9 +5,9 @@
 @section('breadcrumb')
     <div class="row page-titles">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item active"><a href="javascript:void(0)">LMS</a></li>
-            <li class="breadcrumb-item"><a href="{{ url('4dm1n/kuis') }}">Kuis</a></li>
-            <li class="breadcrumb-item"><a href="javascript:void(0)">Detail Kuis</a></li>
+            <li class="breadcrumb-item active"><a href="javascript:void(0)">{{ tr('lms') }}</a></li>
+            <li class="breadcrumb-item"><a href="{{ url('4dm1n/kuis') }}">{{ tr('kuis') }}</a></li>
+            <li class="breadcrumb-item"><a href="javascript:void(0)">{{ tr('detail kuis') }}</a></li>
         </ol>
     </div>
 @endsection
@@ -23,15 +23,14 @@
                     <div class="description">
                         <p>{{ $data->description }}</p>
                         <ul class="d-flex align-items-center raiting flex-wrap">
-                            <li>{{ count($data->quiz_question) }} soal</li>
-                            <li>{{ count($data->quiz_class) }} kelas</li>
+                            <li>{{ count($data->quiz_question) }} {{ tr('soal') }}</li>
+                            <li>{{ count($data->quiz_class) }} {{ tr('kelas') }}</li>
                         </ul>
                         <div class="mb-3">
                             <table>
                                 <tr>
                                     <td>
-                                        <div class="cropcircle"
-                                            style="background-image: url({{ $data->lecturer->avatar ? asset(AVATAR_PATH . $data->lecturer->avatar) : 'https://ui-avatars.com/api/?background=89CFF0&&name=' . str_replace(' ', '+', $data->lecturer->name) }});">
+                                        <div class="cropcircle" style="background-image: url({{ $data->lecturer->avatar ? asset(AVATAR_PATH . $data->lecturer->avatar) : 'https://ui-avatars.com/api/?background=89CFF0&&name=' . str_replace(' ', '+', $data->lecturer->name) }});">
                                         </div>
                                     </td>
                                     <td>
@@ -44,17 +43,12 @@
                     <div class="course-details-tab style-2">
                         <nav>
                             <div class="nav nav-tabs justify-content-start tab-auto" id="nav-tab" role="tablist">
-                                <button class="nav-link active" id="nav-question-tab" data-bs-toggle="tab"
-                                    data-bs-target="#nav-question" type="button" role="tab"
-                                    aria-controls="nav-question" aria-selected="true">Soal</button>
-                                <button class="nav-link " id="nav-participant-tab" data-bs-toggle="tab"
-                                    data-bs-target="#nav-participant" type="button" role="tab"
-                                    aria-controls="nav-participant" aria-selected="false">Peserta</button>
+                                <button class="nav-link active" id="nav-question-tab" data-bs-toggle="tab" data-bs-target="#nav-question" type="button" role="tab" aria-controls="nav-question" aria-selected="true">{{ tr('soal') }}</button>
+                                <button class="nav-link " id="nav-participant-tab" data-bs-toggle="tab" data-bs-target="#nav-participant" type="button" role="tab" aria-controls="nav-participant" aria-selected="false">{{ tr('peserta') }}</button>
                             </div>
                         </nav>
                         <div class="tab-content" id="nav-tabContent">
-                            <div class="tab-pane fade show active" id="nav-question" role="tabpanel"
-                                aria-labelledby="nav-question-tab">
+                            <div class="tab-pane fade show active" id="nav-question" role="tabpanel" aria-labelledby="nav-question-tab">
                                 <div class="about-content">
 
                                     <div class="row" style="width:100%">
@@ -88,24 +82,22 @@
 
 
                                                                         @if ($item->question->file)
-                                                                            <b>File :</b> <a class="text-info"
-                                                                                href="{{ asset(DOC_PATH . $item->question->file) }}"
-                                                                                download>
+                                                                            <b>{{ tr('file') }} :</b><a class="text-info" href="{{ asset(DOC_PATH . $item->question->file) }}" download>
                                                                                 {{ $item->question->file }} </a><br>
                                                                         @endif
 
                                                                         @switch($item->question->type)
                                                                             @case(0)
-                                                                                <br> <span class="badge badge-info">Essay</span>
+                                                                                <br><span class="badge badge-info">{{ tr('essay') }}</span>
                                                                             @break
 
                                                                             @case(1)
-                                                                                <br> <span class="badge badge-success">Pilihan
+                                                                                <br><span class="badge badge-success">Pilihan
                                                                                     berganda</span>
                                                                             @break
 
                                                                             @case(2)
-                                                                                <br> <span class="badge badge-danger">Upload
+                                                                                <br><span class="badge badge-danger">Upload
                                                                                     file</span>
                                                                             @break
 
@@ -114,23 +106,14 @@
 
                                                                     </td>
                                                                     <td width="10%" class="align-top">
-                                                                        <button class="btn btn-warning btn-xs"
-                                                                            data-bs-toggle="modal"
-                                                                            data-bs-target="#detail-question-{{ $item->id }}"><i
-                                                                                class="fa fa-eye"></i></button>
+                                                                        <button class="btn btn-warning btn-xs" data-bs-toggle="modal" data-bs-target="#detail-question-{{ $item->id }}"><i class="fa fa-eye"></i></button>
 
-                                                                        <div class="modal fade"
-                                                                            id="detail-question-{{ $item->id }}">
-                                                                            <div class="modal-dialog modal-dialog-centered"
-                                                                                role="document">
+                                                                        <div class="modal fade" id="detail-question-{{ $item->id }}">
+                                                                            <div class="modal-dialog modal-dialog-centered" role="document">
                                                                                 <div class="modal-content">
                                                                                     <div class="modal-header">
-                                                                                        <h5 class="modal-title">Detail
-                                                                                            soal
-                                                                                        </h5>
-                                                                                        <button type="button"
-                                                                                            class="btn-close"
-                                                                                            data-bs-dismiss="modal">
+                                                                                        <h5 class="modal-title">{{ tr('detail soal') }}</h5>
+                                                                                        <button type="button" class="btn-close" data-bs-dismiss="modal">
                                                                                         </button>
                                                                                     </div>
 
@@ -139,22 +122,22 @@
                                                                                             <table class="table">
                                                                                                 <tbody>
                                                                                                     <tr>
-                                                                                                        <th>JENIS SOAL
-                                                                                                        </th>
+                                                                                                        <th>{{ tr('jenis soal') }}</th>
+
                                                                                                     </tr>
                                                                                                     <tr>
                                                                                                         <td>
                                                                                                             @switch($item->question->type)
                                                                                                                 @case(0)
-                                                                                                                    ESSAY
+                                                                                                                    {{ tr('essay') }}
                                                                                                                 @break
 
                                                                                                                 @case(1)
-                                                                                                                    PILIHAN BERGANDA
+                                                                                                                    {{ tr('pilihan berganda') }}
                                                                                                                 @break
 
                                                                                                                 @case(1)
-                                                                                                                    UPLOAD FILE
+                                                                                                                    {{ tr('upload file') }}
                                                                                                                 @break
 
                                                                                                                 @default
@@ -162,25 +145,21 @@
                                                                                                         </td>
                                                                                                     </tr>
                                                                                                     <tr>
-                                                                                                        <th>SOAL
-                                                                                                        </th>
+                                                                                                        <th>{{ tr('soal') }}</th>
                                                                                                     </tr>
                                                                                                     <tr>
                                                                                                         <td>
                                                                                                             @php echo $item->question->question @endphp
                                                                                                             @if ($item->question->choice)
                                                                                                                 @php $options=json_decode($item->question->choice,false); @endphp
-                                                                                                                <table
-                                                                                                                    class="table table-borderless">
+                                                                                                                <table class="table table-borderless">
                                                                                                                     @foreach ($options as $sub)
                                                                                                                         <tr>
-                                                                                                                            <th width="5%"
-                                                                                                                                class="p-0 m-0">
+                                                                                                                            <th width="5%" class="p-0 m-0">
                                                                                                                                 <p>{{ $sub->choice }}
                                                                                                                                 </p>
                                                                                                                             </th>
-                                                                                                                            <td
-                                                                                                                                class="p-0 m-0">
+                                                                                                                            <td class="p-0 m-0">
                                                                                                                                 @php echo $sub->desc @endphp
                                                                                                                             </td>
                                                                                                                         </tr>
@@ -190,11 +169,9 @@
 
 
                                                                                                             @if ($item->question->file)
-                                                                                                                <b>File
-                                                                                                                    :</b>
-                                                                                                                <a class="text-info"
-                                                                                                                    href="{{ asset(DOC_PATH . $item->question->file) }}"
-                                                                                                                    download>
+                                                                                                                <b>{{ tr('file') }} :</b>
+
+                                                                                                                <a class="text-info" href="{{ asset(DOC_PATH . $item->question->file) }}" download>
                                                                                                                     {{ $item->question->file }}
                                                                                                                 </a><br>
                                                                                                             @endif
@@ -203,9 +180,7 @@
                                                                                                         </td>
                                                                                                     </tr>
                                                                                                     <tr>
-                                                                                                        <th>REFERENSI
-                                                                                                            JAWABAN
-                                                                                                        </th>
+                                                                                                        <th>{{ tr('referensi jawaban') }}</th>
                                                                                                     </tr>
                                                                                                     <tr>
                                                                                                         <td>
@@ -219,9 +194,7 @@
 
                                                                                     </div>
                                                                                     <div class="modal-footer">
-                                                                                        <button type="button"
-                                                                                            class="btn btn-danger light"
-                                                                                            data-bs-dismiss="modal">Tutup</button>
+                                                                                        <button type="button" class="btn btn-danger light" data-bs-dismiss="modal">{{ tr('tutup') }}</button>
 
                                                                                     </div>
 
@@ -242,11 +215,10 @@
                                                     <br>
                                                     <br>
                                                     <br>
-                                                    <img src="{{ asset('images/art/empty3.png') }}" height="50"
-                                                        class="mt-5" alt="">
+                                                    <img src="{{ asset('images/art/empty3.png') }}" height="50" class="mt-5" alt="">
                                                     <br>
                                                     <br>
-                                                    <i class="mt-3">Soal untuk kuis ini belum ada</i>
+                                                    <i class="mt-3">{{ tr('soal untuk kuis ini belum ada') }}</i>
 
                                                     <br>
                                                     <br>
@@ -259,14 +231,12 @@
 
                                 </div>
                             </div>
-                            <div class="tab-pane fade " id="nav-participant" role="tabpanel"
-                                aria-labelledby="nav-participant-tab">
+                            <div class="tab-pane fade " id="nav-participant" role="tabpanel" aria-labelledby="nav-participant-tab">
                                 <div class="about-content">
                                     <div class="row">
                                         <div class="mb-3 col-md-6">
-                                            <select class="form-select form-select-lg" id="class_"
-                                                onchange="change_class()">
-                                                <option value="">-- pilih kelas --</option>
+                                            <select class="form-select form-select-lg" id="class_" onchange="change_class()">
+                                                <option value="">-- {{ tr('pilih kelas') }} --</option>
                                                 @foreach ($data->quiz_class as $item)
                                                     <option value="{{ $item->id }}">
                                                         {{ $item->class->name }}
@@ -287,10 +257,10 @@
 
                                         <div class="mt-5">
                                             <div class="spinner-border" role="status">
-                                                <span class="visually-hidden">Loading...</span>
+                                                <span class="visually-hidden">{{ tr('loading...') }}</span>
                                             </div>
                                             <br>
-                                            <small>Loading peserta..</small>
+                                            <small>{{ tr('loading peserta..') }}</small>
                                         </div>
                                     </div>
 
@@ -298,7 +268,7 @@
                                         <br>
                                         <img src="{{ asset('images/art/empty1.png') }}" height="100" alt="">
                                         <br>
-                                        <i class="text-center">tidak ada siswa di kelas ini</i>
+                                        <i class="text-center">{{ tr('tidak ada siswa di kelas ini') }}</i>
                                         <br>
 
                                     </div>
@@ -307,14 +277,14 @@
                                         <br>
                                         <img src="{{ asset('images/art/empty3.png') }}" height="100" alt="">
                                         <br>
-                                        <i class="text-center">tidak ada kelas yang dipilih</i>
+                                        <i class="text-center">{{ tr('tidak ada kelas yang dipilih') }}</i>
                                     </div>
 
                                     <div class="modal fade" id="correction_modal">
                                         <div class="modal-dialog modal-fullscreen" role="document">
                                             <div class="modal-content">
                                                 <div class="modal-header">
-                                                    <h5 class="modal-title">koreksi jawaban Siswa</h5>
+                                                    <h5 class="modal-title">{{ tr('koreksi jawaban siswa') }}</h5>
                                                     <button type="button" class="btn-close" data-bs-dismiss="modal">
                                                     </button>
                                                 </div>
@@ -323,13 +293,13 @@
                                                         <table class="table table-bordered">
                                                             <tbody>
                                                                 <tr>
-                                                                    <th>nama mahasiswa</th>
+                                                                    <th>{{ tr('nama mahasiswa') }}</th>
                                                                     <td id="name_c"></td>
-                                                                    <th>NIM mahasiswa</th>
+                                                                    <th>{{ tr('nim mahasiswa') }}</th>
                                                                     <td id="nim_c"></td>
                                                                 </tr>
                                                                 <tr>
-                                                                    <th>mulai mengerjakan</th>
+                                                                    <th>{{ tr('mulai mengerjakan') }}</th>
                                                                     <td id="start_c" colspan="3"></td>
                                                                 </tr>
                                                             </tbody>
@@ -340,16 +310,11 @@
                                                             <thead class=" bg-info-light">
                                                                 <tr>
                                                                     <th width="5%">#</th>
-                                                                    <th class="text-start">Soal</th>
-                                                                    <th class="text-center" width="5%">Bobot</th>
-                                                                    <th class="text-center" width="25%">
-                                                                        Referensi Jawaban
-                                                                    </th>
-                                                                    <th class="text-center" width="25%">Jawaban
-                                                                        mahasiswa
-                                                                    </th>
-                                                                    <th width="10%" class="text-center">% Skor
-                                                                    </th>
+                                                                    <th class="text-start">{{ tr('soal') }}</th>
+                                                                    <th class="text-center" width="5%">{{ tr('bobot') }}</th>
+                                                                    <th class="text-center" width="25%">{{ tr('referensi jawaban') }}</th>
+                                                                    <th class="text-center" width="25%">{{ tr('jawaban mahasiswa') }}</th>
+                                                                    <th width="10%" class="text-center">% {{ tr('skor') }}</th>
                                                                 </tr>
                                                             </thead>
                                                             <tbody>
@@ -365,8 +330,7 @@
                                                                                 <table class="table table-borderless">
                                                                                     @foreach ($options as $sub)
                                                                                         <tr>
-                                                                                            <th width="5%"
-                                                                                                class="p-0 m-0">
+                                                                                            <th width="5%" class="p-0 m-0">
                                                                                                 <p>{{ $sub->choice }}
                                                                                                 </p>
                                                                                             </th>
@@ -380,27 +344,22 @@
 
 
                                                                             @if ($item->question->file)
-                                                                                <b>File :</b> <a class="text-info"
-                                                                                    href="{{ asset(DOC_PATH . $item->question->file) }}"
-                                                                                    download>
+                                                                                <b>{{ tr('file') }} :</b><a class="text-info" href="{{ asset(DOC_PATH . $item->question->file) }}" download>
                                                                                     {{ $item->question->file }}
                                                                                 </a><br>
                                                                             @endif
 
                                                                             @switch($item->question->type)
                                                                                 @case(0)
-                                                                                    <br> <span
-                                                                                        class="badge badge-info">Essay</span>
+                                                                                    <br><span class="badge badge-info">{{ tr('essay') }}</span>
                                                                                 @break
 
                                                                                 @case(1)
-                                                                                    <br> <span class="badge badge-success">Pilihan
-                                                                                        berganda</span>
+                                                                                    <br><span class="badge badge-success">{{ tr('pilihan berganda') }}</span>
                                                                                 @break
 
                                                                                 @case(2)
-                                                                                    <br> <span class="badge badge-danger">Upload
-                                                                                        file</span>
+                                                                                    <br><span class="badge badge-danger">{{ tr('upload file') }}</span>
                                                                                 @break
 
                                                                                 @default
@@ -413,11 +372,9 @@
                                                                         <td class="text-center align-top" width="25%">
                                                                             @php echo $item->question->answer @endphp
                                                                         </td>
-                                                                        <td class="text-center  align-top" width="25%"
-                                                                            id="answer_{{ $item->id }}">
+                                                                        <td class="text-center  align-top" width="25%" id="answer_{{ $item->id }}">
                                                                         </td>
-                                                                        <td width="10%" class="align-top text-center"
-                                                                            id="score_{{ $item->id }}">
+                                                                        <td width="10%" class="align-top text-center" id="score_{{ $item->id }}">
 
                                                                         </td>
                                                                     </tr>
@@ -426,8 +383,7 @@
                                                         </table>
                                                     </div>
                                                     <div class="modal-footer">
-                                                        <button type="button" class="btn btn-danger light"
-                                                            data-bs-dismiss="modal">Tutup</button>
+                                                        <button type="button" class="btn btn-danger light" data-bs-dismiss="modal">{{ tr('tutup') }}</button>
 
                                                     </div>
 
@@ -460,36 +416,35 @@
                         <div class="mt-3">
                             <table class="table">
                                 <tr>
-                                    <th>Mata kuliah</th>
+                                    <th>{{ tr('mata kuliah') }}</th>
                                     <td>{{ $data->sks->subject->name }}</td>
                                 </tr>
                             </table>
 
                             <table class="table table-bordered">
                                 <tr>
-                                    <th colspan="2">Kelas peserta</th>
+                                    <th colspan="2">{{ tr('kelas peserta') }}</th>
                                 </tr>
                                 @php $i=1;@endphp
                                 @foreach ($data->quiz_class as $item)
                                     <tr>
                                         <th rowspan="2">{{ $i++ }}</th>
-                                        <td>{{ $item->class->name }} - {{ $item->class->class_colleger }} peserta<br>
+                                        <td>{{ $item->class->name }} - {{ $item->class->class_colleger }} {{ tr('peserta') }}<br>
                                             <small>{{ date_id($item->start, 5) }} -
                                                 {{ date_id($item->end, 5) }}</small>
                                         </td>
                                     </tr>
                                     <tr>
                                         <td>
-                                            @if (strtotime($item->start) <= strtotime(date('Y-m-d h:i')) &&
-                                                strtotime($item->end) >= strtotime(date('Y-m-d h:i')))
-                                                <span class="badge badge-success"> sedang aktif</span>
+                                            @if (strtotime($item->start) <= strtotime(date('Y-m-d h:i')) && strtotime($item->end) >= strtotime(date('Y-m-d h:i')))
+                                                <span class="badge badge-success">{{ tr('sedang aktif') }}</span>
                                             @elseif(strtotime($item->start) >= strtotime(date('Y-m-d h:i')))
-                                                <span class="badge badge-default">belum mulai</span>
+                                                <span class="badge badge-default">{{ tr('belum mulai') }}</span>
                                             @elseif(strtotime($item->end) <= strtotime(date('Y-m-d h:i')))
                                                 @if ($item->publish == 1)
-                                                    <span class="badge badge-info">nilai publish</span>
+                                                    <span class="badge badge-info">{{ tr('nilai publish') }}</span>
                                                 @else
-                                                    <span class="badge badge-danger">sedang dikoreksi</span>
+                                                    <span class="badge badge-danger">{{ tr('sedang dikoreksi') }}</span>
                                                 @endif
                                             @endif
                                         </td>
@@ -575,9 +530,9 @@
 
                         var abs = ``;
                         if (item.passed) {
-                            var an = `<small><i class="text-danger">tidak hadir </i></small>`;
+                            var an = `<small><i class="text-danger">{{ tr('tidak hadir') }}</i></small>`;
                             if (item.absence) {
-                                an = ` <small><i class="fa fa-clock"></i> Hadir ${item.absence.time}</small>`;
+                                an = ` <small><i class="fa fa-clock"></i> {{ tr('hadir') }} ${item.absence.time}</small>`;
                             }
 
                             var btn = `<a href="javascript:void(0)"
@@ -686,7 +641,7 @@
                             const el = data.result.answer[i];
                             if (el.id == "") {
                                 $('#answer_' + el.question_id).html("");
-                                $('#score_' + el.question_id).html("<span class='badge badge-danger'>0</span>");
+                                $('#score_' + el.question_id).html("<span class='badge badge-danger'>0') }}</span>");
 
                             } else {
 

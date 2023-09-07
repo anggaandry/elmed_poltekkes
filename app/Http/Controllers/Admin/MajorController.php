@@ -38,9 +38,9 @@ class MajorController extends Controller
 
         if ($status_data) {
             addLog(0,$this->menu_id,'Menambah data '.$name);
-            return redirect()->back()->with('success', 'berhasil menambah jurusan');
+            return redirect()->back()->with('success', tr('berhasil menambah').' '.tr('jurusan'));
         } else {
-            return redirect()->back()->with('failed', 'gagal menambah jurusan');
+            return redirect()->back()->with('failed', tr('gagal menambah').' '.tr('jurusan'));
         }
     }
 
@@ -59,9 +59,9 @@ class MajorController extends Controller
 
         if ($status_data) {
             addLog(0,$this->menu_id,'Mengedit data '.$name);
-            return redirect()->back()->with('success', 'sukses mengedit jurusan');
+            return redirect()->back()->with('success', tr('sukses mengedit').' '.tr('jurusan'));
         } else {
-            return redirect()->back()->with('failed', 'gagal mengedit jurusan');
+            return redirect()->back()->with('failed', tr('gagal mengedit').' '.tr('jurusan'));
         }
     }
 
@@ -72,9 +72,9 @@ class MajorController extends Controller
 
         if ($status_data) {
             addLog(0,$this->menu_id,'Menghapus data '.$old_data->name);
-            return redirect()->back()->with('success', 'Jurusan berhasil di hapus');
+            return redirect()->back()->with('success', tr('jurusan').' '.tr('berhasil di hapus'));
         } else {
-            return redirect()->back()->with('failed', 'Jurusan gagal di hapus');
+            return redirect()->back()->with('failed', tr('jurusan').' '.tr('gagal di hapus'));
         }
     }
 

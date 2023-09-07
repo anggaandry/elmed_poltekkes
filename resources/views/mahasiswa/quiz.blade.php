@@ -5,8 +5,8 @@
 @section('breadcrumb')
     <div class="row page-titles">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item active"><a href="javascript:void(0)">LMS</a></li>
-            <li class="breadcrumb-item"><a href="javascript:void(0)">Kuis</a></li>
+            <li class="breadcrumb-item active"><a href="javascript:void(0)">{{ tr('lms') }}</a></li>
+            <li class="breadcrumb-item"><a href="javascript:void(0)">{{ tr('kuis') }}</a></li>
         </ol>
     </div>
 @endsection
@@ -20,11 +20,10 @@
                     <div class="row">
                         <div class="col-xxl-4 col-xl-6">
                             <div class="input-group mb-1 input-primary">
-                                <input type="text" class="form-control" id="search_" placeholder="Cari disini.."
-                                    oninput="search_data()">
+                                <input type="text" class="form-control" id="search_" placeholder="Cari disini.." oninput="search_data()">
                                 <span class="input-group-text border-0"><i class="fa fa-search"></i></span>
                             </div>
-                            <small id="info_finding_">Ditemukan 0 Kuis</small>
+                            <small id="info_finding_">{{ tr('ditemukan 0 kuis') }}</small>
 
                         </div>
                         <div class="col-4">
@@ -33,35 +32,33 @@
 
                     </div>
 
-                    <div class="p-5 justify-content-center align-items-center text-center w-100 align-middle d-none"
-                        id="loading_" style="height: 550px;">
+                    <div class="p-5 justify-content-center align-items-center text-center w-100 align-middle d-none" id="loading_" style="height: 550px;">
                         <br>
                         <br>
                         <br>
                         <br>
                         <div class="mt-5">
                             <div class="spinner-grow spinner-grow-sm text-primary" role="status">
-                                <span class="visually-hidden">Loading...</span>
+                                <span class="visually-hidden">{{ tr('loading...') }}</span>
                             </div>
                             <div class="spinner-grow spinner-grow-sm text-primary" role="status">
-                                <span class="visually-hidden">Loading...</span>
+                                <span class="visually-hidden">{{ tr('loading...') }}</span>
                             </div>
                             <div class="spinner-grow spinner-grow-sm text-primary" role="status">
-                                <span class="visually-hidden">Loading...</span>
+                                <span class="visually-hidden">{{ tr('loading...') }}</span>
                             </div>
                         </div>
 
                     </div>
 
-                    <div class="p-5 justify-content-center align-items-center text-center w-100 align-middle d-none"
-                        id="nodata_" style="height: 500px;">
+                    <div class="p-5 justify-content-center align-items-center text-center w-100 align-middle d-none" id="nodata_" style="height: 500px;">
                         <br>
                         <br>
                         <br>
                         <br>
                         <div class="mt-5">
                             <img src="{{ asset('images/art/empty1.png') }}" height="100" alt="">
-                            <h6 class="mt-3">Kuis tidak ditemukan</h6>
+                            <h6 class="mt-3">{{ tr('kuis tidak ditemukan') }}</h6>
 
                             <br>
                             <br>
@@ -86,7 +83,7 @@
                         <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 class="modal-title">Detail kuis</h5>
+                                    <h5 class="modal-title">{{ tr('detail kuis') }}</h5>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal">
                                     </button>
                                 </div>
@@ -98,28 +95,28 @@
                                                     <td colspan="4" id="image_quiz" class="text-center"></td>
                                                 </tr>
                                                 <tr>
-                                                    <th>Judul kuis</th>
+                                                    <th>{{ tr('judul kuis') }}</th>
                                                     <td id="name_quiz"></td>
-                                                    <th>Dosen pengampu</th>
+                                                    <th>{{ tr('dosen pengampu') }}</th>
                                                     <td id="lecturer_quiz"></td>
                                                 </tr>
 
                                                 <tr>
-                                                    <th>Mata kuliah</th>
-                                                    <td id="subject_quiz"> </td>
-                                                    <th>Skor</th>
+                                                    <th>{{ tr('mata kuliah') }}</th>
+                                                    <td id="subject_quiz"></td>
+                                                    <th>{{ tr('skor') }}</th>
                                                     <td id="score_quiz"></td>
                                                 </tr>
 
                                                 <tr>
-                                                    <th>Mulai</th>
+                                                    <th>{{ tr('mulai') }}</th>
                                                     <td id="start_quiz"></td>
-                                                    <th>Berakhir</th>
+                                                    <th>{{ tr('berakhir') }}</th>
                                                     <td id="end_quiz"></td>
                                                 </tr>
 
                                                 <tr>
-                                                    <th>Deskripsi</th>
+                                                    <th>{{ tr('deskripsi') }}</th>
                                                     <td id="description_quiz" colspan="3"></td>
                                                 </tr>
                                             </tbody>
@@ -127,8 +124,7 @@
                                     </div>
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-danger light"
-                                        data-bs-dismiss="modal">Tutup</button>
+                                    <button type="button" class="btn btn-danger light" data-bs-dismiss="modal">{{ tr('tutup') }}</button>
                                     <a href="" class="btn btn-primary" id="btn_quiz">
 
                                     </a>
@@ -218,7 +214,7 @@
                                                     </div>
                                                     <div class="px-3 py-2">
                                                         <h4 class="limit-text" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Kuis :${item.name}">
-                                                            ${item.name} <br> <small>${item.class}</small></h4>
+                                                            ${item.name} <br><small>${item.class}</small></h4>
                                                         <p>
                                                             <small><i class="fa fa-book"></i> ${item.subject}</small><br>
                                                             <small><i class="fa fa-stopwatch"></i> ${item.start}</small><br>

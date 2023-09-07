@@ -5,8 +5,8 @@
 @section('breadcrumb')
     <div class="row page-titles">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item active"><a href="javascript:void(0)">Akun</a></li>
-            <li class="breadcrumb-item"><a href="javascript:void(0)">Mahasiswa</a></li>
+            <li class="breadcrumb-item active"><a href="javascript:void(0)">{{ tr('akun') }}</a></li>
+            <li class="breadcrumb-item"><a href="javascript:void(0)">{{ tr('mahasiswa') }}</a></li>
         </ol>
     </div>
 @endsection
@@ -19,18 +19,17 @@
                 <div class="card-header">
                     <div class="row w-100">
                         <div class="col-3">
-                            <label class="form-label text-left">Status</label>
+                            <label class="form-label text-left">{{ tr('status') }}</label>
                             <select class="form-select form-select-lg" id="status_" onchange="load_table()">
-                                <option value="1" @if ($status_id == 1) selected @endif>Aktif </option>
-                                <option value="2" @if ($status_id == 2) selected @endif>Lulus </option>
-                                <option value="3" @if ($status_id == 3) selected @endif>D.O </option>
+                                <option value="1" @if ($status_id == 1) selected @endif>{{ tr('aktif') }}</option>
+                                <option value="2" @if ($status_id == 2) selected @endif>{{ tr('lulus') }}</option>
+                                <option value="3" @if ($status_id == 3) selected @endif>{{ tr('d.o') }}</option>
                             </select>
                         </div>
                         <div class="col-5">
-                            <label class="form-label text-left">Prodi</label>
-                            <select class="form-select form-select-lg" id="prodi_" onchange="load_table()"
-                                @if (can_prodi()) disabled @endif>
-                                <option value="">Semua prodi </option>
+                            <label class="form-label text-left">{{ tr('prodi') }}</label>
+                            <select class="form-select form-select-lg" id="prodi_" onchange="load_table()" @if (can_prodi()) disabled @endif>
+                                <option value="">{{ tr('semua prodi') }}</option>
                                 @foreach ($prodi_data as $item)
                                     <option value="{{ $item->id }}" @if ($prodi_id == $item->id) selected @endif>
                                         {{ $item->program->name }}
@@ -47,14 +46,14 @@
                             <thead class="">
                                 <tr>
                                     <th>#</th>
-                                    <th>Avatar</th>
-                                    <th>Nama</th>
-                                    <th>NIM</th>
-                                    <th>Prodi</th>
-                                    <th>Online terakhir</th>
-                                    <th>Status</th>
+                                    <th>{{ tr('avatar') }}</th>
+                                    <th>{{ tr('nama') }}</th>
+                                    <th>{{ tr('nim') }}</th>
+                                    <th>{{ tr('prodi') }}</th>
+                                    <th>{{ tr('online terakhir') }}</th>
+                                    <th>{{ tr('status') }}</th>
                                     @if (can($key_, 'edit'))
-                                        <th>Aksi</th>
+                                        <th>{{ tr('aksi') }}</th>
                                     @endif
                                 </tr>
                             </thead>
@@ -69,7 +68,7 @@
                         <div class="modal-dialog modal-dialog-centered" role="document">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 class="modal-title">Ganti status <b id="name_status"></b></h5>
+                                    <h5 class="modal-title">{{ tr('ganti status') }} <b id="name_status"></b></h5>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal">
                                     </button>
                                 </div>
@@ -81,20 +80,18 @@
                                     <div class="modal-body">
                                         <div class="row">
                                             <div class="col-12">
-                                                <label class="form-label text-left">Status</label>
-                                                <select class="form-select form-select-lg" name="status"
-                                                    id="status_status">
-                                                    <option value="1">Aktif </option>
-                                                    <option value="2">Lulus </option>
-                                                    <option value="3">D.O </option>
+                                                <label class="form-label text-left">{{ tr('status') }}</label>
+                                                <select class="form-select form-select-lg" name="status" id="status_status">
+                                                    <option value="1">{{ tr('aktif') }}</option>
+                                                    <option value="2">{{ tr('lulus') }}</option>
+                                                    <option value="3">{{ tr('d.o') }}</option>
                                                 </select>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="modal-footer">
-                                        <button type="button" class="btn btn-danger light"
-                                            data-bs-dismiss="modal">Tutup</button>
-                                        <button type="submit" class="btn btn-primary">Update</button>
+                                        <button type="button" class="btn btn-danger light" data-bs-dismiss="modal">{{ tr('tutup') }}</button>
+                                        <button type="submit" class="btn btn-primary">{{ tr('update') }}</button>
                                     </div>
                                 </form>
 
@@ -106,20 +103,19 @@
                         <div class="modal-dialog modal-dialog-centered" role="document">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 class="modal-title text-danger">Peringatan !!</h5>
+                                    <h5 class="modal-title text-danger">{{ tr('peringatan') }} !!</h5>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal">
                                     </button>
                                 </div>
 
                                 <div class="modal-body">
-                                    <p>Apakah anda ingin mereset password akun
-                                        <b id="name_respass"></b>
+                                    <p>{{ tr('apakah anda ingin mereset password akun') }} <b id="name_respass"></b>
+
                                     </p>
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-danger light"
-                                        data-bs-dismiss="modal">Tutup</button>
-                                    <a id="button_respass" class="btn btn-primary">Reset password</a>
+                                    <button type="button" class="btn btn-danger light" data-bs-dismiss="modal">{{ tr('tutup') }}</button>
+                                    <a id="button_respass" class="btn btn-primary">{{ tr('reset password') }}</a>
                                 </div>
 
                             </div>
@@ -208,7 +204,7 @@
                         next: '<i class="fa fa-angle-double-right" aria-hidden="true"></i>',
                         previous: '<i class="fa fa-angle-double-left" aria-hidden="true"></i>'
                     },
-                    processing: '<div class="d-flex justify-content-center"><div class="spinner-border" role="status"><span class="visually-hidden">Loading...</span></div></div>',
+                    processing: '<div class="d-flex justify-content-center"><div class="spinner-border" role="status"><span class="visually-hidden">{{ tr('loading...') }}</span></div></div>',
                     info: "<br> &nbsp; &nbsp; <b>page _PAGE_ of _PAGES_</b>  | Records _START_ to _END_ of _MAX_ entries",
                 },
 
@@ -235,7 +231,8 @@
 
 
             $('#name_respass').html(name);
-            $("#button_respass").attr("href", "{{ url('4dm1n/akun/mahasiswa/password/reset?id=') }}" + id + "&prodi_id=" +
+            $("#button_respass").attr("href", "{{ url('4dm1n/akun/mahasiswa/password/reset?id=') }}" +
+                id + "&prodi_id=" +
                 prodi_id + "&status_id=" + status_id)
             $('#respass').modal('show');
         }

@@ -53,7 +53,7 @@ class ScheduleController extends Controller
                     
                     $txt.='<li>
                         <span class="mt-5"> '.title_lecturer($obj->lecturer).'</span>
-                        <span class="badge badge-xs bg-'.$obj->sls->bg.'" >'.$obj->sls->name.'</span> </li>';
+                        <span class="badge badge-xs bg-'.$obj->sls->bg.'" >'.$obj->sls->name.'</span></li>';
 
                 }
 

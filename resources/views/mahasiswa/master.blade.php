@@ -17,25 +17,22 @@
     <meta name="description" content="Aplikasi LMS UNIVERSITAS {{ $auth->university->name }}" />
     <meta property="og:title" content="Poltekkes" />
     <meta property="og:description" content="Poltekkes medan" />
-    <meta property="og:image"
-        content="{{ asset(LOGO_PATH . ($auth->university->logo ? $auth->university->logo : 'default.png')) }}" />
+    <meta property="og:image" content="{{ asset(LOGO_PATH . ($auth->university->logo ? $auth->university->logo : 'default.png')) }}" />
     <meta name="format-detection" content="telephone=no">
 
     <!-- PAGE TITLE HERE -->
     <title>ELMED {{ $auth->university->name }} </title>
 
     <!-- FAVICONS ICON -->
-    <link rel="shortcut icon" type="image/png"
-        href="{{ asset(LOGO_PATH . ($auth->university->logo ? $auth->university->logo : 'default.png')) }}" />
+    <link rel="shortcut icon" type="image/png" href="{{ asset(LOGO_PATH . ($auth->university->logo ? $auth->university->logo : 'default.png')) }}" />
     <!-- Datatable -->
     <link href="{{ asset('template/vendor/datatables/css/jquery.dataTables.min.css') }}" rel="stylesheet">
     <link href="{{ asset('template/vendor/jquery-nice-select/css/nice-select.css') }}" rel="stylesheet">
-    <link href="{{ asset('template/vendor/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css ') }}"
-        rel="stylesheet">
+    <link href="{{ asset('template/vendor/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css') }}" rel="stylesheet">
     <!-- Toastr -->
     <link rel="stylesheet" href="{{ asset('template/vendor/toastr/css/toastr.min.css') }}">
     <!-- Style css -->
-    <link href="{{ asset('template/css/style.css ') }}" rel="stylesheet">
+    <link href="{{ asset('template/css/style.css') }}" rel="stylesheet">
     <link href="{{ asset('template/vendor/select2/css/select2.min.css') }}" rel="stylesheet">
     <link href="{{ asset('template/vendor/dropify-master/dist/css/dropify.min.css') }}" rel="stylesheet">
     <link href="{{ asset('template/vendor/swiper/css/swiper-bundle.min.css') }}" rel="stylesheet">
@@ -214,8 +211,7 @@
     ***********************************-->
     <div id="main-wrapper">
         <div class="ellipse">
-            <svg class="green-line" width="669" height="487" viewBox="0 0 669 487" fill="none"
-                xmlns="http://www.w3.org/2000/svg">
+            <svg class="green-line" width="669" height="487" viewBox="0 0 669 487" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path
                     d="M237.231 -68.6319V-68.6021L237.233 -68.5724C240.62 -11.7125 250.024 41.8582 269.813 81.245C289.627 120.683 319.922 146 365 146C385.587 146 411.761 133.509 439.623 113.32C467.532 93.0977 497.301 65.0267 525.114 33.5967C552.929 2.16452 578.809 -32.6519 598.929 -66.3803C619.03 -100.077 633.422 -132.754 638.209 -159.92C641.588 -173.074 642.414 -182.818 640.908 -189.917C639.382 -197.111 635.464 -201.562 629.562 -204.027C623.75 -206.455 616.074 -206.932 607.015 -206.43C598.241 -205.944 588.029 -204.527 576.749 -202.962L575.574 -202.799C528.514 -196.273 462.757 -187.599 400.301 -230.953C363.87 -256.242 335.385 -267.371 313.122 -267.543C290.75 -267.716 274.81 -256.826 263.567 -238.544C252.361 -220.322 245.792 -194.726 242.013 -165.305C238.231 -135.864 237.231 -102.487 237.231 -68.6319Z"
                     stroke="url(#paint0_linear_1146_121)" stroke-opacity="0.2" stroke-width="2" />
@@ -238,50 +234,43 @@
                     d="M777.519 -227.649L777.552 -227.724L777.571 -227.803C782.943 -249.496 784.23 -265.462 781.867 -277.025C779.488 -288.671 773.405 -295.844 764.206 -299.833C755.097 -303.784 743.01 -304.58 728.639 -303.753C714.726 -302.952 698.527 -300.619 680.599 -298.036L678.745 -297.768C604.007 -287.007 499.36 -272.656 399.96 -344.302C342.131 -385.984 297.002 -404.26 261.807 -404.542C226.497 -404.824 201.356 -386.999 183.595 -357.01C165.868 -327.078 155.449 -284.979 149.451 -236.488C143.45 -187.977 141.861 -132.964 141.861 -77.1375V-77.1089L141.863 -77.0803C147.239 16.6307 158.111 109.056 185.407 178.077C199.059 212.596 216.843 241.327 240.165 261.434C263.507 281.558 292.347 293 328 293C346.517 293 368.215 285.663 391.751 272.816C415.303 259.96 440.781 241.54 466.882 219.263C519.085 174.706 573.858 114.65 620.798 52.6033C687.102 -35.0413 716.088 -81.361 733.602 -117.678C742.36 -135.838 748.243 -151.482 754.482 -168.503C754.99 -169.887 755.499 -171.28 756.013 -172.685C761.818 -188.551 768.149 -205.853 777.519 -227.649Z"
                     stroke="url(#paint6_linear_1146_121)" stroke-opacity="0.2" stroke-width="2" />
                 <defs>
-                    <linearGradient id="paint0_linear_1146_121" x1="439.431" y1="-266.545" x2="439.431"
-                        y2="145" gradientUnits="userSpaceOnUse">
+                    <linearGradient id="paint0_linear_1146_121" x1="439.431" y1="-266.545" x2="439.431" y2="145" gradientUnits="userSpaceOnUse">
                         <stop offset="0" stop-color="#39B992" />
                         <stop offset="0.0001" stop-color="#4CBC9A" />
                         <stop offset="0.484375" stop-color="#4CBC9A" />
                         <stop offset="1" stop-color="var(--secondary)" />
                     </linearGradient>
-                    <linearGradient id="paint1_linear_1146_121" x1="426.128" y1="-203.062" x2="426.128"
-                        y2="85" gradientUnits="userSpaceOnUse">
+                    <linearGradient id="paint1_linear_1146_121" x1="426.128" y1="-203.062" x2="426.128" y2="85" gradientUnits="userSpaceOnUse">
                         <stop offset="0" stop-color="#39B992" />
                         <stop offset="0.0001" stop-color="var(--secondary)" />
                         <stop offset="0.484375" stop-color="var(--secondary)" />
                         <stop offset="1" stop-color="var(--secondary)" />
                     </linearGradient>
-                    <linearGradient id="paint2_linear_1146_121" x1="410.81" y1="-131.804" x2="410.81"
-                        y2="26" gradientUnits="userSpaceOnUse">
+                    <linearGradient id="paint2_linear_1146_121" x1="410.81" y1="-131.804" x2="410.81" y2="26" gradientUnits="userSpaceOnUse">
                         <stop offset="0" stop-color="#39B992" />
                         <stop offset="0.0001" stop-color="var(--secondary)" />
                         <stop offset="0.484375" stop-color="var(--secondary)" />
                         <stop offset="1" stop-color="var(--secondary)" />
                     </linearGradient>
-                    <linearGradient id="paint3_linear_1146_121" x1="456.431" y1="-330.545" x2="456.431"
-                        y2="215" gradientUnits="userSpaceOnUse">
+                    <linearGradient id="paint3_linear_1146_121" x1="456.431" y1="-330.545" x2="456.431" y2="215" gradientUnits="userSpaceOnUse">
                         <stop offset="0" stop-color="#39B992" />
                         <stop offset="0.0001" stop-color="var(--secondary)" />
                         <stop offset="0.484375" stop-color="var(--secondary)" />
                         <stop offset="1" stop-color="var(--secondary)" />
                     </linearGradient>
-                    <linearGradient id="paint4_linear_1146_121" x1="496.791" y1="-486.937" x2="496.791"
-                        y2="381.134" gradientUnits="userSpaceOnUse">
+                    <linearGradient id="paint4_linear_1146_121" x1="496.791" y1="-486.937" x2="496.791" y2="381.134" gradientUnits="userSpaceOnUse">
                         <stop offset="0" stop-color="#39B992" />
                         <stop offset="0.0001" stop-color="var(--secondary)" />
                         <stop offset="0.484375" stop-color="var(--secondary)" />
                         <stop offset="1" stop-color="var(--secondary)" />
                     </linearGradient>
-                    <linearGradient id="paint5_linear_1146_121" x1="524.596" y1="-605.751" x2="524.596"
-                        y2="484.206" gradientUnits="userSpaceOnUse">
+                    <linearGradient id="paint5_linear_1146_121" x1="524.596" y1="-605.751" x2="524.596" y2="484.206" gradientUnits="userSpaceOnUse">
                         <stop offset="0" stop-color="#39B992" />
                         <stop offset="0.0001" stop-color="var(--secondary)" />
                         <stop offset="0.484375" stop-color="var(--secondary)" />
                         <stop offset="1" stop-color="var(--secondary)" />
                     </linearGradient>
-                    <linearGradient id="paint6_linear_1146_121" x1="462.431" y1="-403.545" x2="462.431"
-                        y2="292" gradientUnits="userSpaceOnUse">
+                    <linearGradient id="paint6_linear_1146_121" x1="462.431" y1="-403.545" x2="462.431" y2="292" gradientUnits="userSpaceOnUse">
                         <stop offset="0" stop-color="#39B992" />
                         <stop offset="0.0001" stop-color="var(--secondary)" />
                         <stop offset="0.484375" stop-color="var(--secondary)" />
@@ -289,14 +278,10 @@
                     </linearGradient>
                 </defs>
             </svg>
-            <svg class="red-line" width="1131" height="455" viewBox="0 0 1131 455" fill="none"
-                xmlns="http://www.w3.org/2000/svg">
-                <path
-                    d="M1132 6.00001C1008.33 -8.33332 722 0.399994 566 150C371 337 309 482 1 527M1132 124C1020 112 787 85 659 177C516.839 279.178 430 455 134 527M1132 243C1039.33 220.667 824 177 659 289C457.942 425.476 308 527 213 527M1132 380C1043 354.667 891 278 685 355C509.757 420.504 405 516 297 527"
-                    stroke="url(#paint0_linear_1145_531)" stroke-width="2" />
+            <svg class="red-line" width="1131" height="455" viewBox="0 0 1131 455" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M1132 6.00001C1008.33 -8.33332 722 0.399994 566 150C371 337 309 482 1 527M1132 124C1020 112 787 85 659 177C516.839 279.178 430 455 134 527M1132 243C1039.33 220.667 824 177 659 289C457.942 425.476 308 527 213 527M1132 380C1043 354.667 891 278 685 355C509.757 420.504 405 516 297 527" stroke="url(#paint0_linear_1145_531)" stroke-width="2" />
                 <defs>
-                    <linearGradient id="paint0_linear_1145_531" x1="566.5" y1="1.10791" x2="566.5"
-                        y2="527" gradientUnits="userSpaceOnUse">
+                    <linearGradient id="paint0_linear_1145_531" x1="566.5" y1="1.10791" x2="566.5" y2="527" gradientUnits="userSpaceOnUse">
                         <stop offset="0" stop-color="var(--primary)" stop-opacity="0.2" />
                         <stop offset="0.526042" stop-color="var(--primary)" />
                         <stop offset="1" stop-color="var(--primary)" stop-opacity="0.2" />
@@ -311,23 +296,18 @@
             <a href="{{ url('mahasiswa') }}" class="brand-logo">
 
 
-                <img src="{{ asset(LOGO_PATH . ($auth->university->logo ? $auth->university->logo : 'default.png')) }}"
-                    class="logo-abbr" style="margin: 50%" height="65" alt="" />
+                <img src="{{ asset(LOGO_PATH . ($auth->university->logo ? $auth->university->logo : 'default.png')) }}" class="logo-abbr" style="margin: 50%" height="65" alt="" />
 
-                <svg width="304px" height="50px" class="brand-title" xmlns="http://www.w3.org/2000/svg"
-                    viewBox="122.7984375 27.5 254.403125 95" style="background: rgba(0, 0, 0, 0);"
-                    preserveAspectRatio="xMidYMid">
+                <svg width="304px" height="50px" class="brand-title" xmlns="http://www.w3.org/2000/svg" viewBox="122.7984375 27.5 254.403125 95" style="background: rgba(0, 0, 0, 0);" preserveAspectRatio="xMidYMid">
                     <defs>
-                        <linearGradient id="editing-sticker-gradient" x1="0.5" y1="0.2" x2="0.5"
-                            y2="0.8">
+                        <linearGradient id="editing-sticker-gradient" x1="0.5" y1="0.2" x2="0.5" y2="0.8">
                             <stop offset="0" stop-color="#fd9"></stop>
                             <stop offset="1" stop-color="#9df"></stop>
                         </linearGradient>
                         <filter id="editing-sticker" x="-100%" y="-100%" width="300%" height="300%">
                             <feMorphology operator="erode" radius="1" in="SourceAlpha" result="alpha-erode">
                             </feMorphology>
-                            <feConvolveMatrix order="3,3" divisor="1" kernelMatrix="0 1 0 1 1 1 0 1 0"
-                                in="alpha-erode" result="alpha-round"></feConvolveMatrix>
+                            <feConvolveMatrix order="3,3" divisor="1" kernelMatrix="0 1 0 1 1 1 0 1 0" in="alpha-erode" result="alpha-round"></feConvolveMatrix>
                             <feMorphology operator="dilate" radius="3.5" in="alpha-round" result="dilate-shadow">
                             </feMorphology>
                             <feGaussianBlur in="dilate-shadow" stdDeviation="1.5" result="shadow"></feGaussianBlur>
@@ -336,8 +316,7 @@
                             </feComposite>
                             <feMorphology operator="dilate" radius="3" in="comp-sticker" result="morph-sticker">
                             </feMorphology>
-                            <feConvolveMatrix order="3,3" divisor="1" kernelMatrix="0 1 0 1 1 1 0 1 0"
-                                in="morph-sticker" result="sticker"></feConvolveMatrix>
+                            <feConvolveMatrix order="3,3" divisor="1" kernelMatrix="0 1 0 1 1 1 0 1 0" in="morph-sticker" result="sticker"></feConvolveMatrix>
                             <feMerge>
                                 <feMergeNode in="shadow"></feMergeNode>
                                 <feMergeNode in="sticker"></feMergeNode>
@@ -386,8 +365,8 @@
                         <div class="navbar-nav header-right">
                             <div class="nav-item d-flex align-items-center">
                                 @if (semester_now())
-                                    <h6 class="text-end mobile-hide" style="color: #aaaaaa">Semester
-                                        {{ semester_now()->odd == 1 ? 'Ganjil' : 'Genap' }} TA
+                                    <h6 class="text-end mobile-hide" style="color: #aaaaaa">{{ tr('semester') }}
+                                        {{ semester_now()->odd == 1 ? tr('ganjil') : tr('genap') }} {{ tr('TA') }}
                                         {{ semester_now()->year }}/{{ semester_now()->year + 1 }} <br>
                                         <small>{{ date_id(semester_now()->start, 4) }} -
                                             {{ date_id(semester_now()->end, 4) }}</small>
@@ -396,30 +375,31 @@
                             </div>
                             <div class="dlab-side-menu">
                                 <div class="search-coundry d-flex align-items-center">
-                                    <a class="btn btn-danger" href="{{ url('mahasiswa/logout') }}"><i
-                                            class="flaticon-381-turn-off"></i></a>
+                                    <a class="btn btn-danger" href="{{ url('mahasiswa/logout') }}"><i class="flaticon-381-turn-off"></i></a>
                                 </div>
                                 <div class="sidebar-social-link ">
                                     <ul>
 
                                         <li class="nav-item ">
-                                            <a class="btn btn-dark m-1 " data-bs-toggle="modal"
-                                                href="#password_header"><i class="flaticon-381-lock-1"></i></a>
+                                            <a class="btn btn-dark m-1 " data-bs-toggle="modal" href="#password_header"><i class="flaticon-381-lock-1"></i></a>
                                         </li>
                                         <li class="nav-item ">
-                                            <a class="btn btn-secondary m-1" href="{{ url('mahasiswa/profil') }}"><i
-                                                    class="flaticon-381-user-7"></i></a>
+                                            @if ($auth->lang == 'id')
+                                                <a class="btn btn-info m-1 px-3 py-2" href="{{ url('/mahasiswa/auth/lang?id=' . $auth->id . '&lang=en') }}"><img src="{{ asset('images/icon/bahasa.png') }}" height="25" alt="language"></a>
+                                            @else
+                                                <a class="btn btn-info m-1 px-3 py-2" href="{{ url('/mahasiswa/auth/lang?id=' . $auth->id . '&lang=id') }}"><img src="{{ asset('images/icon/english.png') }}" height="25" alt="language"></a>
+                                            @endif
+                                        </li>
+                                        <li class="nav-item ">
+                                            <a class="btn btn-secondary m-1" href="{{ url('mahasiswa/profil') }}"><i class="flaticon-381-user-7"></i></a>
                                         </li>
                                         <li class="nav-item d-none" id="absence_view_header">
-                                            <a class="btn btn-warning m-1" id="btn33" data-bs-toggle="modal"
-                                                href="#absence_header"><i class="fa fa-pencil-square"></i></a>
+                                            <a class="btn btn-warning m-1" id="btn33" data-bs-toggle="modal" href="#absence_header"><i class="fa fa-pencil-square"></i></a>
                                         </li>
 
                                         <li class="nav-item ">
 
-                                            <a class="btn btn-danger m-1 mobile-show"
-                                                href="{{ url('mahasiswa/logout') }}" style="display: none;"><i
-                                                    class="flaticon-381-turn-off"></i></a>
+                                            <a class="btn btn-danger m-1 mobile-show" href="{{ url('mahasiswa/logout') }}" style="display: none;"><i class="flaticon-381-turn-off"></i></a>
 
                                         </li>
 
@@ -432,8 +412,7 @@
                                     <li class="nav-item dropdown">
                                         <a class="nav-link" href="{{ url('mahasiswa/profil') }}" role="button">
 
-                                            <div class="cropcircle"
-                                                style="background-image: url('@php echo $auth->avatar ? asset(AVATAR_PATH . $auth->avatar) : 'https://ui-avatars.com/api/?background=FFFFFF&name=' . str_replace(' ', '+', $auth->name) @endphp');">
+                                            <div class="cropcircle" style="background-image: url('@php echo $auth->avatar ? asset(AVATAR_PATH . $auth->avatar) : 'https://ui-avatars.com/api/?background=FFFFFF&name=' . str_replace(' ', '+', $auth->name) @endphp');">
                                             </div>
                                         </a>
 
@@ -457,28 +436,28 @@
                 <ul class="metismenu" id="menu">
                     <li><a class="" href="{{ url('mahasiswa/dashboard') }}" aria-expanded="false">
                             <i class="bi bi-grid"></i>
-                            <span class="nav-text">Dashboard</span>
+                            <span class="nav-text">{{ tr('dashboard') }}</span>
                         </a>
                     </li>
 
                     <li>
                         <a class="" href="{{ url('mahasiswa/jadwal') }}" aria-expanded="false">
                             <i class="bi bi-clock"></i>
-                            <span class="nav-text">Jadwal</span>
+                            <span class="nav-text">{{ tr('jadwal') }}</span>
                         </a>
                     </li>
 
                     <li>
                         <a class="" href="{{ url('mahasiswa/absensi') }}" aria-expanded="false">
                             <i class="bi bi-pencil"></i>
-                            <span class="nav-text">Absensi</span>
+                            <span class="nav-text">{{ tr('absensi') }}</span>
                         </a>
                     </li>
 
                     <li>
                         <a class="" href="{{ url('mahasiswa/elearning') }}" aria-expanded="false">
                             <i class="bi bi-laptop"></i>
-                            <span class="nav-text">E-learning</span>
+                            <span class="nav-text">{{ tr('e-learning') }}</span>
                         </a>
                     </li>
 
@@ -487,20 +466,20 @@
                     <li>
                         <a class="" href="{{ url('mahasiswa/kuis') }}" aria-expanded="false">
                             <i class="bi bi-patch-question"></i>
-                            <span class="nav-text">Kuis</span>
+                            <span class="nav-text">{{ tr('kuis') }}</span>
                         </a>
                     </li>
 
                     <li>
                         <a class="" href="{{ url('mahasiswa/ujian') }}" aria-expanded="false">
                             <i class="bi bi-card-text"></i>
-                            <span class="nav-text">Ujian</span>
+                            <span class="nav-text">{{ tr('ujian') }}</span>
                         </a>
                     </li>
 
                     <br>
                     <br>
-                    <p class="text-white text-center"><strong>ELMED<br> LMS-MAHASISWA</strong>
+                    <p class="text-white text-center"><strong>{{ tr('elmed') }}<br>{{ tr('lms-mahasiswa') }}</strong>
                     </p>
                     <br>
 
@@ -524,37 +503,36 @@
             <div class="container-fluid">
                 @yield('breadcrumb')
                 @yield('content')
+
+
                 <div class="modal fade" id="password_header">
                     <div class="modal-dialog modal-dialog-centered" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title">Ganti password</h5>
+                                <h5 class="modal-title">{{ tr('ganti password') }}</h5>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal">
                                 </button>
                             </div>
-                            <form action="{{ url('/mahasiswa/auth/password') }}" method="post"
-                                onsubmit="return checkHeaderPass()" enctype="multipart/form-data">
+                            <form action="{{ url('/mahasiswa/auth/password') }}" method="post" onsubmit="return checkHeaderPass()" enctype="multipart/form-data">
                                 {{ csrf_field() }}
                                 <div class="modal-body">
                                     <input type="hidden" name="id" value="{{ $auth->id }}">
                                     <div class="mb-3 row">
-                                        <label class="col-sm-4 col-form-label">Password lama</label>
+                                        <label class="col-sm-4 col-form-label">{{ tr('password lama') }}</label>
                                         <div class="col-sm-8">
                                             <input type="password" name="old_password" class="form-control" required>
                                         </div>
                                     </div>
                                     <div class="mb-3 row">
-                                        <label class="col-sm-4 col-form-label">Password baru</label>
+                                        <label class="col-sm-4 col-form-label">{{ tr('password baru') }}</label>
                                         <div class="col-sm-8">
-                                            <input type="password" name="new_password" id="header_newpass"
-                                                class="form-control" required>
+                                            <input type="password" name="new_password" id="header_newpass" class="form-control" required>
                                         </div>
                                     </div>
                                     <div class="mb-3 row">
-                                        <label class="col-sm-4 col-form-label">Konfirmasi password baru</label>
+                                        <label class="col-sm-4 col-form-label">{{ tr('konfirmasi password baru') }}</label>
                                         <div class="col-sm-8">
-                                            <input type="password" id="header_renewpass" class="form-control"
-                                                required>
+                                            <input type="password" id="header_renewpass" class="form-control" required>
                                         </div>
                                     </div>
 
@@ -569,9 +547,8 @@
 
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-danger light"
-                                        data-bs-dismiss="modal">Tutup</button>
-                                    <button type="submit" class="btn btn-primary">update</button>
+                                    <button type="button" class="btn btn-danger light" data-bs-dismiss="modal">{{ tr('tutup') }}</button>
+                                    <button type="submit" class="btn btn-primary">{{ tr('update') }}</button>
                                 </div>
                             </form>
                         </div>
@@ -582,72 +559,69 @@
                     <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title">Isi absensi</h5>
+                                <h5 class="modal-title">{{ tr('isi absensi') }}</h5>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal">
                                 </button>
                             </div>
-                            <form action="{{ url('/mahasiswa/absence/do') }}" method="post"
-                                id="form_absence_header" enctype="multipart/form-data">
+                            <form action="{{ url('/mahasiswa/absence/do') }}" method="post" id="form_absence_header" enctype="multipart/form-data">
                                 {{ csrf_field() }}
                                 <div class="modal-body">
                                     <div class="row">
                                         <div class="col-xl-12 col-xxl-6">
                                             <div class="text-center p-5">
-                                                <img src="{{ asset('images/art/art5.jpg') }}" height="250"
-                                                    alt="">
-                                                <h6 class="text-danger">Silahkan absensi kehadiran anda sebelum waktu
-                                                    habis</h6>
+                                                <img src="{{ asset('images/art/art5.jpg') }}" height="250" alt="">
+                                                <h6 class="text-danger">{{ tr('silahkan absensi kehadiran anda sebelum waktu habis') }}</h6>
+
 
                                             </div>
                                         </div>
                                         <div class="col-xl-12 col-xxl-6">
-                                            <input type="hidden" name="colleger_id"
-                                                value="{{ akun('mahasiswa')->id }}">
+                                            <input type="hidden" name="colleger_id" value="{{ akun('mahasiswa')->id }}">
                                             <input type="hidden" name="start_id" id="start_id_ah">
                                             <input type="hidden" name="schedule_id" id="schedule_id_ah">
                                             <input type="hidden" name="date" value="{{ date('Y-m-d') }}">
                                             <table class="table mb-3">
                                                 <tbody>
                                                     <tr>
-                                                        <th>Kelas</th>
+                                                        <th>{{ tr('kelas') }}</th>
                                                         <td id="class_ah"></td>
                                                     </tr>
                                                     <tr>
-                                                        <th>Mata kuliah</th>
+                                                        <th>{{ tr('mata kuliah') }}</th>
                                                         <td id="sks_ah"></td>
                                                     </tr>
                                                     <tr>
-                                                        <th>Ruangan</th>
+                                                        <th>{{ tr('ruangan') }}</th>
                                                         <td id="room_ah"></td>
                                                     </tr>
                                                     <tr>
-                                                        <th>Jadwal</th>
+                                                        <th>{{ tr('jadwal') }}</th>
                                                         <td id="schedule_ah"></td>
                                                     </tr>
                                                     <tr>
-                                                        <th>Dosen Pengampu</th>
+                                                        <th>{{ tr('dosen pengampu') }}</th>
                                                         <td id="lecturer_ah"></td>
                                                     </tr>
                                                     <tr>
-                                                        <th>Berakhir dalam</th>
+                                                        <th>{{ tr('berakhir dalam') }}</th>
                                                         <td id="timer_ah"></td>
                                                     </tr>
                                                 </tbody>
                                             </table>
 
                                             <div class="mb-3 col-md-12">
-                                                <label class="form-label">Status</label>
+                                                <label class="form-label">{{ tr('status') }}</label>
                                                 <select name="status" class="form-select" id="status_ah">
-                                                    <option value="1"><span class="text-success">Hadir</span>
+                                                    <option value="1"><span class="text-success">{{ tr('hadir') }}</span>
                                                     </option>
-                                                    <option value="2"><span class="text-info">Izin</span>
+                                                    <option value="2"><span class="text-info">{{ tr('izin') }}</span>
                                                     </option>
-                                                    <option value="0"><span class="text-danger">Absen</span>
+                                                    <option value="0"><span class="text-danger">{{ tr('absen') }}</span>
                                                     </option>
                                                 </select>
                                             </div>
                                             <div class="mb-3 col-md-12">
-                                                <label class="form-label">Catatan absensi</label>
+                                                <label class="form-label">{{ tr('catatan absensi') }}</label>
                                                 <textarea name="activity" class="form-control" id="note_ah"></textarea>
                                             </div>
 
@@ -658,14 +632,12 @@
 
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-danger light"
-                                        data-bs-dismiss="modal">Tutup</button>
+                                    <button type="button" class="btn btn-danger light" data-bs-dismiss="modal">{{ tr('tutup') }}</button>
                                     <button type="submit" class="btn btn-primary"><i class="fa fa-edit"></i>
-                                        <div class="spinner-border spinner-border-sm d-none" role="status"
-                                            id="load_ah">
-                                            <span class="visually-hidden">Loading...</span>
-                                        </div> Submit
-                                        absensi
+                                        <div class="spinner-border spinner-border-sm d-none" role="status" id="load_ah">
+                                            <span class="visually-hidden">{{ tr('loading...') }}</span>
+                                        </div> {{ tr('submit absensi') }}
+
                                     </button>
                                 </div>
                             </form>
@@ -684,8 +656,7 @@
 
         <div class="footer">
             <div class="copyright">
-                <p>Copyright © Designed by <a href="http://www.poltekkes-medan.ac.id/"
-                        target="_blank">{{ $auth->university->name }}</a> 2022</p>
+                <p>Copyright © Designed by <a href="http://www.poltekkes-medan.ac.id/" target="_blank">{{ $auth->university->name }}</a>2022</p>
             </div>
         </div>
 
@@ -860,13 +831,13 @@
             $('#header_display_pass_error').addClass('d-none');
             if (password.length < 8) {
                 $('#header_display_pass_error').removeClass('d-none');
-                $('#display_pass_error').html('<b>PERINGATAN!!!</b> password minimal 8 karakter');
+                $('#display_pass_error').html('<b>{{ tr('peringatan') }}!!!</b> {{ tr('password minimal 8 karakter') }}');
                 return false;
             }
 
             if (password != confirmPassword) {
                 $('#header_display_pass_error').removeClass('d-none');
-                $('#display_pass_error').html('<b>PERINGATAN!!!</b> password tidak cocok');
+                $('#display_pass_error').html('<b>{{ tr('peringatan') }}!!!</b> {{ tr('password tidak cocok') }}');
                 return false;
             }
 
@@ -1031,7 +1002,7 @@
 
 
                     document.getElementById("timer_ah").innerHTML =
-                        "<span class='badge badge-info'>SESI SUDAH SELESAI</span>";
+                        "<span class='badge badge-info'>{{ tr('sesi sudah selesai') }}</span>";
 
 
                 }
@@ -1040,9 +1011,7 @@
         }, 1000, true);
     </script>
 
-    <script type="text/javascript"
-        src="https://cdn.rawgit.com/ashl1/datatables-rowsgroup/fbd569b8768155c7a9a62568e66a64115887d7d0/dataTables.rowsGroup.js">
-    </script>
+    <script type="text/javascript" src="https://cdn.rawgit.com/ashl1/datatables-rowsgroup/fbd569b8768155c7a9a62568e66a64115887d7d0/dataTables.rowsGroup.js"></script>
     @yield('script')
 
 </body>

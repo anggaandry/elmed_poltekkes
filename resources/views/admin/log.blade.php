@@ -5,7 +5,7 @@
 @section('breadcrumb')
     <div class="row page-titles">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item active"><a href="javascript:void(0)">Log aplikasi</a></li>
+            <li class="breadcrumb-item active"><a href="javascript:void(0)">{{ tr('log aplikasi') }}</a></li>
         </ol>
     </div>
 @endsection
@@ -18,10 +18,9 @@
                 <div class="card-header">
                     <div class="row w-100">
                         <div class="col-4">
-                            <label class="form-label text-left">Akses</label>
+                            <label class="form-label text-left">{{ tr('akses') }}</label>
                             <select class="form-select" id="menu_" onchange="load_table()">
-                                <option value="">Semua akses
-                                </option>
+                                <option value="">{{ tr('semua akses') }}</option>
                                 @foreach ($menu_data as $obj)
                                     <option value="{{ $obj->id }}">
                                         @if ($obj->category)
@@ -33,23 +32,21 @@
                             </select>
                         </div>
                         <div class="col-3">
-                            <label class="form-label text-left">Tipe</label>
+                            <label class="form-label text-left">{{ tr('tipe') }}</label>
                             <select class="form-select" id="type_" onchange="load_table()">
-                                <option value="">Semua tipe</option>
-                                <option value="0">Admin</option>
-                                <option value="1">Dosen</option>
-                                <option value="2"> Mahasiswa</option>
+                                <option value="">{{ tr('semua tipe') }}</option>
+                                <option value="0">{{ tr('admin') }}</option>
+                                <option value="1">{{ tr('dosen') }}</option>
+                                <option value="2">{{ tr('mahasiswa') }}</option>
                             </select>
                         </div>
                         <div class="col-2">
-                            <label class="form-label text-left">Dari</label>
-                            <input type="date" class="form-control form-control-sm  input-rounded" id="start_"
-                                onchange="load_table()" value="{{ date('Y-m-d', strtotime(date('Y-m-d') . '-1 month')) }}">
+                            <label class="form-label text-left">{{ tr('dari') }}</label>
+                            <input type="date" class="form-control form-control-sm  input-rounded" id="start_" onchange="load_table()" value="{{ date('Y-m-d', strtotime(date('Y-m-d') . '-1 month')) }}">
                         </div>
                         <div class="col-2">
-                            <label class="form-label text-left">Ke</label>
-                            <input type="date" class="form-control form-control-sm  input-rounded" id="end_"
-                                onchange="load_table()" value="{{ date('Y-m-d', strtotime(date('Y-m-d') . '+1 day')) }}">
+                            <label class="form-label text-left">{{ tr('ke') }}</label>
+                            <input type="date" class="form-control form-control-sm  input-rounded" id="end_" onchange="load_table()" value="{{ date('Y-m-d', strtotime(date('Y-m-d') . '+1 day')) }}">
                         </div>
 
                     </div>
@@ -60,12 +57,12 @@
                         <table id="data-table-1" class="display text-center table-striped">
                             <thead class="">
                                 <tr>
-                                    <th class="border-bottom-0">Waktu</th>
-                                    <th class="border-bottom-0">Jenis</th>
-                                    <th class="border-bottom-0">avatar</th>
-                                    <th class="border-bottom-0">user</th>
-                                    <th class="border-bottom-0">Menu</th>
-                                    <th class="border-bottom-0">Log</th>
+                                    <th class="border-bottom-0">{{ tr('waktu') }}</th>
+                                    <th class="border-bottom-0">{{ tr('jenis') }}</th>
+                                    <th class="border-bottom-0">{{ tr('avatar') }}</th>
+                                    <th class="border-bottom-0">{{ tr('user') }}</th>
+                                    <th class="border-bottom-0">{{ tr('menu') }}</th>
+                                    <th class="border-bottom-0">{{ tr('log') }}</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -149,7 +146,7 @@
                         next: '<i class="fa fa-angle-double-right" aria-hidden="true"></i>',
                         previous: '<i class="fa fa-angle-double-left" aria-hidden="true"></i>'
                     },
-                    processing: '<div class="d-flex justify-content-center"><div class="spinner-border" role="status"><span class="visually-hidden">Loading...</span></div></div>',
+                    processing: '<div class="d-flex justify-content-center"><div class="spinner-border" role="status"><span class="visually-hidden">{{ tr('loading...') }}</span></div></div>',
                     info: "<br> &nbsp; &nbsp; <b>page _PAGE_ of _PAGES_</b>  | Records _START_ to _END_ of _MAX_ entries",
                 },
 

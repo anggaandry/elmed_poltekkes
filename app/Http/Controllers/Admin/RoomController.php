@@ -38,9 +38,9 @@ class RoomController extends Controller
 
         if ($status_data) {
             addLog(0,$this->menu_id,'Menambah data '.$name);
-            return redirect()->back()->with('success', 'berhasil menambah ruangan');
+            return redirect()->back()->with('success', tr('berhasil menambah').' '.tr('ruangan'));
         } else {
-            return redirect()->back()->with('failed', 'gagal menambah ruangan');
+            return redirect()->back()->with('failed', tr('gagal menambah').' '.tr('ruangan'));
         }
     }
 
@@ -59,9 +59,9 @@ class RoomController extends Controller
 
         if ($status_data) {
             addLog(0,$this->menu_id,'Mengedit data '.$name);
-            return redirect()->back()->with('success', 'sukses mengedit ruangan');
+            return redirect()->back()->with('success', tr('sukses mengedit').' '.tr('ruangan'));
         } else {
-            return redirect()->back()->with('failed', 'gagal mengedit ruangan');
+            return redirect()->back()->with('failed', tr('gagal mengedit').' '.tr('ruangan'));
         }
     }
 
@@ -72,9 +72,9 @@ class RoomController extends Controller
 
         if ($status_data) {
             addLog(0,$this->menu_id,'Menghapus data '.$old_data->name);
-            return redirect()->back()->with('success', 'Ruangan berhasil di hapus');
+            return redirect()->back()->with('success', tr('ruangan').' '.tr('berhasil di hapus'));
         } else {
-            return redirect()->back()->with('failed', 'Ruangan gagal di hapus');
+            return redirect()->back()->with('failed', tr('ruangan').' '.tr('gagal di hapus'));
         }
     }
 

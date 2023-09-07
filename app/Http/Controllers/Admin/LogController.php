@@ -68,13 +68,13 @@ class LogController extends Controller
 
                     switch ($row->type) {
                         case 0:
-                            $type='<span class="badge bg-primary">Admin</span>';
+                            $type='<span class="badge bg-primary">'.tr('admin').'</span>';
                             break;
                         case 1:
-                            $type='<span class="badge bg-info">Dosen</span>';
+                            $type='<span class="badge bg-info">'.tr('dosen').'</span>';
                             break;
                         case 2:
-                            $type='<span class="badge bg-danger">Mahasiswa</span>';
+                            $type='<span class="badge bg-danger">'.tr('mahasiswa').'</span>';
                             break;
                     }
 

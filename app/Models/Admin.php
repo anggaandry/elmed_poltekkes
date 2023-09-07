@@ -23,7 +23,7 @@ class Admin extends Authenticatable
     ];
     
     protected $fillable = [
-        'password', 'name', 'nip', 'avatar','status','online','birthdate','email','phone','role_id','university_id','remember_token'
+        'password', 'name', 'nip', 'avatar','status','online','birthdate','email','phone','role_id','university_id','remember_token','lang'
     ];
 
     protected $hidden = [

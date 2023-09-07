@@ -15,7 +15,7 @@
     <meta name="format-detection" content="telephone=no">
 
     <!-- PAGE TITLE HERE -->
-    <title>LMS DOSEN - {{ $university_data->name }} </title>
+    <title>{{ tr('LMS DOSEN') }} - {{ $university_data->name }} </title>
 
     <!-- FAVICONS ICON -->
     <link rel="shortcut icon" type="image/png" href="{{ asset('images/logo/' . $university_data->logo) }}" />
@@ -34,49 +34,45 @@
                                 <div>
                                     <img src="{{ asset('images/art/art2.png') }}" class="education-img" />
                                     <div class="text-center my-5">
-                                        <a href="{{ url('dosen/') }}"><img width="120"
-                                                src="{{ asset('images/logo/poltekkes-medan.png') }}" alt=""></a>
+                                        <a href="{{ url('dosen/') }}"><img width="120" src="{{ asset('images/logo/poltekkes-medan.png') }}" alt=""></a>
                                     </div>
 
                                 </div>
                             </div>
                             <div class="col-xl-6 col-md-6">
                                 <div class="sign-in-your">
-                                    <h4 class="fs-20 font-w800 text-black">Login untuk masuk ke LMS</h4>
-                                    <span>Selamat datang di halaman dosen ELMED Poltekkes Medan</span>
+                                    <h4 class="fs-20 font-w800 text-black">{{ tr('login untuk masuk ke lms') }}</h4>
+                                    <span>{{ tr('selamat datang di halaman dosen elmed poltekkes medan') }}</span>
                                     <div class="mt-3">
                                         <form action="{{ url('/dosen/login') }}" method="post">
                                             {{ csrf_field() }}
                                             <div class="mb-3">
                                                 <label class="mb-1"><strong>NIDN/NUP/NIDK</strong></label>
-                                                <input type="text" name="identity_number"
-                                                    value="{{ old('identity_number') }}" class="form-control" required>
+                                                <input type="text" name="identity_number" value="{{ old('identity_number') }}" class="form-control" required>
                                             </div>
                                             <div class="mb-3">
-                                                <label class="mb-1"><strong>Password</strong></label>
+                                                <label class="mb-1"><strong>{{ tr('password') }}</strong></label>
                                                 <input type="password" name="password" class="form-control" required>
                                             </div>
                                             <div class="row d-flex justify-content-between mt-4 mb-2">
                                                 <div class="mb-3">
                                                     <div class="form-check custom-checkbox ms-1">
-                                                        <input type="checkbox" name="remember" class="form-check-input"
-                                                            id="rm_checkbox_1">
+                                                        <input type="checkbox" name="remember" class="form-check-input" id="rm_checkbox_1">
                                                         <label class="form-check-label" for="rm_checkbox_1">Remember
                                                             me</label>
                                                     </div>
                                                 </div>
                                                 @if (Session::has('error_login'))
                                                     <div class="mb-3">
-                                                        <div class="alert alert-danger alert-dismissible fade show"
-                                                            role="alert">
-                                                            <span class="alert-inner--text"><b>PERINGATAN!! </b>
+                                                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                                            <span class="alert-inner--text"><b>{{ tr('peringatan!!') }}</b>
                                                                 {{ Session::get('error_login') }}</span>
 
                                                         </div>
                                                     </div>
                                                 @endif
                                                 <div class="mb-3">
-                                                    <a href="#">Forgot Password? Contact Admin</a>
+                                                    <a href="#">{{ tr('forgot password? contact admin') }}</a>
                                                 </div>
                                             </div>
                                             <div class="text-center">

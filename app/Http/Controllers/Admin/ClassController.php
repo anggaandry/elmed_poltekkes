@@ -86,7 +86,7 @@ class ClassController extends Controller
 
             return DataTables::of($data)->addIndexColumn()
                 ->addColumn('action', function ($row) use ($class_id) {
-                    $action = '<a class="btn btn-outline-primary btn-rounded btn-xs" href="' . url('4dm1n/kelas/colleger/add?class_id=' . $class_id . '&colleger_id=' . $row->id) . '">Tambah <i class="fa fa-plus"></i></a>';
+                    $action = '<a class="btn btn-outline-primary btn-rounded btn-xs" href="' . url('4dm1n/kelas/colleger/add?class_id=' . $class_id . '&colleger_id=' . $row->id) . '">'.tr('tambah ').'<i class="fa fa-plus"></i></a>';
                     return $action;
                 })
                 ->addColumn('avatar', function ($row) {
@@ -117,9 +117,9 @@ class ClassController extends Controller
 
         if ($status_data) {
             addLog(0, $this->menu_id, 'Menambah mahasiswa ' . $colleger->name . ' ke kelas ' . $class->name);
-            return redirect()->back()->with('success', 'berhasil menambah mahasiswa ke kelas');
+            return redirect()->back()->with('success', tr('berhasil menambah').' '.tr('mahasiswa ke kelas'));
         } else {
-            return redirect()->back()->with('failed', 'gagal menambah mahasiswa ke kelas');
+            return redirect()->back()->with('failed', tr('gagal menambah').' '.tr('mahasiswa ke kelas'));
         }
     }
 
@@ -145,9 +145,9 @@ class ClassController extends Controller
 
         if ($status_data) {
             addLog(0, $this->menu_id, 'Menambah mamindahkan mahasiswa dari kelas ' . $previous->name . ' ke kelas ' . $class->name);
-            return redirect()->back()->with('success', 'berhasil memindahkan mahasiswa');
+            return redirect()->back()->with('success', tr('berhasil memindahkan mahasiswa'));
         } else {
-            return redirect()->back()->with('failed', 'gagal memindahkan mahasiswa');
+            return redirect()->back()->with('failed', tr('gagal memindahkan mahasiswa'));
         }
     }
 
@@ -158,9 +158,9 @@ class ClassController extends Controller
 
         if ($status_data) {
             addLog(0, $this->menu_id, 'Menghapus mahasiswa ' . $old_data->colleger->name . ' dari kelas ' . $old_data->class->name);
-            return redirect()->back()->with('success', 'Mahasiswa di kelas ini berhasil di hapus');
+            return redirect()->back()->with('success', tr('mahasiswa di kelas ini').' '.tr('berhasil di hapus'));
         } else {
-            return redirect()->back()->with('failed', 'Mahasiswa di kelas ini gagal di hapus');
+            return redirect()->back()->with('failed', tr('mahasiswa di kelas ini').' '.tr('gagal di hapus'));
         }
     }
 
@@ -244,9 +244,9 @@ class ClassController extends Controller
 
         if ($status_data) {
             addLog(0, $this->menu_id, 'Menambah kelas ' . $name);
-            return redirect('4dm1n/kelas?prodi=' . $prodi_id . '&tahun=' . $year . '&odd=' . $odd)->with('success', 'berhasil menambah kelas');
+            return redirect('4dm1n/kelas?prodi=' . $prodi_id . '&tahun=' . $year . '&odd=' . $odd)->with('success', tr('berhasil menambah').' '.tr('kelas'));
         } else {
-            return redirect()->back()->with('failed', 'gagal menambah kelas');
+            return redirect()->back()->with('failed', tr('gagal menambah').' '.tr('kelas'));
         }
     }
 
@@ -270,9 +270,9 @@ class ClassController extends Controller
 
         if ($status_data) {
             addLog(0, $this->menu_id, 'Mengedit kelas ' . $name);
-            return redirect('4dm1n/kelas?prodi=' . $prodi_id . '&tahun=' . $year . '&odd=' . $odd)->with('success', 'sukses mengedit kelas');
+            return redirect('4dm1n/kelas?prodi=' . $prodi_id . '&tahun=' . $year . '&odd=' . $odd)->with('success', tr('sukses mengedit').' '.tr('kelas'));
         } else {
-            return redirect()->back()->with('failed', 'gagal mengedit kelas');
+            return redirect()->back()->with('failed', tr('gagal mengedit').' '.tr('kelas'));
         }
     }
 
@@ -283,9 +283,9 @@ class ClassController extends Controller
 
         if ($status_data) {
             addLog(0, $this->menu_id, 'Menghapus kelas ' . $old_data->name);
-            return redirect()->back()->with('success', 'Kelas berhasil di hapus');
+            return redirect()->back()->with('success', tr('kelas').' '.tr('berhasil di hapus'));
         } else {
-            return redirect()->back()->with('failed', 'Kelas gagal di hapus');
+            return redirect()->back()->with('failed', tr('kelas').' '.tr('gagal di hapus'));
         }
     }
 }

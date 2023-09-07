@@ -53,7 +53,7 @@ class AbsenceController extends Controller
                         $i++;
                         $lectxt.='<li>
                             <span class="mt-5">1. '.title_lecturer($obj->lecturer).'</span>
-                            <span class="badge badge-xs bg-'.$obj->sls->bg.'" >'.$obj->sls->name.'</span> </li>';
+                            <span class="badge badge-xs bg-'.$obj->sls->bg.'" >'.$obj->sls->name.'</span></li>';
                     }
                     $lectxt.="</ul>";
 
@@ -70,13 +70,13 @@ class AbsenceController extends Controller
                             if($absence_check->status){
                                 switch ($absence_check->status) {
                                     case 0:
-                                        $status='<span class="badge bg-danger">Absen</span>';
+                                        $status='<span class="badge bg-danger">'.tr('absen').'</span>';
                                         break;
                                     case 1:
-                                        $status='<span class="badge bg-success">Hadir</span>';
+                                        $status='<span class="badge bg-success">'.tr('hadir').'</span>';
                                         break;
                                     case 2:
-                                        $status='<span class="badge bg-warning">Izin</span>';
+                                        $status='<span class="badge bg-warning">'.tr('izin').'</span>';
                                         break;
                                     default:
                                         # code...
@@ -95,18 +95,18 @@ class AbsenceController extends Controller
                         $absence_check=Absence::where(['schedule_id'=>$item->id,'colleger_id'=>$colleger_id,'start_id'=>$absence_move->id])->first();
                         $session="".$absence_move->session;
                         $activity=$absence_move->activity;
-                        $item->time.="<br><span class='badge badge-danger badge-xs mt-1'>Dipindahkan ke ".date_id($absence_move->date." ".$absence_move->start,2).' - '.date('H:i',strtotime($absence_move->end))."</span>";
+                        $item->time.="<br><span class='badge badge-danger badge-xs mt-1'>".tr('dipindahkan ke')." ".date_id($absence_move->date." ".$absence_move->start,2).' - '.date('H:i',strtotime($absence_move->end))."</span>";
                         if($absence_check){
                             if($absence_check->status){
                                 switch ($absence_check->status) {
                                     case 0:
-                                        $status='<span class="badge bg-danger">Absen</span>';
+                                        $status='<span class="badge bg-danger">'.tr('absen').'</span>';
                                         break;
                                     case 1:
-                                        $status='<span class="badge bg-success">Hadir</span>';
+                                        $status='<span class="badge bg-success">'.tr('hadir').'</span>';
                                         break;
                                     case 2:
-                                        $status='<span class="badge bg-warning">Izin</span>';
+                                        $status='<span class="badge bg-warning">'.tr('izin').'</span>';
                                         break;
                                     default:
                                         # code...
@@ -124,12 +124,12 @@ class AbsenceController extends Controller
 
                     $item->nosession=null;
                     if(!$absence_move && !$absence_start && strtotime($item->end)<=strtotime(date('Y-m-d H:i:s'))){
-                        $item->nosession='<i class="text-danger">Berakhir tanpa sesi kelas</i>';
+                        $item->nosession='<i class="text-danger">'.tr('berakhir tanpa sesi kelas').'</i>';
                     }
 
                     if($absence_move){
                         if($absence_move->active==0 && strtotime($item->end)<=strtotime(date('Y-m-d H:i:s'))){
-                            $item->nosession='<i class="text-danger">Berakhir tanpa sesi kelas</i>';
+                            $item->nosession='<i class="text-danger">'.tr('berakhir tanpa sesi kelas').'</i>';
                         }
                     }
                    
@@ -152,9 +152,9 @@ class AbsenceController extends Controller
                 $holiday=$event->name;
                 $data=[];
             }else{
-                $holiday="Libur jadwal kosong";
+                $holiday=tr('libur jadwal kosong');
                 if(date('w',strtotime($date))==0){
-                    $holiday="Libur hari minggu";
+                    $holiday=tr('libur hari minggu');
                 }
             }
 

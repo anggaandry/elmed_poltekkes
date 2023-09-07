@@ -5,8 +5,8 @@
 @section('breadcrumb')
     <div class="row page-titles">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item active"><a href="{{ url('4dm1n/mahasiswa') }}">Dosen</a></li>
-            <li class="breadcrumb-item"><a href="javascript:void(0)">Profil mahasiswa</a></li>
+            <li class="breadcrumb-item active"><a href="{{ url('4dm1n/mahasiswa') }}">{{ tr('mahasiswa') }}</a></li>
+            <li class="breadcrumb-item"><a href="javascript:void(0)">{{ tr('profil mahasiswa') }}</a></li>
         </ol>
     </div>
 @endsection
@@ -23,8 +23,7 @@
                     </div>
                     <div class="profile-info">
                         <div class="profile-photo">
-                            <div class="cropcircle-lg"
-                                style="background-image: url({{ $colleger_data->avatar ? asset(AVATAR_PATH . $colleger_data->avatar) : 'https://ui-avatars.com/api/?background=89CFF0&&name=' . str_replace(' ', '+', $colleger_data->name) }});">
+                            <div class="cropcircle-lg" style="background-image: url({{ $colleger_data->avatar ? asset(AVATAR_PATH . $colleger_data->avatar) : 'https://ui-avatars.com/api/?background=89CFF0&&name=' . str_replace(' ', '+', $colleger_data->name) }});">
                             </div>
 
                         </div>
@@ -40,24 +39,21 @@
 
                                 <p> @switch ($colleger_data->status)
                                         @case(1)
-                                            <span class="badge bg-success">active</span>
+                                            <span class="badge bg-success">{{ tr('active') }}</span>
                                         @break
 
                                         @case(2)
-                                            <span class="badge bg-info">graduated</span>
+                                            <span class="badge bg-info">{{ tr('graduated') }}</span>
                                         @break
 
                                         @case(3)
-                                            <span class="badge bg-danger">D.O</span>
+                                            <span class="badge bg-danger">{{ tr('d.o') }}</span>
                                         @break
                                     @endswitch
                                 </p>
                             </div>
                             <div class="dropdown ms-auto">
-                                <a href="#" class="btn btn-primary light sharp" data-bs-toggle="dropdown"
-                                    aria-expanded="true"><svg xmlns="http://www.w3.org/2000/svg"
-                                        xmlns:xlink="http://www.w3.org/1999/xlink" width="18px" height="18px"
-                                        viewBox="0 0 24 24" version="1.1">
+                                <a href="#" class="btn btn-primary light sharp" data-bs-toggle="dropdown" aria-expanded="true"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="18px" height="18px" viewBox="0 0 24 24" version="1.1">
                                         <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
                                             <rect x="0" y="0" width="24" height="24"></rect>
                                             <circle fill="#000000" cx="5" cy="12" r="2">
@@ -69,14 +65,10 @@
                                         </g>
                                     </svg></a>
                                 <ul class="dropdown-menu dropdown-menu-end">
-                                    <li class="dropdown-item"><a
-                                            href="{{ url('4dm1n/mahasiswa/form/edit?route=1&id=' . $colleger_data->id) }}"><i
-                                                class="fa fa-edit text-primary me-2"></i> Edit</a></li>
-                                    <li class="dropdown-item"><a data-bs-toggle="modal" href="#respass"><i
-                                                class="fa fa-lock text-primary me-2"></i> Reset password</a>
+                                    <li class="dropdown-item"><a href="{{ url('4dm1n/mahasiswa/form/edit?route=1&id=' . $colleger_data->id) }}"><i class="fa fa-edit text-primary me-2"></i> {{ tr('edit') }}</a></li>
+                                    <li class="dropdown-item"><a data-bs-toggle="modal" href="#respass"><i class="fa fa-lock text-primary me-2"></i> {{ tr('reset password') }}</a>
                                     </li>
-                                    <li class="dropdown-item "><a data-bs-toggle="modal" href="#delete"
-                                            class="text-danger"><i class="fa fa-trash text-danger me-2"></i> Delete</a>
+                                    <li class="dropdown-item "><a data-bs-toggle="modal" href="#delete" class="text-danger"><i class="fa fa-trash text-danger me-2"></i> {{ tr('delete') }}</a>
                                     </li>
                                 </ul>
                             </div>
@@ -89,20 +81,17 @@
                 <div class="modal-dialog modal-dialog-centered" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title text-danger">Peringatan !!</h5>
+                            <h5 class="modal-title text-danger">{{ tr('peringatan') }} !!</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal">
                             </button>
                         </div>
 
                         <div class="modal-body">
-                            <p>Apakah anda ingin menghapus mahasiswa
-                                <b>{{ $colleger_data->name }}</b>
-                            </p>
+                            <p>{{ tr('apakah anda ingin menghapus mahasiswa') }}<b>{{ $colleger_data->name }}</b></p>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-danger light" data-bs-dismiss="modal">Tutup</button>
-                            <a href="{{ url('4dm1n/mahasiswa/delete/' . $colleger_data->id . '?route=1') }}"
-                                class="btn btn-primary">Hapus</a>
+                            <button type="button" class="btn btn-danger light" data-bs-dismiss="modal">{{ tr('tutup') }}</button>
+                            <a href="{{ url('4dm1n/mahasiswa/delete/' . $colleger_data->id . '?route=1') }}" class="btn btn-primary">{{ tr('hapus') }}</a>
                         </div>
 
                     </div>
@@ -113,20 +102,17 @@
                 <div class="modal-dialog modal-dialog-centered" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title text-danger">Peringatan !!</h5>
+                            <h5 class="modal-title text-danger">{{ tr('peringatan') }} !!</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal">
                             </button>
                         </div>
 
                         <div class="modal-body">
-                            <p>Apakah anda ingin mereset password akun
-                                <b>{{ $colleger_data->name }}</b>
-                            </p>
+                            <p>{{ tr('apakah anda ingin mereset password akun') }}<b>{{ $colleger_data->name }}</b></p>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-danger light" data-bs-dismiss="modal">Tutup</button>
-                            <a href="{{ url('4dm1n/akun/mahasiswa/password/reset?route=1&id=' . $colleger_data->id) }}"
-                                class="btn btn-primary">Reset password</a>
+                            <button type="button" class="btn btn-danger light" data-bs-dismiss="modal">{{ tr('tutup') }}</button>
+                            <a href="{{ url('4dm1n/akun/mahasiswa/password/reset?route=1&id=' . $colleger_data->id) }}" class="btn btn-primary">{{ tr('reset password') }}</a>
                         </div>
 
                     </div>
@@ -142,18 +128,14 @@
                     <div class="profile-tab">
                         <div class="custom-tab-1">
                             <ul class="nav nav-tabs">
-                                <li class="nav-item"><a href="#bio" data-bs-toggle="tab"
-                                        class="nav-link {{ $tab == 0 ? 'active' : '' }} show">Bio</a>
+                                <li class="nav-item"><a href="#bio" data-bs-toggle="tab" class="nav-link {{ $tab == 0 ? 'active' : '' }} show">{{ tr('bio') }}</a>
                                 </li>
-                                <li class="nav-item"><a href="#kelas" data-bs-toggle="tab"
-                                        class="nav-link {{ $tab == 1 ? 'active' : '' }}">Kelas</a>
+                                <li class="nav-item"><a href="#kelas" data-bs-toggle="tab" class="nav-link {{ $tab == 1 ? 'active' : '' }}">{{ tr('kelas') }}</a>
                                 </li>
-                                <li class="nav-item"><a href="#jadwal" data-bs-toggle="tab"
-                                        class="nav-link {{ $tab == 2 ? 'active' : '' }}">Jadwal
-                                        kuliah</a>
+                                <li class="nav-item"><a href="#jadwal" data-bs-toggle="tab" class="nav-link {{ $tab == 2 ? 'active' : '' }}">Jadwal kuliah</a>
+
                                 </li>
-                                <li class="nav-item"><a href="#absensi" data-bs-toggle="tab"
-                                        class="nav-link {{ $tab == 3 ? 'active' : '' }}">Absensi</a>
+                                <li class="nav-item"><a href="#absensi" data-bs-toggle="tab" class="nav-link {{ $tab == 3 ? 'active' : '' }}">{{ tr('absensi') }}</a>
                                 </li>
 
                             </ul>
@@ -163,53 +145,53 @@
                                         <div class="table-responsive">
                                             <table class="table table-striped">
                                                 <tr>
-                                                    <th>Nama mahasiswa</th>
+                                                    <th>{{ tr('nama mahasiswa') }}</th>
                                                     <td>{{ $colleger_data->name }}
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <th>NIM</th>
+                                                    <th>{{ tr('nim') }}</th>
                                                     <td>{{ $colleger_data->nim }} </td>
                                                 </tr>
                                                 <tr>
-                                                    <th>Tahun angkatan</th>
+                                                    <th>{{ tr('tahun angkatan') }}</th>
                                                     <td>{{ $colleger_data->year }}
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <th>Prodi</th>
+                                                    <th>{{ tr('prodi') }}</th>
                                                     <td>{{ $colleger_data->prodi->program->name . ' - ' . $colleger_data->prodi->study_program->name . ' ' . $colleger_data->prodi->category->name }}
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <th>Jenis kelamin</th>
+                                                    <th>{{ tr('jenis kelamin') }}</th>
                                                     <td>{{ $colleger_data->gender }} </td>
                                                 </tr>
                                                 <tr>
-                                                    <th>Agama</th>
+                                                    <th>{{ tr('agama') }}</th>
                                                     <td>{{ $colleger_data->religion->name }} </td>
                                                 </tr>
                                                 <tr>
-                                                    <th>Tanggal lahir</th>
+                                                    <th>{{ tr('tanggal lahir') }}</th>
                                                     <td>{{ date_id($colleger_data->birthdate, 0) }}
 
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <th>Usia</th>
-                                                    <td>{{ convert_age($colleger_data->birthdate) }} tahun</td>
+                                                    <th>{{ tr('usia') }}</th>
+                                                    <td>{{ convert_age($colleger_data->birthdate) }} {{ tr('tahun') }}</td>
                                                 </tr>
                                                 <tr>
-                                                    <th>Terakhir online</th>
+                                                    <th>{{ tr('terakhir online') }}</th>
                                                     <td>{{ $colleger_data->online ? ago_model($colleger_data->online) : '-' }}
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <th>Akun dibuat</th>
+                                                    <th>{{ tr('akun dibuat') }}</th>
                                                     <td>{{ date_id($colleger_data->created_at, 1) }} </td>
                                                 </tr>
                                                 <tr>
-                                                    <th>Aktifitas terakhir</th>
+                                                    <th>{{ tr('aktifitas terakhir') }}</th>
                                                     <td>{{ $last_activity ? '[' . $last_activity->menu->name . '] ' . $last_activity->log : '-' }}
                                                     </td>
                                                 </tr>
@@ -223,9 +205,9 @@
                                         <table id="data-table-1" class="display text-center table-striped">
                                             <thead class="">
                                                 <tr>
-                                                    <th>Semester</th>
-                                                    <th>Kelas</th>
-                                                    <th>T.A</th>
+                                                    <th>{{ tr('semester') }}</th>
+                                                    <th>{{ tr('kelas') }}</th>
+                                                    <th>{{ tr('t.a') }}</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -245,8 +227,7 @@
                                         <div class="row">
                                             <div class="mb-3 col-md-6">
 
-                                                <select class="form-select form-select-lg" id="class_"
-                                                    onchange="load_table_schedule()">
+                                                <select class="form-select form-select-lg" id="class_" onchange="load_table_schedule()">
                                                     @foreach ($class_data as $item)
                                                         <option value="{{ $item->id }}">{{ $item->class->name }}
                                                             {{ $item->class->year }}/{{ $item->class->year + 1 }}
@@ -260,12 +241,12 @@
                                             <table id="data-table-2" class="display text-center">
                                                 <thead class="">
                                                     <tr>
-                                                        <th>Hari</th>
-                                                        <th>Waktu</th>
-                                                        <th>SKS</th>
-                                                        <th>Mata kuliah</th>
-                                                        <th>Ruangan</th>
-                                                        <th>Dosen</th>
+                                                        <th>{{ tr('hari') }}</th>
+                                                        <th>{{ tr('waktu') }}</th>
+                                                        <th>{{ tr('sks') }}</th>
+                                                        <th>{{ tr('mata kuliah') }}</th>
+                                                        <th>{{ tr('ruangan') }}</th>
+                                                        <th>{{ tr('dosen') }}</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -281,35 +262,30 @@
                                         <div class="pt-3">
                                             <div class="row">
                                                 <div class="mb-3 col-md-3">
-                                                    <input type="date" class="form-control"
-                                                        value="{{ date('Y-m-d') }}" id="date_"
-                                                        oninput="load_table_absence()">
+                                                    <input type="date" class="form-control" value="{{ date('Y-m-d') }}" id="date_" oninput="load_table_absence()">
 
                                                 </div>
 
                                             </div>
 
-                                            <div class="w-100 text-center p-5  d-none" id="loading"
-                                                style="height:300px;">
+                                            <div class="w-100 text-center p-5  d-none" id="loading" style="height:300px;">
                                                 <br>
                                                 <br>
                                                 <br>
 
                                                 <div class="mt-5">
                                                     <div class="spinner-border" role="status">
-                                                        <span class="visually-hidden">Loading...</span>
+                                                        <span class="visually-hidden">{{ tr('loading...') }}</span>
                                                     </div>
                                                     <br>
-                                                    <small>Loading absensi..</small>
+                                                    <small>{{ tr('loading absensi..') }}</small>
                                                 </div>
                                             </div>
 
-                                            <div class="text-center p-5 d-none" width="100%" id="nodata"
-                                                style="height:300px;">
+                                            <div class="text-center p-5 d-none" width="100%" id="nodata" style="height:300px;">
                                                 <br>
                                                 <br>
-                                                <img src="{{ asset('images/art/holiday.png') }}" height="100"
-                                                    alt="">
+                                                <img src="{{ asset('images/art/holiday.png') }}" height="100" alt="">
                                                 <h5 class="text-danger mt-3" id="nodata_name"></h5>
                                             </div>
 
@@ -319,14 +295,14 @@
                                                         <thead class=" bg-primary-light text-white">
                                                             <tr>
                                                                 <th>#</th>
-                                                                <th>Waktu</th>
-                                                                <th>Kelas</th>
-                                                                <th>Mata kuliah</th>
-                                                                <th>Ruangan</th>
-                                                                <th>Pertemuan ke</th>
-                                                                <th>Status</th>
-                                                                <th>Catatan</th>
-                                                                <th>detail</th>
+                                                                <th>{{ tr('waktu') }}</th>
+                                                                <th>{{ tr('kelas') }}</th>
+                                                                <th>{{ tr('mata kuliah') }}</th>
+                                                                <th>{{ tr('ruangan') }}</th>
+                                                                <th>{{ tr('pertemuan ke') }}</th>
+                                                                <th>{{ tr('status') }}</th>
+                                                                <th>{{ tr('catatan') }}</th>
+                                                                <th>{{ tr('detail') }}</th>
                                                             </tr>
                                                         </thead>
                                                         <tbody>
@@ -366,7 +342,7 @@
                         next: '<i class="fa fa-angle-double-right" aria-hidden="true"></i>',
                         previous: '<i class="fa fa-angle-double-left" aria-hidden="true"></i>'
                     },
-                    processing: '<div class="d-flex justify-content-center"><div class="spinner-border" role="status"><span class="visually-hidden">Loading...</span></div></div>',
+                    processing: '<div class="d-flex justify-content-center"><div class="spinner-border" role="status"><span class="visually-hidden">{{ tr('loading...') }}</span></div></div>',
                     info: "Records _START_ to _END_ of _MAX_ entries",
                 }
             });
@@ -429,7 +405,7 @@
                         next: '<i class="fa fa-angle-double-right" aria-hidden="true"></i>',
                         previous: '<i class="fa fa-angle-double-left" aria-hidden="true"></i>'
                     },
-                    processing: '<div class="d-flex justify-content-center"><div class="spinner-border" role="status"><span class="visually-hidden">Loading...</span></div></div>',
+                    processing: '<div class="d-flex justify-content-center"><div class="spinner-border" role="status"><span class="visually-hidden">{{ tr('loading...') }}</span></div></div>',
                     info: "<br> Records _START_ to _END_ of _MAX_ entries",
                 },
 
@@ -494,12 +470,12 @@
                                         <td class="align-middle">${el.session}</td>
                                         ${absence}
                                         <td class="align-middle">
-                                            <button class="btn btn-primary btn-xs" data-bs-toggle="modal" data-bs-target="#detail${i}"><i class="fa fa-eye"></i> </button>
+                                            <button class="btn btn-primary btn-xs" data-bs-toggle="modal" data-bs-target="#detail${i}"><i class="fa fa-eye"></i></button>
                                             <div class="modal fade" id="detail${i}">
                                                 <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
                                                     <div class="modal-content">
                                                         <div class="modal-header">
-                                                            <h5 class="modal-title">Detail pertemuan</h5>
+                                                            <h5 class="modal-title">{{ tr('detail pertemuan') }}</h5>
                                                             <button type="button" class="btn-close" data-bs-dismiss="modal">
                                                             </button>
                                                         </div>
@@ -511,17 +487,17 @@
                                                                     <tbody>
                                                                      
                                                                         <tr>
-                                                                            <th>Pertemuan ke</th>
+                                                                            <th>{{ tr('pertemuan ke') }}</th>
                                                                             <td>${el.session}</td>
                                                                         </tr>
 
                                                                         <tr>
-                                                                            <th>Aktivitas pembelajaran</th>
+                                                                            <th>{{ tr('aktivitas pembelajaran') }}</th>
                                                                             <td>${el.activity}</td>
                                                                         
                                                                         </tr>
                                                                         <tr>
-                                                                            <th>Dosen</th>
+                                                                            <th>{{ tr('dosen') }}</th>
                                                                             <td>${el.dosen}</td>
                                                                         </tr>
 
@@ -532,7 +508,7 @@
                                                         </div>
                                                         <div class="modal-footer">
                                                             <button type="button" class="btn btn-danger light"
-                                                                data-bs-dismiss="modal">Tutup</button>
+                                                                data-bs-dismiss="modal">{{ tr('tutup') }}</button>
                                                             <a href="" class="btn btn-primary" id="btn_quiz">
 
                                                             </a>

@@ -5,8 +5,8 @@
 @section('breadcrumb')
     <div class="row page-titles">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item active"><a href="javascript:void(0)">Akademik</a></li>
-            <li class="breadcrumb-item"><a href="javascript:void(0)">Jadwal</a></li>
+            <li class="breadcrumb-item active"><a href="javascript:void(0)">{{ tr('akademik') }}</a></li>
+            <li class="breadcrumb-item"><a href="javascript:void(0)">{{ tr('jadwal') }}</a></li>
         </ol>
     </div>
 @endsection
@@ -20,18 +20,18 @@
                 <div class="card-header">
                     <div class="row" style="width:110%;">
                         <div class="col-4">
-                            <label class="form-label text-left">Semester akademik</label>
+                            <label class="form-label text-left">{{ tr('semester akademik') }}</label>
                             <select class="form-select form-select-lg" id="semester_" onchange="load_semester()">
                                 @foreach ($semester_data as $item)
                                     <option value="{{ $item->id }}" @if ($semester_id == $item->id) selected @endif>
-                                        Semester {{ $item->odd == 1 ? 'Ganjil' : 'Genap' }} TA
+                                        {{ tr('semester') }} {{ $item->odd == 1 ? 'Ganjil' : 'Genap' }} TA
                                         {{ $item->year }}/{{ $item->year + 1 }}
                                     </option>
                                 @endforeach
                             </select>
                         </div>
                         <div class="col-5">
-                            <label class="form-label text-left">Kelas</label>
+                            <label class="form-label text-left">{{ tr('kelas') }}</label>
                             <select class="form-select form-select-lg" id="class_" onchange="load_class()">
                                 @foreach ($class_data as $item)
                                     <option value="{{ $item->id }}">
@@ -41,15 +41,13 @@
                         </div>
                         <div class="col-3">
                             @if (can($key_, 'add'))
-                                <a class="btn  btn-primary d-none float-end" data-bs-toggle="modal" href="#add"
-                                    id="class_btn_add"><span class="btn-icon-start text-primary"><i
-                                            class="fa fa-plus color-primary"></i>
-                                    </span>Tambah jadwal</a>
+                                <a class="btn  btn-primary d-none float-end" data-bs-toggle="modal" href="#add" id="class_btn_add"><span class="btn-icon-start text-primary"><i class="fa fa-plus color-primary"></i>
+                                    </span>{{ tr('tambah jadwal') }}</a>
                                 <div class="modal fade" id="add">
                                     <div class="modal-dialog" role="document">
                                         <div class="modal-content">
                                             <div class="modal-header">
-                                                <h5 class="modal-title">Tambah jadwal</h5>
+                                                <h5 class="modal-title">{{ tr('tambah jadwal') }}</h5>
                                                 <button type="button" class="btn-close" data-bs-dismiss="modal">
                                                 </button>
                                             </div>
@@ -59,7 +57,7 @@
                                                 <div class="modal-body">
                                                     <div class="row">
                                                         <div class="mb-3 col-md-12">
-                                                            <label class="form-label">Hari</label>
+                                                            <label class="form-label">{{ tr('hari') }}</label>
                                                             <select class="form-select form-select-lg" name="day">
                                                                 @php $di=0; @endphp
                                                                 @foreach (DAY as $subitem)
@@ -72,29 +70,26 @@
                                                             </select>
                                                         </div>
                                                         <div class="mb-3 col-md-6">
-                                                            <label class="form-label">Mulai</label>
-                                                            <input type="time" class="form-control" name="start"
-                                                                required>
+                                                            <label class="form-label">{{ tr('mulai') }}</label>
+                                                            <input type="time" class="form-control" name="start" required>
                                                         </div>
                                                         <div class="mb-3 col-md-6">
-                                                            <label class="form-label">Berakhir</label>
-                                                            <input type="time" class="form-control" name="end"
-                                                                required>
+                                                            <label class="form-label">{{ tr('berakhir') }}</label>
+                                                            <input type="time" class="form-control" name="end" required>
                                                         </div>
                                                         <div class="mb-3 col-md-12">
-                                                            <label class="form-label">Mata kuliah</label>
-                                                            <select class="form-select form-select-lg sel2" name="sks_id"
-                                                                id="sks_add" required>
-                                                                <option value="">-- Pilih mata kuliah --</option>
+                                                            <label class="form-label">{{ tr('mata kuliah') }}</label>
+                                                            <select class="form-select form-select-lg sel2" name="sks_id" id="sks_add" required>
+                                                                <option value="">-- {{ tr('pilih mata kuliah') }} --</option>
                                                             </select>
                                                         </div>
 
                                                         <div class="mb-3 col-md-12">
-                                                            <label class="form-label">Ruangan</label>
+                                                            <label class="form-label">{{ tr('ruangan') }}</label>
                                                             <select class="form-select form-select-lg" name="room_id">
-                                                                <option value="">
-                                                                    -- Pilih ruangan --
-                                                                </option>
+                                                                <option value="">-- {{ tr('pilih ruangan') }} --</option>
+
+
                                                                 @foreach ($room_data as $subitem)
                                                                     <option value="{{ $subitem->id }}">
                                                                         {{ $subitem->name }}
@@ -107,14 +102,13 @@
                                                     </div>
                                                 </div>
                                                 <div class="modal-footer">
-                                                    <button type="button" class="btn btn-danger light"
-                                                        data-bs-dismiss="modal">Tutup</button>
+                                                    <button type="button" class="btn btn-danger light" data-bs-dismiss="modal">{{ tr('tutup') }}</button>
                                                     <button type="submit" class="btn btn-primary">
-                                                        <div class="spinner-border spinner-border-sm d-none" role="status"
-                                                            id="load_add">
-                                                            <span class="visually-hidden">Loading...</span>
-                                                        </div> Simpan
+                                                        <div class="spinner-border spinner-border-sm d-none" role="status" id="load_add">
+                                                            <span class="visually-hidden">{{ tr('loading...') }}</span>
+                                                        </div>{{ tr('simpan') }}
                                                     </button>
+
                                                 </div>
                                             </form>
                                         </div>
@@ -132,15 +126,15 @@
                         <table id="data-table-1" class="display text-center table-striped">
                             <thead class=" bg-primary-light">
                                 <tr>
-                                    <th class="text-white">Hari</th>
-                                    <th class="text-white">Waktu</th>
-                                    <th class="text-white">SKS</th>
-                                    <th class="text-white">Mata kuliah</th>
+                                    <th class="text-white">{{ tr('hari') }}</th>
+                                    <th class="text-white">{{ tr('waktu') }}</th>
+                                    <th class="text-white">{{ tr('sks') }}</th>
+                                    <th class="text-white">{{ tr('mata kuliah') }}</th>
 
-                                    <th class="text-white">Ruangan</th>
+                                    <th class="text-white">{{ tr('ruangan') }}</th>
                                     @if (can($key_, 'edit') || can($key_, 'delete'))
-                                        <th class="text-white" width="30%">Dosen</th>
-                                        <th class="text-white">Aksi</th>
+                                        <th class="text-white" width="30%">{{ tr('dosen') }}</th>
+                                        <th class="text-white">{{ tr('aksi') }}</th>
                                     @endif
                                 </tr>
                             </thead>
@@ -153,7 +147,7 @@
                             <div class="modal-dialog" role="document">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h5 class="modal-title">Edit jadwal</h5>
+                                        <h5 class="modal-title">{{ tr('edit jadwal') }}</h5>
                                         <button type="button" class="btn-close" data-bs-dismiss="modal">
                                         </button>
                                     </div>
@@ -164,9 +158,8 @@
                                         <div class="modal-body text-start">
                                             <div class="row">
                                                 <div class="mb-3 col-md-12">
-                                                    <label class="form-label">Hari</label>
-                                                    <select class="form-select form-select-lg" name="day"
-                                                        id="day_edit">
+                                                    <label class="form-label">{{ tr('hari') }}</label>
+                                                    <select class="form-select form-select-lg" name="day" id="day_edit">
                                                         @php $di=-0; @endphp
                                                         @foreach (DAY as $subitem)
                                                             @if ($di > 0 && $di < 7)
@@ -179,31 +172,27 @@
                                                     </select>
                                                 </div>
                                                 <div class="mb-3 col-md-6">
-                                                    <label class="form-label">Mulai</label>
-                                                    <input type="time" class="form-control" name="start"
-                                                        id="start_edit" required>
+                                                    <label class="form-label">{{ tr('mulai') }}</label>
+                                                    <input type="time" class="form-control" name="start" id="start_edit" required>
                                                 </div>
                                                 <div class="mb-3 col-md-6">
-                                                    <label class="form-label">Berakhir</label>
-                                                    <input type="time" class="form-control" name="end"
-                                                        id="end_edit" required>
+                                                    <label class="form-label">{{ tr('berakhir') }}</label>
+                                                    <input type="time" class="form-control" name="end" id="end_edit" required>
                                                 </div>
                                                 <div class="mb-3 col-md-12">
-                                                    <label class="form-label">Mata
-                                                        kuliah</label>
-                                                    <select class="form-select form-select-lg sel2" name="sks_id"
-                                                        id="sks_edit">
-                                                        <option value="">-- Pilih mata kuliah --</option>
+                                                    <label class="form-label">{{ tr('mata kuliah') }}</label>
+
+                                                    <select class="form-select form-select-lg sel2" name="sks_id" id="sks_edit">
+                                                        <option value="">-- {{ tr('pilih mata kuliah') }} --</option>
                                                     </select>
                                                 </div>
 
                                                 <div class="mb-3 col-md-12">
-                                                    <label class="form-label">Ruangan</label>
-                                                    <select class="form-select form-select-lg" name="room_id"
-                                                        id="room_edit">
-                                                        <option value="">
-                                                            -- Pilih ruangan --
-                                                        </option>
+                                                    <label class="form-label">{{ tr('ruangan') }}</label>
+                                                    <select class="form-select form-select-lg" name="room_id" id="room_edit">
+                                                        <option value="">-- {{ tr('pilih ruangan') }} --</option>
+
+
                                                         @foreach ($room_data as $subitem)
                                                             <option value="{{ $subitem->id }}">
                                                                 {{ $subitem->name }}
@@ -216,14 +205,12 @@
                                             </div>
                                         </div>
                                         <div class="modal-footer">
-                                            <button type="button" class="btn btn-danger light"
-                                                data-bs-dismiss="modal">Tutup</button>
+                                            <button type="button" class="btn btn-danger light" data-bs-dismiss="modal">{{ tr('tutup') }}</button>
                                             <button type="submit" class="btn btn-primary">
-                                                <div class="spinner-border spinner-border-sm d-none" role="status"
-                                                    id="load_edit">
-                                                    <span class="visually-hidden">Loading...</span>
+                                                <div class="spinner-border spinner-border-sm d-none" role="status" id="load_edit">
+                                                    <span class="visually-hidden">{{ tr('loading...') }}</span>
                                                 </div>
-                                                Simpan
+                                                {{ tr('simpan') }}
                                             </button>
                                         </div>
                                     </form>
@@ -235,7 +222,7 @@
                             <div class="modal-dialog modal-dialog-centered" role="document">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h5 class="modal-title text-danger">Peringatan !!</h5>
+                                        <h5 class="modal-title text-danger">{{ tr('peringatan') }} !!</h5>
                                         <button type="button" class="btn-close" data-bs-dismiss="modal">
                                         </button>
                                     </div>
@@ -243,20 +230,17 @@
                                         {{ csrf_field() }}
                                         <div class="modal-body">
                                             <input type="hidden" name="id" id="id_delete">
-                                            <p>Apakah anda ingin menghapus SKS mata kuliah
-                                                <b id="name_delete"></b>
+                                            <p>{{ tr('apakah anda ingin menghapus sks mata kuliah') }} <b id="name_delete"></b>
                                             </p>
                                         </div>
                                         <div class="modal-footer">
-                                            <button type="button" class="btn btn-danger light"
-                                                data-bs-dismiss="modal">Tutup</button>
+                                            <button type="button" class="btn btn-danger light" data-bs-dismiss="modal">{{ tr('tutup') }}</button>
                                             <button type="submit" class="btn btn-primary">
 
-                                                <div class="spinner-border spinner-border-sm d-none" role="status"
-                                                    id="load_delete">
-                                                    <span class="visually-hidden">Loading...</span>
+                                                <div class="spinner-border spinner-border-sm d-none" role="status" id="load_delete">
+                                                    <span class="visually-hidden">{{ tr('loading...') }}</span>
                                                 </div>
-                                                Hapus
+                                                {{ tr('hapus') }}
                                             </button>
                                         </div>
                                     </form>
@@ -269,36 +253,31 @@
                             <div class="modal-dialog" role="document">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h5 class="modal-title">Tambah dosen untuk jadwal</h5>
+                                        <h5 class="modal-title">{{ tr('tambah dosen untuk jadwal') }}</h5>
                                         <button type="button" class="btn-close" data-bs-dismiss="modal">
                                         </button>
                                     </div>
-                                    <form action="{{ url('/4dm1n/jadwal/lecturer/add') }}" method="post"
-                                        id="form_lecturer_add">
+                                    <form action="{{ url('/4dm1n/jadwal/lecturer/add') }}" method="post" id="form_lecturer_add">
                                         {{ csrf_field() }}
                                         <input type="hidden" name="schedule_id" id="l_schedule_id_add">
                                         <div class="modal-body text-start">
                                             <div class="row">
                                                 <div class="mb-3 col-md-12">
-                                                    <label class="form-label">Dosen</label>
-                                                    <select class="form-select form-select-lg" name="lecturer_id"
-                                                        id="l_lecturer_add" required>
-                                                        <option value="">
-                                                            -- Pilih dosen --
-                                                        </option>
+                                                    <label class="form-label">{{ tr('dosen') }}</label>
+                                                    <select class="form-select form-select-lg" name="lecturer_id" id="l_lecturer_add" required>
+                                                        <option value="">-- {{ tr('pilih dosen') }} --</option>
+
+
                                                     </select>
                                                 </div>
 
                                                 <div class="mb-3 col-md-12">
-                                                    <label class="form-label">Status</label>
+                                                    <label class="form-label">{{ tr('status') }}</label>
                                                     <select class="form-select form-select-lg" name="sls_id" required>
-                                                        <option value="">
-                                                            -- Pilih status --
-                                                        </option>
+                                                        <option value="">-- {{ tr('pilih status') }}</option>
                                                         @foreach ($sls_data as $subitem)
                                                             <option value="{{ $subitem->id }}">
                                                                 {{ $subitem->name }}
-
                                                             </option>
                                                         @endforeach
                                                     </select>
@@ -307,14 +286,12 @@
                                             </div>
                                         </div>
                                         <div class="modal-footer">
-                                            <button type="button" class="btn btn-danger light"
-                                                data-bs-dismiss="modal">Tutup</button>
+                                            <button type="button" class="btn btn-danger light" data-bs-dismiss="modal">{{ tr('tutup') }}</button>
                                             <button type="submit" class="btn btn-primary">
-                                                <div class="spinner-border spinner-border-sm d-none" role="status"
-                                                    id="load_lecturer_add">
-                                                    <span class="visually-hidden">Loading...</span>
+                                                <div class="spinner-border spinner-border-sm d-none" role="status" id="load_lecturer_add">
+                                                    <span class="visually-hidden">{{ tr('loading...') }}</span>
                                                 </div>
-                                                Simpan
+                                                {{ tr('simpan') }}
                                             </button>
                                         </div>
                                     </form>
@@ -326,33 +303,30 @@
                             <div class="modal-dialog" role="document">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h5 class="modal-title">Edit dosen untuk jadwal</h5>
+                                        <h5 class="modal-title">{{ tr('edit dosen untuk jadwal') }}</h5>
                                         <button type="button" class="btn-close" data-bs-dismiss="modal">
                                         </button>
                                     </div>
-                                    <form action="{{ url('/4dm1n/jadwal/lecturer/edit') }}" method="post"
-                                        id="form_lecturer_edit">
+                                    <form action="{{ url('/4dm1n/jadwal/lecturer/edit') }}" method="post" id="form_lecturer_edit">
                                         {{ csrf_field() }}
                                         <input type="hidden" name="id" id="l_id_edit">
                                         <div class="modal-body text-start">
                                             <div class="row">
                                                 <div class="mb-3 col-md-12">
-                                                    <label class="form-label">Dosen</label>
-                                                    <select class="form-select form-select-lg" name="lecturer_id"
-                                                        id="l_lecturer_edit" disabled>
-                                                        <option value="">
-                                                            -- Pilih dosen --
-                                                        </option>
+                                                    <label class="form-label">{{ tr('dosen') }}</label>
+                                                    <select class="form-select form-select-lg" name="lecturer_id" id="l_lecturer_edit" disabled>
+                                                        <option value="">-- {{ tr('pilih dosen') }} --</option>
+
+
                                                     </select>
                                                 </div>
 
                                                 <div class="mb-3 col-md-12">
-                                                    <label class="form-label">Status</label>
-                                                    <select class="form-select form-select-lg" name="sls_id"
-                                                        id="l_sls_edit" required>
-                                                        <option value="">
-                                                            -- Pilih status --
-                                                        </option>
+                                                    <label class="form-label">{{ tr('status') }}</label>
+                                                    <select class="form-select form-select-lg" name="sls_id" id="l_sls_edit" required>
+                                                        <option value="">-- {{ tr('pilih status') }} --</option>
+
+
                                                         @foreach ($sls_data as $subitem)
                                                             <option value="{{ $subitem->id }}">
                                                                 {{ $subitem->name }}
@@ -365,14 +339,12 @@
                                             </div>
                                         </div>
                                         <div class="modal-footer">
-                                            <button type="button" class="btn btn-danger light"
-                                                data-bs-dismiss="modal">Tutup</button>
+                                            <button type="button" class="btn btn-danger light" data-bs-dismiss="modal">{{ tr('tutup') }}</button>
                                             <button type="submit" class="btn btn-primary">
-                                                <div class="spinner-border spinner-border-sm d-none" role="status"
-                                                    id="load_lecturer_edit">
-                                                    <span class="visually-hidden">Loading...</span>
+                                                <div class="spinner-border spinner-border-sm d-none" role="status" id="load_lecturer_edit">
+                                                    <span class="visually-hidden">{{ tr('loading...') }}</span>
                                                 </div>
-                                                Simpan
+                                                {{ tr('simpan') }}
                                             </button>
                                         </div>
                                     </form>
@@ -384,29 +356,26 @@
                             <div class="modal-dialog modal-dialog-centered" role="document">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h5 class="modal-title text-danger">Peringatan !!</h5>
+                                        <h5 class="modal-title text-danger">{{ tr('peringatan') }} !!</h5>
                                         <button type="button" class="btn-close" data-bs-dismiss="modal">
                                         </button>
                                     </div>
-                                    <form action="{{ url('/4dm1n/jadwal/lecturer/delete') }}" method="post"
-                                        id="form_lecturer_delete">
+                                    <form action="{{ url('/4dm1n/jadwal/lecturer/delete') }}" method="post" id="form_lecturer_delete">
                                         {{ csrf_field() }}
                                         <div class="modal-body">
                                             <input type="hidden" name="id" id="l_id_delete">
-                                            <p>Apakah anda ingin menghapus dosen
-                                                <b id="l_name_delete"></b> pada jadwal ini?
+                                            <p>{{ tr('apakah anda ingin menghapus dosen') }} <b id="l_name_delete"></b> {{ tr('pada jadwal ini') }}?
+
                                             </p>
                                         </div>
                                         <div class="modal-footer">
-                                            <button type="button" class="btn btn-danger light"
-                                                data-bs-dismiss="modal">Tutup</button>
+                                            <button type="button" class="btn btn-danger light" data-bs-dismiss="modal">{{ tr('tutup') }}</button>
                                             <button type="submit" class="btn btn-primary">
 
-                                                <div class="spinner-border spinner-border-sm d-none" role="status"
-                                                    id="load_lecture_delete">
-                                                    <span class="visually-hidden">Loading...</span>
+                                                <div class="spinner-border spinner-border-sm d-none" role="status" id="load_lecture_delete">
+                                                    <span class="visually-hidden">{{ tr('loading...') }}</span>
                                                 </div>
-                                                Hapus
+                                                {{ tr('hapus') }}
                                             </button>
                                         </div>
                                     </form>
@@ -518,7 +487,7 @@
                         next: '<i class="fa fa-angle-double-right" aria-hidden="true"></i>',
                         previous: '<i class="fa fa-angle-double-left" aria-hidden="true"></i>'
                     },
-                    processing: '<div class="d-flex justify-content-center"><div class="spinner-border" role="status"><span class="visually-hidden">Loading...</span></div></div>',
+                    processing: '<div class="d-flex justify-content-center"><div class="spinner-border" role="status"><span class="visually-hidden">{{ tr('loading...') }}</span></div></div>',
                     info: "<br> Records _START_ to _END_ of _MAX_ entries",
                 },
 
@@ -805,8 +774,8 @@
                         var el = data.result;
                         sks_add.empty();
                         sks_edit.empty();
-                        sks_add.append(`<option value="">-- Pilih mata kuliah --</option>`);
-                        sks_edit.append(`<option value="">-- Pilih mata kuliah --</option>`);
+                        sks_add.append(`<option value="">-- {{ tr('pilih mata kuliah') }} --</option>`);
+                        sks_edit.append(`<option value="">-- {{ tr('pilih mata kuliah') }} --</option>`);
                         for (var i = 0; i < el.length; i++) {
                             var row = el[i];
                             sks_add.append(`<option value="${row.id}">${row.name}</option>`);
@@ -843,8 +812,8 @@
                         var el = data.result;
                         lecturer_add.empty();
                         lecturer_edit.empty();
-                        lecturer_add.append(`<option value="">-- Pilih dosen --</option>`);
-                        lecturer_edit.append(`<option value="">-- Pilih dosen --</option>`);
+                        lecturer_add.append(`<option value="">-- {{ tr('pilih dosen') }} --</option>`);
+                        lecturer_edit.append(`<option value="">-- {{ tr('pilih dosen') }} --</option>`);
                         for (var i = 0; i < el.length; i++) {
                             var row = el[i];
                             lecturer_add.append(`<option value="${row.id}">${row.name}</option>`);

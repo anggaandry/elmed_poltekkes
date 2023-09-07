@@ -16,7 +16,7 @@ class StudyProgramFull extends Model
     ];
     
     protected $fillable = [
-        'university_id','program_id','study_program_id','category_id'
+        'university_id','program_id','study_program_id','category_id','lang'
     ];
 
     protected static function booted()

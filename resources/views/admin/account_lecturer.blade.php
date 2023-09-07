@@ -5,8 +5,8 @@
 @section('breadcrumb')
     <div class="row page-titles">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item active"><a href="javascript:void(0)">Akun</a></li>
-            <li class="breadcrumb-item"><a href="javascript:void(0)">Dosen</a></li>
+            <li class="breadcrumb-item active"><a href="javascript:void(0)">{{ tr('akun') }}</a></li>
+            <li class="breadcrumb-item"><a href="javascript:void(0)">{{ tr('dosen') }}</a></li>
         </ol>
     </div>
 @endsection
@@ -19,10 +19,9 @@
                 <div class="card-header">
                     <div class="row w-100">
                         <div class="col-5">
-                            <label class="form-label text-left">Prodi</label>
-                            <select class="form-select form-select-lg" id="prodi_" onchange="load_table()"
-                                @if (can_prodi()) disabled @endif>
-                                <option value="">Semua prodi </option>
+                            <label class="form-label text-left">{{ tr('prodi') }}</label>
+                            <select class="form-select form-select-lg" id="prodi_" onchange="load_table()" @if (can_prodi()) disabled @endif>
+                                <option value="">{{ tr('semua prodi') }}</option>
                                 @foreach ($prodi_data as $item)
                                     <option value="{{ $item->id }}" @if ($prodi_id == $item->id) selected @endif>
                                         {{ $item->program->name }}
@@ -39,13 +38,13 @@
                             <thead class="">
                                 <tr>
                                     <th>#</th>
-                                    <th>Avatar</th>
-                                    <th>Nama</th>
-                                    <th>NIDN</th>
-                                    <th>Online terakhir</th>
-                                    <th>Status</th>
+                                    <th>{{ tr('avatar') }}</th>
+                                    <th>{{ tr('nama') }}</th>
+                                    <th>{{ tr('nidn') }}</th>
+                                    <th>{{ tr('online terakhir') }}</th>
+                                    <th>{{ tr('status') }}</th>
                                     @if (can($key_, 'edit'))
-                                        <th>Aksi</th>
+                                        <th>{{ tr('aksi') }}</th>
                                     @endif
                                 </tr>
                             </thead>
@@ -62,20 +61,19 @@
                         <div class="modal-dialog modal-dialog-centered" role="document">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 class="modal-title text-danger">Peringatan !!</h5>
+                                    <h5 class="modal-title text-danger">{{ tr('peringatan') }} !!</h5>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal">
                                     </button>
                                 </div>
 
                                 <div class="modal-body">
-                                    <p>Apakah anda ingin mengaktifkan akun
-                                        <b id="name_active"></b>
+                                    <p>{{ tr('apakah anda ingin mengaktifkan akun') }} <b id="name_active"></b>
+
                                     </p>
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-danger light"
-                                        data-bs-dismiss="modal">Tutup</button>
-                                    <a id="button_active" class="btn btn-primary">Aktifkan</a>
+                                    <button type="button" class="btn btn-danger light" data-bs-dismiss="modal">{{ tr('tutup') }}</button>
+                                    <a id="button_active" class="btn btn-primary">{{ tr('aktifkan') }}</a>
                                 </div>
 
                             </div>
@@ -86,20 +84,19 @@
                         <div class="modal-dialog modal-dialog-centered" role="document">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 class="modal-title text-danger">Peringatan !!</h5>
+                                    <h5 class="modal-title text-danger">{{ tr('peringatan') }} !!</h5>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal">
                                     </button>
                                 </div>
 
                                 <div class="modal-body">
-                                    <p>Apakah anda ingin menonaktifkan akun
-                                        <b id="name_disactive"></b>
+                                    <p>{{ tr('apakah anda ingin menonaktifkan akun') }} <b id="name_disactive"></b>
+
                                     </p>
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-danger light"
-                                        data-bs-dismiss="modal">Tutup</button>
-                                    <a id="button_disactive" class="btn btn-primary">Non-aktifkan</a>
+                                    <button type="button" class="btn btn-danger light" data-bs-dismiss="modal">{{ tr('tutup') }}</button>
+                                    <a id="button_disactive" class="btn btn-primary">{{ tr('non-aktifkan') }}</a>
                                 </div>
 
                             </div>
@@ -110,20 +107,19 @@
                         <div class="modal-dialog modal-dialog-centered" role="document">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 class="modal-title text-danger">Peringatan !!</h5>
+                                    <h5 class="modal-title text-danger">{{ tr('peringatan') }} !!</h5>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal">
                                     </button>
                                 </div>
 
                                 <div class="modal-body">
-                                    <p>Apakah anda ingin mereset password akun
-                                        <b id="name_respass"></b>
+                                    <p>{{ tr('apakah anda ingin mereset password akun') }} <b id="name_respass"></b>
+
                                     </p>
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-danger light"
-                                        data-bs-dismiss="modal">Tutup</button>
-                                    <a id="button_respass" class="btn btn-primary">Reset password</a>
+                                    <button type="button" class="btn btn-danger light" data-bs-dismiss="modal">{{ tr('tutup') }}</button>
+                                    <a id="button_respass" class="btn btn-primary">{{ tr('reset password') }}</a>
                                 </div>
 
                             </div>
@@ -205,7 +201,7 @@
                         next: '<i class="fa fa-angle-double-right" aria-hidden="true"></i>',
                         previous: '<i class="fa fa-angle-double-left" aria-hidden="true"></i>'
                     },
-                    processing: '<div class="d-flex justify-content-center"><div class="spinner-border" role="status"><span class="visually-hidden">Loading...</span></div></div>',
+                    processing: '<div class="d-flex justify-content-center"><div class="spinner-border" role="status"><span class="visually-hidden">{{ tr('loading...') }}</span></div></div>',
                     info: "<br> &nbsp; &nbsp; <b>page _PAGE_ of _PAGES_</b>  | Records _START_ to _END_ of _MAX_ entries",
                 },
 

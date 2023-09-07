@@ -48,7 +48,7 @@ class LecturerController extends Controller
                 
             return DataTables::of($data)->addIndexColumn()
                 ->addColumn('status_view', function($row){
-                    return $row->status?'<span class="badge bg-success">active</span>':'<span class="badge bg-danger">unactive</span>';
+                    return $row->status?'<span class="badge bg-success">'.tr('active').'</span>':'<span class="badge bg-danger">'.tr('unactive').'</span>';
                 })
                 ->addColumn('avatar', function($row){
                     $img=$row->avatar ? asset(AVATAR_PATH . $row->avatar) : 'https://ui-avatars.com/api/?background=89CFF0&&name=' . str_replace(' ', '+', $row->name);
@@ -82,11 +82,11 @@ class LecturerController extends Controller
                 ->addColumn('action', function($row){
                     $action=$action='<a class="btn btn-outline-primary btn-rounded btn-xs" href="'.url('4dm1n/dosen/detail?id='.$row->id).'"><i class="fa fa-eye"></i></a>';
                     if(can($this->key_,'edit')){
-                        $action.='<br> <a class="btn btn-outline-info btn-rounded btn-xs mt-1" href="'.url('4dm1n/dosen/form/edit?id='.$row->id).'"><i class="fa fa-edit"></i></a>';
+                        $action.='<br><a class="btn btn-outline-info btn-rounded btn-xs mt-1" href="'.url('4dm1n/dosen/form/edit?id='.$row->id).'"><i class="fa fa-edit"></i></a>';
                     }
 
                     if(can($this->key_,'delete')){
-                        $action.='<br> <button class="btn btn-outline-danger btn-rounded btn-xs mt-1" onclick="show_delete('.$row->id.',\''.$row->name.'\')"><i class="fa fa-trash"></i></button>';
+                        $action.='<br><button class="btn btn-outline-danger btn-rounded btn-xs mt-1" onclick="show_delete('.$row->id.',\''.$row->name.'\')"><i class="fa fa-trash"></i></button>';
                     }
 
                     return $action;
@@ -168,12 +168,12 @@ class LecturerController extends Controller
     
             if ($status_data) {
                 addLog(0,$this->menu_id,'Menambah dosen '.$name);
-                return redirect('4dm1n/dosen/detail?id='.$status_data->id)->with('success', 'berhasil menambah dosen');
+                return redirect('4dm1n/dosen/detail?id='.$status_data->id)->with('success', tr('berhasil menambah').' '.tr('dosen'));
             } else {
-                return redirect()->back()->with('failed', 'gagal menambah dosen');
+                return redirect()->back()->with('failed', tr('gagal menambah').' '.tr('dosen'));
             }
         }else{
-            return redirect()->back()->with('failed', 'nomor identitas sudah ada');
+            return redirect()->back()->with('failed', tr('nomor identitas sudah ada'));
         }
 
     }
@@ -198,7 +198,7 @@ class LecturerController extends Controller
         $check_identity=Lecturer::where('identity_number',$identity_number)->first();
         if($old_identity->identity_number!=$identity_number){
             if($check_identity){
-                return redirect()->back()->with('failed', 'nomor identitas sudah ada');
+                return redirect()->back()->with('failed', tr('nomor identitas sudah ada'));
             }
         }
 
@@ -235,13 +235,13 @@ class LecturerController extends Controller
 
             addLog(0,$this->menu_id,'Mengedit dosen '.$name);
             if($route==1){
-                return redirect('4dm1n/dosen/detail?id='.$id)->with('success', 'sukses mengedit dosen');
+                return redirect('4dm1n/dosen/detail?id='.$id)->with('success', tr('sukses mengedit').' '.tr('dosen'));
             }else{
-                return redirect('4dm1n/dosen')->with('success', 'sukses mengedit dosen');
+                return redirect('4dm1n/dosen')->with('success', tr('sukses mengedit').' '.tr('dosen'));
             }
            
         } else {
-            return redirect()->back()->with('failed', 'gagal mengedit dosen');
+            return redirect()->back()->with('failed', tr('gagal mengedit').' '.tr('dosen'));
         }
     }
 
@@ -259,13 +259,13 @@ class LecturerController extends Controller
             }
             addLog(0,$this->menu_id,'Menghapus dosen '.$old_data->name);
             if($route==1){
-                return redirect('4dm1n/dosen')->with('success', 'Dosen berhasil di hapus');
+                return redirect('4dm1n/dosen')->with('success', tr('dosen').' '.tr('berhasil di hapus'));
             }else{
-                return redirect()->back()->with('success', 'Dosen berhasil di hapus');
+                return redirect()->back()->with('success', tr('dosen').' '.tr('berhasil di hapus'));
             }
             
         } else {
-            return redirect()->back()->with('failed', 'Dosen gagal di hapus');
+            return redirect()->back()->with('failed', tr('dosen').' '.tr('gagal di hapus'));
         }
     }
 
@@ -369,7 +369,7 @@ class LecturerController extends Controller
                     
                     $txt.='<li>
                         <span class="mt-5"> '.title_lecturer($obj->lecturer).'</span>
-                        <span class="badge badge-xs bg-'.$obj->sls->bg.'" >'.$obj->sls->name.'</span> </li>';
+                        <span class="badge badge-xs bg-'.$obj->sls->bg.'" >'.$obj->sls->name.'</span></li>';
 
                 }
 
@@ -398,9 +398,9 @@ class LecturerController extends Controller
             $prodi_data=StudyProgramFull::where('id',$prodi_id)->first();
             $lecturer_data=Lecturer::where('id',$lecturer_id)->first();
             addLog(0,$this->menu_id,'Menambah prodi '.$prodi_data->name.' untuk dosen '.$lecturer_data->name);
-            return redirect('4dm1n/dosen/detail?tab=1&id='.$lecturer_id)->with('success', 'berhasil menambah dosen');
+            return redirect('4dm1n/dosen/detail?tab=1&id='.$lecturer_id)->with('success', tr('berhasil menambah').' '.tr('dosen'));
         } else {
-            return redirect('4dm1n/dosen/detail?tab=1&id='.$lecturer_id)->with('failed', 'gagal menambah dosen');
+            return redirect('4dm1n/dosen/detail?tab=1&id='.$lecturer_id)->with('failed', tr('gagal menambah').' '.tr('dosen'));
         }
       
 
@@ -422,9 +422,9 @@ class LecturerController extends Controller
         if ($status_data) {
             
             addLog(0,$this->menu_id,($status==1?'Mengaktifkan prodi ':'Menon-aktifkan prodi ').$old_data->prodi->name.' untuk dosen '.$old_data->lecturer->name);
-            return redirect('4dm1n/dosen/detail?tab=1&id='.$id)->with('success', 'berhasil mengubah status prodi dosen');
+            return redirect('4dm1n/dosen/detail?tab=1&id='.$old_data->lecturer_id)->with('success', tr('berhasil mengubah status prodi dosen'));
         } else {
-            return redirect('4dm1n/dosen/detail?tab=1&id='.$id)->with('failed', 'gagal mengubah status prodi dosen');
+            return redirect('4dm1n/dosen/detail?tab=1&id='.$id)->with('failed', tr('gagal mengubah status prodi dosen'));
         }
     }
 
@@ -436,9 +436,9 @@ class LecturerController extends Controller
 
         if ($status_data) {
             addLog(0,$this->menu_id,'menghapus prodi'.$old_data->prodi->name.' untuk dosen '.$old_data->lecturer->name);
-            return redirect('4dm1n/dosen/detail?tab=1&id='.$old_data->lecturer->id)->with('success', 'Prodi dosen berhasil di hapus');
+            return redirect('4dm1n/dosen/detail?tab=1&id='.$old_data->lecturer->id)->with('success', tr('prodi dosen').' '.tr('berhasil di hapus'));
         } else {
-            return redirect('4dm1n/dosen/detail?tab=1&id='.$old_data->lecturer->id)->with('failed', 'Prodi dosen gagal di hapus');
+            return redirect('4dm1n/dosen/detail?tab=1&id='.$old_data->lecturer->id)->with('failed', tr('prodi dosen').' '.tr('gagal di hapus'));
         }
     }
 
@@ -475,7 +475,7 @@ class LecturerController extends Controller
                     return $row->online?date_id($row->online,4):"-";
                 })
                 ->addColumn('status_view', function($row){
-                    return $row->status?'<span class="badge bg-success">active</span>':'<span class="badge bg-danger">unactive</span>';
+                    return $row->status?'<span class="badge bg-success">'.tr('active').'</span>':'<span class="badge bg-danger">'.tr('unactive').'</span>';
                 })
                 ->addColumn('avatar', function($row){
                     $img=$row->avatar ? asset(AVATAR_PATH . $row->avatar) : 'https://ui-avatars.com/api/?background=89CFF0&&name=' . str_replace(' ', '+', $row->name);
@@ -515,16 +515,16 @@ class LecturerController extends Controller
             if ($status_data) {
                 addLog(0,$this->menu_account_id,'Mereset password akun dosen '.$account_data->name);
                 if($route==1){
-                    return redirect()->back()->with('success', 'password akun dosen berhasil di reset');
+                    return redirect()->back()->with('success', tr('password akun dosen berhasil di reset'));
                 }else{
-                    return redirect('4dm1n/akun/dosen?prodi_id='.$prodi_id)->with('success', 'password akun dosen berhasil di reset');
+                    return redirect('4dm1n/akun/dosen?prodi_id='.$prodi_id)->with('success', tr('password akun dosen berhasil di reset'));
                 }
                 
             } else {
-                return redirect('4dm1n/akun/dosen?prodi_id='.$prodi_id)->with('failed', 'password akun dosen gagal di reset');
+                return redirect('4dm1n/akun/dosen?prodi_id='.$prodi_id)->with('failed', tr('password akun dosen gagal di reset'));
             }
         }else{
-            return redirect('4dm1n/akun/dosen?prodi_id='.$prodi_id)->with('failed', 'ID akun tidak ditemukan');
+            return redirect('4dm1n/akun/dosen?prodi_id='.$prodi_id)->with('failed', tr('id akun tidak ditemukan'));
         }
     }
 
@@ -539,12 +539,12 @@ class LecturerController extends Controller
             $status_data = Lecturer::where(['id'=>$id])->update(['status'=>$status]);
             if ($status_data) {
                 addLog(0,$this->menu_account_id,($status==1?'Mengaktifkan akun dosen ':'Menon-aktifkan akun dosen').$account_data->name);
-                return redirect('4dm1n/akun/dosen?prodi_id='.$prodi_id)->with('success', 'Akun dosen berhasil di '.($status==1?' aktifkan':' non-aktifkan'));
+                return redirect('4dm1n/akun/dosen?prodi_id='.$prodi_id)->with('success', 'Akun dosen berhasil di '.($status==1?(' '.tr('aktifkan')):(' '.tr('non-aktifkan'))));
             } else {
-                return redirect('4dm1n/akun/dosen?prodi_id='.$prodi_id)->with('failed', 'Akun dosen gagal di '.($status==1?' aktifkan':' non-aktifkan'));
+                return redirect('4dm1n/akun/dosen?prodi_id='.$prodi_id)->with('failed', 'Akun dosen gagal di '.($status==1?(' '.tr('aktifkan')):(' '.tr('non-aktifkan'))));
             }
         }else{
-            return redirect('4dm1n/akun/dosen?prodi_id='.$prodi_id)->with('failed', 'ID akun tidak ditemukan');
+            return redirect('4dm1n/akun/dosen?prodi_id='.$prodi_id)->with('failed', tr('id akun tidak ditemukan'));
         }
     }
 

@@ -19,6 +19,8 @@ class QuizController extends Controller
 {
     private $menu_id;
     private $now_hour;
+    private $key_;
+    private $now_date;
 
     public function __construct()
     {
@@ -33,8 +35,6 @@ class QuizController extends Controller
         $data = [];
         return view('mahasiswa/quiz', $data);
     }
-
-    
 
     public function ajax_list(Request $request)
     {
@@ -52,11 +52,11 @@ class QuizController extends Controller
             $data=$data->paginate($limit)->onEachSide(1);
 
             $data->through(function ($item) {
-                $status="<span class='badge badge-sm badge-success'>aktif</span>";
+                $status="<span class='badge badge-sm badge-success'>".tr('aktif')."</span>";
                 if(strtotime($item->end)<strtotime($this->now_hour)){
-                    $status="<span class='badge badge-sm badge-dark'>selesai</span>";
+                    $status="<span class='badge badge-sm badge-dark'>".tr('selesai')."</span>";
                     if($item->publish==0){
-                        $status="<span class='badge badge-sm badge-danger'>dikoreksi</span>";
+                        $status="<span class='badge badge-sm badge-danger'>".tr('dikoreksi')."</span>";
                     }
                 }
               
@@ -111,7 +111,7 @@ class QuizController extends Controller
             $data->score="-";
             
             if($data->passed){
-                $data->score="<i class='text-danger'>sedang dikoreksi</i>";
+                $data->score="<i class='text-danger'>".tr('sedang dikoreksi')."</i>";
             }
             
             if($data->publish==1){
@@ -131,10 +131,6 @@ class QuizController extends Controller
                 $data->score='<span class="badge badge-info">'.$score.'/'.$value.'</span>';
                 
             }
-
-            
-
-            
             
             $out = [
                 "message" => "success",
@@ -153,7 +149,6 @@ class QuizController extends Controller
             $check_view=QuizAbsence::where(['colleger_id'=>$colleger_data->id,'quiz_id'=>$quiz_class->quiz_id,'quiz_class_id'=>$quiz_class->id])->first();
             if(!$check_view ){
                 QuizAbsence::create(['colleger_id'=>$colleger_data->id,'quiz_id'=>$quiz_class->quiz->id,'quiz_class_id'=>$quiz_class->id]);
-                
             }
 
             $question_data=[];
@@ -170,7 +165,7 @@ class QuizController extends Controller
             ];
             return view('mahasiswa/quiz_do', $data);
         }else{
-            return redirect('mahasiswa/kuis')->with('failed','Kuis berakhir');
+            return redirect('mahasiswa/kuis')->with('failed',tr('kuis berakhir'));
         }
         
        
@@ -206,7 +201,7 @@ class QuizController extends Controller
             ];
             return view('mahasiswa/quiz_result', $data);
         }else{
-            return redirect('mahasiswa/kuis')->with('failed','Nilai kuis belum dipublish');
+            return redirect('mahasiswa/kuis')->with('failed',tr('nilai kuis belum dipublish'));
         }
     }
 
@@ -247,10 +242,10 @@ class QuizController extends Controller
         }
 
         if(!$status_data){
-            $message="Jawaban gagal disimpan";
+            $message=tr('jawaban gagal disimpan');
             $code=0;
         }else{
-            $message="Jawaban berhasil disimpan";
+            $message=tr('jawaban berhasil disimpan');
             $code=1;
         }
         
@@ -291,14 +286,14 @@ class QuizController extends Controller
             }
 
             if(!$status_data){
-                $message="File gagal disimpan";
+                $message=tr('file gagal disimpan');
                 $code=0;
             }else{
-                $message="File berhasil disimpan";
+                $message=tr('file berhasil disimpan');
                 $code=1;
             }
         }else{
-            $message="File gagal disimpan,tidak ada file terdeteksi";
+            $message=tr("file gagal disimpan,tidak ada file terdeteksi");
             $code=0;
         }
 
@@ -320,10 +315,10 @@ class QuizController extends Controller
         'colleger_id'=>$colleger_id,"quiz_question_id"=>$quiz_question_id])->delete();
 
         if(!$status_data){
-            $message="Gagal menghapus jawaban";
+            $message=tr('gagal menghapus jawaban');
             $code=0;
         }else{
-            $message="Sukses menghapus jawaban ";
+            $message=tr('sukses menghapus jawaban')." ";
             $code=1;
         }
         

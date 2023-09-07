@@ -53,7 +53,7 @@ class SKSController extends Controller
             return DataTables::of($data)->addIndexColumn()
                 
                 ->addColumn('status_view', function($row){
-                    return $row->status?'<span class="badge bg-success">active</span>':'<span class="badge bg-danger">unactive</span>';
+                    return $row->status?'<span class="badge bg-success">'.tr('active').'</span>':'<span class="badge bg-danger">'.tr('unactive').'</span>';
                 })
                 ->addColumn('action', function($row){
                     $action="";
@@ -119,9 +119,9 @@ class SKSController extends Controller
 
         if ($status_data) {
             addLog(0,$this->menu_id,'Menambah matkul prodi '.$subject->name);
-            return redirect('4dm1n/sks?prodi_id='.$prodi_id)->with('success', 'berhasil menambah matkul prodi');
+            return redirect('4dm1n/sks?prodi_id='.$prodi_id)->with('success', tr('berhasil menambah').' '.tr('matkul prodi'));
         } else {
-            return redirect()->back()->with('failed', 'gagal menambah matkul prodi');
+            return redirect()->back()->with('failed', tr('gagal menambah').' '.tr('matkul prodi'));
         }
     }
 
@@ -148,9 +148,9 @@ class SKSController extends Controller
 
         if ($status_data) {
             addLog(0,$this->menu_id,'Mengedit matkul prodi '.$subject->name);
-            return redirect('4dm1n/sks?prodi_id='.$prodi_id)->with('success', 'sukses mengedit matkul prodi');
+            return redirect('4dm1n/sks?prodi_id='.$prodi_id)->with('success', tr('sukses mengedit').' '.tr('matkul prodi'));
         } else {
-            return redirect()->back()->with('failed', 'gagal mengedit matkul prodi');
+            return redirect()->back()->with('failed', tr('gagal mengedit').' '.tr('matkul prodi'));
         }
     }
 
@@ -161,9 +161,9 @@ class SKSController extends Controller
 
         if ($status_data) {
             addLog(0,$this->menu_id,'Menghapus patkul prodi '.$old_data->subject->name);
-            return redirect()->back()->with('success', 'Matkul prodi berhasil di hapus');
+            return redirect()->back()->with('success', tr('matkul prodi').' '.tr('berhasil di hapus'));
         } else {
-            return redirect()->back()->with('failed', 'Matkul prodi gagal di hapus');
+            return redirect()->back()->with('failed', tr('matkul prodi').' '.tr('gagal di hapus'));
         }
     }
 

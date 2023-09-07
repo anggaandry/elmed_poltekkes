@@ -5,8 +5,8 @@
 @section('breadcrumb')
     <div class="row page-titles">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item active"><a href="javascript:void(0)">Akademik</a></li>
-            <li class="breadcrumb-item"><a href="javascript:void(0)">Semester</a></li>
+            <li class="breadcrumb-item active"><a href="javascript:void(0)">{{ tr('akademik') }}</a></li>
+            <li class="breadcrumb-item"><a href="javascript:void(0)">{{ tr('semester') }}</a></li>
         </ol>
     </div>
 @endsection
@@ -19,14 +19,13 @@
                 @if (can($key_, 'add'))
                     <div class="card-header">
                         <div style="width:100%;">
-                            <a class="btn  btn-primary float-end" data-bs-toggle="modal" href="#add"><span
-                                    class="btn-icon-start text-primary"><i class="fa fa-plus color-primary"></i>
-                                </span>Tambah semester</a>
+                            <a class="btn  btn-primary float-end" data-bs-toggle="modal" href="#add"><span class="btn-icon-start text-primary"><i class="fa fa-plus color-primary"></i>
+                                </span>{{ tr('tambah semester') }}</a>
                             <div class="modal fade" id="add">
                                 <div class="modal-dialog" role="document">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h5 class="modal-title">Tambah semester</h5>
+                                            <h5 class="modal-title">{{ tr('tambah semester') }}</h5>
                                             <button type="button" class="btn-close" data-bs-dismiss="modal">
                                             </button>
                                         </div>
@@ -36,38 +35,36 @@
                                                 <div class="row">
 
                                                     <div class="mb-3 col-md-6">
-                                                        <label class="form-label">Semester</label>
+                                                        <label class="form-label">{{ tr('semester') }}</label>
                                                         <select class="form-select form-select-lg" name="odd">
-                                                            <option value="1">Ganjil </option>
-                                                            <option value="2">Genap</option>
+                                                            <option value="1">{{ tr('ganjil') }}</option>
+                                                            <option value="2">{{ tr('genap') }}</option>
                                                         </select>
                                                     </div>
 
                                                     <div class="mb-3 col-md-6">
-                                                        <label class="form-label">Tahun akademik</label>
+                                                        <label class="form-label">{{ tr('tahun akademik') }}</label>
                                                         <div class="input-group">
-                                                            <input type="number" class="form-control" name="year"
-                                                                oninput="next(this.value)" required>
+                                                            <input type="number" class="form-control" name="year" oninput="next(this.value)" required>
                                                             <span class="input-group-text border-0" id="next_year"></span>
                                                         </div>
                                                     </div>
 
                                                     <div class="mb-3 col-md-6">
-                                                        <label class="form-label">Mulai Semester</label>
+                                                        <label class="form-label">{{ tr('mulai semester') }}</label>
                                                         <input type="date" name="start" class="form-control" required>
                                                     </div>
 
                                                     <div class="mb-3 col-md-6">
-                                                        <label class="form-label">Berakhir Semester</label>
+                                                        <label class="form-label">{{ tr('berakhir semester') }}</label>
                                                         <input type="date" name="end" class="form-control" required>
                                                     </div>
 
                                                 </div>
                                             </div>
                                             <div class="modal-footer">
-                                                <button type="button" class="btn btn-danger light"
-                                                    data-bs-dismiss="modal">Tutup</button>
-                                                <button type="submit" class="btn btn-primary">Simpan</button>
+                                                <button type="button" class="btn btn-danger light" data-bs-dismiss="modal">{{ tr('tutup') }}</button>
+                                                <button type="submit" class="btn btn-primary">{{ tr('simpan') }}</button>
                                             </div>
                                         </form>
                                     </div>
@@ -81,14 +78,14 @@
                         <table id="data-table-1" class="display text-center table-striped">
                             <thead class="">
                                 <tr>
-                                    <th>Mulai</th>
-                                    <th>Berakhir</th>
-                                    <th>Semester</th>
-                                    <th>T.A</th>
+                                    <th>{{ tr('mulai') }}</th>
+                                    <th>{{ tr('berakhir') }}</th>
+                                    <th>{{ tr('semester') }}</th>
+                                    <th>{{ tr('t.a') }}</th>
 
-                                    <th>Status</th>
+                                    <th>{{ tr('status') }}</th>
                                     @if (can($key_, 'edit') || can($key_, 'delete'))
-                                        <th>Aksi</th>
+                                        <th>{{ tr('aksi') }}</th>
                                     @endif
                                 </tr>
                             </thead>
@@ -103,88 +100,68 @@
 
                                         <td>
                                             @if (strtotime($item->start) <= strtotime(date('Y-m-d')) && strtotime($item->end) >= strtotime(date('Y-m-d')))
-                                                <span class='badge bg-success'>Aktif</span>
+                                                <span class='badge bg-success'>{{ tr('aktif') }}</span>
                                             @elseif(strtotime($item->start) >= strtotime(date('Y-m-d')))
-                                                <span class='badge bg-primary'>Coming soon</span>
+                                                <span class='badge bg-primary'>{{ tr('coming soon') }}</span>
                                             @elseif(strtotime($item->end) <= strtotime(date('Y-m-d')))
-                                                <span class='badge bg-secondary'>Passed</span>
+                                                <span class='badge bg-secondary'>{{ tr('passed') }}</span>
                                             @endif
                                         </td>
                                         @if (can($key_, 'edit') || can($key_, 'delete'))
                                             <td>
                                                 @if (can($key_, 'edit'))
-                                                    <a class="btn btn-outline-info btn-xs" data-bs-toggle="modal"
-                                                        href="#edit{{ $item->id }}"><i
-                                                            class="fa fa-edit color-info"></i>
+                                                    <a class="btn btn-outline-info btn-xs" data-bs-toggle="modal" href="#edit{{ $item->id }}"><i class="fa fa-edit color-info"></i>
                                                     </a>
                                                     <div class="modal fade" id="edit{{ $item->id }}">
                                                         <div class="modal-dialog" role="document">
                                                             <div class="modal-content">
                                                                 <div class="modal-header">
-                                                                    <h5 class="modal-title">Edit semester</h5>
-                                                                    <button type="button" class="btn-close"
-                                                                        data-bs-dismiss="modal">
+                                                                    <h5 class="modal-title">{{ tr('edit semester') }}</h5>
+                                                                    <button type="button" class="btn-close" data-bs-dismiss="modal">
                                                                     </button>
                                                                 </div>
-                                                                <form action="{{ url('/4dm1n/semester/edit') }}"
-                                                                    method="post">
+                                                                <form action="{{ url('/4dm1n/semester/edit') }}" method="post">
                                                                     {{ csrf_field() }}
-                                                                    <input type="hidden" name="id"
-                                                                        value="{{ $item->id }}">
+                                                                    <input type="hidden" name="id" value="{{ $item->id }}">
                                                                     <div class="modal-body text-start">
                                                                         <div class="row">
 
                                                                             <div class="mb-3 col-md-6">
-                                                                                <label class="form-label">Semester</label>
-                                                                                <select class="form-select form-select-lg"
-                                                                                    name="odd" disabled>
-                                                                                    <option value="1"
-                                                                                        @if ($item->odd == 1) selected @endif>
-                                                                                        Ganjil </option>
-                                                                                    <option value="2"
-                                                                                        @if ($item->odd == 2) selected @endif>
-                                                                                        Genap</option>
+                                                                                <label class="form-label">{{ tr('semester') }}</label>
+                                                                                <select class="form-select form-select-lg" name="odd" disabled>
+                                                                                    <option value="1" @if ($item->odd == 1) selected @endif>
+                                                                                        {{ tr('ganjil') }} </option>
+                                                                                    <option value="2" @if ($item->odd == 2) selected @endif>
+                                                                                        {{ tr('genap') }}</option>
                                                                                 </select>
                                                                             </div>
 
                                                                             <div class="mb-3 col-md-6">
-                                                                                <label class="form-label">Tahun
-                                                                                    akademik</label>
+                                                                                <label class="form-label">{{ tr('tahun akademik') }}</label>
+
                                                                                 <div class="input-group">
-                                                                                    <input type="number"
-                                                                                        class="form-control"
-                                                                                        name="year"
-                                                                                        value="{{ $item->year }}"
-                                                                                        disabled>
-                                                                                    <span
-                                                                                        class="input-group-text border-0">/{{ $item->year + 1 }}</span>
+                                                                                    <input type="number" class="form-control" name="year" value="{{ $item->year }}" disabled>
+                                                                                    <span class="input-group-text border-0">/{{ $item->year + 1 }}</span>
                                                                                 </div>
                                                                             </div>
 
                                                                             <div class="mb-3 col-md-6">
-                                                                                <label class="form-label">Mulai
-                                                                                    Semester</label>
-                                                                                <input type="date" name="start"
-                                                                                    value="{{ $item->start }}"
-                                                                                    class="form-control" required>
+                                                                                <label class="form-label">{{ tr('mulai semester') }}</label>
+
+                                                                                <input type="date" name="start" value="{{ $item->start }}" class="form-control" required>
                                                                             </div>
 
                                                                             <div class="mb-3 col-md-6">
-                                                                                <label class="form-label">Berakhir
-                                                                                    Semester</label>
-                                                                                <input type="date" name="end"
-                                                                                    value="{{ $item->end }}"
-                                                                                    class="form-control" required>
+                                                                                <label class="form-label">{{ tr('berakhir semester') }}</label>
+
+                                                                                <input type="date" name="end" value="{{ $item->end }}" class="form-control" required>
                                                                             </div>
 
                                                                         </div>
                                                                     </div>
                                                                     <div class="modal-footer">
-                                                                        <button type="button"
-                                                                            class="btn btn-danger light"
-                                                                            data-bs-dismiss="modal">Tutup</button>
-                                                                        <button type="submit"
-                                                                            class="btn btn-primary">Simpan</button>
+                                                                        <button type="button" class="btn btn-danger light" data-bs-dismiss="modal">{{ tr('tutup') }}</button>
+                                                                        <button type="submit" class="btn btn-primary">{{ tr('simpan') }}</button>
                                                                     </div>
                                                                 </form>
                                                             </div>
@@ -193,31 +170,26 @@
                                                 @endif
 
                                                 @if (can($key_, 'delete'))
-                                                    <a class="btn btn-outline-danger btn-xs" data-bs-toggle="modal"
-                                                        href="#delete{{ $item->id }}"><i
-                                                            class="fa fa-trash color-danger"></i>
+                                                    <a class="btn btn-outline-danger btn-xs" data-bs-toggle="modal" href="#delete{{ $item->id }}"><i class="fa fa-trash color-danger"></i>
                                                     </a>
                                                     <div class="modal fade" id="delete{{ $item->id }}">
                                                         <div class="modal-dialog modal-dialog-centered" role="document">
                                                             <div class="modal-content">
                                                                 <div class="modal-header">
-                                                                    <h5 class="modal-title text-danger">Peringatan !!</h5>
-                                                                    <button type="button" class="btn-close"
-                                                                        data-bs-dismiss="modal">
+                                                                    <h5 class="modal-title text-danger">{{ tr('peringatan') }} !!</h5>
+                                                                    <button type="button" class="btn-close" data-bs-dismiss="modal">
                                                                     </button>
                                                                 </div>
 
                                                                 <div class="modal-body">
-                                                                    <p>Apakah anda ingin menghapus semester
-                                                                        <b>{{ $item->odd == 1 ? 'Ganjil' : 'Genap' }}
+                                                                    <p>{{ tr('apakah anda ingin menghapus semester') }}<b>{{ $item->odd == 1 ? tr('ganjil') : tr('genap') }}
+
                                                                             {{ $item->year }}</b>
                                                                     </p>
                                                                 </div>
                                                                 <div class="modal-footer">
-                                                                    <button type="button" class="btn btn-danger light"
-                                                                        data-bs-dismiss="modal">Tutup</button>
-                                                                    <a href="{{ url('4dm1n/semester/delete/' . $item->id) }}"
-                                                                        class="btn btn-primary">Hapus</a>
+                                                                    <button type="button" class="btn btn-danger light" data-bs-dismiss="modal">{{ tr('tutup') }}</button>
+                                                                    <a href="{{ url('4dm1n/semester/delete/' . $item->id) }}" class="btn btn-primary">{{ tr('hapus') }}</a>
                                                                 </div>
 
                                                             </div>

@@ -86,9 +86,9 @@ class SubjectController extends Controller
 
         if ($status_data) {
             addLog(0,$this->menu_id,'Menambah data '.$name);
-            return redirect()->back()->with('success', 'berhasil menambah mata kuliah');
+            return redirect()->back()->with('success', tr('berhasil menambah').' '.tr('mata kuliah'));
         } else {
-            return redirect()->back()->with('failed', 'gagal menambah mata kuliah');
+            return redirect()->back()->with('failed', tr('gagal menambah').' '.tr('mata kuliah'));
         }
     }
 
@@ -103,9 +103,9 @@ class SubjectController extends Controller
 
         if ($status_data) {
             addLog(0,$this->menu_id,'Mengedit data '.$name);
-            return redirect()->back()->with('success', 'sukses mengedit mata kuliah');
+            return redirect()->back()->with('success', tr('sukses mengedit').' '.tr('mata kuliah'));
         } else {
-            return redirect()->back()->with('failed', 'gagal mengedit mata kuliah');
+            return redirect()->back()->with('failed', tr('gagal mengedit').' '.tr('mata kuliah'));
         }
     }
 
@@ -116,9 +116,9 @@ class SubjectController extends Controller
 
         if ($status_data) {
             addLog(0,$this->menu_id,'Menghapus data '.$old_data->name);
-            return redirect()->back()->with('success', 'Mata kuliah berhasil di hapus');
+            return redirect()->back()->with('success', tr('mata kuliah').' '.tr('berhasil di hapus'));
         } else {
-            return redirect()->back()->with('failed', 'Mata kuliah gagal di hapus');
+            return redirect()->back()->with('failed', tr('mata kuliah').' '.tr('gagal di hapus'));
         }
     }
 

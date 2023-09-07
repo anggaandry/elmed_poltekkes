@@ -5,8 +5,8 @@
 @section('breadcrumb')
     <div class="row page-titles">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item active"><a href="javascript:void(0)">Akademik</a></li>
-            <li class="breadcrumb-item"><a href="javascript:void(0)">Absensi</a></li>
+            <li class="breadcrumb-item active"><a href="javascript:void(0)">{{ tr('akademik') }}</a></li>
+            <li class="breadcrumb-item"><a href="javascript:void(0)">{{ tr('absensi') }}</a></li>
         </ol>
     </div>
 @endsection
@@ -19,18 +19,17 @@
                 <div class="card-header">
                     <div class="row" style="width:110%;">
                         <div class="col-3">
-                            <label class="form-label text-left">Tanggal</label>
-                            <input type="date" class="form-control" value="{{ date('Y-m-d') }}" id="date_"
-                                oninput="change_date()">
+                            <label class="form-label text-left">{{ tr('tanggal') }}</label>
+                            <input type="date" class="form-control" value="{{ date('Y-m-d') }}" id="date_" oninput="change_date()">
                         </div>
                         <div class="col-4" id="class_view">
-                            <label class="form-label text-left">Kelas</label>
+                            <label class="form-label text-left">{{ tr('kelas') }}</label>
                             <select class="form-select sel2" id="class_" onchange="change_class()">
 
                             </select>
                         </div>
                         <div class="col-5" id="schedule_view">
-                            <label class="form-label text-left">Jadwal</label>
+                            <label class="form-label text-left">{{ tr('jadwal') }}</label>
                             <select class="form-select form-select-lg" id="schedule_" onchange="check()">
 
                             </select>
@@ -49,10 +48,10 @@
 
                         <div class="mt-5">
                             <div class="spinner-border" role="status">
-                                <span class="visually-hidden">Loading...</span>
+                                <span class="visually-hidden">{{ tr('loading...') }}</span>
                             </div>
                             <br>
-                            <small>Loading absensi..</small>
+                            <small>{{ tr('loading absensi..') }}</small>
                         </div>
                     </div>
 
@@ -73,21 +72,21 @@
                     <div class="d-none" id="tabel">
                         <table class="table mb-3">
                             <tr>
-                                <th width="10%" class="align-top">Dimulai oleh</th>
+                                <th width="10%" class="align-top">{{ tr('dimulai oleh') }}</th>
                                 <td width="30%" class="align-top" id="t_start_by"></td>
-                                <th width="10%" class="align-top">Matkul</th>
+                                <th width="10%" class="align-top">{{ tr('matkul') }}</th>
                                 <td width="50%" class="align-top" id="t_sks_info"></td>
                             </tr>
                             <tr>
-                                <th width="10%" class="align-top">Pertemuan ke</th>
+                                <th width="10%" class="align-top">{{ tr('pertemuan ke') }}</th>
                                 <td width="30%" class="align-top" id="t_session"></td>
-                                <th width="10%" class="align-top">Jadwal</th>
+                                <th width="10%" class="align-top">{{ tr('jadwal') }}</th>
                                 <td width="50%" class="align-top" id="t_schedule_info"></td>
                             </tr>
                             <tr>
-                                <th width="10%" class="align-top">Aktivitas</th>
+                                <th width="10%" class="align-top">{{ tr('aktivitas') }}</th>
                                 <td width="30%" class="align-top" id="t_activity"></td>
-                                <th width="10%" class="align-top">Dosen Pengampu</th>
+                                <th width="10%" class="align-top">{{ tr('dosen pengampu') }}</th>
                                 <td width="50%" class="align-top" id="t_lecturer"></td>
                             </tr>
 
@@ -98,11 +97,11 @@
                                 <thead class="">
                                     <tr>
                                         <th class="border-bottom-0">#</th>
-                                        <th class="border-bottom-0">Foto</th>
-                                        <th class="border-bottom-0">Nama</th>
-                                        <th class="border-bottom-0">NIM</th>
-                                        <th class="border-bottom-0">status</th>
-                                        <th class="border-bottom-0">catatan</th>
+                                        <th class="border-bottom-0">{{ tr('foto') }}</th>
+                                        <th class="border-bottom-0">{{ tr('nama') }}</th>
+                                        <th class="border-bottom-0">{{ tr('nim') }}</th>
+                                        <th class="border-bottom-0">{{ tr('status') }}</th>
+                                        <th class="border-bottom-0">{{ tr('catatan') }}</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -165,11 +164,11 @@
                             if (res.active == 0) {
                                 $('#tabel').addClass('d-none');
                                 $('#nostart').removeClass('d-none');
-                                $('#nostart_txt').html('Sesi kelas pindahan belum dimulai');
+                                $('#nostart_txt').html('{{ tr('sesi kelas pindahan belum dimulai') }}');
                             }
 
                             if (res.active == 1) {
-                                $('#nostart_txt').html('Kelas sedang dimulai');
+                                $('#nostart_txt').html('{{ tr('kelas sedang dimulai') }}');
                                 if (res.check_start.active == 1) {
                                     $('#tabel').removeClass('d-none');
                                     $('#nostart').addClass('d-none');
@@ -192,7 +191,7 @@
                                 } else {
                                     $('#tabel').addClass('d-none');
                                     $('#nostart').removeClass('d-none');
-                                    $('#nostart_txt').html('Sesi kelas pindahan berakhir tanpa ada absensi');
+                                    $('#nostart_txt').html('{{ tr('sesi kelas pindahan berakhir tanpa ada absensi') }}');
                                 }
 
                             }
@@ -224,7 +223,7 @@
                                                     <td class="p-0 align-middle">${element['lecturer']}</td>
                                                    
                                                     <td class="p-0 align-middle float-end">
-                                                        <span class="badge badge-xs badge-${element['position_color']}">Dosen ${element['position']}</span>
+                                                        <span class="badge badge-xs badge-${element['position_color']}">{{ tr('dosen') }} ${element['position']}</span>
                                                         <span class="badge badge-xs badge-${element['status_color']}">${element['status']}</span>
                                                     </td>
                                               </tr>`;
@@ -274,11 +273,11 @@
                                 if (res.active == 0) {
                                     $('#tabel').addClass('d-none');
                                     $('#nostart').removeClass('d-none');
-                                    $('#nostart_txt').html('Sesi kelas belum dimulai');
+                                    $('#nostart_txt').html('{{ tr('sesi kelas belum dimulai') }}');
                                 }
 
                                 if (res.active == 1) {
-                                    $('#nostart_txt').html('Kelas sedang berlangsung');
+                                    $('#nostart_txt').html('{{ tr('kelas sedang berlangsung') }}');
                                     if (res.check_start) {
                                         $('#tabel').removeClass('d-none');
                                         $('#nostart').addClass('d-none');
@@ -295,14 +294,14 @@
                                     } else {
                                         $('#tabel').addClass('d-none');
                                         $('#nostart').removeClass('d-none');
-                                        $('#nostart_txt').html('Sesi kelas berakhir tanpa ada absensi');
+                                        $('#nostart_txt').html('{{ tr('sesi kelas berakhir tanpa ada absensi') }}');
                                     }
 
                                     if (res.check_move) {
                                         $('#tabel').addClass('d-none');
                                         $('#nostart').removeClass('d-none');
-                                        $('#nostart_txt').html('Sesi kelas dipindahkan ke ' + res.check_move
-                                            .time_info);
+                                        $('#nostart_txt').html('{{ tr('sesi kelas dipindahkan ke') }} ' + res.check_move.time_info);
+
                                     }
                                 }
 
@@ -435,7 +434,7 @@
                         next: '<i class="fa fa-angle-double-right" aria-hidden="true"></i>',
                         previous: '<i class="fa fa-angle-double-left" aria-hidden="true"></i>'
                     },
-                    processing: '<div class="d-flex justify-content-center"><div class="spinner-border" role="status"><span class="visually-hidden">Loading...</span></div></div>',
+                    processing: '<div class="d-flex justify-content-center"><div class="spinner-border" role="status"><span class="visually-hidden">{{ tr('loading...') }}</span></div></div>',
                     info: "<br> &nbsp; &nbsp; <b>page _PAGE_ of _PAGES_</b>  | Records _START_ to _END_ of _MAX_ entries",
                 },
 

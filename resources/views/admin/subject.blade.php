@@ -5,8 +5,8 @@
 @section('breadcrumb')
     <div class="row page-titles">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item active"><a href="javascript:void(0)">Master data</a></li>
-            <li class="breadcrumb-item"><a href="javascript:void(0)">Mata kuliah</a></li>
+            <li class="breadcrumb-item active"><a href="javascript:void(0)">{{ tr('master data') }}</a></li>
+            <li class="breadcrumb-item"><a href="javascript:void(0)">{{ tr('mata kuliah') }}</a></li>
         </ol>
     </div>
 @endsection
@@ -21,14 +21,13 @@
 
                         <div class="col-12">
                             @if (can($key_, 'add'))
-                                <a class="btn  btn-primary float-end" data-bs-toggle="modal" href="#add"><span
-                                        class="btn-icon-start text-primary"><i class="fa fa-plus color-primary"></i>
-                                    </span>Tambah mata kuliah</a>
+                                <a class="btn  btn-primary float-end" data-bs-toggle="modal" href="#add"><span class="btn-icon-start text-primary"><i class="fa fa-plus color-primary"></i>
+                                    </span>{{ tr('tambah mata kuliah') }}</a>
                                 <div class="modal fade" id="add">
                                     <div class="modal-dialog" role="document">
                                         <div class="modal-content">
                                             <div class="modal-header">
-                                                <h5 class="modal-title">Tambah mata kuliah</h5>
+                                                <h5 class="modal-title">{{ tr('tambah mata kuliah') }}</h5>
                                                 <button type="button" class="btn-close" data-bs-dismiss="modal">
                                                 </button>
                                             </div>
@@ -37,17 +36,15 @@
                                                 <div class="modal-body">
                                                     <div class="row">
                                                         <div class="mb-3 col-md-12">
-                                                            <label class="form-label">Nama mata kuliah</label>
-                                                            <input type="text" class="form-control" name="name"
-                                                                required>
+                                                            <label class="form-label">{{ tr('nama mata kuliah') }}</label>
+                                                            <input type="text" class="form-control" name="name" required>
                                                         </div>
 
                                                     </div>
                                                 </div>
                                                 <div class="modal-footer">
-                                                    <button type="button" class="btn btn-danger light"
-                                                        data-bs-dismiss="modal">Tutup</button>
-                                                    <button type="submit" class="btn btn-primary">Simpan</button>
+                                                    <button type="button" class="btn btn-danger light" data-bs-dismiss="modal">{{ tr('tutup') }}</button>
+                                                    <button type="submit" class="btn btn-primary">{{ tr('simpan') }}</button>
                                                 </div>
                                             </form>
                                         </div>
@@ -65,10 +62,10 @@
                             <thead class="">
                                 <tr>
                                     <th>#</th>
-                                    <th>Nama</th>
-                                    <th>Dibuat</th>
+                                    <th>{{ tr('nama') }}</th>
+                                    <th>{{ tr('dibuat') }}</th>
                                     @if (can($key_, 'edit') || can($key_, 'delete'))
-                                        <th>Aksi</th>
+                                        <th>{{ tr('aksi') }}</th>
                                     @endif
                                 </tr>
                             </thead>
@@ -83,7 +80,7 @@
                         <div class="modal-dialog" role="document">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 class="modal-title">Edit mata kuliah</h5>
+                                    <h5 class="modal-title">{{ tr('edit mata kuliah') }}</h5>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal">
                                     </button>
                                 </div>
@@ -93,17 +90,15 @@
                                     <div class="modal-body">
                                         <div class="row">
                                             <div class="mb-3 col-md-12">
-                                                <label class="form-label">Nama mata kuliah</label>
-                                                <input type="text" class="form-control" name="name" id="name_edit"
-                                                    required>
+                                                <label class="form-label">{{ tr('nama mata kuliah') }}</label>
+                                                <input type="text" class="form-control" name="name" id="name_edit" required>
                                             </div>
 
                                         </div>
                                     </div>
                                     <div class="modal-footer">
-                                        <button type="button" class="btn btn-danger light"
-                                            data-bs-dismiss="modal">Tutup</button>
-                                        <button type="submit" class="btn btn-primary">Simpan</button>
+                                        <button type="button" class="btn btn-danger light" data-bs-dismiss="modal">{{ tr('tutup') }}</button>
+                                        <button type="submit" class="btn btn-primary">{{ tr('simpan') }}</button>
                                     </div>
                                 </form>
                             </div>
@@ -114,20 +109,18 @@
                         <div class="modal-dialog modal-dialog-centered" role="document">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 class="modal-title text-danger">Peringatan !!</h5>
+                                    <h5 class="modal-title text-danger">{{ tr('peringatan') }} !!</h5>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal">
                                     </button>
                                 </div>
 
                                 <div class="modal-body">
-                                    <p>Apakah anda ingin menghapus mata kuliah
-                                        <b id="name_delete"></b>
+                                    <p>{{ tr('apakah anda ingin menghapus mata kuliah') }} <b id="name_delete"></b>
                                     </p>
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-danger light"
-                                        data-bs-dismiss="modal">Tutup</button>
-                                    <a id="button_delete" class="btn btn-primary">Hapus</a>
+                                    <button type="button" class="btn btn-danger light" data-bs-dismiss="modal">{{ tr('tutup') }}</button>
+                                    <a id="button_delete" class="btn btn-primary">{{ tr('hapus') }}</a>
                                 </div>
 
                             </div>
@@ -195,7 +188,7 @@
                         next: '<i class="fa fa-angle-double-right" aria-hidden="true"></i>',
                         previous: '<i class="fa fa-angle-double-left" aria-hidden="true"></i>'
                     },
-                    processing: '<div class="d-flex justify-content-center"><div class="spinner-border" role="status"><span class="visually-hidden">Loading...</span></div></div>',
+                    processing: '<div class="d-flex justify-content-center"><div class="spinner-border" role="status"><span class="visually-hidden">{{ tr('loading...') }}</span></div></div>',
                     info: "<br> &nbsp; &nbsp; <b>page _PAGE_ of _PAGES_</b>  | Records _START_ to _END_ of _MAX_ entries",
                 },
 

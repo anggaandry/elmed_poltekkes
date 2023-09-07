@@ -33,6 +33,7 @@ class DashboardController extends Controller
 
     public function index()
     {
+        tr("layanan");
         $ac_=active_class();
         $schedule_data=[];
 
@@ -88,9 +89,9 @@ class DashboardController extends Controller
             $holiday=$event->name;
             $schedule_data=[];
         }else{
-            $holiday="Libur jadwal kosong";
+            $holiday=tr('libur jadwal kosong');
             if(date('w')==0){
-                $holiday="Libur hari minggu";
+                $holiday=tr('libur hari minggu');
             }
         }
 
@@ -135,7 +136,7 @@ class DashboardController extends Controller
             $str->room_name=$str->schedule->room->name;
             $str->schedule_name=date_id($str->date." ".$str->start,2).' - '.date('H:i',strtotime($str->end));
             if($str->moved==1){
-                $str->schedule_name.="<br><small class='text-danger mt-1'>Dipindahkan dari ".date_id($str->moved_from." ".$str->schedule->start,2).' - '.date('H:i',strtotime($str->schedule->end))."</small>";
+                $str->schedule_name.="<br><small class='text-danger mt-1'>".tr('dipindahkan dari')." ".date_id($str->moved_from." ".$str->schedule->start,2).' - '.date('H:i',strtotime($str->schedule->end))."</small>";
             }
 
            
@@ -148,7 +149,7 @@ class DashboardController extends Controller
                 $i++;
                 $lectxt.='<li>
                     <span class="mt-5">1. '.title_lecturer($obj->lecturer).'</span>
-                    <span class="badge badge-xs bg-'.$obj->sls->bg.'" >'.$obj->sls->name.'</span> </li>';
+                    <span class="badge badge-xs bg-'.$obj->sls->bg.'" >'.$obj->sls->name.'</span></li>';
             }
             $lectxt.="</ul>";
             $str->lecturer=$lectxt;
@@ -195,12 +196,12 @@ class DashboardController extends Controller
         }
 
         if(!$status_data){
-            $message="Gagal mengisi absensi ".$status_array[$status];
+            $message=tr('gagal mengisi absensi')." ".$status_array[$status];
             $code=0;
         }else{
             $colleger_data=Colleger::where("id",$colleger_id)->first();
             addLog(2,11,"mengisi absensi ".$status_array[$status]." mahasiswa ".$colleger_data->name." tanggal ".date_id($date,1));
-            $message="Sukses mengisi absensi ".$status_array[$status];
+            $message=tr('sukses mengisi absensi')." ".$status_array[$status];
             $code=1;
         }
         

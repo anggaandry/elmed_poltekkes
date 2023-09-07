@@ -5,8 +5,8 @@
 @section('breadcrumb')
     <div class="row page-titles">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item active"><a href="javascript:void(0)">Akun</a></li>
-            <li class="breadcrumb-item"><a href="javascript:void(0)">Role</a></li>
+            <li class="breadcrumb-item active"><a href="javascript:void(0)">{{ tr('akun') }}</a></li>
+            <li class="breadcrumb-item"><a href="javascript:void(0)">{{ tr('role') }}</a></li>
         </ol>
     </div>
 @endsection
@@ -19,9 +19,8 @@
                 @if (can($key_, 'add'))
                     <div class="card-header">
                         <div style="width:100%;">
-                            <a class="btn  btn-primary float-end" href="{{ url('4dm1n/role/form/add') }}"><span
-                                    class="btn-icon-start text-primary"><i class="fa fa-plus color-primary"></i>
-                                </span>Tambah Role</a>
+                            <a class="btn  btn-primary float-end" href="{{ url('4dm1n/role/form/add') }}"><span class="btn-icon-start text-primary"><i class="fa fa-plus color-primary"></i>
+                                </span>{{ tr('tambah role') }}</a>
                         </div>
                     </div>
                 @endif
@@ -32,12 +31,12 @@
                             <thead class="">
                                 <tr>
                                     <th>#</th>
-                                    <th>Role</th>
-                                    <th>Jumlah<br>user</th>
-                                    <th>Dizinkan</th>
-                                    <th>Tanggal<br>dibuat</th>
+                                    <th>{{ tr('role') }}</th>
+                                    <th>{{ tr('jumlah') }}<br>{{ tr('user') }}</th>
+                                    <th>{{ tr('dizinkan') }}</th>
+                                    <th>{{ tr('tanggal') }}<br>{{ tr('dibuat') }}</th>
                                     @if (can($key_, 'edit') || can($key_, 'delete'))
-                                        <th>Aksi</th>
+                                        <th>{{ tr('aksi') }}</th>
                                     @endif
                                 </tr>
                             </thead>
@@ -53,37 +52,30 @@
                                         @if (can($key_, 'edit') || can($key_, 'delete'))
                                             <td>
                                                 @if (can($key_, 'edit'))
-                                                    <a class="btn btn-outline-info btn-xs"
-                                                        href="{{ url('4dm1n/role/form/edit?id=' . $item->id) }}"><i
-                                                            class="fa fa-edit color-info"></i>
+                                                    <a class="btn btn-outline-info btn-xs" href="{{ url('4dm1n/role/form/edit?id=' . $item->id) }}"><i class="fa fa-edit color-info"></i>
                                                     </a>
                                                 @endif
 
                                                 @if (can($key_, 'delete'))
-                                                    <a class="btn btn-outline-danger btn-xs" data-bs-toggle="modal"
-                                                        href="#delete{{ $item->id }}"><i
-                                                            class="fa fa-trash color-danger"></i>
+                                                    <a class="btn btn-outline-danger btn-xs" data-bs-toggle="modal" href="#delete{{ $item->id }}"><i class="fa fa-trash color-danger"></i>
                                                     </a>
                                                     <div class="modal fade" id="delete{{ $item->id }}">
                                                         <div class="modal-dialog modal-dialog-centered" role="document">
                                                             <div class="modal-content">
                                                                 <div class="modal-header">
-                                                                    <h5 class="modal-title text-danger">Peringatan !!</h5>
-                                                                    <button type="button" class="btn-close"
-                                                                        data-bs-dismiss="modal">
+                                                                    <h5 class="modal-title text-danger">{{ tr('peringatan') }} !!</h5>
+                                                                    <button type="button" class="btn-close" data-bs-dismiss="modal">
                                                                     </button>
                                                                 </div>
 
                                                                 <div class="modal-body">
-                                                                    <p>Apakah anda ingin menghapus role
-                                                                        <b>{{ $item->name }}</b>
+                                                                    <p>{{ tr('apakah anda ingin menghapus role') }}<b>{{ $item->name }}</b>
+
                                                                     </p>
                                                                 </div>
                                                                 <div class="modal-footer">
-                                                                    <button type="button" class="btn btn-danger light"
-                                                                        data-bs-dismiss="modal">Tutup</button>
-                                                                    <a href="{{ url('4dm1n/role/delete/' . $item->id) }}"
-                                                                        class="btn btn-primary">Hapus</a>
+                                                                    <button type="button" class="btn btn-danger light" data-bs-dismiss="modal">{{ tr('tutup') }}</button>
+                                                                    <a href="{{ url('4dm1n/role/delete/' . $item->id) }}" class="btn btn-primary">{{ tr('hapus') }}</a>
                                                                 </div>
 
                                                             </div>

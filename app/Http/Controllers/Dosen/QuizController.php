@@ -127,9 +127,9 @@ class QuizController extends Controller
 
         if ($status_data) {
             addLog(1,$this->menu_id,'Menambah Kuis '.$name);
-            return redirect('dosen/kuis/detail?id='.$status_data->id)->with('success', 'berhasil menambah kuis');
+            return redirect('dosen/kuis/detail?id='.$status_data->id)->with('success', tr('berhasil menambah').' '.tr('kuis'));
         } else {
-            return redirect()->back()->with('failed', 'gagal menambah kuis');
+            return redirect()->back()->with('failed', tr('gagal menambah').' '.tr('kuis'));
         }
     }
 
@@ -153,9 +153,9 @@ class QuizController extends Controller
         if ($status_data) {
             addLog(1,$this->menu_id,'Mengedit Kuis '.$name);
     
-            return redirect()->back()->with('success', 'berhasil mengedit kuis');
+            return redirect()->back()->with('success', tr('berhasil mengedit').' '.tr('kuis'));
         } else {
-            return redirect()->back()->with('failed', 'gagal mengedit kuis');
+            return redirect()->back()->with('failed', tr('gagal mengedit').' '.tr('kuis'));
         }
     }
 
@@ -166,9 +166,9 @@ class QuizController extends Controller
 
         if ($status_data) {
             addLog(1,$this->menu_id,'Menghapus kuis '.$old_data->name);
-            return redirect('dosen/kuis')->with('success', 'Kuis berhasil di hapus');
+            return redirect('dosen/kuis')->with('success', tr('kuis').' '.tr('berhasil di hapus'));
         } else {
-            return redirect()->back()->with('failed', 'Kuis gagal di hapus');
+            return redirect()->back()->with('failed', tr('kuis').' '.tr('gagal di hapus'));
         }
     }
 
@@ -271,10 +271,10 @@ class QuizController extends Controller
         if ($status_data) {
             $quiz=Quiz::where("id",$quiz_id)->first();
             $class=Classes::where("id",$class_id)->first();
-            addLog(1,$this->menu_id,'Menambah kelas '.$class->name.' ke Kuis '.$quiz->name);
-            return redirect()->back()->with('success', 'berhasil menambah kelas untuk kuis');
+            addLog(1,$this->menu_id,'Menambah kelas '.$class->name.' ke kuis '.$quiz->name);
+            return redirect()->back()->with('success', tr('berhasil menambah').' '.tr('kelas untuk kuis'));
         } else {
-            return redirect()->back()->with('failed', 'gagal menambah kelas untuk kuis');
+            return redirect()->back()->with('failed', tr('gagal menambah').' '.tr('kelas untuk kuis'));
         }
     }
 
@@ -295,9 +295,9 @@ class QuizController extends Controller
         
         if ($status_data) {
             addLog(1,$this->menu_id,'Mengedit kelas '.$old_data->class->name.' ke Kuis '.$old_data->quiz->name);
-            return redirect()->back()->with('success', 'berhasil mengedit kelas untuk kuis');
+            return redirect()->back()->with('success', tr('berhasil mengedit').' '.tr('kelas untuk kuis'));
         } else {
-            return redirect()->back()->with('failed', 'gagal mengedit kelas untuk kuis');
+            return redirect()->back()->with('failed', tr('gagal mengedit').' '.tr('kelas untuk kuis'));
         }
     }
 
@@ -308,9 +308,9 @@ class QuizController extends Controller
 
         if ($status_data) {
             addLog(1,$this->menu_id,'Menghapus kelas '.$old_data->class->name.' kuis '.$old_data->quiz->name);
-            return redirect()->back()->with('success', 'Kelas untuk kuis berhasil di hapus');
+            return redirect()->back()->with('success', tr('kelas untuk kuis').' '.tr('berhasil di hapus'));
         } else {
-            return redirect()->back()->with('failed', 'Kelas untuk kuis gagal di hapus');
+            return redirect()->back()->with('failed', tr('kelas untuk kuis').' '.tr('gagal di hapus'));
         }
     }
 
@@ -344,13 +344,13 @@ class QuizController extends Controller
 
                     switch ($row->type) {
                         case 0:
-                            $fq.='<br> <span class="badge badge-info">Essay</span>';
+                            $fq.='<br><span class="badge badge-info">'.tr('essay').'</span>';
                             break;
                         case 1:
-                            $fq.='<br> <span class="badge badge-success">Pilihan berganda</span>';
+                            $fq.='<br><span class="badge badge-success">'.tr('pilihan berganda').'</span>';
                             break;
                         case 2:
-                            $fq.='<br> <span class="badge badge-danger">Upload file</span>';
+                            $fq.='<br><span class="badge badge-danger">'.tr('upload file').'</span>';
                             break;
                         
                         default:
@@ -368,14 +368,14 @@ class QuizController extends Controller
                     <input type="hidden" name="question_id" value="'.$row->id.'" />
                    
                     <div class="form-group mb-3">
-                        <input type="number" name="sort" class="form-control" style="text-align: center" placeholder="Nomor soal" required>  
+                        <input type="number" name="sort" class="form-control" style="text-align: center" placeholder="'.tr("nomor soal").'" required>  
                         
                     </div>
                     <div class="form-group mb-3">
-                        <input type="number" name="value" class="form-control" style="text-align: center" placeholder="Bobot soal" required>
+                        <input type="number" name="value" class="form-control" style="text-align: center" placeholder="'.tr("bobot soal").'" required>
                     </div>
                     
-                    <button type="submit" class="btn btn-info btn-xs">ambil soal</button>
+                    <button type="submit" class="btn btn-info btn-xs">'.tr('ambil soal').'</button>
                     
                   </form>';
                     
@@ -403,9 +403,9 @@ class QuizController extends Controller
         if ($status_data) {
             $quiz=Quiz::where("id",$quiz_id)->first();
             addLog(1,$this->menu_id,'Menambah soal no '.$sort.' ke Kuis '.$quiz->name);
-            return redirect()->back()->with('success', 'berhasil menambah soal untuk kuis');
+            return redirect()->back()->with('success', tr('berhasil menambah').' '.tr('soal untuk kuis'));
         } else {
-            return redirect()->back()->with('failed', 'gagal menambah soal untuk kuis');
+            return redirect()->back()->with('failed', tr('gagal menambah').' '.tr('soal untuk kuis'));
         }
     }
 
@@ -416,9 +416,9 @@ class QuizController extends Controller
 
         if ($status_data) {
             addLog(1,$this->menu_id,'Menghapus soal untuk kuis '.$old_data->quiz->name);
-            return redirect()->back()->with('success', 'Soal untuk kuis berhasil di hapus');
+            return redirect()->back()->with('success', tr('soal untuk kuis').' '.tr('berhasil di hapus'));
         } else {
-            return redirect()->back()->with('failed', 'Soal untuk kuis gagal di hapus');
+            return redirect()->back()->with('failed', tr('soal untuk kuis').' '.tr('gagal di hapus'));
         }
     }
 
@@ -524,9 +524,9 @@ class QuizController extends Controller
             $sks=SKS::where('id',$sks_id)->first();
             $quiz=Quiz::where('id',$quiz_id)->first();
             addLog(1,$this->menu_id,'Menambah soal matkul '.$sks->subject->name.' untuk kuis '.$quiz->name);
-            return redirect('dosen/kuis/detail?id='.$quiz_id.'&kelas='.$kelas)->with('success', 'berhasil menambah soal kuis');
+            return redirect('dosen/kuis/detail?id='.$quiz_id.'&kelas='.$kelas)->with('success', tr('berhasil menambah').' '.tr('soal kuis'));
         } else {
-            return redirect()->back()->with('failed', 'gagal menambah soal kuis');
+            return redirect()->back()->with('failed', tr('gagal menambah').' '.tr('soal kuis'));
         }
 
     }
@@ -601,9 +601,9 @@ class QuizController extends Controller
 
             $sks=SKS::where('id',$sks_id)->first();
             addLog(1,$this->menu_id,'Menambah soal matkul '.$sks->subject->name.' untuk kuis '.$qq_data->quiz->name);
-            return redirect('dosen/kuis/detail?id='.$qq_data->quiz_id.'&kelas='.$kelas)->with('success', 'berhasil mengedit soal kuis');
+            return redirect('dosen/kuis/detail?id='.$qq_data->quiz_id.'&kelas='.$kelas)->with('success', tr('berhasil mengedit').' '.tr('soal kuis'));
         } else {
-            return redirect()->back()->with('failed', 'gagal mengedit soal kuis');
+            return redirect()->back()->with('failed', tr('gagal mengedit').' '.tr('soal kuis'));
         }
 
     }
@@ -696,7 +696,7 @@ class QuizController extends Controller
        
         $absence="-";
         if($absence_data){
-            $absence="mulai menegerjakan ".date_id($absence_data->created_at,5);
+            $absence=tr('mulai menegerjakan')." ".date_id($absence_data->created_at,5);
         }
         
         $data=[
@@ -722,12 +722,12 @@ class QuizController extends Controller
         $status_data=QuizAnswer::where(['id'=>$id])->update(['score'=>$score]);
         
         if(!$status_data){
-            $message="Gagal memberi nilai kuis";
+            $message=tr('gagal memberi nilai kuis');
             $code=0;
         }else{
             $quiz_answer=QuizAnswer::where(['id'=>$id])->first();
             addLog(1,$this->menu_id,"memberi nilai ".$quiz_answer->colleger->name." pada kuis ".$quiz_answer->quiz_class->quiz->name);
-            $message="Sukses mengisi nilai kuis ";
+            $message=tr('sukses mengisi nilai kuis')." ";
             $code=1;
         }
 
@@ -748,7 +748,7 @@ class QuizController extends Controller
         $status_data=QuizClass::where(['id'=>$id])->update(['publish'=>$value]);
         
         if(!$status_data){
-            $message="Gagal mempublish nilai";
+            $message=tr('gagal mempublish nilai');
             $code=0;
         }else{
             $quiz_class=QuizClass::where(['id'=>$id])->first();

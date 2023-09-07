@@ -5,12 +5,11 @@
 @section('breadcrumb')
     <div class="row page-titles">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item active"><a href="javascript:void(0)">LMS</a></li>
-            <li class="breadcrumb-item"><a href="{{ url('dosen/kuis') }}">Kuis</a></li>
-            <li class="breadcrumb-item"><a
-                    href="{{ url('dosen/kuis/detail?id=' . $quiz_data->id . '&kelas=' . $kelas) }}">Detail
+            <li class="breadcrumb-item active"><a href="javascript:void(0)">{{ tr('lms') }}</a></li>
+            <li class="breadcrumb-item"><a href="{{ url('dosen/kuis') }}">{{ tr('kuis') }}</a></li>
+            <li class="breadcrumb-item"><a href="{{ url('dosen/kuis/detail?id=' . $quiz_data->id . '&kelas=' . $kelas) }}">Detail
                     Kuis</a></li>
-            <li class="breadcrumb-item"><a href="javascript:void(0)">Tambah soal untuk kuis</a></li>
+            <li class="breadcrumb-item"><a href="javascript:void(0)">{{ tr('tambah soal untuk kuis') }}</a></li>
         </ol>
     </div>
 @endsection
@@ -26,36 +25,33 @@
                     <div class="card-body">
                         <div class="row">
                             <div class="mb-3 col-md-12">
-                                <label class="form-label">Kuis</label>
+                                <label class="form-label">{{ tr('kuis') }}</label>
                                 <input type="hidden" name="quiz_id" value="{{ $quiz_data->id }}">
                                 <input type="text" class="form-control" value="{{ $quiz_data->name }}" disabled>
                             </div>
                             <div class="mb-3 col-md-12">
-                                <label class="form-label">Mata kuliah</label>
+                                <label class="form-label">{{ tr('mata kuliah') }}</label>
                                 <input type="hidden" name="sks_id" value="{{ $quiz_data->sks_id }}">
-                                <input type="text" class="form-control"
-                                    value="{{ $quiz_data->sks->subject->name }} (prodi {{ $quiz_data->sks->prodi->program->name }} {{ $quiz_data->sks->prodi->study_program->name }} - {{ $quiz_data->sks->prodi->category->name }}, semester {{ $quiz_data->sks->semester }}, {{ $quiz_data->sks->value }} SKS)"
-                                    disabled>
+                                <input type="text" class="form-control" value="{{ $quiz_data->sks->subject->name }} (prodi {{ $quiz_data->sks->prodi->program->name }} {{ $quiz_data->sks->prodi->study_program->name }} - {{ $quiz_data->sks->prodi->category->name }}, semester {{ $quiz_data->sks->semester }}, {{ $quiz_data->sks->value }} SKS)" disabled>
                             </div>
                             <div class="mb-3 col-md-6">
-                                <label class="form-label">Nomor urut soal</label>
+                                <label class="form-label">{{ tr('nomor urut soal') }}</label>
                                 <input type="text" class="form-control" name="sort" required>
                             </div>
                             <div class="mb-3 col-md-6">
-                                <label class="form-label">Bobot soal</label>
+                                <label class="form-label">{{ tr('bobot soal') }}</label>
                                 <input type="text" class="form-control" name="value" required>
                             </div>
                             <div class="mb-3 col-md-12">
-                                <label class="form-label">Tipe</label>
-                                <select class="form-select form-select-lg wide" name="type" id="type"
-                                    onchange="change_type()">
-                                    <option value="0">Essay</option>
-                                    <option value="1">Pilihan berganda</option>
-                                    <option value="2">Upload file</option>
+                                <label class="form-label">{{ tr('tipe') }}</label>
+                                <select class="form-select form-select-lg wide" name="type" id="type" onchange="change_type()">
+                                    <option value="0">{{ tr('essay') }}</option>
+                                    <option value="1">{{ tr('pilihan berganda') }}</option>
+                                    <option value="2">{{ tr('upload file') }}</option>
                                 </select>
                             </div>
                             <div class="mb-3 col-md-12">
-                                <label class="form-label">Soal</label>
+                                <label class="form-label">{{ tr('soal') }}</label>
                                 <div class="custom-ekeditor">
                                     <textarea id="editor1" name="question"></textarea>
                                 </div>
@@ -63,7 +59,7 @@
                                     <table class="table table-borderless">
                                         <tbody>
                                             <tr>
-                                                <th width="10%">A.</th>
+                                                <th width="10%">{{ tr('a.') }}</th>
                                                 <td>
                                                     <div class="custom-ekeditor">
                                                         <textarea id="editorA" name="choice_a"></textarea>
@@ -71,7 +67,7 @@
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <th width="10%">B.</th>
+                                                <th width="10%">{{ tr('b.') }}</th>
                                                 <td>
                                                     <div class="custom-ekeditor">
                                                         <textarea id="editorB" name="choice_b"></textarea>
@@ -79,7 +75,7 @@
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <th width="10%">C.</th>
+                                                <th width="10%">{{ tr('c.') }}</th>
                                                 <td>
                                                     <div class="custom-ekeditor">
                                                         <textarea id="editorC" name="choice_c"></textarea>
@@ -87,7 +83,7 @@
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <th width="10%">D.</th>
+                                                <th width="10%">{{ tr('d.') }}</th>
                                                 <td>
                                                     <div class="custom-ekeditor">
                                                         <textarea id="editorD" name="choice_d"></textarea>
@@ -95,7 +91,7 @@
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <th width="10%">E.</th>
+                                                <th width="10%">{{ tr('e.') }}</th>
                                                 <td>
                                                     <div class="custom-ekeditor">
                                                         <textarea id="editorE" name="choice_e"></textarea>
@@ -107,26 +103,26 @@
                                 </div>
 
                                 <div class="mb-3 col-md-12 d-none" id="answer_multiple">
-                                    <label class="form-label">Jawaban</label>
+                                    <label class="form-label">{{ tr('jawaban') }}</label>
                                     <select class="form-select form-select-lg wide" name="choice_answer" disabled>
-                                        <option value="A">A</option>
-                                        <option value="B">B</option>
-                                        <option value="C">C</option>
-                                        <option value="D">D</option>
-                                        <option value="E">E</option>
+                                        <option value="A">{{ tr('a') }}</option>
+                                        <option value="B">{{ tr('b') }}</option>
+                                        <option value="C">{{ tr('c') }}</option>
+                                        <option value="D">{{ tr('d') }}</option>
+                                        <option value="E">{{ tr('e') }}</option>
                                     </select>
                                 </div>
 
                             </div>
 
                             <div class="mb-3 col-md-12">
-                                <label class="form-label">Referensi Jawaban (optional)</label>
+                                <label class="form-label">{{ tr('referensi Jawaban (optional)') }}</label>
                                 <div class="custom-ekeditor">
                                     <textarea id="editor2" name="answer"></textarea>
                                 </div>
                             </div>
                             <div class="mb-3 col-md-12">
-                                <label class="form-label">Lampiran soal (opsional)</label>
+                                <label class="form-label">{{ tr('lampiran soal (opsional)') }}</label>
                                 <input type="file" class="dropify" name="file" height="200" />
                             </div>
 
@@ -135,14 +131,10 @@
                     </div>
                     <div class="card-footer">
                         <div style="width:100%;">
-                            <a class="btn  btn-secondary"
-                                href="{{ url('dosen/kuis/detail?id=' . $quiz_data->id . '&kelas=' . $kelas) }}"><span
-                                    class="btn-icon-start text-secondary"><i
-                                        class="fa fa-arrow-left-long color-secondary"></i>
-                                </span>Kembali</a>
-                            <button class="btn  btn-info float-end mb-3" type="submit"><span
-                                    class="btn-icon-start text-info"><i class="fa fa-save color-info"></i>
-                                </span>Simpan</button>
+                            <a class="btn  btn-secondary" href="{{ url('dosen/kuis/detail?id=' . $quiz_data->id . '&kelas=' . $kelas) }}"><span class="btn-icon-start text-secondary"><i class="fa fa-arrow-left-long color-secondary"></i>
+                                </span>{{ tr('kembali') }}</a>
+                            <button class="btn  btn-info float-end mb-3" type="submit"><span class="btn-icon-start text-info"><i class="fa fa-save color-info"></i>
+                                </span>{{ tr('simpan') }}</button>
                         </div>
                     </div>
                 </form>

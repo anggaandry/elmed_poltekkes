@@ -35,32 +35,32 @@
                                     <div class="text-center mb-3">
                                         <a href="{{ url('/4dm1n') }}"><img src="{{ asset(LOGO_PATH . ($university_data->logo ? $university_data->logo : 'default.png')) }}" alt=""></a>
                                     </div>
-                                    <h4 class="text-center mb-4">Login admin {{ $university_data->name }}</h4>
+                                    <h4 class="text-center mb-4">{{ tr('login admin') }} {{ $university_data->name }}</h4>
                                     <form action="{{ url('/4dm1n/login') }}" method="post">
                                         {{ csrf_field() }}
                                         <div class="mb-3">
-                                            <label class="mb-1"><strong>Username</strong></label>
+                                            <label class="mb-1"><strong>{{ tr('username') }}</strong></label>
                                             <input type="text" class="form-control" value="{{ old('nip') }}" name="nip" placeholder="nomor induk pegawai" required>
                                         </div>
 
                                         <div class="mb-3">
-                                            <label class="mb-1"><strong>Password</strong></label>
+                                            <label class="mb-1"><strong>{{ tr('password') }}</strong></label>
                                             <input type="password" class="form-control" name="password" placeholder="password" required>
                                         </div>
 
 
                                         @if (Session::has('error_login'))
-                                        <div class="mb-3">
-                                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                                                <span class="alert-inner--text"><b>PERINGATAN!! </b>
-                                                    {{ Session::get('error_login') }}</span>
+                                            <div class="mb-3">
+                                                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                                    <span class="alert-inner--text"><b>{{ tr('peringatan!!') }}</b>
+                                                        {{ Session::get('error_login') }}</span>
 
+                                                </div>
                                             </div>
-                                        </div>
                                         @endif
 
                                         <div class="text-center mt-4">
-                                            <button type="submit" class="btn btn-primary btn-block">LOGIN</button>
+                                            <button type="submit" class="btn btn-primary btn-block">{{ tr('login') }}</button>
                                         </div>
 
                                     </form>

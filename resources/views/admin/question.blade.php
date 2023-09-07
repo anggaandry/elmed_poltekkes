@@ -5,8 +5,8 @@
 @section('breadcrumb')
     <div class="row page-titles">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item active"><a href="javascript:void(0)">LMS</a></li>
-            <li class="breadcrumb-item"><a href="javascript:void(0)">Bank soal</a></li>
+            <li class="breadcrumb-item active"><a href="javascript:void(0)">{{ tr('lms') }}</a></li>
+            <li class="breadcrumb-item"><a href="javascript:void(0)">{{ tr('bank soal') }}</a></li>
         </ol>
     </div>
 @endsection
@@ -18,10 +18,9 @@
                 <div class="card-header">
                     <div class="row" style="width:110%;">
                         <div class="col-5">
-                            <label class="form-label text-left">Prodi</label>
-                            <select class="form-select form-select-lg" id="prodi_" onchange="load_table()"
-                                @if (can_prodi()) disabled @endif>
-                                <option value="">Semua prodi </option>
+                            <label class="form-label text-left">{{ tr('prodi') }}</label>
+                            <select class="form-select form-select-lg" id="prodi_" onchange="load_table()" @if (can_prodi()) disabled @endif>
+                                <option value="">{{ tr('semua prodi') }}</option>
                                 @foreach ($prodi_data as $item)
                                     <option value="{{ $item->id }}" @if ($prodi_id == $item->id) selected @endif>
                                         {{ $item->program->name }}
@@ -39,11 +38,11 @@
                             <thead class="">
                                 <tr>
                                     <th>#</th>
-                                    <th>Jenis</th>
-                                    <th>Matkul</th>
-                                    <th width="50%" class="text-start">Soal</th>
-                                    <th>dibuat</th>
-                                    <th>Aksi</th>
+                                    <th>{{ tr('jenis') }}</th>
+                                    <th>{{ tr('matkul') }}</th>
+                                    <th width="50%" class="text-start">{{ tr('soal') }}</th>
+                                    <th>{{ tr('dibuat') }}</th>
+                                    <th>{{ tr('aksi') }}</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -57,7 +56,7 @@
                         <div class="modal-dialog modal-dialog-centered" role="document">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 class="modal-title">Detail soal</h5>
+                                    <h5 class="modal-title">{{ tr('detail soal') }}</h5>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal">
                                     </button>
                                 </div>
@@ -67,19 +66,19 @@
                                         <table class="table">
                                             <tbody>
                                                 <tr>
-                                                    <th>JENIS SOAL</th>
+                                                    <th>{{ tr('jenis soal') }}</th>
                                                 </tr>
                                                 <tr>
                                                     <td id="type_detail"></td>
                                                 </tr>
                                                 <tr>
-                                                    <th>SOAL</th>
+                                                    <th>{{ tr('soal') }}</th>
                                                 </tr>
                                                 <tr>
                                                     <td id="question_detail"></td>
                                                 </tr>
                                                 <tr>
-                                                    <th>REFERENSI JAWABAN</td>
+                                                    <th>{{ tr('referensi jawaban') }}</td>
                                                 </tr>
                                                 <tr>
                                                     <td id="answer_detail"></td>
@@ -91,8 +90,7 @@
 
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-danger light"
-                                        data-bs-dismiss="modal">Tutup</button>
+                                    <button type="button" class="btn btn-danger light" data-bs-dismiss="modal">{{ tr('tutup') }}</button>
 
                                 </div>
 
@@ -174,7 +172,7 @@
                         next: '<i class="fa fa-angle-double-right" aria-hidden="true"></i>',
                         previous: '<i class="fa fa-angle-double-left" aria-hidden="true"></i>'
                     },
-                    processing: '<div class="d-flex justify-content-center"><div class="spinner-border" role="status"><span class="visually-hidden">Loading...</span></div></div>',
+                    processing: '<div class="d-flex justify-content-center"><div class="spinner-border" role="status"><span class="visually-hidden">{{ tr('loading...') }}</span></div></div>',
                     info: "<br> &nbsp; &nbsp; <b>page _PAGE_ of _PAGES_</b>  | Records _START_ to _END_ of _MAX_ entries",
                 },
 

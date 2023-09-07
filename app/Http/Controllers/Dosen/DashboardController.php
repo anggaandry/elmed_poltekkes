@@ -89,9 +89,9 @@ class DashboardController extends Controller
             $holiday=$event->name;
             $schedule_data=[];
         }else{
-            $holiday="Libur jadwal kosong";
+            $holiday=tr("libur jadwal kosong");
             if(date('w')==0){
-                $holiday="Libur hari minggu";
+                $holiday=tr("libur hari minggu");
             }
         }
                         

@@ -5,8 +5,8 @@
 @section('breadcrumb')
     <div class="row page-titles">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item active"><a href="javascript:void(0)">Akademik</a></li>
-            <li class="breadcrumb-item"><a href="javascript:void(0)">Kalender akademik</a></li>
+            <li class="breadcrumb-item active"><a href="javascript:void(0)">{{ tr('akademik') }}</a></li>
+            <li class="breadcrumb-item"><a href="javascript:void(0)">{{ tr('kalender akademik') }}</a></li>
         </ol>
     </div>
 @endsection
@@ -25,8 +25,7 @@
 
                                     <select class="form-select form-select-lg" id="semester_" onchange="reload()">
                                         @foreach ($semester_data as $item)
-                                            <option value="{{ $item->id }}"
-                                                @if ($semester_id == $item->id) selected @endif>
+                                            <option value="{{ $item->id }}" @if ($semester_id == $item->id) selected @endif>
                                                 Semester {{ $item->odd == 1 ? 'Ganjil' : 'Genap' }} TA
                                                 {{ $item->year }}/{{ $item->year + 1 }} ({{ date_id($item->start, 0) }} -
                                                 {{ date_id($item->end, 0) }})
@@ -35,14 +34,13 @@
                                     </select>
                                 </div>
                                 <div class="col-6">
-                                    <a class="btn  btn-primary float-end" data-bs-toggle="modal" href="#add"><span
-                                            class="btn-icon-start text-primary"><i class="fa fa-plus color-primary"></i>
-                                        </span>Tambah kalender akademik</a>
+                                    <a class="btn  btn-primary float-end" data-bs-toggle="modal" href="#add"><span class="btn-icon-start text-primary"><i class="fa fa-plus color-primary"></i>
+                                        </span>{{ tr('tambah kalender akademik') }}</a>
                                     <div class="modal fade" id="add">
                                         <div class="modal-dialog" role="document">
                                             <div class="modal-content">
                                                 <div class="modal-header">
-                                                    <h5 class="modal-title">Tambah kalender akademik</h5>
+                                                    <h5 class="modal-title">{{ tr('tambah kalender akademik') }}</h5>
                                                     <button type="button" class="btn-close" data-bs-dismiss="modal">
                                                     </button>
                                                 </div>
@@ -51,36 +49,28 @@
                                                     <div class="modal-body">
                                                         <div class="row">
                                                             <div class="mb-3 col-md-12">
-                                                                <label class="form-label">Tanggal</label>
-                                                                <input type="date" class="form-control" name="date"
-                                                                    required>
+                                                                <label class="form-label">{{ tr('tanggal') }}</label>
+                                                                <input type="date" class="form-control" name="date" required>
                                                             </div>
                                                             <div class="mb-3 col-md-12">
-                                                                <label class="form-label">Libur</label>
+                                                                <label class="form-label">{{ tr('libur') }}</label>
                                                                 <select name="off" class="form-select">
-                                                                    <option value="1">
-                                                                        YA
-                                                                    </option>
-                                                                    <option value="0">
-                                                                        TIDAK
-                                                                    </option>
+                                                                    <option value="1">{{ tr('ya ') }}</option>
+                                                                    <option value="0">{{ tr('tidak') }}</option>
                                                                 </select>
                                                             </div>
                                                             <div class="mb-3 col-md-12">
-                                                                <label class="form-label">Event</label>
+                                                                <label class="form-label">{{ tr('event') }}</label>
                                                                 <textarea name="name" rows="3" class="form-control" required></textarea>
                                                             </div>
                                                             <div class="mb-3 col-md-12">
-                                                                <small class="text-danger">note: semua
-                                                                    absensi di tanggal ini akan di
-                                                                    tiadakan</small>
+                                                                <small class="text-danger">{{ tr('note: semua absensi di tanggal ini akan di tiadakan') }}</small>
                                                             </div>
                                                         </div>
                                                     </div>
                                                     <div class="modal-footer">
-                                                        <button type="button" class="btn btn-danger light"
-                                                            data-bs-dismiss="modal">Tutup</button>
-                                                        <button type="submit" class="btn btn-primary">Simpan</button>
+                                                        <button type="button" class="btn btn-danger light" data-bs-dismiss="modal">{{ tr('tutup') }}</button>
+                                                        <button type="submit" class="btn btn-primary">{{ tr('simpan') }}</button>
                                                     </div>
                                                 </form>
                                             </div>
@@ -98,11 +88,11 @@
                             <thead class="">
                                 <tr>
                                     <th>#</th>
-                                    <th>Tanggal</th>
-                                    <th>Event</th>
-                                    <th>Libur</th>
+                                    <th>{{ tr('tanggal') }}</th>
+                                    <th>{{ tr('event') }}</th>
+                                    <th>{{ tr('libur') }}</th>
                                     @if (can($key_, 'edit') || can($key_, 'delete'))
-                                        <th>Aksi</th>
+                                        <th>{{ tr('aksi') }}</th>
                                     @endif
                                 </tr>
                             </thead>
@@ -113,68 +103,52 @@
                                         <td>{{ $i++ }}</td>
                                         <td>{{ date_id($item->date, 3) }}</td>
                                         <td>{{ $item->name }}</td>
-                                        <td>@php echo $item->off == 1 ? "<span class='badge badge-danger'>Libur</span>" : '-' @endphp
+                                        <td>@php echo $item->off == 1 ? "<span class='badge badge-danger'>".tr('libur')."</span>" : '-' @endphp
                                         </td>
                                         @if (can($key_, 'edit') || can($key_, 'delete'))
                                             <td>
                                                 @if (can($key_, 'edit'))
-                                                    <a class="btn btn-outline-info btn-xs" data-bs-toggle="modal"
-                                                        href="#edit{{ $item->id }}"><i
-                                                            class="fa fa-edit color-info"></i>
+                                                    <a class="btn btn-outline-info btn-xs" data-bs-toggle="modal" href="#edit{{ $item->id }}"><i class="fa fa-edit color-info"></i>
                                                     </a>
                                                     <div class="modal fade" id="edit{{ $item->id }}">
                                                         <div class="modal-dialog" role="document">
                                                             <div class="modal-content">
                                                                 <div class="modal-header">
-                                                                    <h5 class="modal-title">Edit kalender akademik</h5>
-                                                                    <button type="button" class="btn-close"
-                                                                        data-bs-dismiss="modal">
+                                                                    <h5 class="modal-title">{{ tr('edit kalender akademik') }}</h5>
+                                                                    <button type="button" class="btn-close" data-bs-dismiss="modal">
                                                                     </button>
                                                                 </div>
-                                                                <form action="{{ url('/4dm1n/kalender/edit') }}"
-                                                                    method="post">
+                                                                <form action="{{ url('/4dm1n/kalender/edit') }}" method="post">
                                                                     {{ csrf_field() }}
-                                                                    <input type="hidden" name="id"
-                                                                        value="{{ $item->id }}">
+                                                                    <input type="hidden" name="id" value="{{ $item->id }}">
                                                                     <div class="modal-body text-start">
                                                                         <div class="row">
                                                                             <div class="mb-3 col-md-12">
-                                                                                <label class="form-label">Tanggal</label>
-                                                                                <input type="date" class="form-control"
-                                                                                    name="date"
-                                                                                    value="{{ $item->date }}" required>
+                                                                                <label class="form-label">{{ tr('tanggal') }}</label>
+                                                                                <input type="date" class="form-control" name="date" value="{{ $item->date }}" required>
                                                                             </div>
                                                                             <div class="mb-3 col-md-12">
-                                                                                <label class="form-label">Libur</label>
+                                                                                <label class="form-label">{{ tr('libur') }}</label>
                                                                                 <select name="off" class="form-select">
-                                                                                    <option value="1"
-                                                                                        @if ($item->off == 1) selected @endif>
-                                                                                        YA
-                                                                                    </option>
-                                                                                    <option value="0"
-                                                                                        @if ($item->off == 0) selected @endif>
-                                                                                        TIDAK
-                                                                                    </option>
+                                                                                    <option value="1" @if ($item->off == 1) selected @endif>{{ tr('ya') }}</option>
+                                                                                    <option value="0" @if ($item->off == 0) selected @endif>{{ tr('tidak') }}</option>
                                                                                 </select>
                                                                             </div>
                                                                             <div class="mb-3 col-md-12">
-                                                                                <label class="form-label">Event</label>
+                                                                                <label class="form-label">{{ tr('event') }}</label>
                                                                                 <textarea name="name" rows="3" class="form-control" required>{{ $item->name }}</textarea>
 
                                                                             </div>
                                                                             <div class="mb-3 col-md-12">
-                                                                                <small class="text-danger">note: semua
-                                                                                    absensi di tanggal ini akan di
-                                                                                    tiadakan</small>
+                                                                                <small class="text-danger">{{ tr('note: semua absensi di tanggal ini akan di tiadakan') }}</small>
+
+
                                                                             </div>
                                                                         </div>
                                                                     </div>
                                                                     <div class="modal-footer">
-                                                                        <button type="button"
-                                                                            class="btn btn-danger light"
-                                                                            data-bs-dismiss="modal">Tutup</button>
-                                                                        <button type="submit"
-                                                                            class="btn btn-primary">Simpan</button>
+                                                                        <button type="button" class="btn btn-danger light" data-bs-dismiss="modal">{{ tr('tutup') }}</button>
+                                                                        <button type="submit" class="btn btn-primary">{{ tr('simpan') }}</button>
                                                                     </div>
                                                                 </form>
                                                             </div>
@@ -183,30 +157,25 @@
                                                 @endif
 
                                                 @if (can($key_, 'delete'))
-                                                    <a class="btn btn-outline-danger btn-xs" data-bs-toggle="modal"
-                                                        href="#delete{{ $item->id }}"><i
-                                                            class="fa fa-trash color-danger"></i>
+                                                    <a class="btn btn-outline-danger btn-xs" data-bs-toggle="modal" href="#delete{{ $item->id }}"><i class="fa fa-trash color-danger"></i>
                                                     </a>
                                                     <div class="modal fade" id="delete{{ $item->id }}">
                                                         <div class="modal-dialog modal-dialog-centered" role="document">
                                                             <div class="modal-content">
                                                                 <div class="modal-header">
-                                                                    <h5 class="modal-title text-danger">Peringatan !!</h5>
-                                                                    <button type="button" class="btn-close"
-                                                                        data-bs-dismiss="modal">
+                                                                    <h5 class="modal-title text-danger">{{ tr('peringatan') }} !!</h5>
+                                                                    <button type="button" class="btn-close" data-bs-dismiss="modal">
                                                                     </button>
                                                                 </div>
 
                                                                 <div class="modal-body">
-                                                                    <p>Apakah anda ingin menghapus kalender akademik
-                                                                        <b>{{ $item->name }}</b> ?
+                                                                    <p>{{ tr('apakah anda ingin menghapus kalender akademik') }}<b>{{ $item->name }}</b> ?
+
                                                                     </p>
                                                                 </div>
                                                                 <div class="modal-footer">
-                                                                    <button type="button" class="btn btn-danger light"
-                                                                        data-bs-dismiss="modal">Tutup</button>
-                                                                    <a href="{{ url('4dm1n/kalender/delete/' . $item->id) }}"
-                                                                        class="btn btn-primary">Hapus</a>
+                                                                    <button type="button" class="btn btn-danger light" data-bs-dismiss="modal">{{ tr('tutup') }}</button>
+                                                                    <a href="{{ url('4dm1n/kalender/delete/' . $item->id) }}" class="btn btn-primary">{{ tr('hapus') }}</a>
                                                                 </div>
 
                                                             </div>

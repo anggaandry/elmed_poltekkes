@@ -5,8 +5,8 @@
 @section('breadcrumb')
     <div class="row page-titles">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item active"><a href="javascript:void(0)">LMS</a></li>
-            <li class="breadcrumb-item"><a href="javascript:void(0)">Ujian</a></li>
+            <li class="breadcrumb-item active"><a href="javascript:void(0)">{{ tr('lms') }}</a></li>
+            <li class="breadcrumb-item"><a href="javascript:void(0)">{{ tr('ujian') }}</a></li>
         </ol>
     </div>
 @endsection
@@ -18,20 +18,18 @@
                 <div class="card-body">
 
                     @if (count($active_exam) > 0)
-                        <h3 class="mb-3">Ujian Aktif <small class="float-end text-primary"
-                                style="font-size: 15px;!important">{{ count($active_exam) }} Ujian</small></h3>
+                        <h3 class="mb-3">{{ tr('ujian aktif') }}<small class="float-end text-primary" style="font-size: 15px;!important">{{ count($active_exam) }} {{ tr('ujian') }}</small></h3>
                         <div class="owl-carousel owl-carousel owl-loaded front-view-slider mb-4">
                             @foreach ($active_exam as $item)
                                 <div class="items">
                                     <a href="{{ url('dosen/ujian/detail?id=' . $item->exam_id . '&kelas=' . $item->id) }}">
                                         <div class=" card">
-                                            <div class="imgcard"
-                                                style="background-image: url({{ url(EXAM_G) . str_replace(' ', '_', $item->exam->name) }});">
+                                            <div class="imgcard" style="background-image: url({{ url(EXAM_G) . str_replace(' ', '_', $item->exam->name) }});">
                                                 <div class="m-2 float-end">
                                                     @if (strtotime($item->end) > strtotime(date('Y-m-d h:i')))
-                                                        <span class="badge bg-success">aktif</span>
+                                                        <span class="badge bg-success">{{ tr('aktif') }}</span>
                                                     @else
-                                                        <span class="badge bg-danger">belum dikoreksi</span>
+                                                        <span class="badge bg-danger">{{ tr('belum dikoreksi') }}</span>
                                                     @endif
                                                     <span class="badge bg-secondary"><i class="fa fa-users"></i>
                                                         {{ count($item->exam_absence) }}/{{ count($item->class->colleger_class) }}</span>
@@ -40,8 +38,7 @@
                                             </div>
 
                                             <div class="px-3 py-2">
-                                                <h4 data-bs-toggle="tooltip" data-bs-placement="bottom"
-                                                    title="Ujian :{{ $item->exam->name }}">{{ $item->exam->name }}</h4>
+                                                <h4 data-bs-toggle="tooltip" data-bs-placement="bottom" title="Ujian :{{ $item->exam->name }}">{{ $item->exam->name }}</h4>
                                                 <p>{{ $item->class->name }}</p>
                                                 <p>
                                                     <small><i class="fa fa-stopwatch"></i> {{ date_id($item->start, 2) }}
@@ -65,25 +62,23 @@
                     <div class="row">
                         <div class="col-xxl-4 col-xl-6">
                             <div class="input-group mb-1 input-primary">
-                                <input type="text" class="form-control" id="search_" placeholder="Cari disini.."
-                                    oninput="search_data()">
+                                <input type="text" class="form-control" id="search_" placeholder="Cari disini.." oninput="search_data()">
                                 <span class="input-group-text border-0"><i class="fa fa-search"></i></span>
                             </div>
-                            <small id="info_finding_">Ditemukan 0 Ujian</small>
+                            <small id="info_finding_">{{ tr('ditemukan 0 ujian') }}</small>
 
                         </div>
                         <div class="col-4">
 
                         </div>
                         <div class="col-4">
-                            <a class="btn btn-primary  mb-3  float-end" href="#add" data-bs-toggle="modal"> <i
-                                    class="fa fa-plus-circle"></i> Buat
-                                Ujian</a>
+                            <a class="btn btn-primary  mb-3  float-end" href="#add" data-bs-toggle="modal"><i class="fa fa-plus-circle"></i> {{ tr('buat ujian') }}</a>
+
                             <div class="modal fade" id="add">
                                 <div class="modal-dialog modal-lg" role="document">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h5 class="modal-title">Tambah ujian baru</h5>
+                                            <h5 class="modal-title">{{ tr('tambah ujian baru') }}</h5>
                                             <button type="button" class="btn-close" data-bs-dismiss="modal">
                                             </button>
                                         </div>
@@ -93,30 +88,30 @@
                                             <div class="modal-body">
                                                 <div class="row">
                                                     <div class="mb-3 col-md-12">
-                                                        <label class="form-label">mata kuliah</label>
+                                                        <label class="form-label">{{ tr('mata kuliah') }}</label>
                                                         <select class="form-select form-select-lg" name="sks_id" required>
-                                                            <option value="">-- Pilih mata kuliah-- </option>
+                                                            <option value="">-- {{ tr('pilih mata kuliah') }} --</option>
                                                             @foreach ($subject_data as $item)
                                                                 <option value="{{ $item->id }}">
-                                                                    {{ $item->subject->name }} (prodi
+                                                                    {{ $item->subject->name }} ({{ tr('prodi') }}
                                                                     {{ $item->prodi->program->name }}
                                                                     {{ $item->prodi->study_program->name }} -
                                                                     {{ $item->prodi->category->name }},
-                                                                    semester {{ $item->semester }}, {{ $item->value }}
-                                                                    SKS)
+                                                                    {{ tr('semester') }} {{ $item->semester }}, {{ $item->value }}
+                                                                    {{ tr('sks') }})
                                                                 </option>
                                                             @endforeach
                                                         </select>
                                                     </div>
 
                                                     <div class="mb-3 col-md-12">
-                                                        <label class="form-label">Judul ujian</label>
+                                                        <label class="form-label">{{ tr('judul ujian') }}</label>
                                                         <input type="text" name="name" class="form-control" required>
                                                     </div>
 
 
                                                     <div class="mb-3 col-md-12">
-                                                        <label class="form-label">Deskripsi</label>
+                                                        <label class="form-label">{{ tr('deskripsi') }}</label>
                                                         <textarea name="description" class="form-control" required></textarea>
                                                     </div>
 
@@ -124,9 +119,8 @@
                                                 </div>
                                             </div>
                                             <div class="modal-footer">
-                                                <button type="button" class="btn btn-danger light"
-                                                    data-bs-dismiss="modal">Tutup</button>
-                                                <button type="submit" class="btn btn-primary">Simpan</button>
+                                                <button type="button" class="btn btn-danger light" data-bs-dismiss="modal">{{ tr('tutup') }}</button>
+                                                <button type="submit" class="btn btn-primary">{{ tr('simpan') }}</button>
                                             </div>
                                         </form>
                                     </div>
@@ -135,37 +129,34 @@
                         </div>
                     </div>
 
-                    <div class="p-5 justify-content-center align-items-center text-center w-100 align-middle d-none"
-                        id="loading_" style="height: 550px;">
+                    <div class="p-5 justify-content-center align-items-center text-center w-100 align-middle d-none" id="loading_" style="height: 550px;">
                         <br>
                         <br>
                         <br>
                         <br>
                         <div class="mt-5">
                             <div class="spinner-grow spinner-grow-sm text-primary" role="status">
-                                <span class="visually-hidden">Loading...</span>
+                                <span class="visually-hidden">{{ tr('loading...') }}</span>
                             </div>
                             <div class="spinner-grow spinner-grow-sm text-primary" role="status">
-                                <span class="visually-hidden">Loading...</span>
+                                <span class="visually-hidden">{{ tr('loading...') }}</span>
                             </div>
                             <div class="spinner-grow spinner-grow-sm text-primary" role="status">
-                                <span class="visually-hidden">Loading...</span>
+                                <span class="visually-hidden">{{ tr('loading...') }}</span>
                             </div>
                         </div>
 
                     </div>
 
-                    <div class="p-5 justify-content-center align-items-center text-center w-100 align-middle d-none"
-                        id="nodata_" style="height: 500px;">
+                    <div class="p-5 justify-content-center align-items-center text-center w-100 align-middle d-none" id="nodata_" style="height: 500px;">
                         <br>
                         <br>
                         <br>
                         <br>
                         <div class="mt-5">
                             <img src="{{ asset('images/art/empty1.png') }}" height="100" alt="">
-                            <h6 class="mt-3">Ujian tidak ditemukan</h6>
-                            <!-- <a class="btn btn-primary btn-xs mb-3 mt-3" href="{{ url('dosen/ujian/form/add') }}"> <i
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        class="fa fa-plus-circle"></i> Buat Ujian</a> -->
+                            <h6 class="mt-3">{{ tr('ujian tidak ditemukan') }}</h6>
+                            <!-- <a class="btn btn-primary btn-xs mb-3 mt-3" href="{{ url('dosen/ujian/form/add') }}"><i class="fa fa-plus-circle"></i> {{ tr('buat ujian') }}</a> -->
                             <br>
                             <br>
                         </div>

@@ -17,19 +17,18 @@
                 <div class="card-body">
                     <div class="dlab-media d-flex justify-content-between">
                         <div class="dlab-content">
-                            <h6 class="text-white">Selamat datang di portal dosen</h6>
-                            <h4 class="text-white">{{ title_lecturer($auth) }} <br> <small>
+                            <h6 class="text-white">{{ tr('selamat datang di portal dosen') }}</h6>
+                            <h4 class="text-white">{{ title_lecturer($auth) }} <br><small>
                                     {{ $auth->identity }}. {{ $auth->identity_number }}</small>
                             </h4>
-                            <a href="{{ url('dosen/profil') }}" class="btn btn-sx btn-primary mt-5">lihat profil >></a>
+                            <a href="{{ url('dosen/profil') }}" class="btn btn-sx btn-primary mt-5">{{ tr('lihat profil') }} >></a>
 
                         </div>
                         <div class="dlab-img">
                             <img src="images/egucation-girl.png" alt="">
                         </div>
                         <div class="dlab-icon">
-                            <img src="{{ asset('images/art/presentation.png') }}" alt="" class="cal-img"
-                                height="150">
+                            <img src="{{ asset('images/art/presentation.png') }}" alt="" class="cal-img" height="150">
 
                         </div>
                     </div>
@@ -47,8 +46,7 @@
                         <div class="d-flex justify-content-between side-border">
                             <h4 class="mb-0 fs-18 font-w500">{{ date_id(date('Y-m-d H:i'), 3) }} </h4>
                             <div class="dropdown custom-dropdown mb-0 mt-1">
-                                <a href="{{ url('dosen/absensi') }}" class="text-info">lihat
-                                    Absensi</a>
+                                <a href="{{ url('dosen/absensi') }}" class="text-info">{{ tr('lihat absensi') }}</a>
                             </div>
 
                         </div>
@@ -71,7 +69,7 @@
                                                 </span>
 
                                                 <h4 class="mb-0">{{ $item->sks->subject->name }} @if ($item->moved)
-                                                        <span class="text-danger">[Jadwal pindahan]</span>
+                                                        <span class="text-danger">[{{ tr('jadwal pindahan') }}]</span>
                                                     @endif
                                                 </h4>
                                             </a>
@@ -93,17 +91,17 @@
         <div class="col-xl-12">
             <div class="row" style="z-index: 999999999999999; position: relative;">
                 <div class="col-9">
-                    <h3 class="mb-3">E-learning aktif</h3>
+                    <h3 class="mb-3">{{ tr('e-learning aktif') }}</h3>
                 </div>
                 <div class="col-3">
-                    <a href="{{ url('dosen/elearning') }}" class=" text-primary float-end">Lihat semua</a>
+                    <a href="{{ url('dosen/elearning') }}" class=" text-primary float-end">{{ tr('lihat semua') }}</a>
                 </div>
             </div>
             @if (count($elearning) == 0)
                 <div class="text-center" width="100%" height="150">
                     <img src="{{ asset('images/art/empty1.png') }}" height="100" alt="">
-                    <h6 class="mt-3">Belum ada elearning aktif saat ini</h6>
-                    <a class="btn btn-primary btn-xs mb-3" href="{{ url('dosen/elearning') }}">lihat semua</a>
+                    <h6 class="mt-3">{{ tr('belum ada elearning aktif saat ini') }}</h6>
+                    <a class="btn btn-primary btn-xs mb-3" href="{{ url('dosen/elearning') }}">{{ tr('lihat semua') }}</a>
                     <br>
                     <br>
                 </div>
@@ -111,13 +109,11 @@
                 <div class="owl-carousel owl-carousel owl-loaded front-view-slider ">
                     @foreach ($elearning as $item)
                         <div class="items">
-                            <a
-                                href="{{ url('dosen/elearning/detail?id=' . $item->elearning_id . '&kelas=' . $item->id) }}">
+                            <a href="{{ url('dosen/elearning/detail?id=' . $item->elearning_id . '&kelas=' . $item->id) }}">
                                 <div class=" card">
-                                    <div class="imgcard"
-                                        style="background-image: url({{ $item->elearning->image ? asset(LMS_PATH . $item->elearning->image) : url(ELEARNING_G) . str_replace(' ', '_', $item->elearning->name) }});">
+                                    <div class="imgcard" style="background-image: url({{ $item->elearning->image ? asset(LMS_PATH . $item->elearning->image) : url(ELEARNING_G) . str_replace(' ', '_', $item->elearning->name) }});">
                                         <div class="m-2 float-end">
-                                            <span class="badge bg-success">active</span>
+                                            <span class="badge bg-success">{{ tr('active') }}</span>
                                             <span class="badge bg-primary"><i class="fa fa-comment"></i>
                                                 {{ count($item->elearning_discussion) }}</span>
                                         </div>
@@ -125,8 +121,7 @@
                                     </div>
 
                                     <div class="px-3 py-2">
-                                        <h4 data-bs-toggle="tooltip" data-bs-placement="bottom"
-                                            title="Elearning :{{ $item->elearning->name }}">{{ $item->elearning->name }}
+                                        <h4 data-bs-toggle="tooltip" data-bs-placement="bottom" title="Elearning :{{ $item->elearning->name }}">{{ $item->elearning->name }}
                                         </h4>
                                         <p>{{ $item->class->name }}</p>
                                         <p>
@@ -149,17 +144,17 @@
         <div class="col-xl-12">
             <div class="row" style="z-index: 999999999999999; position: relative;">
                 <div class="col-9">
-                    <h3 class="mb-3">Kuis aktif</h3>
+                    <h3 class="mb-3">{{ tr('kuis aktif') }}</h3>
                 </div>
                 <div class="col-3">
-                    <a href="{{ url('dosen/kuis') }}" class=" text-primary float-end">Lihat semua</a>
+                    <a href="{{ url('dosen/kuis') }}" class=" text-primary float-end">{{ tr('lihat semua') }}</a>
                 </div>
             </div>
             @if (count($quiz) == 0)
                 <div class="text-center" width="100%" height="150">
                     <img src="{{ asset('images/art/empty1.png') }}" height="100" alt="">
-                    <h6 class="mt-3">Belum ada kuis aktif saat ini</h6>
-                    <a class="btn btn-primary btn-xs mb-3" href="{{ url('dosen/kuis') }}">lihat semua</a>
+                    <h6 class="mt-3">{{ tr('belum ada kuis aktif saat ini') }}</h6>
+                    <a class="btn btn-primary btn-xs mb-3" href="{{ url('dosen/kuis') }}">{{ tr('lihat semua') }}</a>
                     <br>
                     <br>
                 </div>
@@ -169,13 +164,12 @@
                         <div class="items">
                             <a href="{{ url('dosen/kuis/detail?id=' . $item->quiz_id . '&kelas=' . $item->id) }}">
                                 <div class=" card">
-                                    <div class="imgcard"
-                                        style="background-image: url({{ url(QUIZ_G) . str_replace(' ', '_', $item->quiz->name) }});">
+                                    <div class="imgcard" style="background-image: url({{ url(QUIZ_G) . str_replace(' ', '_', $item->quiz->name) }});">
                                         <div class="m-2 float-end">
                                             @if (strtotime($item->end) > strtotime(date('Y-m-d h:i')))
-                                                <span class="badge bg-success">aktif</span>
+                                                <span class="badge bg-success">{{ tr('aktif') }}</span>
                                             @else
-                                                <span class="badge bg-danger">belum dikoreksi</span>
+                                                <span class="badge bg-danger">{{ tr('belum dikoreksi') }}</span>
                                             @endif
                                             <span class="badge bg-secondary"><i class="fa fa-users"></i>
                                                 {{ count($item->quiz_absence) }}/{{ count($item->class->colleger_class) }}</span>
@@ -184,8 +178,7 @@
                                     </div>
 
                                     <div class="px-3 py-2">
-                                        <h4 data-bs-toggle="tooltip" data-bs-placement="bottom"
-                                            title="Kuis :{{ $item->quiz->name }}">{{ $item->quiz->name }}</h4>
+                                        <h4 data-bs-toggle="tooltip" data-bs-placement="bottom" title="Kuis :{{ $item->quiz->name }}">{{ $item->quiz->name }}</h4>
                                         <p>{{ $item->class->name }}</p>
                                         <p>
                                             <small><i class="fa fa-stopwatch"></i> {{ date_id($item->start, 2) }}
@@ -208,10 +201,10 @@
             <div class="col-xl-12">
                 <div class="row" style="z-index: 999999999999999; position: relative;">
                     <div class="col-9">
-                        <h3 class="mb-3">Ujian aktif</h3>
+                        <h3 class="mb-3">{{ tr('ujian aktif') }}</h3>
                     </div>
                     <div class="col-3">
-                        <a href="{{ url('dosen/ujian') }}" class="text-primary float-end">Lihat semua</a>
+                        <a href="{{ url('dosen/ujian') }}" class="text-primary float-end">{{ tr('lihat semua') }}</a>
                     </div>
                 </div>
                 <div class="owl-carousel owl-carousel owl-loaded front-view-slider ">
@@ -219,13 +212,12 @@
                         <div class="items">
                             <a href="{{ url('dosen/ujian/detail?id=' . $item->exam_id . '&kelas=' . $item->id) }}">
                                 <div class=" card">
-                                    <div class="imgcard"
-                                        style="background-image: url({{ url(EXAM_G) . str_replace(' ', '_', $item->exam->name) }});">
+                                    <div class="imgcard" style="background-image: url({{ url(EXAM_G) . str_replace(' ', '_', $item->exam->name) }});">
                                         <div class="m-2 float-end">
                                             @if (strtotime($item->end) > strtotime(date('Y-m-d h:i')))
-                                                <span class="badge bg-success">aktif</span>
+                                                <span class="badge bg-success">{{ tr('aktif') }}</span>
                                             @else
-                                                <span class="badge bg-danger">belum dikoreksi</span>
+                                                <span class="badge bg-danger">{{ tr('belum dikoreksi') }}</span>
                                             @endif
                                             <span class="badge bg-dark"><i class="fa fa-users"></i>
                                                 {{ count($item->exam_absence) }}/{{ count($item->class->colleger_class) }}</span>
@@ -234,8 +226,7 @@
                                     </div>
 
                                     <div class="px-3 py-2">
-                                        <h4 data-bs-toggle="tooltip" data-bs-placement="bottom"
-                                            title="Ujian :{{ $item->exam->name }}">{{ $item->exam->name }}</h4>
+                                        <h4 data-bs-toggle="tooltip" data-bs-placement="bottom" title="Ujian :{{ $item->exam->name }}">{{ $item->exam->name }}</h4>
                                         <p>{{ $item->class->name }}
 
                                         </p>

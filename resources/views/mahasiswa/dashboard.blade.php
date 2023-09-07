@@ -18,19 +18,19 @@
                 <div class="card-body">
                     <div class="dlab-media d-flex justify-content-between">
                         <div class="dlab-content">
-                            <h6 class="text-white">Selamat datang di portal mahasiswa</h6>
-                            <h4 class="text-white">{{ $auth->name }} <br> <small>
+                            <h6 class="text-white">{{ tr('selamat datang di portal mahasiswa') }}</h6>
+                            <h4 class="text-white">{{ $auth->name }} <br><small>
                                     NIM. {{ $auth->nim }}</small>
                             </h4>
-                            <p><span class="badge badge-dark">Kelas {{ $ac_->name }}
+                            <p><span class="badge badge-dark">{{ tr('Kelas') }} {{ $ac_->name }}
                                 </span>
                                 @if ($ac_->last)
                                     <br><small>
-                                        (semester {{ $ac->semester . ' ' . $ac_->year }})</small>
+                                        ({{ tr('semester') }} {{ $ac_->semester . ' ' . $ac_->year }})</small>
                                 @endif
                             </p>
-                            <a href="{{ url('mahasiswa/profil') }}" class="btn btn-sx bg-white text-dark mt-4">lihat profil
-                                >></a>
+                            <a href="{{ url('mahasiswa/profil') }}" class="btn btn-sx bg-white text-dark mt-4">{{ tr('lihat profil') }} >></a>
+
 
                         </div>
                         <div class="dlab-img">
@@ -55,8 +55,8 @@
                         <div class="d-flex justify-content-between side-border">
                             <h4 class="mb-0 fs-18 font-w500">{{ date_id(date('Y-m-d H:i'), 3) }} </h4>
                             <div class="dropdown custom-dropdown mb-0 mt-1">
-                                <a href="{{ url('mahasiswa/absensi') }}" class="text-info">lihat
-                                    absensi</a>
+                                <a href="{{ url('mahasiswa/absensi') }}" class="text-info">{{ tr('lihat absensi') }}</a>
+
                             </div>
 
                         </div>
@@ -78,7 +78,7 @@
                                                     {{ $item->lecturer }}
                                                 </span>
                                                 <h4 class="mb-0">{{ $item->sks->subject->name }} @if ($item->moved)
-                                                        <span class="text-danger">[Jadwal pindahan]</span>
+                                                        <span class="text-danger">[{{ tr('jadwal pindahan') }}]</span>
                                                     @endif
                                                 </h4>
                                             </a>
@@ -100,17 +100,17 @@
         <div class="col-xl-12">
             <div class="row" style="z-index: 100; position: relative;">
                 <div class="col-9">
-                    <h3 class="mb-3">E-learning aktif</h3>
+                    <h3 class="mb-3">{{ tr('e-learning aktif') }}</h3>
                 </div>
                 <div class="col-3">
-                    <a href="{{ url('mahasiswa/elearning') }}" class="text-primary float-end">Lihat semua</a>
+                    <a href="{{ url('mahasiswa/elearning') }}" class="text-primary float-end">{{ tr('lihat semua') }}</a>
                 </div>
             </div>
             @if (count($elearning) == 0)
                 <div class="text-center" width="100%" height="150">
                     <img src="{{ asset('images/art/empty1.png') }}" height="100" alt="">
-                    <h6 class="mt-3">Belum ada elearning aktif saat ini</h6>
-                    <a class="btn btn-primary btn-xs mb-3" href="{{ url('mahasiswa/elearning') }}">lihat semua</a>
+                    <h6 class="mt-3">{{ tr('belum ada elearning aktif saat ini') }}</h6>
+                    <a class="btn btn-primary btn-xs mb-3" href="{{ url('mahasiswa/elearning') }}">{{ tr('lihat semua') }}</a>
                     <br>
                     <br>
                 </div>
@@ -120,10 +120,9 @@
                         <div class="items">
                             <a href="{{ url('mahasiswa/elearning/detail?id=' . $item->id) }}">
                                 <div class=" card">
-                                    <div class="imgcard"
-                                        style="background-image: url({{ $item->elearning->image ? asset(LMS_PATH . $item->elearning->image) : url(ELEARNING_G) . str_replace(' ', '_', $item->elearning->name) }});">
+                                    <div class="imgcard" style="background-image: url({{ $item->elearning->image ? asset(LMS_PATH . $item->elearning->image) : url(ELEARNING_G) . str_replace(' ', '_', $item->elearning->name) }});">
                                         <div class="m-2 float-end">
-                                            <span class="badge bg-success">active</span>
+                                            <span class="badge bg-success">{{ tr('active') }}</span>
                                             <span class="badge bg-primary"><i class="fa fa-comment"></i>
                                                 {{ count($item->elearning_discussion) }}</span>
                                         </div>
@@ -131,8 +130,7 @@
                                     </div>
 
                                     <div class="px-3 py-2">
-                                        <h4 data-bs-toggle="tooltip" data-bs-placement="bottom"
-                                            title="Elearning :{{ $item->elearning->name }}">{{ $item->elearning->name }}
+                                        <h4 data-bs-toggle="tooltip" data-bs-placement="bottom" title="Elearning :{{ $item->elearning->name }}">{{ $item->elearning->name }}
                                         </h4>
                                         <p>{{ $item->class->name }}</p>
                                         <p>
@@ -155,17 +153,17 @@
         <div class="col-xl-12">
             <div class="row" style="z-index: 100; position: relative;">
                 <div class="col-9">
-                    <h3 class="mb-3">Kuis aktif</h3>
+                    <h3 class="mb-3">{{ tr('kuis aktif') }}</h3>
                 </div>
                 <div class="col-3">
-                    <a href="{{ url('mahasiswa/kuis') }}" class="text-primary float-end">Lihat semua</a>
+                    <a href="{{ url('mahasiswa/kuis') }}" class="text-primary float-end">{{ tr('lihat semua') }}</a>
                 </div>
             </div>
             @if (count($quiz) == 0)
                 <div class="text-center" width="100%" height="150">
                     <img src="{{ asset('images/art/empty1.png') }}" height="100" alt="">
-                    <h6 class="mt-3">Belum ada kuis aktif saat ini</h6>
-                    <a class="btn btn-primary btn-xs mb-3" href="{{ url('mahasiswa/kuis') }}">lihat semua</a>
+                    <h6 class="mt-3">{{ tr('belum ada kuis aktif saat ini') }}</h6>
+                    <a class="btn btn-primary btn-xs mb-3" href="{{ url('mahasiswa/kuis') }}">{{ tr('lihat semua') }}</a>
                     <br>
                     <br>
                 </div>
@@ -175,10 +173,9 @@
                         <div class="items">
                             <a href="javascript:void(0)" onclick="show_quiz({{ $item->id }})">
                                 <div class=" card">
-                                    <div class="imgcard"
-                                        style="background-image: url({{ url(QUIZ_G) . str_replace(' ', '_', $item->quiz->name) }});">
+                                    <div class="imgcard" style="background-image: url({{ url(QUIZ_G) . str_replace(' ', '_', $item->quiz->name) }});">
                                         <div class="m-2 float-end">
-                                            <span class="badge bg-success">active</span>
+                                            <span class="badge bg-success">{{ tr('active') }}</span>
                                             <span class="badge bg-secondary"><i class="fa fa-users"></i>
                                                 {{ count($item->quiz_absence) }}/{{ count($item->class->colleger_class) }}</span>
                                         </div>
@@ -186,8 +183,7 @@
                                     </div>
 
                                     <div class="px-3 py-2">
-                                        <h4 data-bs-toggle="tooltip" data-bs-placement="bottom"
-                                            title="Kuis :{{ $item->quiz->name }}">{{ $item->quiz->name }}</h4>
+                                        <h4 data-bs-toggle="tooltip" data-bs-placement="bottom" title="Kuis :{{ $item->quiz->name }}">{{ $item->quiz->name }}</h4>
                                         <p>{{ $item->class->name }}</p>
                                         <p>
                                             <small><i class="fa fa-stopwatch"></i> {{ date_id($item->start, 2) }}
@@ -209,7 +205,7 @@
                 <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title">Detail kuis</h5>
+                            <h5 class="modal-title">{{ tr('detail kuis') }}</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal">
                             </button>
                         </div>
@@ -221,28 +217,28 @@
                                             <td colspan="4" id="image_quiz" class="text-center"></td>
                                         </tr>
                                         <tr>
-                                            <th>Judul kuis</th>
+                                            <th>{{ tr('judul kuis') }}</th>
                                             <td id="name_quiz"></td>
-                                            <th>Dosen pengampu</th>
+                                            <th>{{ tr('dosen pengampu') }}</th>
                                             <td id="lecturer_quiz"></td>
                                         </tr>
 
                                         <tr>
-                                            <th>Mata kuliah</th>
-                                            <td id="subject_quiz"> </td>
-                                            <th>Skor</th>
+                                            <th>{{ tr('mata kuliah') }}</th>
+                                            <td id="subject_quiz"></td>
+                                            <th>{{ tr('skor') }}</th>
                                             <td id="score_quiz"></td>
                                         </tr>
 
                                         <tr>
-                                            <th>Mulai</th>
+                                            <th>{{ tr('mulai') }}</th>
                                             <td id="start_quiz"></td>
-                                            <th>Berakhir</th>
+                                            <th>{{ tr('berakhir') }}</th>
                                             <td id="end_quiz"></td>
                                         </tr>
 
                                         <tr>
-                                            <th>Deskripsi</th>
+                                            <th>{{ tr('deskripsi') }}</th>
                                             <td id="description_quiz" colspan="3"></td>
                                         </tr>
                                     </tbody>
@@ -250,7 +246,7 @@
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-danger light" data-bs-dismiss="modal">Tutup</button>
+                            <button type="button" class="btn btn-danger light" data-bs-dismiss="modal">{{ tr('tutup') }}</button>
                             <a href="" class="btn btn-primary" id="btn_quiz">
 
                             </a>
@@ -266,11 +262,10 @@
             <div class="col-xl-12">
                 <div class="row" style="z-index: 100; position: relative;">
                     <div class="col-9">
-                        <h3 class="mb-3">Ujian aktif</h3>
+                        <h3 class="mb-3">{{ tr('ujian aktif') }}</h3>
                     </div>
                     <div class="col-3">
-                        <a href="{{ url('mahasiswa/ujian') }}" style="z-index: 999999;"
-                            class="text-primary float-end">Lihat semua</a>
+                        <a href="{{ url('mahasiswa/ujian') }}" style="z-index: 999999;" class="text-primary float-end">{{ tr('lihat semua') }}</a>
                     </div>
                 </div>
 
@@ -279,10 +274,9 @@
                         <div class="items">
                             <a href="javascript:void(0)" onclick="show_exam({{ $item->id }})"">
                                 <div class=" card">
-                                    <div class="imgcard"
-                                        style="background-image: url({{ url(EXAM_G) . str_replace(' ', '_', $item->exam->name) }});">
+                                    <div class="imgcard" style="background-image: url({{ url(EXAM_G) . str_replace(' ', '_', $item->exam->name) }});">
                                         <div class="m-2 float-end">
-                                            <span class="badge bg-success">active</span>
+                                            <span class="badge bg-success">{{ tr('active') }}</span>
 
                                             <span class="badge bg-dark"><i class="fa fa-users"></i>
                                                 {{ count($item->exam_absence) }}/{{ count($item->class->colleger_class) }}</span>
@@ -291,8 +285,7 @@
                                     </div>
 
                                     <div class="px-3 py-2">
-                                        <h4 data-bs-toggle="tooltip" data-bs-placement="bottom"
-                                            title="Ujian :{{ $item->exam->name }}">{{ $item->exam->name }}</h4>
+                                        <h4 data-bs-toggle="tooltip" data-bs-placement="bottom" title="Ujian :{{ $item->exam->name }}">{{ $item->exam->name }}</h4>
                                         <p>{{ $item->class->name }}
 
                                         </p>
@@ -315,7 +308,7 @@
                     <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title">Detail ujian</h5>
+                                <h5 class="modal-title">{{ tr('detail ujian') }}</h5>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal">
                                 </button>
                             </div>
@@ -327,28 +320,28 @@
                                                 <td colspan="4" id="image_exam" class="text-center"></td>
                                             </tr>
                                             <tr>
-                                                <th>Judul ujian</th>
+                                                <th>{{ tr('judul ujian') }}</th>
                                                 <td id="name_exam"></td>
-                                                <th>Dosen pengampu</th>
+                                                <th>{{ tr('dosen pengampu') }}</th>
                                                 <td id="lecturer_exam"></td>
                                             </tr>
 
                                             <tr>
-                                                <th>Mata kuliah</th>
-                                                <td id="subject_exam"> </td>
-                                                <th>Skor</th>
+                                                <th>{{ tr('mata kuliah') }}</th>
+                                                <td id="subject_exam"></td>
+                                                <th>{{ tr('skor') }}</th>
                                                 <td id="score_exam"></td>
                                             </tr>
 
                                             <tr>
-                                                <th>Mulai</th>
+                                                <th>{{ tr('mulai') }}</th>
                                                 <td id="start_exam"></td>
-                                                <th>Berakhir</th>
+                                                <th>{{ tr('berakhir') }}</th>
                                                 <td id="end_exam"></td>
                                             </tr>
 
                                             <tr>
-                                                <th>Deskripsi</th>
+                                                <th>{{ tr('deskripsi') }}</th>
                                                 <td id="description_exam" colspan="3"></td>
                                             </tr>
                                         </tbody>
@@ -356,8 +349,7 @@
                                 </div>
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-danger light"
-                                    data-bs-dismiss="modal">Tutup</button>
+                                <button type="button" class="btn btn-danger light" data-bs-dismiss="modal">{{ tr('tutup') }}</button>
                                 <a href="" class="btn btn-primary" id="btn_exam">
 
                                 </a>

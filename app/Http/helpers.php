@@ -6,6 +6,32 @@ use App\Models\Menu;
 use App\Models\RolePermission;
 use App\Models\Semester;
 use App\Models\University;
+use Illuminate\Support\Facades\Storage;
+
+
+if (!function_exists('tr')) {
+    function tr($text, $mode=0)
+    {
+        $lang="";
+        if($mode==0){
+            $lang=ucfirst(__('dict.'.$text));
+        }else{
+            $lang=__('dict.'.$text);
+        }
+        
+        if(str_contains(strtolower($lang),'dict.')){
+            $path = storage_path('app/public') . "/tr.json";
+            $json = json_decode(file_get_contents($path), true); 
+            if(!isset($json[$text])){
+                $json[$text]=$text;
+                Storage::disk('public')->put('tr.json', json_encode($json));
+                Storage::disk('tmp')->put('dict.php',"<?php \r\n return ".var_export($json, true).";");
+            }
+        }
+    
+        return $lang;
+    }
+}
 
 if (!function_exists('rupiah')) {
     function rupiah($angka)
@@ -172,22 +198,22 @@ if (!function_exists('date_id')) {
 
         switch ($mode) {
             case 0:
-                return $date . " " . MONTH[$month - 1] . " " . $year;
+                return $date . " " . tr(MONTH[$month - 1]) . " " . $year;
                 break;
             case 1:
-                return $date . " " . MONTH[$month - 1] . " " . $year . " " . $hour . ":" . $minute;
+                return $date . " " . tr(MONTH[$month - 1]) . " " . $year . " " . $hour . ":" . $minute;
                 break;
             case 2:
-                return DAY[$day] . ', ' . $date . " " . MONTH[$month - 1] . " " . $year . " " . $hour . ":" . $minute;
+                return tr(DAY[$day]) . ', ' . $date . " " . tr(MONTH[$month - 1]) . " " . $year . " " . $hour . ":" . $minute;
                 break;
             case 3:
-                return DAY[$day] . ', ' . $date . " " . MONTH[$month - 1] . " " . $year;
+                return tr(DAY[$day]) . ', ' . $date . " " . tr(MONTH[$month - 1]) . " " . $year;
                 break;
             case 4:
-                return $date . " " . MON[$month - 1] . " " . $year;
+                return $date . " " . tr(MON[$month - 1]) . " " . $year;
                 break;
             case 5:
-                return $date . " " . MON[$month - 1] . " " . $year . " " . $hour . ":" . $minute;
+                return $date . " " . tr(MON[$month - 1]) . " " . $year . " " . $hour . ":" . $minute;
                 break;
 
             default:
@@ -217,49 +243,49 @@ if (!function_exists('ago_model')) {
         //Minutes
         else if ($minutes <= 60) {
             if ($minutes == 1) {
-                return "1 menit lalu";
+                return tr("1 menit lalu");
             } else {
-                return "$minutes menit lalu";
+                return $minutes." ".tr("menit lalu");
             }
         }
         //Hours
         else if ($hours <= 24) {
             if ($hours == 1) {
-                return "sejam yang lalu";
+                return tr("sejam yang lalu");
             } else {
-                return "$hours jam lalu";
+                return $hours." ".tr("jam lalu");
             }
         }
         //Days
         else if ($days <= 7) {
             if ($days == 1) {
-                return "kemarin";
+                return tr("kemarin");
             } else {
-                return "$days hari lalu";
+                return $days." ".tr("hari lalu");
             }
         }
         //Weeks
         else if ($weeks <= 4.3) {
             if ($weeks == 1) {
-                return "seminggu yang lalu";
+                return tr("seminggu yang lalu");
             } else {
-                return "$weeks minggu lalu";
+                return $weeks." ".tr("minggu lalu");
             }
         }
         //Months
         else if ($months <= 12) {
             if ($months == 1) {
-                return "sebulan yang lalu";
+                return tr("sebulan yang lalu");
             } else {
-                return "$months months ago";
+                return $months." ".tr("months ago");
             }
         }
         //Years
         else {
             if ($years == 1) {
-                return "setahun yang lalu";
+                return tr("setahun yang lalu");
             } else {
-                return "$years tahun lalu";
+                return $years." ".tr("tahun lalu");
             }
         }
     }

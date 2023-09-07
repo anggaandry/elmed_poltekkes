@@ -5,9 +5,9 @@
 @section('breadcrumb')
     <div class="row page-titles">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item active"><a href="javascript:void(0)">LMS</a></li>
-            <li class="breadcrumb-item"><a href="{{ url('mahasiswa/elearning') }}">E-learning</a></li>
-            <li class="breadcrumb-item"><a href="javascript:void(0)">Detail E-learning</a></li>
+            <li class="breadcrumb-item active"><a href="javascript:void(0)">{{ tr('lms') }}</a></li>
+            <li class="breadcrumb-item"><a href="{{ url('mahasiswa/elearning') }}">{{ tr('e-learning') }}</a></li>
+            <li class="breadcrumb-item"><a href="javascript:void(0)">{{ tr('detail e-learning') }}</a></li>
         </ol>
     </div>
 @endsection
@@ -37,7 +37,7 @@
                                     <li>{{ title_lecturer($data->lecturer) }}
                                     </li>
                                     @if ($view)
-                                        <li>Anda lihat pada {{ $view }}
+                                        <li>{{ tr('anda lihat pada') }} {{ $view }}
                                         </li>
                                     @endif
                                 </ul>
@@ -55,8 +55,7 @@
                         <iframe src="https://www.youtube.com/embed/{{ $data->video }}" height="400" width="100%">
                         </iframe>
                     @else
-                        <div
-                            style=" background-image: url('{{ $data->image ? asset(LMS_PATH . $data->image) : url(ELEARNING_G) . str_replace(' ', '_', $data->name) }}');
+                        <div style=" background-image: url('{{ $data->image ? asset(LMS_PATH . $data->image) : url(ELEARNING_G) . str_replace(' ', '_', $data->name) }}');
                         border: 1px solid #eee;
                         border-radius: 25px;
                         background-position: center center;
@@ -71,24 +70,18 @@
                             <div class="course-details-tab style-2 mt-4">
                                 <nav>
                                     <div class="nav nav-tabs tab-auto" id="nav-tab" role="tablist">
-                                        <button class="nav-link active " id="nav-about-tab" data-bs-toggle="tab"
-                                            data-bs-target="#nav-about" type="button" role="tab"
-                                            aria-controls="nav-about" aria-selected="true">Penjelasan</button>
-                                        <button class="nav-link " id="nav-discussion-tab" data-bs-toggle="tab"
-                                            data-bs-target="#nav-discussion" type="button" onclick="load_discuss(0);"
-                                            role="tab" aria-controls="nav-discussion"
-                                            aria-selected="false">Diskusi</button>
+                                        <button class="nav-link active " id="nav-about-tab" data-bs-toggle="tab" data-bs-target="#nav-about" type="button" role="tab" aria-controls="nav-about" aria-selected="true">{{ tr('penjelasan') }}</button>
+                                        <button class="nav-link " id="nav-discussion-tab" data-bs-toggle="tab" data-bs-target="#nav-discussion" type="button" onclick="load_discuss(0);" role="tab" aria-controls="nav-discussion" aria-selected="false">{{ tr('diskusi') }}</button>
 
                                     </div>
                                 </nav>
                                 <div class="tab-content" id="nav-tabContent">
-                                    <div class="tab-pane fade active show" id="nav-about" role="tabpanel"
-                                        aria-labelledby="nav-about-tab">
+                                    <div class="tab-pane fade active show" id="nav-about" role="tabpanel" aria-labelledby="nav-about-tab">
                                         <div class="about-content">
                                             @if ($class_first->note)
                                                 <div class="card">
                                                     <div class="card-body">
-                                                        <h6>Catatan kelas dosen</h6>
+                                                        <h6>{{ tr('catatan kelas dosen') }}</h6>
                                                         <p>{{ $class_first->note }}</p>
                                                     </div>
                                                 </div>
@@ -99,19 +92,15 @@
                                             <div class="text-center w-100">
                                                 @if ($data->file1 || $data->file1)
                                                     <br>
-                                                    <h4 class="text-center">Lampiran Elearning</h4>
+                                                    <h4 class="text-center">{{ tr('lampiran elearning') }}</h4>
                                                 @endif
 
                                                 @if ($data->file1)
-                                                    <a href="{{ asset(DOC_PATH . $data->file1) }}"
-                                                        class="btn btn-primary m-3" download>{{ $data->file1 }} <span
-                                                            class="btn-icon-end"><i class="fa fa-download"></i></span>
+                                                    <a href="{{ asset(DOC_PATH . $data->file1) }}" class="btn btn-primary m-3" download>{{ $data->file1 }} <span class="btn-icon-end"><i class="fa fa-download"></i></span>
                                                     </a>
                                                 @endif
                                                 @if ($data->file2)
-                                                    <a href="{{ asset(DOC_PATH . $data->file2) }}"
-                                                        class="btn btn-primary m-3" download>{{ $data->file2 }} <span
-                                                            class="btn-icon-end"><i class="fa fa-download"></i></span>
+                                                    <a href="{{ asset(DOC_PATH . $data->file2) }}" class="btn btn-primary m-3" download>{{ $data->file2 }} <span class="btn-icon-end"><i class="fa fa-download"></i></span>
                                                     </a>
                                                 @endif
 
@@ -122,9 +111,8 @@
                                             </div>
 
                                             @if ($quiz_data)
-                                                <div class="card pt-3"
-                                                    style="box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;">
-                                                    <h5 class="text-center mb-3">Kuis E-learning</h5>
+                                                <div class="card pt-3" style="box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;">
+                                                    <h5 class="text-center mb-3">{{ tr('kuis e-learning') }}</h5>
                                                     <div class="table-responsive">
                                                         <table class="display table text-center table-borderless">
 
@@ -135,8 +123,7 @@
                                                                         <td width="10%" class="align-middle">
                                                                             {{ $i++ }}.</td>
                                                                         <td class="align-middle text-start" width="25%">
-                                                                            <img src="{{ url(QUIZ_G . str_replace(' ', '_', $item->name)) }}"
-                                                                                alt="" height="75">
+                                                                            <img src="{{ url(QUIZ_G . str_replace(' ', '_', $item->name)) }}" alt="" height="75">
                                                                         </td>
                                                                         <td class="align-middle text-start">
                                                                             <h5 class="text-start">
@@ -146,9 +133,7 @@
                                                                                 {{ date_id($item->class->end, 5) }}</small>
                                                                         </td>
                                                                         <td class="align-middle">
-                                                                            <a href="{{ url('mahasiswa/kuis/do/' . $item->class->id) }}"
-                                                                                class="btn btn-danger btn-xs float-end me-3"><i
-                                                                                    class="fa fa-trash"></i> kerjakan
+                                                                            <a href="{{ url('mahasiswa/kuis/do/' . $item->class->id) }}" class="btn btn-danger btn-xs float-end me-3"><i class="fa fa-trash"></i> kerjakan
                                                                             </a>
                                                                         </td>
                                                                     </tr>
@@ -165,19 +150,16 @@
                                         </div>
                                     </div>
 
-                                    <div class="tab-pane fade " id="nav-discussion" role="tabpanel"
-                                        aria-labelledby="nav-discussion-tab">
+                                    <div class="tab-pane fade " id="nav-discussion" role="tabpanel" aria-labelledby="nav-discussion-tab">
                                         <div class="about-content">
 
-                                            <div class="d-none" id="displaydiscuss"
-                                                style="height:500px; overflow-y:auto; width: 100%; overflow-x: hidden">
+                                            <div class="d-none" id="displaydiscuss" style="height:500px; overflow-y:auto; width: 100%; overflow-x: hidden">
                                                 <div class="row" style="width:100%;">
 
                                                 </div>
                                             </div>
-                                            <button class="btn btn-success btn-xs my-5 d-none" id="btndiscuss"
-                                                onclick="comments()"><i class="fa fa-comment"></i>
-                                                kirim komentar</button>
+                                            <button class="btn btn-success btn-xs my-5 d-none" id="btndiscuss" onclick="comments()"><i class="fa fa-comment"></i>
+                                                {{ tr('kirim komentar') }}</button>
 
                                             <div class="w-100 text-center p-5" id="loaddiscuss" style="height:500px;">
                                                 <br>
@@ -187,24 +169,21 @@
                                                 <br>
                                                 <div class="mt-5">
                                                     <div class="spinner-border" role="status">
-                                                        <span class="visually-hidden">Loading...</span>
+                                                        <span class="visually-hidden">{{ tr('loading...') }}</span>
                                                     </div>
                                                     <br>
-                                                    <small>Loading diskusi..</small>
+                                                    <small>{{ tr('loading diskusi..') }}</small>
                                                 </div>
                                             </div>
 
-                                            <div class="w-100 text-center p-5 d-none" id="nodiscuss"
-                                                style="height:500px;">
+                                            <div class="w-100 text-center p-5 d-none" id="nodiscuss" style="height:500px;">
                                                 <br>
-                                                <img src="{{ asset('images/art/empty1.png') }}" height="100"
-                                                    alt="">
+                                                <img src="{{ asset('images/art/empty1.png') }}" height="100" alt="">
                                                 <br>
-                                                <i class="text-center">belum ada diskusi di kelas sini</i>
+                                                <i class="text-center">{{ tr('belum ada diskusi di kelas sini') }}</i>
                                                 <br>
-                                                <button class="btn btn-success btn-xs mt-3 mb-5" onclick="comments()"><i
-                                                        class="fa fa-comment"></i>
-                                                    mulai diskusi</button>
+                                                <button class="btn btn-success btn-xs mt-3 mb-5" onclick="comments()"><i class="fa fa-comment"></i>
+                                                    {{ tr('mulai diskusi') }}</button>
                                             </div>
 
 
@@ -212,24 +191,17 @@
                                                 <div class="modal-dialog modal-lg" role="document">
                                                     <div class="modal-content">
                                                         <div class="modal-header">
-                                                            <h5 class="modal-title" id="titledis">Buat komentar elearning
+                                                            <h5 class="modal-title" id="titledis">{{ tr('buat komentar elearning') }}
                                                             </h5>
-                                                            <button type="button" class="btn-close"
-                                                                data-bs-dismiss="modal">
+                                                            <button type="button" class="btn-close" data-bs-dismiss="modal">
                                                             </button>
                                                         </div>
-                                                        <form action="{{ url('/mahasiswa/elearning/discussion/send') }}"
-                                                            method="post" enctype="multipart/form-data"
-                                                            id="form_discuss">
+                                                        <form action="{{ url('/mahasiswa/elearning/discussion/send') }}" method="post" enctype="multipart/form-data" id="form_discuss">
                                                             {{ csrf_field() }}
-                                                            <input type="hidden" name="elearning_class_id"
-                                                                value="{{ $class_id }}">
-                                                            <input type="hidden" name="elearning_id"
-                                                                value="{{ $data->id }}">
-                                                            <input type="hidden" name="discussion_id" id="id_discuss"
-                                                                value="">
-                                                            <input type="hidden" name="colleger_id"
-                                                                value="{{ akun('mahasiswa')->id }}">
+                                                            <input type="hidden" name="elearning_class_id" value="{{ $class_id }}">
+                                                            <input type="hidden" name="elearning_id" value="{{ $data->id }}">
+                                                            <input type="hidden" name="discussion_id" id="id_discuss" value="">
+                                                            <input type="hidden" name="colleger_id" value="{{ akun('mahasiswa')->id }}">
                                                             <div class="modal-body">
 
                                                                 <div class="row" id="main_discuss">
@@ -239,17 +211,15 @@
                                                                 <div class="row">
 
                                                                     <div class="mb-3 col-md-6">
-                                                                        <label class="form-label">Gambar</label>
-                                                                        <input type="file" class="dropify"
-                                                                            name="image" height="100" />
+                                                                        <label class="form-label">{{ tr('gambar') }}</label>
+                                                                        <input type="file" class="dropify" name="image" height="100" />
                                                                     </div>
                                                                     <div class="mb-3 col-md-6">
-                                                                        <label class="form-label">File</label>
-                                                                        <input type="file" class="dropify"
-                                                                            name="file" height="100" />
+                                                                        <label class="form-label">{{ tr('file') }}</label>
+                                                                        <input type="file" class="dropify" name="file" height="100" />
                                                                     </div>
                                                                     <div class="mb-3 col-md-12">
-                                                                        <label class="form-label">komentar</label>
+                                                                        <label class="form-label">{{ tr('komentar') }}</label>
                                                                         <textarea name="comment" rows="4" class="form-control"></textarea>
                                                                     </div>
 
@@ -257,13 +227,11 @@
                                                                 </div>
                                                             </div>
                                                             <div class="modal-footer">
-                                                                <button type="button" class="btn btn-danger light"
-                                                                    data-bs-dismiss="modal">Tutup</button>
+                                                                <button type="button" class="btn btn-danger light" data-bs-dismiss="modal">{{ tr('tutup') }}</button>
                                                                 <button type="submit" class="btn btn-primary">
-                                                                    <div class="spinner-border spinner-border-sm d-none"
-                                                                        role="status" id="load_send">
-                                                                        <span class="visually-hidden">Loading...</span>
-                                                                    </div> Kirim
+                                                                    <div class="spinner-border spinner-border-sm d-none" role="status" id="load_send">
+                                                                        <span class="visually-hidden">{{ tr('loading...') }}</span>
+                                                                    </div> {{ tr('kirim') }}
                                                                 </button>
                                                             </div>
                                                         </form>
@@ -306,10 +274,10 @@
                     success: function(data) {
                         if (data.message == "success") {
                             if ($('#id_discuss').val() == "") {
-                                show_toast(1, "komentar berhasil dikirim");
+                                show_toast(1, "{{ tr('komentar berhasil dikirim') }}");
                                 load_discuss(1);
                             } else {
-                                show_toast(1, "Balasan komentar berhasil dikirim");
+                                show_toast(1, "{{ tr('balasan komentar berhasil dikirim') }}");
                                 load_discuss(2);
                             }
 
@@ -324,9 +292,9 @@
 
                         } else {
                             if ($('#id_discuss').val() == "") {
-                                show_toast(1, "komentar gagal dikirim");
+                                show_toast(1, "{{ tr('komentar gagal dikirim') }}");
                             } else {
-                                show_toast(1, "Balasan gagal berhasil dikirim");
+                                show_toast(1, "{{ tr('balasan gagal berhasil dikirim') }}");
                             }
                         }
                         $('#load_send').addClass('d-none');
@@ -358,13 +326,13 @@
 
         function reply(id, name) {
             $('#id_discuss').val(id);
-            $('#titledis').html("Balas komentar " + name);
+            $('#titledis').html("{{ tr('balas komentar') }} " + name);
             $('#comment').modal('show');
         }
 
         function comments() {
             $('#id_discuss').val("");
-            $('#titledis').html("Buat komentar elearning");
+            $('#titledis').html("{{ tr('buat komentar elearning') }}");
             $('#comment').modal('show');
         }
 
@@ -403,7 +371,7 @@
                                     style="background-image: url(${item.avatar});">
                                     <br>
                                     <span
-                                        class="badge badge-primary badge-xs mt-3">dosen
+                                        class="badge badge-primary badge-xs mt-3">{{ tr('dosen') }}
                                         <br></span>
                                 </div>`
                         } else {
@@ -426,7 +394,7 @@
                                                 style="background-image: url(${subitem.avatar});">
                                                 <br>
                                                 <span
-                                                    class="badge badge-primary badge-xs mt-3">dosen
+                                                    class="badge badge-primary badge-xs mt-3">{{ tr('dosen') }}
                                                     <br></span>
                                             </div>`;
                                 } else {
@@ -486,7 +454,7 @@
                                         <td></td>
                                         <td class="align-top pt-2 px-0 pb-0 m-0"
                                             colspan="2">
-                                            <button class="btn btn-danger btn-xs" onclick="reply(${item.id},'${item.status==1?"dosen":item.name}')"><i class="fa fa-reply-all"></i> balas </button>
+                                            <button class="btn btn-danger btn-xs" onclick="reply(${item.id},'${item.status==1?"dosen":item.name}')"><i class="fa fa-reply-all"></i> {{ tr('balas') }}</button>
                                         </td>
 
                                     </tr>`;

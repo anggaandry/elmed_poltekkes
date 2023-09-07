@@ -11,7 +11,7 @@
     @endphp
     <div class="row">
         <div class="widget-heading d-flex justify-content-between align-items-center">
-            <h3 class="m-0">Selamat datang, {{ $auth->name }}</h3>
+            <h3 class="m-0">{{ tr('selamat datang') }}{{ $auth->name }}</h3>
 
         </div>
         <div class="row mx-1">
@@ -26,15 +26,13 @@
                                 <div class="card-body">
                                     <div class="widget-courses align-items-center d-flex justify-content-between flex-wrap">
                                         <div class="d-flex align-items-center flex-wrap">
-                                            <img src="{{ asset('images/icon/major.png') }}" alt="" width="50"
-                                                class="">
+                                            <img src="{{ asset('images/icon/major.png') }}" alt="" width="50" class="">
                                             <div class="flex-1 ms-3">
-                                                <h4>Jurusan</h4>
+                                                <h4>{{ tr('jurusan') }}</h4>
                                                 <span>{{ $total_jurusan }}</span>
                                             </div>
                                         </div>
-                                        <a href="{{ url('4dm1n/jurusan') }}"><i
-                                                class="las la-angle-right text-primary"></i></a>
+                                        <a href="{{ url('4dm1n/jurusan') }}"><i class="las la-angle-right text-primary"></i></a>
                                     </div>
                                 </div>
                             </div>
@@ -49,12 +47,11 @@
                                         <div class="d-flex align-items-center flex-wrap">
                                             <img src="{{ asset('images/icon/study.png') }}" alt="" width="50">
                                             <div class="flex-1 ms-3">
-                                                <h4>Prodi</h4>
+                                                <h4>{{ tr('prodi') }}</h4>
                                                 <span>{{ $total_prodi }}</span>
                                             </div>
                                         </div>
-                                        <a href="{{ url('4dm1n/prodi_lengkap') }}"><i
-                                                class="las la-angle-right text-primary"></i></a>
+                                        <a href="{{ url('4dm1n/prodi_lengkap') }}"><i class="las la-angle-right text-primary"></i></a>
                                     </div>
                                 </div>
                             </div>
@@ -67,15 +64,13 @@
                                 <div class="card-body">
                                     <div class="widget-courses align-items-center d-flex justify-content-between flex-wrap">
                                         <div class="d-flex align-items-center flex-wrap">
-                                            <img src="{{ asset('images/icon/subject.png') }}" alt="" width="50"
-                                                class="">
+                                            <img src="{{ asset('images/icon/subject.png') }}" alt="" width="50" class="">
                                             <div class="flex-1 ms-3">
-                                                <h4>Mata kuliah</h4>
+                                                <h4>{{ tr('mata kuliah') }}</h4>
                                                 <span>{{ $total_matkul }}</span>
                                             </div>
                                         </div>
-                                        <a href="{{ url('4dm1n/matkul') }}"><i
-                                                class="las la-angle-right text-primary"></i></a>
+                                        <a href="{{ url('4dm1n/matkul') }}"><i class="las la-angle-right text-primary"></i></a>
                                     </div>
                                 </div>
                             </div>
@@ -89,15 +84,13 @@
                                 <div class="card-body">
                                     <div class="widget-courses align-items-center d-flex justify-content-between flex-wrap">
                                         <div class="d-flex align-items-center flex-wrap">
-                                            <img src="{{ asset('images/icon/lecturer.png') }}" alt=""
-                                                width="50" class="">
+                                            <img src="{{ asset('images/icon/lecturer.png') }}" alt="" width="50" class="">
                                             <div class="flex-1 ms-3">
-                                                <h4>Dosen</h4>
+                                                <h4>{{ tr('dosen') }}</h4>
                                                 <span>{{ $total_dosen }}</span>
                                             </div>
                                         </div>
-                                        <a href="{{ url('4dm1n/dosen') }}"><i
-                                                class="las la-angle-right text-primary"></i></a>
+                                        <a href="{{ url('4dm1n/dosen') }}"><i class="las la-angle-right text-primary"></i></a>
                                     </div>
                                 </div>
                             </div>
@@ -111,15 +104,13 @@
                                 <div class="card-body">
                                     <div class="widget-courses align-items-center d-flex justify-content-between flex-wrap">
                                         <div class="d-flex align-items-center flex-wrap">
-                                            <img src="{{ asset('images/icon/colleger.png') }}" alt=""
-                                                width="50" class="">
+                                            <img src="{{ asset('images/icon/colleger.png') }}" alt="" width="50" class="">
                                             <div class="flex-1 ms-3">
-                                                <h4>Mahasiswa</h4>
+                                                <h4>{{ tr('mahasiswa') }}</h4>
                                                 <span>{{ $total_mahasiswa }}</span>
                                             </div>
                                         </div>
-                                        <a href="{{ url('4dm1n/mahasiswa') }}"><i
-                                                class="las la-angle-right text-primary"></i></a>
+                                        <a href="{{ url('4dm1n/mahasiswa') }}"><i class="las la-angle-right text-primary"></i></a>
                                     </div>
                                 </div>
                             </div>
@@ -133,15 +124,13 @@
                                 <div class="card-body">
                                     <div class="widget-courses align-items-center d-flex justify-content-between flex-wrap">
                                         <div class="d-flex align-items-center flex-wrap">
-                                            <img src="{{ asset('images/icon/question.png') }}" alt=""
-                                                width="50" class="">
+                                            <img src="{{ asset('images/icon/question.png') }}" alt="" width="50" class="">
                                             <div class="flex-1 ms-3">
-                                                <h4>Soal</h4>
+                                                <h4>{{ tr('soal') }}</h4>
                                                 <span>{{ $total_soal }}</span>
                                             </div>
                                         </div>
-                                        <a href="{{ url('4dm1n/soal') }}"><i
-                                                class="las la-angle-right text-primary"></i></a>
+                                        <a href="{{ url('4dm1n/soal') }}"><i class="las la-angle-right text-primary"></i></a>
                                     </div>
                                 </div>
                             </div>
@@ -155,15 +144,13 @@
                                 <div class="card-body">
                                     <div class="widget-courses align-items-center d-flex justify-content-between flex-wrap">
                                         <div class="d-flex align-items-center flex-wrap">
-                                            <img src="{{ asset('images/icon/elearning.png') }}" alt=""
-                                                width="50" class="">
+                                            <img src="{{ asset('images/icon/elearning.png') }}" alt="" width="50" class="">
                                             <div class="flex-1 ms-3">
-                                                <h4>E-learning</h4>
+                                                <h4>{{ tr('e-learning') }}</h4>
                                                 <span>{{ $total_elearning }}</span>
                                             </div>
                                         </div>
-                                        <a href="{{ url('4dm1n/materi') }}"><i
-                                                class="las la-angle-right text-primary"></i></a>
+                                        <a href="{{ url('4dm1n/materi') }}"><i class="las la-angle-right text-primary"></i></a>
                                     </div>
                                 </div>
                             </div>
@@ -177,15 +164,13 @@
                                 <div class="card-body">
                                     <div class="widget-courses align-items-center d-flex justify-content-between flex-wrap">
                                         <div class="d-flex align-items-center flex-wrap">
-                                            <img src="{{ asset('images/icon/quiz.png') }}" alt="" width="50"
-                                                class="">
+                                            <img src="{{ asset('images/icon/quiz.png') }}" alt="" width="50" class="">
                                             <div class="flex-1 ms-3">
-                                                <h4>Kuis</h4>
+                                                <h4>{{ tr('kuis') }}</h4>
                                                 <span>{{ $total_kuis }}</span>
                                             </div>
                                         </div>
-                                        <a href="{{ url('4dm1n/kuis') }}"><i
-                                                class="las la-angle-right text-primary"></i></a>
+                                        <a href="{{ url('4dm1n/kuis') }}"><i class="las la-angle-right text-primary"></i></a>
                                     </div>
                                 </div>
                             </div>
@@ -204,13 +189,12 @@
                 <div class="card-header">
                     <div class="row" style="width:110%;">
                         <div class="col-7">
-                            <h4>Grafik perkembangan LMS</h4>
+                            <h4>{{ tr('grafik perkembangan lms') }}</h4>
                         </div>
                         <div class="col-5">
 
-                            <select class="form-select" id="prodi_" onchange="chart_lms()"
-                                @if (can_prodi()) disabled @endif>
-                                <option value="">Semua prodi</option>
+                            <select class="form-select" id="prodi_" onchange="chart_lms()" @if (can_prodi()) disabled @endif>
+                                <option value="">{{ tr('semua prodi') }}</option>
                                 @foreach ($prodi_data as $item)
                                     <option value="{{ $item->id }}" @if ($prodi_id == $item->id) selected @endif>
                                         {{ $item->program->name }}
@@ -227,7 +211,7 @@
                             <div class="mb-5 mt-5">
                                 <div class="text-center">
                                     <div class="spinner-border text-dark" role="status">
-                                        <span class="sr-only">Loading...</span>
+                                        <span class="sr-only">{{ tr('loading...') }}</span>
                                     </div>
                                 </div>
                             </div><br>

@@ -85,7 +85,7 @@ class ScheduleController extends Controller
                     }
 
                     if(can($this->key_,'delete')){
-                        $action.='<br> <a class="text-danger mt-1" href="javascript::void()" onclick="show_lecture_delete('.$obj->id.',\''.title_lecturer($obj->lecturer).'\')"><i class="fa fa-trash"></i></a>';
+                        $action.='<br><a class="text-danger mt-1" href="javascript::void()" onclick="show_lecture_delete('.$obj->id.',\''.title_lecturer($obj->lecturer).'\')"><i class="fa fa-trash"></i></a>';
                     }
                     $txt.='<tr>
                         <th class="align-middle"><span class="badge badge-primary badge-sm bg-'.$obj->sls->bg.'">'.$obj->sls->name.'</span></th>
@@ -96,7 +96,7 @@ class ScheduleController extends Controller
                 }
                 if(can($this->key_,'add')){
                     $txt.='<tr>
-                    <th colspan="3" class="text-center"><a class="text-success" href="javascript::void()" onclick="show_lecture_add('.$row->id.')"><i class="fa fa-plus-circle"></i> Tambah</button></th>
+                    <th colspan="3" class="text-center"><a class="text-success" href="javascript::void()" onclick="show_lecture_add('.$row->id.')"><i class="fa fa-plus-circle"></i>'.tr('tambah').'</button></th>
                 </tr>';
                 }
 
@@ -209,12 +209,12 @@ class ScheduleController extends Controller
         ]);
 
         $class_select = Classes::where('id',$class_id)->first();
-        $message="menambah jadwal gagal";
+        $message=tr("menambah jadwal gagal");
         $code=0;
 
         if ($status_data) {
             addLog(0,$this->menu_id,'Menambah data jadwal '.$class_select->name);
-            $message="menambah jadwal sukses";
+            $message=tr("menambah jadwal sukses");
             $code=1;
         } 
 
@@ -245,12 +245,12 @@ class ScheduleController extends Controller
         ];
 
         $status_data = Schedule::where(['id'=>$id])->update($update);
-        $message="mengedit jadwal gagal";
+        $message=tr("mengedit jadwal gagal");
         $code=0;
         if ($status_data) {
             $class_select = Classes::where('id',$class_id)->first();
             addLog(0,$this->menu_id,'Mengedit data jadwal '.$class_select->name);
-            $message="mengedit jadwal sukses";
+            $message=tr("mengedit jadwal sukses");
             $code=1;
         }
 
@@ -268,12 +268,12 @@ class ScheduleController extends Controller
         $id = $request->input("id");
         $old_data = Schedule::where(["id" => $id])->first();
         $status_data = Schedule::where(["id" => $id])->delete();
-        $message="menghapus jadwal gagal";
+        $message=tr("menghapus jadwal gagal");
         $code=0;
 
         if ($status_data) {
             addLog(0,$this->menu_id,'Menghapus data jadwal'.$old_data->class->name);
-            $message="menghapus jadwal sukses";
+            $message=tr("menghapus jadwal sukses");
             $code=1;
         } 
 
@@ -300,14 +300,14 @@ class ScheduleController extends Controller
         ]);
 
         
-        $message="Menambah dosen untuk jadwal gagal";
+        $message=tr("menambah dosen untuk jadwal gagal");
         $code=0;
 
         if ($status_data) {
            
             $lecturer=Lecturer::where('id',$lecturer_id)->first();
             addLog(0,$this->menu_id,'Menambah dosen '.$lecturer->name.' untuk jadwal ');
-            $message="menambah dosen untuk jadwal sukses";
+            $message=tr("menambah dosen untuk jadwal sukses");
             $code=1;
         } 
 
@@ -328,14 +328,14 @@ class ScheduleController extends Controller
             "sls_id" => $sls_id,
         ]);
         
-        $message="Megubah dosen untuk jadwal gagal";
+        $message=tr("mengubah dosen untuk jadwal gagal");
         $code=0;
 
         if ($status_data) {
             $old_data=ScheduleLecturer::where('id',$id)->first();
            
             addLog(0,$this->menu_id,'Megubah status dosen '.$old_data->lecturer->name.' untuk jadwal ');
-            $message="mengubah dosen untuk jadwal sukses";
+            $message=tr("mengubah dosen untuk jadwal sukses");
             $code=1;
         } 
 
@@ -351,12 +351,12 @@ class ScheduleController extends Controller
         $id = $request->input("id");
         $old_data = ScheduleLecturer::where(["id" => $id])->first();
         $status_data = ScheduleLecturer::where(["id" => $id])->delete();
-        $message="menghapus dosen untuk jadwal gagal";
+        $message=tr("menghapus dosen untuk jadwal gagal");
         $code=0;
 
         if ($status_data) {
             addLog(0,$this->menu_id,'Meghapus status dosen '.$old_data->lecturer->name.' untuk jadwal ');
-            $message="menghapus dosen untuk jadwal sukses";
+            $message=tr("menghapus dosen untuk jadwal sukses");
             $code=1;
         } 
 

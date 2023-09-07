@@ -52,7 +52,7 @@ class QuestionController extends Controller
             
             return DataTables::of($data)->addIndexColumn()
                 ->editColumn('subject', function($row){
-                    return $row->sks->subject->name.' (sem '.$row->sks->semester.') <br> <small> oleh '.title_lecturer($row->lecturer).'</small>';
+                    return $row->sks->subject->name.' (sem '.$row->sks->semester.') <br><small> '.tr('oleh').' '.title_lecturer($row->lecturer).'</small>';
                 })
                 ->editColumn('time', function($row){
                     return date_id($row->created_at,5);
@@ -61,13 +61,13 @@ class QuestionController extends Controller
                     $type_name="";
                     switch ($row->type) {
                         case 0:
-                            $type_name="<spam class='text-info'>Essay</span>";
+                            $type_name="<span class='text-info'>'".tr('essay')."'</span>";
                             break;
                         case 1:
-                            $type_name="<spam class='text-success'>Pilihan berganda</span>";
+                            $type_name="<span class='text-success'>'".tr('pilihan berganda')."'</span>";
                             break;
                         case 2:
-                            $type_name="<spam class='text-danger'>Upload file</span>";
+                            $type_name="<span class='text-danger'>'".tr('upload file')."'</span>";
                             break;
                     }
                     return $type_name;
@@ -130,13 +130,13 @@ class QuestionController extends Controller
 
             switch ($data->type) {
                 case 0:
-                    $data->type_name="ESSAY";
+                    $data->type_name=tr("essay");
                     break;
                 case 1:
-                    $data->type_name="PILIHAN BERGANDA";
+                    $data->type_name=tr("pilihan berganda");
                     break;
                 case 2:
-                    $data->type_name="UPLOAD FILE";
+                    $data->type_name=tr("upload file");
                     break;
                 
                 default:

@@ -18,10 +18,9 @@
     <title>ELMED {{ univ()->name }} </title>
 
     <!-- FAVICONS ICON -->
-    <link rel="shortcut icon" type="image/png"
-        href="{{ asset(LOGO_PATH . (univ()->logo ? univ()->logo : 'default.png')) }}" />
-    <link href="{{ asset('template/vendor/bootstrap-select/dist/css/bootstrap-select.min.css') }}" rel="stylesheet">
-    <link href="{{ asset('template/css/style.css ') }}" rel="stylesheet">
+    <link rel="shortcut icon" type="image/png" href="{{ asset(LOGO_PATH . (univ()->logo ? univ()->logo : 'default.png')) }}" />
+    <link href="{{ asset('template/vendor/bootstrap-select/dist/css/bootstrap-select.min.css" rel="stylesheet">
+    <link href="{{ asset('template/css/style.css" rel="stylesheet">
 
 </head>
 
@@ -32,9 +31,9 @@
  Scripts
 ***********************************-->
     <!-- Required vendors -->
-    <script src="{{ asset('template/vendor/global/global.min.js') }}"></script>
-    <script src="{{ asset('template/js/custom.js') }}"></script>
-    <script src="{{ asset('template/js/dlabnav-theme-2.js') }}"></script>
+    <script src="{{ asset('template/vendor/global/global.min.js"></script>
+    <script src="{{ asset('template/js/custom.js"></script>
+    <script src="{{ asset('template/js/dlabnav-theme-2.js"></script>
 
 </body>
 

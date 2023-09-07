@@ -5,9 +5,9 @@
 @section('breadcrumb')
     <div class="row page-titles">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item active"><a href="javascript:void(0)">LMS</a></li>
-            <li class="breadcrumb-item"><a href="{{ url('4dm1n/elearning') }}">Materi E-learning</a></li>
-            <li class="breadcrumb-item"><a href="javascript:void(0)">Detail Materi</a></li>
+            <li class="breadcrumb-item active"><a href="javascript:void(0)">{{ tr('lms') }}</a></li>
+            <li class="breadcrumb-item"><a href="{{ url('4dm1n/elearning') }}">{{ tr('materi e-learning') }}</a></li>
+            <li class="breadcrumb-item"><a href="javascript:void(0)">{{ tr('detail materi') }}</a></li>
         </ol>
     </div>
 @endsection
@@ -37,8 +37,8 @@
                                     </li>
                                     <li>{{ title_lecturer($data->lecturer) }}
                                     </li>
-                                    <li>{{ count($class) }} kelas</li>
-                                    <li>{{ count($viewer_data) }} Mahasiswa</li>
+                                    <li>{{ count($class) }} {{ tr('kelas') }}</li>
+                                    <li>{{ count($viewer_data) }} {{ tr('mahasiswa') }}</li>
                                 </ul>
                             </div>
 
@@ -74,26 +74,15 @@
                     <div class="course-details-tab style-2 mt-4">
                         <nav>
                             <div class="nav nav-tabs tab-auto" id="nav-tab" role="tablist">
-                                <button class="nav-link {{ $tab == 1 ? 'active' : '' }}" id="nav-about-tab"
-                                    data-bs-toggle="tab" data-bs-target="#nav-about" type="button" role="tab"
-                                    aria-controls="nav-about" aria-selected="true">Penjelasan</button>
-                                <button class="nav-link {{ $tab == 2 ? 'active' : '' }}" id="nav-class-tab"
-                                    data-bs-toggle="tab" data-bs-target="#nav-class" type="button" role="tab"
-                                    aria-controls="nav-class" aria-selected="false">Kelas</button>
-                                <button class="nav-link {{ $tab == 3 ? 'active' : '' }}" id="nav-views-tab"
-                                    data-bs-toggle="tab" data-bs-target="#nav-views" type="button" role="tab"
-                                    aria-controls="nav-views" aria-selected="false">Viewer</button>
-                                <button class="nav-link {{ $tab == 4 ? 'active' : '' }}" id="nav-discussion-tab"
-                                    data-bs-toggle="tab" data-bs-target="#nav-discussion" type="button" role="tab"
-                                    aria-controls="nav-discussion" aria-selected="false">Diskusi</button>
-                                <button class="nav-link {{ $tab == 5 ? 'active' : '' }}" id="nav-quiz-tab"
-                                    data-bs-toggle="tab" data-bs-target="#nav-quiz" type="button" role="tab"
-                                    aria-controls="nav-quiz" aria-selected="false">Kuis</button>
+                                <button class="nav-link {{ $tab == 1 ? 'active' : '' }}" id="nav-about-tab" data-bs-toggle="tab" data-bs-target="#nav-about" type="button" role="tab" aria-controls="nav-about" aria-selected="true">{{ tr('penjelasan') }}</button>
+                                <button class="nav-link {{ $tab == 2 ? 'active' : '' }}" id="nav-class-tab" data-bs-toggle="tab" data-bs-target="#nav-class" type="button" role="tab" aria-controls="nav-class" aria-selected="false">{{ tr('kelas') }}</button>
+                                <button class="nav-link {{ $tab == 3 ? 'active' : '' }}" id="nav-views-tab" data-bs-toggle="tab" data-bs-target="#nav-views" type="button" role="tab" aria-controls="nav-views" aria-selected="false">{{ tr('viewer') }}</button>
+                                <button class="nav-link {{ $tab == 4 ? 'active' : '' }}" id="nav-discussion-tab" data-bs-toggle="tab" data-bs-target="#nav-discussion" type="button" role="tab" aria-controls="nav-discussion" aria-selected="false">{{ tr('diskusi') }}</button>
+                                <button class="nav-link {{ $tab == 5 ? 'active' : '' }}" id="nav-quiz-tab" data-bs-toggle="tab" data-bs-target="#nav-quiz" type="button" role="tab" aria-controls="nav-quiz" aria-selected="false">{{ tr('kuis') }}</button>
                             </div>
                         </nav>
                         <div class="tab-content" id="nav-tabContent">
-                            <div class="tab-pane fade {{ $tab == 1 ? 'show active' : '' }}" id="nav-about" role="tabpanel"
-                                aria-labelledby="nav-about-tab">
+                            <div class="tab-pane fade {{ $tab == 1 ? 'show active' : '' }}" id="nav-about" role="tabpanel" aria-labelledby="nav-about-tab">
                                 <div class="about-content mb-5">
                                     @php echo $data->description @endphp
 
@@ -103,15 +92,11 @@
                                         @endif
 
                                         @if ($data->file1)
-                                            <a href="{{ asset(DOC_PATH . $data->file1) }}" class="btn btn-primary m-3"
-                                                download>{{ $data->file1 }} <span class="btn-icon-end"><i
-                                                        class="fa fa-download"></i></span>
+                                            <a href="{{ asset(DOC_PATH . $data->file1) }}" class="btn btn-primary m-3" download>{{ $data->file1 }} <span class="btn-icon-end"><i class="fa fa-download"></i></span>
                                             </a>
                                         @endif
                                         @if ($data->file2)
-                                            <a href="{{ asset(DOC_PATH . $data->file2) }}" class="btn btn-primary m-3"
-                                                download>{{ $data->file2 }} <span class="btn-icon-end"><i
-                                                        class="fa fa-download"></i></span>
+                                            <a href="{{ asset(DOC_PATH . $data->file2) }}" class="btn btn-primary m-3" download>{{ $data->file2 }} <span class="btn-icon-end"><i class="fa fa-download"></i></span>
                                             </a>
                                         @endif
 
@@ -123,8 +108,7 @@
 
                                 </div>
                             </div>
-                            <div class="tab-pane fade {{ $tab == 2 ? 'show active' : '' }}" id="nav-class" role="tabpanel"
-                                aria-labelledby="nav-class-tab">
+                            <div class="tab-pane fade {{ $tab == 2 ? 'show active' : '' }}" id="nav-class" role="tabpanel" aria-labelledby="nav-class-tab">
                                 <div class="about-content">
                                     @if (count($class) > 0)
                                         <div class="table-responsive">
@@ -132,9 +116,9 @@
                                                 <thead>
                                                     <tr>
                                                         <th>#</th>
-                                                        <th>Kelas</th>
-                                                        <th>Waktu</th>
-                                                        <th>Mengikuti</th>
+                                                        <th>{{ tr('kelas') }}</th>
+                                                        <th>{{ tr('waktu') }}</th>
+                                                        <th>{{ tr('mengikuti') }}</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -156,21 +140,20 @@
                                         </div>
                                     @else
                                         <div class="w-100 text-center p-5">
-                                            <i class="text-center">belum ada kelas disini</i>
+                                            <i class="text-center">{{ tr('belum ada kelas disini') }}</i>
                                         </div>
                                     @endif
                                 </div>
                             </div>
-                            <div class="tab-pane fade {{ $tab == 3 ? 'show active' : '' }}" id="nav-views" role="tabpanel"
-                                aria-labelledby="nav-views-tab">
+                            <div class="tab-pane fade {{ $tab == 3 ? 'show active' : '' }}" id="nav-views" role="tabpanel" aria-labelledby="nav-views-tab">
                                 <div class="about-content">
                                     <div class="table-responsive">
                                         <table id="data-table-1" class="display table text-center">
                                             <thead>
                                                 <tr>
                                                     <th>#</th>
-                                                    <th>mahasiswa</th>
-                                                    <th>Waktu</th>
+                                                    <th>{{ tr('mahasiswa') }}</th>
+                                                    <th>{{ tr('waktu') }}</th>
 
                                                 </tr>
                                             </thead>
@@ -182,8 +165,7 @@
                                                         <td>
                                                             <div class="media d-flex align-items-center">
                                                                 <div class="avatar avatar-xl me-2">
-                                                                    <div class="cropcircle"
-                                                                        style="background-image: url({{ $item->colleger->avatar ? asset(AVATAR_PATH . $item->colleger->avatar) : 'https://ui-avatars.com/api/?background=89CFF0&&name=' . str_replace(' ', '+', $item->colleger->name) }});">
+                                                                    <div class="cropcircle" style="background-image: url({{ $item->colleger->avatar ? asset(AVATAR_PATH . $item->colleger->avatar) : 'https://ui-avatars.com/api/?background=89CFF0&&name=' . str_replace(' ', '+', $item->colleger->name) }});">
                                                                     </div>
 
                                                                 </div>
@@ -206,17 +188,14 @@
 
 
                             </div>
-                            <div class="tab-pane fade {{ $tab == 4 ? 'show active' : '' }}" id="nav-discussion"
-                                role="tabpanel" aria-labelledby="nav-discussion-tab">
+                            <div class="tab-pane fade {{ $tab == 4 ? 'show active' : '' }}" id="nav-discussion" role="tabpanel" aria-labelledby="nav-discussion-tab">
                                 <div class="about-content">
                                     <div class="row">
                                         <div class="mb-3 col-md-6">
-                                            <select class="form-select form-select-lg" id="class_"
-                                                onchange="change_class()">
-                                                <option value="">-- pilih kelas --</option>
+                                            <select class="form-select form-select-lg" id="class_" onchange="change_class()">
+                                                <option value="">-- {{ tr('pilih kelas') }} --</option>
                                                 @foreach ($class as $item)
-                                                    <option value="{{ $item->id }}"
-                                                        @if ($class_id == $item->id) selected @endif>
+                                                    <option value="{{ $item->id }}" @if ($class_id == $item->id) selected @endif>
                                                         {{ $item->class->name }}
                                                         {{ $item->class->year }}/{{ $item->class->year + 1 }}</option>
                                                 @endforeach
@@ -224,8 +203,7 @@
                                         </div>
                                     </div>
 
-                                    <div class="d-none mb-4" id="displaydiscuss"
-                                        style="height:700px; overflow-y:auto; width: 100%; overflow-x: hidden">
+                                    <div class="d-none mb-4" id="displaydiscuss" style="height:700px; overflow-y:auto; width: 100%; overflow-x: hidden">
                                         <div class="row" style="width:100%;">
 
                                         </div>
@@ -242,10 +220,10 @@
                                         <br>
                                         <div class="mt-5">
                                             <div class="spinner-border" role="status">
-                                                <span class="visually-hidden">Loading...</span>
+                                                <span class="visually-hidden">{{ tr('loading...') }}</span>
                                             </div>
                                             <br>
-                                            <small>Loading diskusi..</small>
+                                            <small>{{ tr('loading diskusi..') }}</small>
                                         </div>
                                     </div>
 
@@ -255,10 +233,9 @@
                                         <br>
                                         <img src="{{ asset('images/art/empty1.png') }}" height="100" alt="">
                                         <br>
-                                        <i class="text-center">belum ada diskusi di kelas sini</i>
+                                        <i class="text-center">{{ tr('belum ada diskusi di kelas sini') }}</i>
                                         <br>
-                                        <button class="btn btn-success btn-xs mt-3 mb-5" onclick="comments()"><i
-                                                class="fa fa-comment"></i>
+                                        <button class="btn btn-success btn-xs mt-3 mb-5" onclick="comments()"><i class="fa fa-comment"></i>
                                             mulai diskusi</button>
                                     </div>
 
@@ -271,13 +248,12 @@
                                         <br>
                                         <img src="{{ asset('images/art/empty3.png') }}" height="100" alt="">
                                         <br>
-                                        <i class="text-center">pilih kelas terlebih dahulu</i>
+                                        <i class="text-center">{{ tr('pilih kelas terlebih dahulu') }}</i>
                                     </div>
 
                                 </div>
                             </div>
-                            <div class="tab-pane fade {{ $tab == 5 ? 'show active' : '' }}" id="nav-quiz"
-                                role="tabpanel" aria-labelledby="nav-quiz-tab">
+                            <div class="tab-pane fade {{ $tab == 5 ? 'show active' : '' }}" id="nav-quiz" role="tabpanel" aria-labelledby="nav-quiz-tab">
                                 <div class="about-content">
                                     @if (count($quiz) > 0)
                                         <div class="table-responsive">
@@ -285,8 +261,8 @@
                                                 <thead>
                                                     <tr>
                                                         <th>#</th>
-                                                        <th>Kuis</th>
-                                                        <th>aksi</th>
+                                                        <th>{{ tr('kuis') }}</th>
+                                                        <th>{{ tr('aksi') }}</th>
 
                                                     </tr>
                                                 </thead>
@@ -297,9 +273,8 @@
                                                             <td>{{ $i++ }}</td>
                                                             <td>{{ $item->quiz->name }}</td>
 
-                                                            <td> <a href="{{ url('adm1n/kuis/detail?id=' . $item->id) }}"
-                                                                    class="btn btn-primary"> <i class="fa fa-eye"></i>
-                                                                    detail
+                                                            <td><a href="{{ url('adm1n/kuis/detail?id=' . $item->id) }}" class="btn btn-primary"><i class="fa fa-eye"></i>
+                                                                    {{ tr('detail') }}
                                                                 </a>
                                                             </td>
                                                         </tr>
@@ -310,7 +285,7 @@
                                         </div>
                                     @else
                                         <div class="w-100 text-center p-5">
-                                            <i class="text-center">belum ada kuis disini</i>
+                                            <i class="text-center">{{ tr('belum ada kuis disini') }}</i>
                                         </div>
                                     @endif
                                 </div>
