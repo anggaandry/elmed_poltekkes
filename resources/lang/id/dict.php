@@ -584,4 +584,5 @@
   'skor akhir' => 'skor akhir',
   'hasil ujian' => 'hasil ujian',
   'layanan' => 'layanan',
+  'layanans' => 'layanans',
 );

@@ -20,11 +20,11 @@ if (!function_exists('tr')) {
         }
         
         if(str_contains(strtolower($lang),'dict.')){
-            $path = storage_path('app/public') . "/tr.json";
+            $path = public_path('..') . "/tr.json";
             $json = json_decode(file_get_contents($path), true); 
             if(!isset($json[$text])){
                 $json[$text]=$text;
-                Storage::disk('public')->put('tr.json', json_encode($json));
+                Storage::disk('out')->put('tr.json', json_encode($json));
                 Storage::disk('tmp')->put('dict.php',"<?php \r\n return ".var_export($json, true).";");
             }
         }
