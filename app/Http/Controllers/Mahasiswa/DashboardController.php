@@ -33,7 +33,6 @@ class DashboardController extends Controller
 
     public function index()
     {
-        tr("layanans");
         $ac_=active_class();
         $schedule_data=[];
 

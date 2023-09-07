@@ -583,6 +583,5 @@ return array (
     "hasil kuis"=> "quiz results",
     "skor akhir"=> "final score",
     "hasil ujian"=> "exam results",
-    "layanan"=> "service"
 
 );

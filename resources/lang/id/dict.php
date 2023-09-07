@@ -583,6 +583,5 @@
   'hasil kuis' => 'hasil kuis',
   'skor akhir' => 'skor akhir',
   'hasil ujian' => 'hasil ujian',
-  'layanan' => 'layanan',
-  'layanans' => 'layanans',
+  'halo' => 'halo',
 );
