@@ -389,9 +389,9 @@
                                         </li>
                                         <li class="nav-item ">
                                             @if ($auth->lang == 'id')
-                                                <a class="btn btn-info m-1 px-3 py-2" href="{{ url('/dosen/auth/lang?id=' . $auth->id . '&lang=en') }}"><img src="{{ asset('images/icon/bahasa.png') }}" height="25" alt="language"></a>
+                                                <a class="btn btn-info m-1 px-3 py-2" href="{{ url('/dosen/auth/lang?id=' . $auth->id . '&lang=en') }}"><img src="{{ asset('images/icon/english.png') }}" height="25" alt="language"></a>
                                             @else
-                                                <a class="btn btn-info m-1 px-3 py-2" href="{{ url('/dosen/auth/lang?id=' . $auth->id . '&lang=id') }}"><img src="{{ asset('images/icon/english.png') }}" height="25" alt="language"></a>
+                                                <a class="btn btn-info m-1 px-3 py-2" href="{{ url('/dosen/auth/lang?id=' . $auth->id . '&lang=id') }}"><img src="{{ asset('images/icon/bahasa.png') }}" height="25" alt="language"></a>
                                             @endif
                                         </li>
                                         <li class="nav-item ">

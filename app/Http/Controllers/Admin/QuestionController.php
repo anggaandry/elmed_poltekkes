@@ -61,13 +61,13 @@ class QuestionController extends Controller
                     $type_name="";
                     switch ($row->type) {
                         case 0:
-                            $type_name="<span class='text-info'>'".tr('essay')."'</span>";
+                            $type_name="<span class='text-info'>".tr('essay')."</span>";
                             break;
                         case 1:
-                            $type_name="<span class='text-success'>'".tr('pilihan berganda')."'</span>";
+                            $type_name="<span class='text-success'>".tr('pilihan berganda')."</span>";
                             break;
                         case 2:
-                            $type_name="<span class='text-danger'>'".tr('upload file')."'</span>";
+                            $type_name="<span class='text-danger'>".tr('upload file')."</span>";
                             break;
                     }
                     return $type_name;
