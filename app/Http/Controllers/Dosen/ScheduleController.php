@@ -23,14 +23,14 @@ use Yajra\DataTables\Datatables;
 
 class ScheduleController extends Controller
 {
-    
+
     public function index()
     {
-        $data=[];
-        return view('dosen/schedule',$data);
+        $data = [];
+        return view('dosen/schedule', $data);
     }
 
-   
+
 
     public function ajax_table(Request $request)
     {
@@ -39,39 +39,66 @@ class ScheduleController extends Controller
             $odd = $request->input("_odd");
             $lecturer_id = $request->input("_lecturer");
 
-            $data=Schedule::with('sks','sks.subject','class','room')->whereHas('schedule_lecturer',function ($q) use($lecturer_id) {
-                                    $q->where('lecturer_id', '=', $lecturer_id);
-                                })
-                                ->whereHas('class', function($q) use ($year,$odd){
-                                    $q->where(['year'=> $year,'odd'=>$odd]);
-                                })->orderBy('day','asc')->orderBy('start','asc')->get();
-           
-            return DataTables::of($data)->addColumn('days', function($row){
+            if (session('ic') === true) {
+                $data = Schedule::with('sks', 'sks.subject', 'class', 'room')
+                    ->whereHas('schedule_lecturer', function ($q) use ($lecturer_id) {
+                        $q->where('lecturer_id', '=', $lecturer_id);
+                    })
+                    ->whereHas('class', function ($q) use ($year, $odd) {
+                        $q->where(['year' => $year, 'odd' => $odd]);
+                    })
+                    ->whereHas('class.prodi', function ($q) {
+                        $q->where(['category_id' => 6]);
+                    })
+                    ->orderBy('day', 'asc')
+                    ->orderBy('start', 'asc')
+                    ->get();
+            } else {
+                $data = Schedule::with('sks', 'sks.subject', 'class', 'room')
+                    ->whereHas('schedule_lecturer', function ($q) use ($lecturer_id) {
+                        $q->where('lecturer_id', '=', $lecturer_id);
+                    })
+                    ->whereHas('class', function ($q) use ($year, $odd) {
+                        $q->where(['year' => $year, 'odd' => $odd]);
+                    })
+                    ->orderBy('day', 'asc')
+                    ->orderBy('start', 'asc')
+                    ->get();
+            }
+
+
+            // $data = Schedule::with('sks', 'sks.subject', 'class', 'room')
+            //     ->whereHas('schedule_lecturer', function ($q) use ($lecturer_id) {
+            //         $q->where('lecturer_id', '=', $lecturer_id);
+            //     })
+            //     ->whereHas('class', function ($q) use ($year, $odd) {
+            //         $q->where(['year' => $year, 'odd' => $odd]);
+            //     })
+            //     ->orderBy('day', 'asc')
+            //     ->orderBy('start', 'asc')
+            //     ->get();
+
+            return DataTables::of($data)->addColumn('days', function ($row) {
                 return DAY[$row->day];
-              })->addColumn('time', function($row){
-                return date('H:i',strtotime($row->start)).' - '.date('H:i',strtotime($row->end));
-              })->addColumn('lecturer', function($row){
-                $txt="";
-                $dosen = ScheduleLecturer::with('lecturer','sls')->where(["schedule_id" => $row->id])->get();
-                $txt.="<ul class='text-center'>";
-                $i=0;
+            })->addColumn('time', function ($row) {
+                return date('H:i', strtotime($row->start)) . ' - ' . date('H:i', strtotime($row->end));
+            })->addColumn('lecturer', function ($row) {
+                $txt = "";
+                $dosen = ScheduleLecturer::with('lecturer', 'sls')->where(["schedule_id" => $row->id])->get();
+                $txt .= "<ul class='text-center'>";
+                $i = 0;
                 foreach ($dosen as $obj) {
                     $i++;
-                    
-                    $txt.='<li>
-                        <span class="mt-5"> '.title_lecturer($obj->lecturer).'</span>
-                        <span class="badge badge-xs bg-'.$obj->sls->bg.'" >'.$obj->sls->name.'</span></li>';
 
+                    $txt .= '<li>
+                        <span class="mt-5"> ' . title_lecturer($obj->lecturer) . '</span>
+                        <span class="badge badge-xs bg-' . $obj->sls->bg . '" >' . $obj->sls->name . '</span></li>';
                 }
 
-                $txt.="</ul>";
+                $txt .= "</ul>";
 
                 return $txt;
-              })->rawColumns(['lecturer'])->make(true);   
+            })->rawColumns(['lecturer'])->make(true);
         }
     }
-
-
-    
-
 }

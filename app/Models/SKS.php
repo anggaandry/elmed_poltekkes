@@ -8,15 +8,15 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class SKS extends Model
 {
-    use SoftDeletes; 
+    use SoftDeletes;
     protected $table = 'Lm5_sks';
     protected $dates = ['deleted_at'];
     protected $attributes = [
         'university_id' => UNIVERSITY_ID,
     ];
-    
+
     protected $fillable = [
-        'university_id','prodi_id','semester','subject_id','code','value','status'
+        'university_id', 'prodi_id', 'semester', 'subject_id', 'code', 'value', 'status'
     ];
 
     protected static function booted()
@@ -24,37 +24,43 @@ class SKS extends Model
         static::addGlobalScope(new UniversityScopes);
     }
 
-    public function university() {
+    public function university()
+    {
         return $this->belongsTo('App\Models\University')->withTrashed();
     }
 
-    public function prodi() {
+    public function prodi()
+    {
         return $this->belongsTo('App\Models\StudyProgramFull')->withTrashed();
     }
 
-    public function subject() {
+    public function subject()
+    {
         return $this->belongsTo('App\Models\Subject')->withTrashed();
     }
 
-    public function schedule() {
+    public function schedule()
+    {
         return $this->hasMany('App\Models\Schedule');
     }
-    
-    public function elearning() {
+
+    public function elearning()
+    {
         return $this->hasMany('App\Models\Elearning');
     }
 
-    public function quiz() {
+    public function quiz()
+    {
         return $this->hasMany('App\Models\Quiz');
     }
 
-    public function exam() {
+    public function exam()
+    {
         return $this->hasMany('App\Models\Exam');
     }
 
-    public function question() {
+    public function question()
+    {
         return $this->hasMany('App\Models\Question');
     }
-
-    
 }

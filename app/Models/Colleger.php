@@ -24,7 +24,7 @@ class Colleger extends Authenticatable
 
     protected $fillable = [
         'password', 'name', 'nim', 'avatar', 'status', 'online', 'university_id', 'remember_token', 'prodi_id',
-        'religion_id', 'gender', 'birthdate', 'year','lang'
+        'religion_id', 'gender', 'birthdate', 'year', 'lang'
     ];
 
     protected $hidden = [
@@ -59,6 +59,11 @@ class Colleger extends Authenticatable
     public function absence()
     {
         return $this->hasMany('App\Models\Absence');
+    }
+
+    public function one_absence()
+    {
+        return $this->hasOne('App\Models\Absence');
     }
 
     public function elearning_view()

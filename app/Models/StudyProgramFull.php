@@ -8,15 +8,15 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class StudyProgramFull extends Model
 {
-    use SoftDeletes; 
+    use SoftDeletes;
     protected $table = 'Lm5_study_program_full';
     protected $dates = ['deleted_at'];
     protected $attributes = [
         'university_id' => UNIVERSITY_ID,
     ];
-    
+
     protected $fillable = [
-        'university_id','program_id','study_program_id','category_id','lang'
+        'university_id', 'program_id', 'study_program_id', 'category_id', 'lang'
     ];
 
     protected static function booted()
@@ -24,32 +24,38 @@ class StudyProgramFull extends Model
         static::addGlobalScope(new UniversityScopes);
     }
 
-    public function university() {
+    public function university()
+    {
         return $this->belongsTo('App\Models\University')->withTrashed();
     }
 
-    public function lecturer_study_program() {
+    public function lecturer_study_program()
+    {
         return $this->hasMany('App\Models\LecturerStudyProgram');
     }
 
-    public function program() {
+    public function program()
+    {
         return $this->belongsTo('App\Models\Program')->withTrashed();
     }
 
-    public function study_program() {
+    public function study_program()
+    {
         return $this->belongsTo('App\Models\StudyProgram')->withTrashed();
     }
 
-    public function category() {
+    public function category()
+    {
         return $this->belongsTo('App\Models\StudyProgramCategory')->withTrashed();
     }
 
-    public function colleger() {
+    public function colleger()
+    {
         return $this->hasMany('App\Models\Colleger');
     }
 
-    public function sks() {
+    public function sks()
+    {
         return $this->hasMany('App\Models\SKS');
     }
-    
 }

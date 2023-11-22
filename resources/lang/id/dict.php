@@ -584,4 +584,84 @@
   'skor akhir' => 'skor akhir',
   'hasil ujian' => 'hasil ujian',
   'halo' => 'halo',
+  'Jul' => 'Jul',
+  'April' => 'April',
+  'Juli' => 'Juli',
+  'Jun' => 'Jun',
+  'Feb' => 'Feb',
+  'Apr' => 'Apr',
+  'Oktober' => 'Oktober',
+  'Juni' => 'Juni',
+  'e-learning aktif ' => 'e-learning aktif ',
+  'belum hadir' => 'belum hadir',
+  '
+                    peringatan ' => '
+                    peringatan ',
+  '
+                    password minimal 8 karakter ' => '
+                    password minimal 8 karakter ',
+  '
+                    password tidak cocok ' => '
+                    password tidak cocok ',
+  '</div>' => '</div>',
+  '
+                loading...' => '
+                loading...',
+  ' < /div>' => ' < /div>',
+  '
+            mulai absensi ' => '
+            mulai absensi ',
+  '
+                                jadwal kelas pindahan belum dimulai ' => '
+                                jadwal kelas pindahan belum dimulai ',
+  '
+                                edit pindah jadwal ' => '
+                                edit pindah jadwal ',
+  '
+                                    sesi kelas pindahan sudah habis tanpa kegiatan pembelajaran ' => '
+                                    sesi kelas pindahan sudah habis tanpa kegiatan pembelajaran ',
+  '
+                                    absen manual ' => '
+                                    absen manual ',
+  '
+                                    jadwal kelas belum dimulai ' => '
+                                    jadwal kelas belum dimulai ',
+  '
+                                        jadwal kelas sudah dipindah ke ' => '
+                                        jadwal kelas sudah dipindah ke ',
+  '
+                                        edit pindah jadwal ' => '
+                                        edit pindah jadwal ',
+  '
+                                        Edit pindah jadwal ' => '
+                                        Edit pindah jadwal ',
+  '
+                                        sesi kelas sudah habis tanpa kegiatan pembelajaran ' => '
+                                        sesi kelas sudah habis tanpa kegiatan pembelajaran ',
+  '
+                                        absen manual ' => '
+                                        absen manual ',
+  '
+                                        sesi kelas sudah dipindahkan ke ' => '
+                                        sesi kelas sudah dipindahkan ke ',
+  'bahasa gagal di ganti' => 'bahasa gagal di ganti',
+  'apakah anda ingin menonaktifkan' => 'apakah anda ingin menonaktifkan',
+  'jam lalu' => 'jam lalu',
+  'loading' => 'loading',
+  ' </div>' => ' </div>',
+  'mulai absensi ' => 'mulai absensi ',
+  'jadwal kelas pindahan belum dimulai ' => 'jadwal kelas pindahan belum dimulai ',
+  'edit pindah jadwal ' => 'edit pindah jadwal ',
+  'peringatan ' => 'peringatan ',
+  'password minimal 8 karakter ' => 'password minimal 8 karakter ',
+  'password tidak cocok ' => 'password tidak cocok ',
+  'sesi kelas pindahan sudah habis tanpa kegiatan pembelajaran ' => 'sesi kelas pindahan sudah habis tanpa kegiatan pembelajaran ',
+  'absen manual ' => 'absen manual ',
+  'jadwal kelas belum dimulai ' => 'jadwal kelas belum dimulai ',
+  'jadwal kelas sudah dipindah ke ' => 'jadwal kelas sudah dipindah ke ',
+  'Edit pindah jadwal ' => 'Edit pindah jadwal ',
+  'sesi kelas sudah habis tanpa kegiatan pembelajaran ' => 'sesi kelas sudah habis tanpa kegiatan pembelajaran ',
+  'sesi kelas sudah dipindahkan ke ' => 'sesi kelas sudah dipindahkan ke ',
+  'apakah anda ingin menghapus mahasiswa dari kelas ini?' => 'apakah anda ingin menghapus mahasiswa dari kelas ini?',
+  'tambah ' => 'tambah ',
 );
